@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URIKAI Trading Academy</title>
+    <style>
+        :root {
+            --primary: #0a2f5c;
+            --primary-light: #163d6e;
+            --accent: #d4a537;
+            --accent-hover: #e0b84a;
+            --bg: #0d1117;
+            --bg-card: #161b22;
+            --bg-card-hover: #1c2333;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --border: #30363d;
+            --green: #27ae60;
+            --blue: #2e86c1;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', 'Meiryo UI', 'Hiragino Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* ===== Header ===== */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #0f1a2e 100%);
+            border-bottom: 3px solid var(--accent);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: 4px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--text);
+            font-weight: 300;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-left: 12px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--accent); }
+
+        /* ===== Hero ===== */
+        .hero {
+            background: linear-gradient(135deg, #0a1628 0%, #162240 50%, #0a2f5c 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4a537' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: 8px;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat .num {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .hero-stat .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* ===== Main ===== */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* ===== Category Section ===== */
+        .category {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .category-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--accent), #b8912e);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .category-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.15rem;
+        }
+
+        .category-badge {
+            margin-left: auto;
+            background: var(--primary-light);
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* ===== Cards Grid ===== */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(212, 165, 55, 0.1);
+        }
+
+        .card-num {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: var(--primary);
+            color: var(--accent);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            padding-right: 2.5rem;
+        }
+
+        .card-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            margin-top: 0.75rem;
+            gap: 1rem;
+        }
+
+        .card-slides {
+            font-size: 0.75rem;
+            color: var(--blue);
+            background: rgba(46, 134, 193, 0.1);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .card-level {
+            font-size: 0.7rem;
+            color: var(--green);
+            background: rgba(39, 174, 96, 0.1);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background: var(--primary);
+            border-top: 3px solid var(--accent);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer .brand {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== Password Overlay ===== */
+        .password-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--bg);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .password-overlay.hidden { display: none; }
+
+        .password-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .password-box h2 {
+            color: var(--accent);
+            font-size: 2rem;
+            letter-spacing: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        .password-box p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .password-box input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            outline: none;
+        }
+
+        .password-box input:focus {
+            border-color: var(--accent);
+        }
+
+        .password-box button {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, var(--accent), #b8912e);
+            border: none;
+            border-radius: 8px;
+            color: var(--primary);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .password-box button:hover { opacity: 0.9; }
+
+        .password-error {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .header-inner { padding: 0.75rem 1rem; }
+            .logo { font-size: 1.3rem; }
+            .logo span { display: none; }
+            nav a { margin-left: 1rem; font-size: 0.8rem; }
+            .hero { padding: 3rem 1rem; }
+            .hero h1 { font-size: 2.2rem; letter-spacing: 4px; }
+            .hero-stats { gap: 1.5rem; }
+            .hero-stat .num { font-size: 1.8rem; }
+            main { padding: 2rem 1rem; }
+            .cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Password Protection -->
+<div class="password-overlay" id="passwordOverlay">
+    <div class="password-box">
+        <h2>URIKAI</h2>
+        <p>Trading Academy<br>メンバー専用コンテンツ</p>
+        <input type="password" id="passwordInput" placeholder="パスワードを入力" onkeypress="if(event.key==='Enter')checkPassword()">
+        <button onclick="checkPassword()">Enter</button>
+        <p class="password-error" id="passwordError">パスワードが正しくありません</p>
+    </div>
+</div>
+
+<!-- Header -->
+<header>
+    <div class="header-inner">
+        <a href="#" class="logo">URIKAI <span>Trading Academy</span></a>
+        <nav>
+            <a href="#basics">基礎</a>
+            <a href="#technical">テクニカル</a>
+            <a href="#fundamental">ファンダメンタルズ</a>
+            <a href="#risk">リスク管理</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+    <h1>URIKAI</h1>
+    <p>Trading Academy ── トレーディング教育コンテンツライブラリ</p>
+    <div class="hero-stats">
+        <div class="hero-stat">
+            <div class="num">35</div>
+            <div class="label">セクション</div>
+        </div>
+        <div class="hero-stat">
+            <div class="num">303</div>
+            <div class="label">スライド</div>
+        </div>
+        <div class="hero-stat">
+            <div class="num">7</div>
+            <div class="label">カテゴリ</div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<main>
+
+    <!-- Category 1: 市場の基礎 -->
+    <div class="category" id="basics">
+        <div class="category-header">
+            <div class="category-icon">I</div>
+            <div>
+                <div class="category-title">市場の基礎</div>
+                <div class="category-subtitle">Market Fundamentals ── 金融市場の全体像を理解する</div>
+            </div>
+            <div class="category-badge">7 sections / 61 slides</div>
+        </div>
+        <div class="cards">
+            <a class="card" href="#">
+                <div class="card-num">01</div>
+                <div class="card-title">金融市場とは何か</div>
+                <div class="card-desc">金融市場の定義・4つの機能・一次市場と二次市場・規制と監督</div>
+                <div class="card-meta">
+                    <span class="card-slides">7 slides</span>
+                    <span class="card-level">Beginner</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">02</div>
+                <div class="card-title">金融市場の種類</div>
+                <div class="card-desc">FX・株式・債券・商品・暗号資産・デリバティブ市場の比較と特徴</div>
+                <div class="card-meta">
+                    <span class="card-slides">10 slides</span>
+                    <span class="card-level">Beginner</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">03</div>
+                <div class="card-title">市場参加者</div>
+                <div class="card-desc">中央銀行・商業銀行・ヘッジファンド・機関投資家・個人トレーダーの役割</div>
+                <div class="card-meta">
+                    <span class="card-slides">9 slides</span>
+                    <span class="card-level">Beginner</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">04</div>
+                <div class="card-title">通貨ペアの基礎</div>
+                <div class="card-desc">通貨ペアの構造・分類・Pips・ロットサイズ・スプレッド</div>
+                <div class="card-meta">
+                    <span class="card-slides">9 slides</span>
+                    <span class="card-level">Beginner</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">05</div>
+                <div class="card-title">市場の仕組み</div>
+                <div class="card-desc">取引所vs OTC・需給原理・レバレッジ・スリッページ・スワップ</div>
+                <div class="card-meta">
+                    <span class="card-slides">8 slides</span>
+                    <span class="card-level">Beginner</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">06</div>
+                <div class="card-title">注文の種類</div>
+                <div class="card-desc">成行・指値・逆指値・ストップロス・テイクプロフィット・トレーリング</div>
+                <div class="card-meta">
+                    <span class="card-slides">9 slides</span>
+                    <span class="card-level">Beginner</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">07</div>
+                <div class="card-title">取引セッションと時間帯</div>
+                <div class="card-desc">東京・ロンドン・NYセッションの特徴と時間帯別の戦略</div>
+                <div class="card-meta">
+                    <span class="card-slides">9 slides</span>
+                    <span class="card-level">Beginner</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Category 2: テクニカル分析（中級） -->
+    <div class="category" id="technical">
+        <div class="category-header">
+            <div class="category-icon">II</div>
+            <div>
+                <div class="category-title">テクニカル分析（中級）</div>
+                <div class="category-subtitle">Technical Analysis ── チャート分析の基本技術</div>
+            </div>
+            <div class="category-badge">6 sections / 54 slides</div>
+        </div>
+        <div class="cards">
+            <a class="card" href="#">
+                <div class="card-num">08</div>
+                <div class="card-title">ローソク足パターン</div>
+                <div class="card-desc">単体/複合パターン・強気/弱気反転・継続パターン・実践活用法</div>
+                <div class="card-meta">
+                    <span class="card-slides">9 slides</span>
+                    <span class="card-level">Intermediate</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">09</div>
+                <div class="card-title">サポート&レジスタンス</div>
+                <div class="card-desc">水平S/R・トレンドライン・ダイナミックS/R・ロールリバーサル</div>
+                <div class="card-meta">
+                    <span class="card-slides">9 slides</span>
+                    <span class="card-level">Intermediate</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">10</div>
+                <div class="card-title">テクニカルインジケーター</div>
+                <div class="card-desc">MA・RSI・MACD・ボリンジャーバンド・ATR・一目均衡表</div>
+                <div class="card-meta">
+                    <span class="card-slides">11 slides</span>
+                    <span class="card-level">Intermediate</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">11</div>
+                <div class="card-title">チャートパターン</div>
+                <div class="card-desc">H&S・ダブルトップ/ボトム・フラッグ・ウェッジ・トライアングル</div>
+                <div class="card-meta">
+                    <span class="card-slides">9 slides</span>
+                    <span class="card-level">Intermediate</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">12</div>
+                <div class="card-title">フィボナッチ</div>
+                <div class="card-desc">リトレースメント・エクステンション・コンフルエンス・SL/TP活用</div>
+                <div class="card-meta">
+                    <span class="card-slides">8 slides</span>
+                    <span class="card-level">Intermediate</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">13</div>
+                <div class="card-title">マルチタイムフレーム分析</div>
+                <div class="card-desc">トップダウン分析・タイムフレーム選択・アラインメント</div>
+                <div class="card-meta">
+                    <span class="card-slides">8 slides</span>
+                    <span class="card-level">Intermediate</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Category 3: テクニカル分析（上級） -->
+    <div class="category">
+        <div class="category-header">
+            <div class="category-icon">III</div>
+            <div>
+                <div class="category-title">テクニカル分析（上級）</div>
+                <div class="category-subtitle">Advanced Technical Analysis ── 専門的な分析手法</div>
+            </div>
+            <div class="category-badge">6 sections / 53 slides</div>
+        </div>
+        <div class="cards">
+            <a class="card" href="#">
+                <div class="card-num">14</div>
+                <div class="card-title">エリオット波動</div>
+                <div class="card-desc">推進5波・修正3波・波の階層・フィボナッチとの関係</div>
+                <div class="card-meta">
+                    <span class="card-slides">9 slides</span>
+                    <span class="card-level">Advanced</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">15</div>
+                <div class="card-title">ハーモニックパターン</div>
+                <div class="card-desc">ABCD・ガートレー・バット・バタフライ・クラブ・PRZ</div>
+                <div class="card-meta">
+                    <span class="card-slides">9 slides</span>
+                    <span class="card-level">Advanced</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">16</div>
+                <div class="card-title">ワイコフ理論</div>
+                <div class="card-desc">3つの法則・コンポジットマン・蓄積/分配スキーマティック</div>
+                <div class="card-meta">
+                    <span class="card-slides">9 slides</span>
+                    <span class="card-level">Advanced</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">17</div>
+                <div class="card-title">オーダーフロー分析</div>
+                <div class="card-desc">DOM・歩み値・フットプリント・デルタ・アイスバーグ注文</div>
+                <div class="card-meta">
+                    <span class="card-slides">9 slides</span>
+                    <span class="card-level">Advanced</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">18</div>
+                <div class="card-title">ボリュームプロファイル</div>
+                <div class="card-desc">POC・Value Area・HVN/LVN・マーケットプロファイル</div>
+                <div class="card-meta">
+                    <span class="card-slides">8 slides</span>
+                    <span class="card-level">Advanced</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">19</div>
+                <div class="card-title">インターマーケット分析</div>
+                <div class="card-desc">通貨相関・金利と通貨・コモディティ連動・リスクオン/オフ・DXY</div>
+                <div class="card-meta">
+                    <span class="card-slides">9 slides</span>
+                    <span class="card-level">Advanced</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Category 4: ファンダメンタルズ分析 -->
+    <div class="category" id="fundamental">
+        <div class="category-header">
+            <div class="category-icon">IV</div>
+            <div>
+                <div class="category-title">ファンダメンタルズ分析</div>
+                <div class="category-subtitle">Fundamental Analysis ── 経済の動きから相場を読む</div>
+            </div>
+            <div class="category-badge">4 sections / 37 slides</div>
+        </div>
+        <div class="cards">
+            <a class="card" href="#">
+                <div class="card-num">20</div>
+                <div class="card-title">マクロ経済指標</div>
+                <div class="card-desc">GDP・CPI・NFP・PMI・経済カレンダーの活用法</div>
+                <div class="card-meta">
+                    <span class="card-slides">10 slides</span>
+                    <span class="card-level">Intermediate</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">21</div>
+                <div class="card-title">中央銀行政策</div>
+                <div class="card-desc">金利決定・フォワードガイダンス・QE/QT・政策ダイバージェンス</div>
+                <div class="card-meta">
+                    <span class="card-slides">10 slides</span>
+                    <span class="card-level">Intermediate</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">22</div>
+                <div class="card-title">地政学リスクとニューストレード</div>
+                <div class="card-desc">地政学イベント・ニュース戦略・高インパクト時のリスク管理</div>
+                <div class="card-meta">
+                    <span class="card-slides">8 slides</span>
+                    <span class="card-level">Advanced</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">23</div>
+                <div class="card-title">各国経済プロファイル</div>
+                <div class="card-desc">USD/EUR/JPY/GBP/AUD/CAD/CHF/NZDの経済的特徴</div>
+                <div class="card-meta">
+                    <span class="card-slides">9 slides</span>
+                    <span class="card-level">Intermediate</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Category 5: センチメント分析 -->
+    <div class="category">
+        <div class="category-header">
+            <div class="category-icon">V</div>
+            <div>
+                <div class="category-title">センチメント分析</div>
+                <div class="category-subtitle">Sentiment Analysis ── 市場心理を数値で捉える</div>
+            </div>
+            <div class="category-badge">2 sections / 17 slides</div>
+        </div>
+        <div class="cards">
+            <a class="card" href="#">
+                <div class="card-num">24</div>
+                <div class="card-title">COTレポートとポジション分析</div>
+                <div class="card-desc">CFTC週次データ・大口投機家ポジション・逆張りシグナル</div>
+                <div class="card-meta">
+                    <span class="card-slides">8 slides</span>
+                    <span class="card-level">Advanced</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">25</div>
+                <div class="card-title">センチメント分析</div>
+                <div class="card-desc">リテールセンチメント・VIX・リスクオン/オフ・クレジットスプレッド</div>
+                <div class="card-meta">
+                    <span class="card-slides">9 slides</span>
+                    <span class="card-level">Advanced</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Category 6: リスク&資金管理 -->
+    <div class="category" id="risk">
+        <div class="category-header">
+            <div class="category-icon">VI</div>
+            <div>
+                <div class="category-title">リスク&資金管理</div>
+                <div class="category-subtitle">Risk Management ── トレーダーの生存技術</div>
+            </div>
+            <div class="category-badge">4 sections / 31 slides</div>
+        </div>
+        <div class="cards">
+            <a class="card" href="#">
+                <div class="card-num">26</div>
+                <div class="card-title">ポジションサイジング</div>
+                <div class="card-desc">1-2%ルール・ロット計算式・スケールイン/アウト</div>
+                <div class="card-meta">
+                    <span class="card-slides">8 slides</span>
+                    <span class="card-level">Intermediate</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">27</div>
+                <div class="card-title">リスクリワード比と期待値</div>
+                <div class="card-desc">RRR計算・勝率との関係・期待値・収益シミュレーション</div>
+                <div class="card-meta">
+                    <span class="card-slides">7 slides</span>
+                    <span class="card-level">Intermediate</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">28</div>
+                <div class="card-title">SLとTP戦略</div>
+                <div class="card-desc">ATRベースSL・構造ベースSL・部分決済・トレーリングストップ</div>
+                <div class="card-meta">
+                    <span class="card-slides">8 slides</span>
+                    <span class="card-level">Intermediate</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">29</div>
+                <div class="card-title">ドローダウン管理</div>
+                <div class="card-desc">回復コスト・予防策・日次/週次上限・エクイティカーブ監視</div>
+                <div class="card-meta">
+                    <span class="card-slides">8 slides</span>
+                    <span class="card-level">Intermediate</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Category 7: トレーディング心理学&システム -->
+    <div class="category">
+        <div class="category-header">
+            <div class="category-icon">VII</div>
+            <div>
+                <div class="category-title">トレーディング心理学&システム</div>
+                <div class="category-subtitle">Psychology & Systems ── メンタルと仕組みで勝つ</div>
+            </div>
+            <div class="category-badge">6 sections / 50 slides</div>
+        </div>
+        <div class="cards">
+            <a class="card" href="#">
+                <div class="card-num">30</div>
+                <div class="card-title">感情管理</div>
+                <div class="card-desc">恐怖・欲望・FOMO・リベンジトレード・オーバートレード対策</div>
+                <div class="card-meta">
+                    <span class="card-slides">8 slides</span>
+                    <span class="card-level">All Levels</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">31</div>
+                <div class="card-title">認知バイアス</div>
+                <div class="card-desc">確証バイアス・損失回避・アンカリング・後知恵・対策法</div>
+                <div class="card-meta">
+                    <span class="card-slides">8 slides</span>
+                    <span class="card-level">All Levels</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">32</div>
+                <div class="card-title">規律とルーティン</div>
+                <div class="card-desc">プレマーケット・エントリーチェックリスト・ジャーナル・レビュー</div>
+                <div class="card-meta">
+                    <span class="card-slides">8 slides</span>
+                    <span class="card-level">All Levels</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">33</div>
+                <div class="card-title">トレーディングプラン作成</div>
+                <div class="card-desc">プランの構成要素・リスクルール・運用と改善サイクル</div>
+                <div class="card-meta">
+                    <span class="card-slides">8 slides</span>
+                    <span class="card-level">All Levels</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">34</div>
+                <div class="card-title">バックテストとシステム評価</div>
+                <div class="card-desc">手動バックテスト・評価指標・ウォークフォワード・落とし穴</div>
+                <div class="card-meta">
+                    <span class="card-slides">8 slides</span>
+                    <span class="card-level">Advanced</span>
+                </div>
+            </a>
+            <a class="card" href="#">
+                <div class="card-num">35</div>
+                <div class="card-title">トレード戦略集</div>
+                <div class="card-desc">ブレイクアウト・プルバック・ミーンリバージョン・VWAP・ORB</div>
+                <div class="card-meta">
+                    <span class="card-slides">10 slides</span>
+                    <span class="card-level">Advanced</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="brand">URIKAI</div>
+    <p>Trading Academy &copy; 2026 URIKAI. All rights reserved.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.75rem;">Member-only educational content.</p>
+</footer>
+
+<script>
+    // Simple password protection
+    // Change this hash to update the password
+    // Default password: "urikai2026"
+    const PASS_HASH = 'urikai2026';
+
+    function checkPassword() {
+        const input = document.getElementById('passwordInput').value;
+        if (input === PASS_HASH) {
+            document.getElementById('passwordOverlay').classList.add('hidden');
+            sessionStorage.setItem('urikai_auth', 'true');
+        } else {
+            document.getElementById('passwordError').style.display = 'block';
+            document.getElementById('passwordInput').value = '';
+        }
+    }
+
+    // Check if already authenticated this session
+    if (sessionStorage.getItem('urikai_auth') === 'true') {
+        document.getElementById('passwordOverlay').classList.add('hidden');
+    }
+</script>
+
+</body>
+</html>
