@@ -42,13 +42,14 @@ body { font-family:'Segoe UI','Meiryo UI','Hiragino Sans',sans-serif; background
 .vis { flex:1.5; display:flex; align-items:center; justify-content:center; }
 .txt ul { list-style:none; padding:0; }
 .txt li { padding:0.5rem 0; font-size:1.4rem; color:var(--dark-text); line-height:1.7; }
-/* Text-only slides: when .body has no .vis child, enlarge text */
-.body:not(:has(.vis)) .txt { max-width:100%; flex:1; }
-.body:not(:has(.vis)) .txt li { font-size:1.65rem; line-height:1.8; padding:0.6rem 0; }
-.body:not(:has(.vis)) .txt .pbox { font-size:1.4rem; padding:1.2rem 1.6rem; }
+/* Text-only slides: when .body has no .vis child, center and enlarge text */
+.body:not(:has(.vis)) { justify-content:center; padding:2.5rem 4rem; }
+.body:not(:has(.vis)) .txt { max-width:900px; margin:0 auto; }
+.body:not(:has(.vis)) .txt li { font-size:1.7rem; line-height:1.85; padding:0.65rem 0; }
+.body:not(:has(.vis)) .txt .pbox { font-size:1.45rem; padding:1.3rem 1.8rem; margin-top:1.2rem; }
 
 /* Summary slides: center and enlarge */
-.body.col { padding:2rem 3.5rem; justify-content:center; }
+.body.col { padding:2rem 4rem; justify-content:center; }
 .txt li::before { content:"▪ "; color:var(--navy); font-weight:bold; }
 .pbox { background:var(--info-bg); border-left:4px solid var(--blue); padding:1rem 1.4rem; margin-top:1rem; border-radius:0 6px 6px 0; font-size:1.25rem; color:var(--dark-text); line-height:1.6; }
 .ftr { background:var(--dark); padding:0.25rem 2rem; font-size:0.7rem; color:var(--text-muted); border-top:2px solid var(--accent); }
