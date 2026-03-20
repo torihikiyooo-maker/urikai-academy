@@ -14,7 +14,7 @@ import glob
 import json
 
 REPO_DIR = os.path.dirname(os.path.abspath(__file__))
-PPTX_DIR = REPO_DIR
+PPTX_DIR = "/mnt/c/Users/konog/.claude/URIKAIコンテンツ"
 SLIDES_DIR = os.path.join(REPO_DIR, "slides")
 os.makedirs(SLIDES_DIR, exist_ok=True)
 
@@ -86,8 +86,8 @@ def process_text_frame(tf):
         # Build style
         styles = []
         if font_size:
-            # Scale down for web
-            web_size = max(font_size * 0.55, 10)
+            # Scale for web (larger for readability)
+            web_size = max(font_size * 0.85, 13)
             styles.append(f"font-size:{web_size:.0f}px")
         if font_color:
             styles.append(f"color:{font_color}")
@@ -173,12 +173,12 @@ def table_to_html(table):
             if row_idx == 0:
                 cells_html.append(
                     f'<th style="background:#1a3c6e;color:#fff;padding:8px 12px;'
-                    f'font-size:12px;text-align:left;border:1px solid #30363d">{escaped}</th>'
+                    f'font-size:15px;text-align:left;border:1px solid #30363d">{escaped}</th>'
                 )
             else:
                 bg = "#eaecee" if row_idx % 2 == 0 else "transparent"
                 cells_html.append(
-                    f'<td style="background:{bg};padding:8px 12px;font-size:12px;'
+                    f'<td style="background:{bg};padding:8px 12px;font-size:15px;'
                     f'color:#2c3e50;border:1px solid #30363d">{escaped}</td>'
                 )
         tag = "tr"
@@ -305,7 +305,7 @@ body {{
 }}
 .slide {{
     width: 100%;
-    max-width: 1100px;
+    max-width: 1400px;
     aspect-ratio: 16/9;
     position: relative;
     border-radius: 6px;
