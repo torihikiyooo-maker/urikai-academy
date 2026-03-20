@@ -118,3 +118,76 @@ svg text { font-family:'Segoe UI','Meiryo UI',sans-serif; }
 }
 .quiz-submit:hover { background:linear-gradient(135deg, #d4a537, #c49a2e); color:#0a2f5c; transform:translateY(-2px); box-shadow:0 6px 20px rgba(212,165,55,0.3); }
 .quiz-submit:disabled { opacity:0.35; cursor:default; transform:none; box-shadow:none; }
+
+/* ===== Responsive: Tablet ===== */
+@media (max-width: 1024px) {
+    .slide { max-width:100%; border-radius:4px; }
+    .body { padding:1.5rem 2rem 1rem; gap:1.5rem; }
+    .txt li { font-size:1.2rem; }
+    .pbox { font-size:1.1rem; }
+    .hdr h2 { font-size:1.5rem; }
+    .cover h1 { font-size:4rem; }
+    .srow .lbl { min-width:160px; font-size:1rem; }
+    .srow .val { font-size:1.1rem; }
+    .cls h2 { font-size:2.8rem; }
+}
+
+/* ===== Responsive: Mobile ===== */
+@media (max-width: 768px) {
+    body { height:auto; min-height:100vh; }
+    .toolbar { padding:0.4rem 0.8rem; gap:0.5rem; }
+    .toolbar .title { font-size:0.75rem; }
+    .nav-btn { width:32px; height:32px; font-size:1rem; }
+
+    .slide-area { padding:0.3rem; }
+    .slide { aspect-ratio:auto; min-height:85vh; border-radius:4px; max-width:100%; }
+
+    /* Cover */
+    .cover h1 { font-size:2.5rem; letter-spacing:2px; }
+    .cover .sn { font-size:1rem; }
+    .cover .sub { font-size:1rem; }
+
+    /* Content */
+    .hdr { padding:0.6rem 1rem; }
+    .hdr h2 { font-size:1.2rem; }
+    .body { flex-direction:column; padding:1rem; gap:1rem; align-items:stretch; overflow-y:auto; }
+    .txt { flex:none; }
+    .vis { flex:none; width:100%; }
+    .txt li { font-size:1rem; padding:0.3rem 0; line-height:1.5; }
+    .pbox { font-size:0.95rem; padding:0.7rem 1rem; }
+    .ftr { padding:0.2rem 1rem; font-size:0.6rem; }
+
+    /* Summary */
+    .srow { flex-direction:column; gap:0.3rem; }
+    .srow .lbl { min-width:auto; width:100%; font-size:0.95rem; padding:0.4rem 0.8rem; }
+    .srow .val { font-size:1rem; }
+
+    /* Table */
+    .stbl th, .stbl td { padding:0.4rem 0.5rem; font-size:0.85rem; }
+
+    /* Closing */
+    .cls { gap:1rem; }
+    .cls h2 { font-size:2rem; }
+    .cls .cls-buttons { flex-direction:column; gap:0.8rem; }
+    .cls .cls-btn { padding:0.8rem 2rem; font-size:1.1rem; }
+
+    /* Quiz */
+    .quiz-body { padding:1rem 1.2rem; gap:1rem; }
+    .q-item { padding:1rem 1.2rem; }
+    .q-text { font-size:1.05rem; margin-bottom:0.6rem; }
+    .q-opts { flex-direction:column; gap:0.6rem; }
+    .q-btn { font-size:1rem; padding:0.8rem 1rem; }
+    .quiz-submit { padding:0.8rem 2rem; font-size:1.1rem; }
+    .quiz-result { font-size:1.2rem; }
+}
+
+/* ===== Responsive: Small Mobile ===== */
+@media (max-width: 480px) {
+    .cover h1 { font-size:1.8rem; }
+    .cover .sub { font-size:0.85rem; }
+    .hdr h2 { font-size:1.05rem; }
+    .txt li { font-size:0.9rem; }
+    .body { padding:0.8rem; }
+    .cls h2 { font-size:1.5rem; }
+    .cls .cls-btn { font-size:0.95rem; padding:0.7rem 1.5rem; }
+}

@@ -423,16 +423,34 @@
 
         /* ===== Responsive ===== */
         @media (max-width: 768px) {
-            .header-inner { padding: 0.75rem 1rem; }
-            .logo { font-size: 1.3rem; }
+            .header-inner { padding: 0.6rem 0.8rem; }
+            .logo { font-size: 1.2rem; letter-spacing: 2px; }
             .logo span { display: none; }
-            nav a { margin-left: 1rem; font-size: 0.8rem; }
-            .hero { padding: 3rem 1rem; }
-            .hero h1 { font-size: 2.2rem; letter-spacing: 4px; }
-            .hero-stats { gap: 1.5rem; }
-            .hero-stat .num { font-size: 1.8rem; }
-            main { padding: 2rem 1rem; }
-            .cards { grid-template-columns: 1fr; }
+            nav { display: none; }
+            .hero { padding: 2rem 1rem; }
+            .hero h1 { font-size: 2rem; letter-spacing: 3px; }
+            .hero p { font-size: 0.9rem; margin-bottom: 1rem; }
+            .hero-stats { gap: 1.2rem; flex-wrap: wrap; }
+            .hero-stat .num { font-size: 1.6rem; }
+            .hero-stat .label { font-size: 0.75rem; }
+            .progress-bar-wrap { margin-top: 1.2rem; }
+            .progress-pct { font-size: 1rem; }
+            main { padding: 1.5rem 0.8rem; }
+            .cards { grid-template-columns: 1fr; gap: 0.8rem; }
+            .card { padding: 1rem; }
+            .card-title { font-size: 0.95rem; }
+            .card-desc { font-size: 0.75rem; }
+            .category-header { flex-wrap: wrap; gap: 0.5rem; }
+            .category-icon { width: 36px; height: 36px; font-size: 1rem; }
+            .category-title { font-size: 1.1rem; }
+            .category-badge { margin-left: 0; margin-top: 0.3rem; font-size: 0.7rem; }
+            .password-box { padding: 2rem 1.5rem; }
+            .password-box h2 { font-size: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.6rem; }
+            .hero-stat .num { font-size: 1.3rem; }
+            .cards { gap: 0.6rem; }
         }
     </style>
 </head>
