@@ -126,11 +126,36 @@
         navigator.clipboard.writeText(json).then(() => {
             showIndicator(`変更をコピーしました（${Object.keys(changes).length}件）`, '#27ae60');
         }).catch(() => {
-            // Fallback
             console.log('=== SVG CHANGES ===');
             console.log(json);
             showIndicator('コンソールに出力しました（Ctrl+Shift+J）', '#d4a537');
         });
+    }
+
+    function saveChanges() {
+        // Get the current slide HTML and save it directly
+        const slideArea = document.querySelector('.slide-area');
+        if (!slideArea) return;
+
+        // Get the full page HTML with current modifications
+        const fullHTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+        // Remove editor.js script tag from saved version to keep it clean
+        // (it will be re-added on next load)
+
+        // Create download
+        const blob = new Blob([fullHTML], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        // Get filename from current URL
+        const path = window.location.pathname;
+        const filename = path.substring(path.lastIndexOf('/') + 1);
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+
+        showIndicator(`${filename} をダウンロードしました ── slidesフォルダに上書き保存してください`, '#27ae60');
     }
 
     // Keyboard shortcuts
@@ -140,7 +165,7 @@
             editMode = !editMode;
             if (editMode) {
                 initEditMode();
-                showIndicator('編集モード ON ── 要素をドラッグで移動、Ctrl+Cで変更をコピー', '#d4a537');
+                showIndicator('編集モード ON ── ドラッグで移動 / Ctrl+S で保存 / Ctrl+E で終了', '#d4a537');
                 document.body.style.cursor = 'crosshair';
             } else {
                 showIndicator('編集モード OFF', '#556');
@@ -155,6 +180,10 @@
         if (e.ctrlKey && e.key === 'c' && editMode && Object.keys(changes).length > 0) {
             e.preventDefault();
             copyChanges();
+        }
+        if (e.ctrlKey && e.key === 's' && editMode) {
+            e.preventDefault();
+            saveChanges();
         }
     });
 
