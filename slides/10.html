@@ -4,101 +4,365 @@
 </head><body>
 <div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 10 — テクニカルインジケーター</span>
 <div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
-<span class="page-info" id="pi">1 / 8</span>
+<span class="page-info" id="pi">1 / 12</span>
 <button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
 <div class="slide-area">
+
+<!-- 1: Cover -->
 <div class="slide cover active" data-s="1"><div class="sn">SECTION 10</div><h1>テクニカルインジケーター</h1>
 <div class="sub">Technical Indicators ── 価格データを数値化する</div><div class="line"></div>
 <div class="brand">URIKAI Trading Academy</div></div>
+
+<!-- 2: 分類 (existing with chart) -->
 <div class="slide cnt" data-s="2"><div class="hdr"><h2>インジケーターの分類</h2></div>
-<div class="body"><div class='txt'><ul><li>価格・出来高データに数学的計算を適用して導出される<strong>補助指標</strong></li><li><strong>オシレーター系</strong>（RSI、ストキャス）── 過去データから算出。買われすぎ/売られすぎを示唆</li><li><strong>トレンド系</strong>（MA、MACD）── トレンドの方向と強さを確認</li><li>すべてのインジケーターは<strong>過去の価格データ</strong>から算出される（未来を予測するものではない）</li><li>同じ種類のインジケーターを重複させない（RSI＋ストキャスは冗長）</li></ul><div class='pbox'>POINT：インジケーターは「確認ツール」であり、単独のエントリーシグナルではない。</div></div>
+<div class="body"><div class='txt'><ul>
+<li>価格・出来高の<strong>過去データ</strong>に数学的計算を適用して導出される補助指標</li>
+<li><strong>オシレーター系</strong>（RSI、ストキャス）── 買われすぎ/売られすぎを示唆</li>
+<li><strong>トレンド系</strong>（MA、MACD）── トレンドの方向と強さを確認</li>
+<li>すべてのインジケーターは<strong>過去の価格データ</strong>から算出される</li>
+<li>同じ種類を重複させない（RSI＋ストキャスは冗長）</li>
+</ul><div class="pbox">POINT：インジケーターは「確認ツール」であり、単独のエントリーシグナルではない。</div></div>
 <div class="vis"><svg viewBox="0 0 520 300" width="100%" style="max-width:800px">
 <defs><filter id="g10"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
 <rect x="0" y="0" width="520" height="300" rx="8" fill="#131c2b"/>
-<line x1="30" y1="50" x2="490" y2="50" stroke="#1e3045" stroke-width="0.5"/>
-<line x1="30" y1="100" x2="490" y2="100" stroke="#1e3045" stroke-width="0.5"/>
-<line x1="30" y1="150" x2="490" y2="150" stroke="#1e3045" stroke-width="0.5"/>
-<line x1="30" y1="200" x2="490" y2="200" stroke="#1e3045" stroke-width="0.5"/>
-<line x1="30" y1="250" x2="490" y2="250" stroke="#1e3045" stroke-width="0.5"/>
-<rect x="35" y="8" width="80" height="16" rx="3" fill="#1e3045"/><text x="75" y="20" text-anchor="middle" font-size="10" fill="#8b949e">価格チャート</text>
-<line x1="55" y1="128" x2="55" y2="108" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="50" y="108" width="10" height="10" fill="#e74c3c" rx="1"/>
-<line x1="55" y1="118" x2="55" y2="132" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="79" y1="120" x2="79" y2="95" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="74" y="95" width="10" height="13" fill="#e74c3c" rx="1"/>
-<line x1="79" y1="108" x2="79" y2="125" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="103" y1="118" x2="103" y2="100" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="98" y="100" width="10" height="12" fill="#e74c3c" rx="1"/>
-<line x1="103" y1="112" x2="103" y2="122" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="127" y1="108" x2="127" y2="88" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="122" y="88" width="10" height="10" fill="#e74c3c" rx="1"/>
-<line x1="127" y1="98" x2="127" y2="115" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="151" y1="100" x2="151" y2="82" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="146" y="82" width="10" height="8" fill="#e74c3c" rx="1"/>
-<line x1="151" y1="90" x2="151" y2="108" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="175" y1="92" x2="175" y2="70" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="170" y="70" width="10" height="10" fill="#e74c3c" rx="1"/>
-<line x1="175" y1="80" x2="175" y2="98" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="199" y1="75" x2="199" y2="78" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="194" y="78" width="10" height="7" fill="#e74c3c" rx="1"/>
-<line x1="199" y1="85" x2="199" y2="90" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="223" y1="80" x2="223" y2="82" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="218" y="82" width="10" height="6" fill="#e74c3c" rx="1"/>
-<line x1="223" y1="88" x2="223" y2="95" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="247" y1="88" x2="247" y2="72" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="242" y="72" width="10" height="8" fill="#e74c3c" rx="1"/>
-<line x1="247" y1="80" x2="247" y2="95" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="271" y1="85" x2="271" y2="65" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="266" y="65" width="10" height="10" fill="#e74c3c" rx="1"/>
-<line x1="271" y1="75" x2="271" y2="92" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="295" y1="78" x2="295" y2="58" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="290" y="58" width="10" height="10" fill="#e74c3c" rx="1"/>
-<line x1="295" y1="68" x2="295" y2="85" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="319" y1="70" x2="319" y2="48" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="314" y="48" width="10" height="10" fill="#e74c3c" rx="1"/>
-<line x1="319" y1="58" x2="319" y2="78" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="343" y1="52" x2="343" y2="55" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="338" y="55" width="10" height="7" fill="#e74c3c" rx="1"/>
-<line x1="343" y1="62" x2="343" y2="68" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="367" y1="55" x2="367" y2="58" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="362" y="58" width="10" height="7" fill="#e74c3c" rx="1"/>
-<line x1="367" y1="65" x2="367" y2="72" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="391" y1="68" x2="391" y2="50" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="386" y="50" width="10" height="8" fill="#e74c3c" rx="1"/>
-<line x1="391" y1="58" x2="391" y2="75" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="415" y1="65" x2="415" y2="45" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="410" y="45" width="10" height="10" fill="#e74c3c" rx="1"/>
-<line x1="415" y1="55" x2="415" y2="72" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="439" y1="48" x2="439" y2="52" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="434" y="52" width="10" height="6" fill="#e74c3c" rx="1"/>
-<line x1="439" y1="58" x2="439" y2="62" stroke="#e74c3c" stroke-width="1.2"/>
-<line x1="463" y1="60" x2="463" y2="42" stroke="#e74c3c" stroke-width="1.2"/>
-<rect x="458" y="42" width="10" height="8" fill="#e74c3c" rx="1"/>
-<line x1="463" y1="50" x2="463" y2="68" stroke="#e74c3c" stroke-width="1.2"/>
-<!-- EMA 20 -->
-<polyline points="55,125 79,118 103,112 127,100 151,95 175,88 199,82 223,80 247,82 271,78 295,72 319,62 343,58 367,60 391,56 415,52 439,54 463,48" stroke="#d4a537" stroke-width="1.8" fill="none" opacity="0.8"/>
-<rect x="440" y="38" width="55" height="14" rx="3" fill="#d4a537" opacity="0.3"/><text x="468" y="49" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="600">20 EMA</text>
-<!-- SMA 200 -->
-<polyline points="55,135 79,130 103,125 127,120 151,115 175,110 199,105 223,102 247,98 271,95 295,90 319,88 343,85 367,82 391,80 415,78 439,76 463,74" stroke="#e74c3c" stroke-width="1.5" fill="none" opacity="0.5" stroke-dasharray="4,2"/>
-<rect x="440" y="68" width="55" height="14" rx="3" fill="#e74c3c" opacity="0.3"/><text x="468" y="79" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">200 SMA</text>
-<!-- RSI panel -->
-<line x1="30" y1="185" x2="490" y2="185" stroke="#2e86c1" stroke-width="0.8"/>
-<rect x="35" y="188" width="50" height="14" rx="3" fill="#1e3045"/><text x="60" y="199" text-anchor="middle" font-size="9" fill="#8b949e">RSI (14)</text>
-<line x1="40" y1="210" x2="460" y2="210" stroke="#e74c3c" stroke-width="0.6" stroke-dasharray="3,3" opacity="0.5"/><text x="465" y="213" font-size="8" fill="#e74c3c">70</text>
-<line x1="40" y1="255" x2="460" y2="255" stroke="#27ae60" stroke-width="0.6" stroke-dasharray="3,3" opacity="0.5"/><text x="465" y="258" font-size="8" fill="#27ae60">30</text>
-<polyline points="55,252 79,248 103,242 127,235 151,238 175,228 199,232 223,230 247,225 271,220 295,218 319,215 343,218 367,222 391,218 415,215 439,220 463,218" stroke="#8e44ad" stroke-width="2" fill="none"/>
-<rect x="140" y="275" width="240" height="16" rx="4" fill="#1e3045"/><text x="260" y="287" text-anchor="middle" font-size="9" fill="#8b949e">MA（トレンド方向）＋ RSI（タイミング）の組み合わせ</text>
+<line x1="30" y1="50" x2="490" y2="50" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="100" x2="490" y2="100" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="150" x2="490" y2="150" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="200" x2="490" y2="200" stroke="#1e3045" stroke-width="0.5"/>
+<rect x="35" y="8" width="120" height="16" rx="3" fill="#1e3045"/><text x="95" y="20" text-anchor="middle" font-size="10" fill="#d4a537" font-weight="600">チャート＋インジケーター</text>
+<!-- Uptrend candles -->
+<rect x="50" y="168" width="8" height="18" fill="#27ae60" rx="1"/><line x1="54" y1="164" x2="54" y2="168" stroke="#27ae60" stroke-width="1"/>
+<rect x="66" y="158" width="8" height="16" fill="#27ae60" rx="1"/><line x1="70" y1="154" x2="70" y2="158" stroke="#27ae60" stroke-width="1"/>
+<rect x="82" y="150" width="8" height="14" fill="#e74c3c" rx="1"/>
+<rect x="98" y="140" width="8" height="18" fill="#27ae60" rx="1"/><line x1="102" y1="136" x2="102" y2="140" stroke="#27ae60" stroke-width="1"/>
+<rect x="114" y="128" width="8" height="20" fill="#27ae60" rx="1"/>
+<rect x="130" y="118" width="8" height="16" fill="#27ae60" rx="1"/>
+<rect x="146" y="112" width="8" height="12" fill="#e74c3c" rx="1"/>
+<rect x="162" y="108" width="8" height="14" fill="#e74c3c" rx="1"/>
+<rect x="178" y="100" width="8" height="16" fill="#27ae60" rx="1"/>
+<rect x="194" y="88" width="8" height="18" fill="#27ae60" rx="1"/>
+<rect x="210" y="78" width="8" height="14" fill="#27ae60" rx="1"/>
+<rect x="226" y="70" width="8" height="12" fill="#27ae60" rx="1"/>
+<rect x="242" y="74" width="8" height="10" fill="#e74c3c" rx="1"/>
+<rect x="258" y="68" width="8" height="14" fill="#27ae60" rx="1"/>
+<rect x="274" y="58" width="8" height="16" fill="#27ae60" rx="1"/>
+<rect x="290" y="52" width="8" height="12" fill="#27ae60" rx="1"/>
+<rect x="306" y="56" width="8" height="10" fill="#e74c3c" rx="1"/>
+<rect x="322" y="48" width="8" height="14" fill="#27ae60" rx="1"/>
+<!-- 20 EMA -->
+<polyline points="54,178 70,168 86,158 102,148 118,138 134,128 150,120 166,116 182,110 198,100 214,90 230,80 246,78 262,74 278,65 294,58 310,60 326,52" stroke="#d4a537" stroke-width="2" fill="none" opacity="0.9"/>
+<rect x="330" y="42" width="55" height="14" rx="3" fill="#d4a537" opacity="0.4"/><text x="358" y="53" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="700">20 EMA</text>
+<!-- 200 SMA -->
+<polyline points="54,190 70,185 86,180 102,175 118,170 134,165 150,160 166,155 182,150 198,145 214,140 230,135 246,130 262,125 278,120 294,118 310,115 326,112" stroke="#e74c3c" stroke-width="1.5" fill="none" opacity="0.5" stroke-dasharray="4,2"/>
+<rect x="330" y="105" width="55" height="14" rx="3" fill="#e74c3c" opacity="0.3"/><text x="358" y="116" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">200 SMA</text>
+<!-- RSI sub-panel -->
+<line x1="30" y1="215" x2="490" y2="215" stroke="#2e86c1" stroke-width="0.8"/>
+<rect x="35" y="218" width="50" height="14" rx="3" fill="#1e3045"/><text x="60" y="229" text-anchor="middle" font-size="9" fill="#8b949e">RSI (14)</text>
+<line x1="40" y1="238" x2="350" y2="238" stroke="#e74c3c" stroke-width="0.6" stroke-dasharray="3,3" opacity="0.5"/><text x="355" y="241" font-size="8" fill="#e74c3c">70</text>
+<line x1="40" y1="272" x2="350" y2="272" stroke="#27ae60" stroke-width="0.6" stroke-dasharray="3,3" opacity="0.5"/><text x="355" y="275" font-size="8" fill="#27ae60">30</text>
+<polyline points="54,268 70,265 86,260 102,255 118,252 134,248 150,250 166,252 182,248 198,242 214,238 230,235 246,238 262,236 278,232 294,230 310,233 326,232" stroke="#8e44ad" stroke-width="2" fill="none"/>
+<rect x="370" y="228" width="120" height="55" rx="6" fill="#1e3045"/>
+<text x="430" y="246" text-anchor="middle" font-size="10" fill="#d4a537" font-weight="600">推奨組み合わせ</text>
+<text x="430" y="262" text-anchor="middle" font-size="9" fill="#8b949e">MA（方向）</text>
+<text x="430" y="276" text-anchor="middle" font-size="9" fill="#8b949e">RSI（タイミング）</text>
 </svg></div></div>
-<div class="ftr">テクニカルインジケーター | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>移動平均線（MA）・RSI</h2></div>
-<div class="body"><div class='txt'><ul><li><strong>SMA</strong>（単純平均）vs <strong>EMA</strong>（直近重視で反応が速い）</li><li>期間：<strong>20</strong>（短期）、<strong>50</strong>（中期）、<strong>200</strong>（長期）</li><li><strong>ゴールデンクロス</strong>＝短期MAが長期MAを上抜け → 上昇シグナル</li><li><strong>RSI</strong>：70以上＝買われすぎ、30以下＝売られすぎ</li><li><strong>RSIダイバージェンス</strong>：価格は高値更新なのにRSIは下降 → 弱体化警告</li></ul></div></div>
-<div class="ftr">テクニカルインジケーター | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="4"><div class="hdr"><h2>MACD・ボリンジャーバンド・ATR</h2></div>
-<div class="body"><div class='txt'><ul><li><strong>MACD</strong>＝短期EMA-長期EMAの差。シグナルラインとのクロスでシグナル</li><li><strong>ボリンジャーバンド</strong>：スクイーズ→ブレイクアウトの前兆</li><li><strong>バンドウォーク</strong>＝強いトレンドでバンドに沿って移動</li><li><strong>ATR</strong>＝ボラティリティ計測。SL設定に直結（ATR×1.5〜2.0）</li><li>推奨組み合わせ：<strong>MA</strong>（方向）＋<strong>RSI</strong>（タイミング）＋<strong>ATR</strong>（SL）</li></ul></div></div>
-<div class="ftr">テクニカルインジケーター | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="5"><div class="hdr"><h2>一目均衡表</h2></div>
-<div class="body"><div class='txt'><ul><li><strong>転換線</strong>（9期間）＋<strong>基準線</strong>（26期間）でクロスシグナル</li><li><strong>雲（Cloud）</strong>＝先行スパンA/Bで形成。将来のS/Rゾーン</li><li>価格が雲の上＝<strong>強気</strong>、下＝<strong>弱気</strong>、中＝方向性なし</li><li>日本発のインジケーター、<strong>1つで5つの情報</strong>を提供する総合指標</li></ul><div class='pbox'>POINT：インジケーターは2〜3個。トレンド系＋オシレーター系を1つずつが最適。</div></div></div>
-<div class="ftr">テクニカルインジケーター | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="6"><div class="hdr"><h2>まとめ</h2></div>
-<div class="body col"><div class='srow'><div class='lbl'>分類</div><div class='val'>オシレーター系（RSI等）とトレンド系（MA等）</div></div><div class='srow'><div class='lbl'>MA</div><div class='val'>トレンド方向の判断、ダイナミックS/R</div></div><div class='srow'><div class='lbl'>RSI</div><div class='val'>買われすぎ/売られすぎ、ダイバージェンス</div></div><div class='srow'><div class='lbl'>MACD</div><div class='val'>トレンドとモメンタム</div></div><div class='srow'><div class='lbl'>BB/ATR</div><div class='val'>ボラティリティ計測、SL設定に直結</div></div><div class='srow'><div class='lbl'>一目均衡表</div><div class='val'>雲でトレンド・S/Rを一目で把握</div></div></div>
 <div class="ftr">テクニカルインジケーター | URIKAI Trading Academy</div></div>
-<div class="slide quiz" data-s="7"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+
+<!-- 3: 移動平均線 (NEW - with golden/dead cross chart) -->
+<div class="slide cnt" data-s="3"><div class="hdr"><h2>移動平均線（Moving Averages）</h2></div>
+<div class="body"><div class='txt'><ul>
+<li><strong>SMA</strong>（単純平均）vs <strong>EMA</strong>（直近の価格に重みを置く）</li>
+<li>期間：<strong>20</strong>（短期）、<strong>50</strong>（中期）、<strong>200</strong>（長期）</li>
+<li><strong>ゴールデンクロス</strong>＝短期MAが長期MAを上抜け → 上昇シグナル</li>
+<li><strong>デッドクロス</strong>＝短期MAが長期MAを下抜け → 下落シグナル</li>
+<li>トレンドフィルター：価格がMAの上＝上昇基調、下＝下落基調</li>
+</ul></div>
+<div class="vis"><svg viewBox="0 0 540 300" width="100%" style="max-width:800px">
+<rect x="0" y="0" width="540" height="300" rx="8" fill="#131c2b"/>
+<line x1="40" y1="50" x2="510" y2="50" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="100" x2="510" y2="100" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="150" x2="510" y2="150" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="200" x2="510" y2="200" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="250" x2="510" y2="250" stroke="#1e3045" stroke-width="0.5"/>
+<rect x="35" y="8" width="120" height="16" rx="3" fill="#1e3045"/><text x="95" y="20" text-anchor="middle" font-size="10" fill="#d4a537" font-weight="600">ゴールデンクロス＆デッドクロス</text>
+<!-- Candles: down→cross→up -->
+<rect x="50" y="95" width="8" height="15" fill="#e74c3c" rx="1"/><rect x="64" y="105" width="8" height="18" fill="#e74c3c" rx="1"/><rect x="78" y="115" width="8" height="20" fill="#e74c3c" rx="1"/><rect x="92" y="130" width="8" height="22" fill="#e74c3c" rx="1"/><rect x="106" y="145" width="8" height="18" fill="#e74c3c" rx="1"/><rect x="120" y="155" width="8" height="15" fill="#e74c3c" rx="1"/>
+<rect x="134" y="162" width="8" height="12" fill="#e74c3c" rx="1"/><rect x="148" y="168" width="8" height="10" fill="#e74c3c" rx="1"/><rect x="162" y="175" width="8" height="8" fill="#27ae60" rx="1"/>
+<!-- Bottom and reversal -->
+<rect x="176" y="180" width="8" height="10" fill="#27ae60" rx="1"/><rect x="190" y="178" width="8" height="8" fill="#e74c3c" rx="1"/>
+<rect x="204" y="172" width="8" height="14" fill="#27ae60" rx="1"/><rect x="218" y="165" width="8" height="15" fill="#27ae60" rx="1"/>
+<!-- Golden cross point -->
+<rect x="232" y="155" width="8" height="18" fill="#27ae60" rx="1"/><rect x="246" y="142" width="8" height="20" fill="#27ae60" rx="1"/>
+<rect x="260" y="128" width="8" height="22" fill="#27ae60" rx="1"/><rect x="274" y="115" width="8" height="18" fill="#27ae60" rx="1"/><rect x="288" y="102" width="8" height="20" fill="#27ae60" rx="1"/><rect x="302" y="90" width="8" height="16" fill="#27ae60" rx="1"/><rect x="316" y="95" width="8" height="10" fill="#e74c3c" rx="1"/>
+<rect x="330" y="82" width="8" height="18" fill="#27ae60" rx="1"/><rect x="344" y="70" width="8" height="16" fill="#27ae60" rx="1"/><rect x="358" y="60" width="8" height="14" fill="#27ae60" rx="1"/><rect x="372" y="55" width="8" height="10" fill="#e74c3c" rx="1"/><rect x="386" y="48" width="8" height="14" fill="#27ae60" rx="1"/><rect x="400" y="42" width="8" height="12" fill="#27ae60" rx="1"/>
+<!-- Short MA (20 EMA) - faster, crosses first -->
+<polyline points="54,105 68,115 82,128 96,142 110,155 124,163 138,170 152,175 166,178 180,182 194,180 208,175 222,168 236,158 250,145 264,132 278,120 292,108 306,98 320,95 334,88 348,78 362,68 376,60 390,52 404,48" stroke="#d4a537" stroke-width="2.5" fill="none"/>
+<!-- Long MA (200 SMA) - slower -->
+<polyline points="54,100 68,108 82,118 96,128 110,138 124,148 138,155 152,162 166,168 180,172 194,174 208,175 222,174 236,172 250,168 264,162 278,155 292,148 306,142 320,138 334,132 348,125 362,118 376,112 390,108 404,102" stroke="#e74c3c" stroke-width="2" fill="none" stroke-dasharray="6,3" opacity="0.7"/>
+<!-- Golden cross highlight -->
+<circle cx="222" cy="170" r="16" fill="none" stroke="#d4a537" stroke-width="2.5" stroke-dasharray="4,2"/>
+<circle cx="222" cy="170" r="6" fill="#d4a537" opacity="0.2" filter="url(#g10)"/>
+<rect x="170" y="188" width="110" height="20" rx="5" fill="#d4a537" opacity="0.9"/>
+<text x="225" y="202" text-anchor="middle" font-size="11" fill="#0a2f5c" font-weight="700">ゴールデンクロス ↑</text>
+<!-- Labels -->
+<rect x="408" y="40" width="55" height="14" rx="3" fill="#d4a537" opacity="0.4"/><text x="436" y="51" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="700">20 EMA</text>
+<rect x="408" y="95" width="55" height="14" rx="3" fill="#e74c3c" opacity="0.3"/><text x="436" y="106" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">200 SMA</text>
+<!-- Trend zone labels -->
+<rect x="50" y="230" width="170" height="45" rx="6" fill="#e74c3c" opacity="0.06" stroke="#e74c3c" stroke-width="1"/>
+<text x="135" y="250" text-anchor="middle" font-size="11" fill="#e74c3c" font-weight="600">短期MA ＜ 長期MA</text>
+<text x="135" y="268" text-anchor="middle" font-size="10" fill="#8b949e">= 下落トレンド</text>
+<rect x="310" y="230" width="170" height="45" rx="6" fill="#27ae60" opacity="0.06" stroke="#27ae60" stroke-width="1"/>
+<text x="395" y="250" text-anchor="middle" font-size="11" fill="#27ae60" font-weight="600">短期MA ＞ 長期MA</text>
+<text x="395" y="268" text-anchor="middle" font-size="10" fill="#8b949e">= 上昇トレンド</text>
+</svg></div></div>
+<div class="ftr">テクニカルインジケーター | URIKAI Trading Academy</div></div>
+
+<!-- 4: RSI (NEW - dedicated chart) -->
+<div class="slide cnt" data-s="4"><div class="hdr"><h2>RSI（Relative Strength Index）</h2></div>
+<div class="body"><div class='txt'><ul>
+<li>一定期間の上昇幅と下落幅の比率から計算（期間14が標準）</li>
+<li><strong>70以上</strong>＝買われすぎ（過熱）、<strong>30以下</strong>＝売られすぎ</li>
+<li><strong>50ライン</strong>＝強気/弱気の境界線</li>
+<li><strong>ダイバージェンス</strong>：価格は高値更新なのにRSIは下降 → 弱体化警告</li>
+<li>強いトレンド中は買われすぎ/売られすぎが長期間続く場合がある</li>
+</ul></div>
+<div class="vis"><svg viewBox="0 0 540 300" width="100%" style="max-width:800px">
+<rect x="0" y="0" width="540" height="300" rx="8" fill="#131c2b"/>
+<line x1="40" y1="40" x2="510" y2="40" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="80" x2="510" y2="80" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="120" x2="510" y2="120" stroke="#1e3045" stroke-width="0.5"/>
+<!-- Price panel -->
+<rect x="35" y="8" width="55" height="14" rx="3" fill="#1e3045"/><text x="62" y="19" text-anchor="middle" font-size="9" fill="#8b949e">価格</text>
+<!-- Candles: rise→peak→divergence→fall -->
+<rect x="50" y="105" width="7" height="15" fill="#27ae60" rx="1"/><rect x="63" y="95" width="7" height="16" fill="#27ae60" rx="1"/><rect x="76" y="82" width="7" height="18" fill="#27ae60" rx="1"/><rect x="89" y="70" width="7" height="14" fill="#27ae60" rx="1"/>
+<rect x="102" y="75" width="7" height="10" fill="#e74c3c" rx="1"/><rect x="115" y="80" width="7" height="12" fill="#e74c3c" rx="1"/>
+<rect x="128" y="72" width="7" height="14" fill="#27ae60" rx="1"/><rect x="141" y="62" width="7" height="16" fill="#27ae60" rx="1"/>
+<!-- Higher high in price -->
+<rect x="154" y="68" width="7" height="10" fill="#e74c3c" rx="1"/><rect x="167" y="72" width="7" height="12" fill="#e74c3c" rx="1"/>
+<rect x="180" y="65" width="7" height="14" fill="#27ae60" rx="1"/><rect x="193" y="55" width="7" height="16" fill="#27ae60" rx="1"/>
+<!-- Even higher high -->
+<rect x="206" y="60" width="7" height="10" fill="#e74c3c" rx="1"/><rect x="219" y="58" width="7" height="14" fill="#27ae60" rx="1"/><rect x="232" y="48" width="7" height="18" fill="#27ae60" rx="1"/>
+<!-- Fall -->
+<rect x="245" y="55" width="7" height="14" fill="#e74c3c" rx="1"/><rect x="258" y="65" width="7" height="18" fill="#e74c3c" rx="1"/><rect x="271" y="78" width="7" height="20" fill="#e74c3c" rx="1"/><rect x="284" y="92" width="7" height="22" fill="#e74c3c" rx="1"/><rect x="297" y="108" width="7" height="18" fill="#e74c3c" rx="1"/>
+<!-- Price higher highs line -->
+<line x1="93" y1="65" x2="236" y2="43" stroke="#d4a537" stroke-width="1" stroke-dasharray="4,2" opacity="0.6"/>
+<text x="175" y="38" text-anchor="middle" font-size="10" fill="#d4a537">価格：高値更新 ↑</text>
+<!-- RSI panel -->
+<line x1="40" y1="155" x2="510" y2="155" stroke="#556" stroke-width="0.8"/>
+<rect x="35" y="158" width="55" height="14" rx="3" fill="#1e3045"/><text x="62" y="169" text-anchor="middle" font-size="9" fill="#8b949e">RSI (14)</text>
+<!-- RSI zones -->
+<rect x="40" y="175" width="470" height="4" fill="#e74c3c" opacity="0.08"/>
+<line x1="40" y1="178" x2="510" y2="178" stroke="#e74c3c" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.4"/><text x="515" y="181" font-size="8" fill="#e74c3c">70</text>
+<line x1="40" y1="222" x2="510" y2="222" stroke="#8b949e" stroke-width="0.5" stroke-dasharray="3,3" opacity="0.3"/><text x="515" y="225" font-size="8" fill="#8b949e">50</text>
+<rect x="40" y="262" width="470" height="4" fill="#27ae60" opacity="0.08"/>
+<line x1="40" y1="262" x2="510" y2="262" stroke="#27ae60" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.4"/><text x="515" y="265" font-size="8" fill="#27ae60">30</text>
+<!-- RSI line: rises then LOWER high (divergence) -->
+<polyline points="54,248 67,235 80,215 93,190 106,198 119,205 132,195 145,178 158,185 171,192 184,188 197,180 210,186 223,192 236,198 249,210 262,225 275,238 288,250 301,258" stroke="#8e44ad" stroke-width="2.5" fill="none"/>
+<!-- RSI lower highs line -->
+<line x1="93" y1="186" x2="197" y2="178" stroke="#d4a537" stroke-width="1" stroke-dasharray="4,2" opacity="0.6"/>
+<text x="320" y="195" font-size="10" fill="#d4a537" font-weight="600">RSI：高値切り下げ ↓</text>
+<!-- Divergence highlight -->
+<rect x="330" y="200" width="170" height="55" rx="8" fill="#d4a537" opacity="0.1" stroke="#d4a537" stroke-width="1.5"/>
+<text x="415" y="222" text-anchor="middle" font-size="13" fill="#d4a537" font-weight="700">ダイバージェンス</text>
+<text x="415" y="240" text-anchor="middle" font-size="10" fill="#8b949e">価格↑ なのに RSI↓</text>
+<text x="415" y="253" text-anchor="middle" font-size="10" fill="#e74c3c" font-weight="600">→ トレンド弱体化の警告</text>
+<!-- Overbought/Oversold labels -->
+<rect x="340" y="168" width="80" height="16" rx="3" fill="#e74c3c" opacity="0.3"/><text x="380" y="180" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">買われすぎ圏</text>
+<rect x="340" y="258" width="80" height="16" rx="3" fill="#27ae60" opacity="0.3"/><text x="380" y="270" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">売られすぎ圏</text>
+</svg></div></div>
+<div class="ftr">テクニカルインジケーター | URIKAI Trading Academy</div></div>
+
+<!-- 5: MACD (NEW) -->
+<div class="slide cnt" data-s="5"><div class="hdr"><h2>MACD（Moving Average Convergence Divergence）</h2></div>
+<div class="body"><div class='txt'><ul>
+<li><strong>MACDライン</strong>＝短期EMA(12) − 長期EMA(26)</li>
+<li><strong>シグナルライン</strong>＝MACDラインの9期間EMA</li>
+<li><strong>ヒストグラム</strong>＝MACD − シグナル（モメンタムの強さ）</li>
+<li>MACDがシグナルを<strong>上抜け＝買いシグナル</strong></li>
+<li><strong>ゼロライン</strong>超え＝上昇トレンド確認</li>
+</ul></div>
+<div class="vis"><svg viewBox="0 0 540 300" width="100%" style="max-width:800px">
+<rect x="0" y="0" width="540" height="300" rx="8" fill="#131c2b"/>
+<line x1="40" y1="50" x2="510" y2="50" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="100" x2="510" y2="100" stroke="#1e3045" stroke-width="0.5"/>
+<rect x="35" y="8" width="55" height="14" rx="3" fill="#1e3045"/><text x="62" y="19" text-anchor="middle" font-size="9" fill="#8b949e">価格</text>
+<!-- Price candles -->
+<rect x="55" y="108" width="7" height="14" fill="#e74c3c" rx="1"/><rect x="68" y="115" width="7" height="16" fill="#e74c3c" rx="1"/><rect x="81" y="118" width="7" height="10" fill="#e74c3c" rx="1"/><rect x="94" y="120" width="7" height="8" fill="#27ae60" rx="1"/>
+<rect x="107" y="115" width="7" height="12" fill="#27ae60" rx="1"/><rect x="120" y="108" width="7" height="14" fill="#27ae60" rx="1"/><rect x="133" y="98" width="7" height="16" fill="#27ae60" rx="1"/><rect x="146" y="88" width="7" height="14" fill="#27ae60" rx="1"/>
+<rect x="159" y="80" width="7" height="12" fill="#27ae60" rx="1"/><rect x="172" y="72" width="7" height="14" fill="#27ae60" rx="1"/><rect x="185" y="65" width="7" height="10" fill="#e74c3c" rx="1"/><rect x="198" y="60" width="7" height="12" fill="#27ae60" rx="1"/>
+<rect x="211" y="55" width="7" height="8" fill="#27ae60" rx="1"/><rect x="224" y="50" width="7" height="10" fill="#27ae60" rx="1"/><rect x="237" y="48" width="7" height="8" fill="#e74c3c" rx="1"/><rect x="250" y="45" width="7" height="10" fill="#27ae60" rx="1"/>
+<!-- MACD panel -->
+<line x1="40" y1="155" x2="510" y2="155" stroke="#556" stroke-width="0.8"/>
+<rect x="35" y="158" width="55" height="14" rx="3" fill="#1e3045"/><text x="62" y="169" text-anchor="middle" font-size="9" fill="#8b949e">MACD</text>
+<!-- Zero line -->
+<line x1="40" y1="220" x2="380" y2="220" stroke="#556" stroke-width="0.8" stroke-dasharray="4,3"/><text x="385" y="223" font-size="8" fill="#556">0</text>
+<!-- Histogram bars -->
+<rect x="55" y="220" width="8" height="18" fill="#e74c3c" opacity="0.5" rx="1"/><rect x="68" y="220" width="8" height="22" fill="#e74c3c" opacity="0.5" rx="1"/>
+<rect x="81" y="220" width="8" height="20" fill="#e74c3c" opacity="0.5" rx="1"/><rect x="94" y="220" width="8" height="15" fill="#e74c3c" opacity="0.4" rx="1"/>
+<rect x="107" y="220" width="8" height="8" fill="#e74c3c" opacity="0.3" rx="1"/><rect x="120" y="216" width="8" height="4" fill="#27ae60" opacity="0.3" rx="1"/>
+<rect x="133" y="210" width="8" height="10" fill="#27ae60" opacity="0.4" rx="1"/><rect x="146" y="204" width="8" height="16" fill="#27ae60" opacity="0.5" rx="1"/>
+<rect x="159" y="198" width="8" height="22" fill="#27ae60" opacity="0.6" rx="1"/><rect x="172" y="194" width="8" height="26" fill="#27ae60" opacity="0.7" rx="1"/>
+<rect x="185" y="196" width="8" height="24" fill="#27ae60" opacity="0.6" rx="1"/><rect x="198" y="200" width="8" height="20" fill="#27ae60" opacity="0.5" rx="1"/>
+<rect x="211" y="205" width="8" height="15" fill="#27ae60" opacity="0.4" rx="1"/><rect x="224" y="208" width="8" height="12" fill="#27ae60" opacity="0.4" rx="1"/>
+<!-- MACD line -->
+<polyline points="59,238 72,242 85,240 98,235 111,228 124,220 137,210 150,202 163,195 176,190 189,192 202,196 215,200 228,205 241,208 254,210" stroke="#2e86c1" stroke-width="2" fill="none"/>
+<!-- Signal line -->
+<polyline points="59,236 72,238 85,238 98,236 111,232 124,228 137,222 150,215 163,208 176,200 189,196 202,195 215,196 228,198 241,200 254,202" stroke="#e74c3c" stroke-width="1.5" fill="none" stroke-dasharray="4,2"/>
+<!-- Cross point -->
+<circle cx="124" cy="222" r="10" fill="none" stroke="#d4a537" stroke-width="2" stroke-dasharray="3,2"/>
+<rect x="270" y="175" width="210" height="65" rx="8" fill="#1e3045"/>
+<text x="375" y="195" text-anchor="middle" font-size="12" fill="#d4a537" font-weight="700">MACDクロス ↑</text>
+<rect x="280" y="203" width="8" height="8" rx="1" fill="#2e86c1"/><text x="295" y="211" font-size="9" fill="#2e86c1">MACDライン</text>
+<rect x="370" y="203" width="8" height="8" rx="1" fill="#e74c3c"/><text x="385" y="211" font-size="9" fill="#e74c3c">シグナルライン</text>
+<text x="375" y="232" text-anchor="middle" font-size="10" fill="#8b949e">ヒストグラムの色でモメンタムを可視化</text>
+</svg></div></div>
+<div class="ftr">テクニカルインジケーター | URIKAI Trading Academy</div></div>
+
+<!-- 6: ボリンジャーバンド (NEW) -->
+<div class="slide cnt" data-s="6"><div class="hdr"><h2>ボリンジャーバンド</h2></div>
+<div class="body"><div class='txt'><ul>
+<li>ミドルバンド＝<strong>20SMA</strong>、上下＝<strong>±2σ</strong>（標準偏差）</li>
+<li>価格の約<strong>95%</strong>がバンド内に収まる</li>
+<li><strong>スクイーズ</strong>＝バンド幅縮小 → ブレイクアウトの前兆</li>
+<li><strong>エクスパンション</strong>＝バンド幅拡大 → トレンド発生中</li>
+<li><strong>バンドウォーク</strong>＝強いトレンドでバンドに沿って移動</li>
+</ul></div>
+<div class="vis"><svg viewBox="0 0 540 280" width="100%" style="max-width:800px">
+<rect x="0" y="0" width="540" height="280" rx="8" fill="#131c2b"/>
+<line x1="40" y1="50" x2="510" y2="50" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="100" x2="510" y2="100" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="150" x2="510" y2="150" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="200" x2="510" y2="200" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="250" x2="510" y2="250" stroke="#1e3045" stroke-width="0.5"/>
+<rect x="35" y="8" width="90" height="14" rx="3" fill="#1e3045"/><text x="80" y="19" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="600">ボリンジャーバンド</text>
+<!-- Middle band (20SMA) -->
+<polyline points="50,148 75,150 100,152 125,150 150,148 175,148 200,145 225,138 250,125 275,110 300,95 325,82 350,75 375,70 400,68 425,65 450,62" stroke="#d4a537" stroke-width="1.5" fill="none" opacity="0.8"/>
+<!-- Upper band (+2σ) -->
+<polyline points="50,130 75,128 100,128 125,130 150,132 175,138 200,128 225,105 250,75 275,52 300,38 325,30 350,28 375,25 400,22 425,18 450,15" stroke="#2e86c1" stroke-width="1.2" fill="none" opacity="0.6"/>
+<!-- Lower band (-2σ) -->
+<polyline points="50,168 75,172 100,178 125,172 150,165 175,160 200,162 225,172 250,178 275,170 300,155 325,138 350,125 375,118 400,115 425,112 450,110" stroke="#2e86c1" stroke-width="1.2" fill="none" opacity="0.6"/>
+<!-- Band fill -->
+<polygon points="50,130 75,128 100,128 125,130 150,132 175,138 200,128 225,105 250,75 275,52 300,38 325,30 350,28 375,25 400,22 425,18 450,15 450,110 425,112 400,115 375,118 350,125 325,138 300,155 275,170 250,178 225,172 200,162 175,160 150,165 125,172 100,178 75,172 50,168" fill="#2e86c1" opacity="0.06"/>
+<!-- Candles -->
+<!-- Squeeze zone (narrow bands) -->
+<rect x="52" y="142" width="6" height="12" fill="#e74c3c" rx="1"/><rect x="63" y="145" width="6" height="10" fill="#27ae60" rx="1"/><rect x="74" y="148" width="6" height="8" fill="#e74c3c" rx="1"/><rect x="85" y="146" width="6" height="10" fill="#27ae60" rx="1"/><rect x="96" y="150" width="6" height="8" fill="#e74c3c" rx="1"/><rect x="107" y="145" width="6" height="10" fill="#27ae60" rx="1"/><rect x="118" y="148" width="6" height="8" fill="#e74c3c" rx="1"/><rect x="129" y="144" width="6" height="10" fill="#27ae60" rx="1"/><rect x="140" y="146" width="6" height="8" fill="#e74c3c" rx="1"/>
+<!-- Breakout -->
+<rect x="155" y="138" width="6" height="14" fill="#27ae60" rx="1"/><rect x="166" y="132" width="6" height="12" fill="#27ae60" rx="1"/>
+<!-- Band walk (expansion) -->
+<rect x="180" y="125" width="7" height="16" fill="#27ae60" rx="1"/><rect x="193" y="115" width="7" height="18" fill="#27ae60" rx="1"/><rect x="206" y="102" width="7" height="20" fill="#27ae60" rx="1"/><rect x="219" y="88" width="7" height="22" fill="#27ae60" rx="1"/><rect x="232" y="72" width="7" height="20" fill="#27ae60" rx="1"/><rect x="245" y="62" width="7" height="16" fill="#27ae60" rx="1"/><rect x="258" y="55" width="7" height="12" fill="#27ae60" rx="1"/>
+<rect x="271" y="58" width="7" height="10" fill="#e74c3c" rx="1"/><rect x="284" y="52" width="7" height="12" fill="#27ae60" rx="1"/><rect x="297" y="45" width="7" height="10" fill="#27ae60" rx="1"/><rect x="310" y="42" width="7" height="8" fill="#e74c3c" rx="1"/><rect x="323" y="38" width="7" height="10" fill="#27ae60" rx="1"/>
+<!-- Squeeze label -->
+<rect x="60" y="185" width="90" height="28" rx="6" fill="#1e3045" stroke="#d4a537" stroke-width="1"/>
+<text x="105" y="200" text-anchor="middle" font-size="10" fill="#d4a537" font-weight="700">スクイーズ</text>
+<text x="105" y="210" text-anchor="middle" font-size="8" fill="#8b949e">バンド幅縮小</text>
+<!-- Expansion label -->
+<rect x="220" y="185" width="105" height="28" rx="6" fill="#1e3045" stroke="#27ae60" stroke-width="1"/>
+<text x="272" y="200" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700">エクスパンション</text>
+<text x="272" y="210" text-anchor="middle" font-size="8" fill="#8b949e">バンド幅拡大→トレンド</text>
+<!-- Band walk label -->
+<rect x="350" y="185" width="100" height="28" rx="6" fill="#1e3045" stroke="#2e86c1" stroke-width="1"/>
+<text x="400" y="200" text-anchor="middle" font-size="10" fill="#2e86c1" font-weight="700">バンドウォーク</text>
+<text x="400" y="210" text-anchor="middle" font-size="8" fill="#8b949e">バンドに沿って推移</text>
+<!-- Legend -->
+<rect x="60" y="235" width="390" height="30" rx="6" fill="#1e3045"/>
+<rect x="70" y="244" width="20" height="3" fill="#d4a537"/><text x="98" y="250" font-size="9" fill="#d4a537">20SMA（ミドル）</text>
+<rect x="175" y="244" width="20" height="3" fill="#2e86c1"/><text x="203" y="250" font-size="9" fill="#2e86c1">±2σ（アッパー/ロワー）</text>
+<rect x="330" y="240" width="50" height="12" fill="#2e86c1" opacity="0.1" rx="2"/><text x="388" y="250" font-size="9" fill="#8b949e">バンド内</text>
+</svg></div></div>
+<div class="ftr">テクニカルインジケーター | URIKAI Trading Academy</div></div>
+
+<!-- 7: ATR (NEW) -->
+<div class="slide cnt" data-s="7"><div class="hdr"><h2>ATR（Average True Range）</h2></div>
+<div class="body"><div class='txt'><ul>
+<li>一定期間の「真の値幅」の平均＝<strong>ボラティリティの数値指標</strong></li>
+<li>方向性は示さない ── 上昇/下落のどちらにも使える</li>
+<li><strong>SL設定</strong>に活用：SL＝エントリー価格 ± ATR × 1.5〜2.0</li>
+<li><strong>ポジションサイズ調整</strong>：ATR高→ロット減、ATR低→ロット増</li>
+<li>ATR急上昇＝市場の変調、重要イベント発生の可能性</li>
+</ul><div class="pbox">POINT：ATRは最も実用的なインジケーター。SLの設定とポジションサイズの調整に直接使える。</div></div>
+<div class="vis"><svg viewBox="0 0 540 280" width="100%" style="max-width:800px">
+<rect x="0" y="0" width="540" height="280" rx="8" fill="#131c2b"/>
+<line x1="40" y1="40" x2="510" y2="40" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="80" x2="510" y2="80" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="120" x2="510" y2="120" stroke="#1e3045" stroke-width="0.5"/>
+<rect x="35" y="8" width="55" height="14" rx="3" fill="#1e3045"/><text x="62" y="19" text-anchor="middle" font-size="9" fill="#8b949e">価格</text>
+<!-- Low volatility candles (small) -->
+<rect x="55" y="82" width="7" height="8" fill="#27ae60" rx="1"/><rect x="66" y="84" width="7" height="6" fill="#e74c3c" rx="1"/><rect x="77" y="80" width="7" height="10" fill="#27ae60" rx="1"/><rect x="88" y="83" width="7" height="6" fill="#e74c3c" rx="1"/><rect x="99" y="79" width="7" height="8" fill="#27ae60" rx="1"/><rect x="110" y="82" width="7" height="6" fill="#e74c3c" rx="1"/>
+<!-- Volatility spike -->
+<rect x="130" y="65" width="8" height="30" fill="#27ae60" rx="1"/><line x1="134" y1="58" x2="134" y2="65" stroke="#27ae60" stroke-width="1.5"/>
+<rect x="143" y="55" width="8" height="35" fill="#27ae60" rx="1"/><line x1="147" y1="48" x2="147" y2="55" stroke="#27ae60" stroke-width="1.5"/>
+<rect x="156" y="62" width="8" height="25" fill="#e74c3c" rx="1"/><line x1="160" y1="87" x2="160" y2="95" stroke="#e74c3c" stroke-width="1.5"/>
+<rect x="169" y="45" width="8" height="40" fill="#27ae60" rx="1"/>
+<rect x="182" y="50" width="8" height="28" fill="#e74c3c" rx="1"/>
+<rect x="195" y="42" width="8" height="32" fill="#27ae60" rx="1"/>
+<!-- Calming down -->
+<rect x="215" y="55" width="7" height="14" fill="#e74c3c" rx="1"/><rect x="226" y="50" width="7" height="12" fill="#27ae60" rx="1"/><rect x="237" y="52" width="7" height="10" fill="#e74c3c" rx="1"/><rect x="248" y="48" width="7" height="8" fill="#27ae60" rx="1"/>
+<!-- ATR panel -->
+<line x1="40" y1="145" x2="510" y2="145" stroke="#556" stroke-width="0.8"/>
+<rect x="35" y="148" width="55" height="14" rx="3" fill="#1e3045"/><text x="62" y="159" text-anchor="middle" font-size="9" fill="#8b949e">ATR (14)</text>
+<!-- ATR line: low→spike→decline -->
+<polyline points="59,228 70,225 81,228 92,225 103,228 114,225 134,198 147,185 160,190 173,178 186,182 199,180 215,200 226,208 237,212 248,218" stroke="#d4a537" stroke-width="2.5" fill="none"/>
+<!-- Low vol label -->
+<rect x="55" y="235" width="70" height="22" rx="5" fill="#1e3045" stroke="#556" stroke-width="0.8"/>
+<text x="90" y="250" text-anchor="middle" font-size="9" fill="#8b949e">低ボラティリティ</text>
+<!-- High vol label -->
+<rect x="125" y="165" width="85" height="22" rx="5" fill="#d4a537" opacity="0.15" stroke="#d4a537" stroke-width="1"/>
+<text x="168" y="180" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="700">ATR急上昇！</text>
+<!-- SL calculation example -->
+<rect x="290" y="155" width="200" height="100" rx="8" fill="#1e3045"/>
+<text x="390" y="175" text-anchor="middle" font-size="12" fill="#d4a537" font-weight="700">ATRによるSL設定例</text>
+<text x="390" y="198" text-anchor="middle" font-size="11" fill="#8b949e">ATR = 20 pips の場合</text>
+<text x="390" y="218" text-anchor="middle" font-size="11" fill="#27ae60" font-weight="600">SL = ATR × 1.5 = 30 pips</text>
+<text x="390" y="238" text-anchor="middle" font-size="11" fill="#e74c3c" font-weight="600">SL = ATR × 2.0 = 40 pips</text>
+</svg></div></div>
+<div class="ftr">テクニカルインジケーター | URIKAI Trading Academy</div></div>
+
+<!-- 8: 一目均衡表 -->
+<div class="slide cnt" data-s="8"><div class="hdr"><h2>一目均衡表（Ichimoku Cloud）</h2></div>
+<div class="body"><div class='txt'><ul>
+<li><strong>転換線</strong>（9期間）＋<strong>基準線</strong>（26期間）でクロスシグナル</li>
+<li><strong>雲（Cloud）</strong>＝先行スパンA/Bで形成。将来のS/Rゾーン</li>
+<li>価格が雲の上＝<strong>強気</strong>、下＝<strong>弱気</strong>、中＝方向性なし</li>
+<li>日本発のインジケーター、<strong>1つで5つの情報</strong>を提供する総合指標</li>
+</ul><div class="pbox">POINT：インジケーターは2〜3個。トレンド系＋オシレーター系を1つずつが最適。</div></div>
+<div class="vis"><svg viewBox="0 0 540 280" width="100%" style="max-width:800px">
+<rect x="0" y="0" width="540" height="280" rx="8" fill="#131c2b"/>
+<line x1="40" y1="50" x2="510" y2="50" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="100" x2="510" y2="100" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="150" x2="510" y2="150" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="200" x2="510" y2="200" stroke="#1e3045" stroke-width="0.5"/>
+<rect x="35" y="8" width="75" height="14" rx="3" fill="#1e3045"/><text x="72" y="19" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="600">一目均衡表</text>
+<!-- Cloud (Kumo) - bullish cloud going up-right -->
+<polygon points="80,180 120,175 160,168 200,155 240,140 280,125 320,112 360,100 400,92 440,85 480,80 480,115 440,118 400,122 360,130 320,140 280,150 240,160 200,168 160,175 120,180 80,185" fill="#27ae60" opacity="0.08" stroke="#27ae60" stroke-width="0.5" opacity="0.3"/>
+<!-- Span A (upper cloud edge) -->
+<polyline points="80,180 120,175 160,168 200,155 240,140 280,125 320,112 360,100 400,92 440,85 480,80" stroke="#27ae60" stroke-width="1" fill="none" opacity="0.5"/>
+<!-- Span B (lower cloud edge) -->
+<polyline points="80,185 120,180 160,175 200,168 240,160 280,150 320,140 360,130 400,122 440,118 480,115" stroke="#e74c3c" stroke-width="1" fill="none" opacity="0.4"/>
+<!-- Tenkan-sen (conversion line - fast) -->
+<polyline points="55,170 80,160 105,148 130,135 155,120 180,108 205,95 230,85 255,78 280,72 305,68" stroke="#2e86c1" stroke-width="1.8" fill="none"/>
+<!-- Kijun-sen (base line - slow) -->
+<polyline points="55,178 80,172 105,165 130,155 155,145 180,135 205,125 230,118 255,110 280,105 305,100" stroke="#e74c3c" stroke-width="1.5" fill="none" stroke-dasharray="5,2"/>
+<!-- Candles above cloud (bullish) -->
+<rect x="70" y="148" width="7" height="16" fill="#27ae60" rx="1"/><rect x="83" y="138" width="7" height="14" fill="#27ae60" rx="1"/><rect x="96" y="128" width="7" height="12" fill="#e74c3c" rx="1"/>
+<rect x="109" y="118" width="7" height="16" fill="#27ae60" rx="1"/><rect x="122" y="108" width="7" height="14" fill="#27ae60" rx="1"/><rect x="135" y="100" width="7" height="10" fill="#e74c3c" rx="1"/>
+<rect x="148" y="92" width="7" height="14" fill="#27ae60" rx="1"/><rect x="161" y="82" width="7" height="16" fill="#27ae60" rx="1"/><rect x="174" y="75" width="7" height="10" fill="#e74c3c" rx="1"/>
+<rect x="187" y="68" width="7" height="14" fill="#27ae60" rx="1"/><rect x="200" y="62" width="7" height="10" fill="#27ae60" rx="1"/><rect x="213" y="58" width="7" height="8" fill="#e74c3c" rx="1"/>
+<rect x="226" y="52" width="7" height="12" fill="#27ae60" rx="1"/><rect x="239" y="48" width="7" height="8" fill="#27ae60" rx="1"/>
+<!-- Labels -->
+<rect x="320" y="55" width="55" height="14" rx="3" fill="#2e86c1" opacity="0.4"/><text x="348" y="66" text-anchor="middle" font-size="9" fill="#2e86c1" font-weight="600">転換線</text>
+<rect x="320" y="92" width="55" height="14" rx="3" fill="#e74c3c" opacity="0.3"/><text x="348" y="103" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">基準線</text>
+<!-- Cloud label -->
+<rect x="400" y="95" width="85" height="30" rx="6" fill="#27ae60" opacity="0.1" stroke="#27ae60" stroke-width="1"/>
+<text x="442" y="112" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700">雲（Kumo）</text>
+<text x="442" y="122" text-anchor="middle" font-size="8" fill="#8b949e">将来のS/R</text>
+<!-- Signal explanation -->
+<rect x="320" y="145" width="190" height="75" rx="8" fill="#1e3045"/>
+<text x="415" y="165" text-anchor="middle" font-size="11" fill="#d4a537" font-weight="700">シグナルの読み方</text>
+<text x="415" y="185" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="600">価格が雲の上 ＝ 強気</text>
+<text x="415" y="200" text-anchor="middle" font-size="10" fill="#e74c3c" font-weight="600">価格が雲の下 ＝ 弱気</text>
+<text x="415" y="215" text-anchor="middle" font-size="10" fill="#8b949e">転換線が基準線を上抜け ＝ 買い</text>
+<!-- Bottom note -->
+<rect x="40" y="245" width="470" height="22" rx="5" fill="#1e3045"/>
+<text x="275" y="260" text-anchor="middle" font-size="10" fill="#8b949e">1つのインジケーターでトレンド・S/R・モメンタム・シグナルの全てを表示</text>
+</svg></div></div>
+<div class="ftr">テクニカルインジケーター | URIKAI Trading Academy</div></div>
+
+<!-- 9: まとめ -->
+<div class="slide cnt" data-s="9"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col">
+<div class='srow'><div class='lbl'>分類</div><div class='val'>オシレーター系（RSI等）とトレンド系（MA等）</div></div>
+<div class='srow'><div class='lbl'>MA</div><div class='val'>トレンド方向の判断、ゴールデン/デッドクロス</div></div>
+<div class='srow'><div class='lbl'>RSI</div><div class='val'>買われすぎ/売られすぎ、ダイバージェンス</div></div>
+<div class='srow'><div class='lbl'>MACD</div><div class='val'>MACDクロス＋ヒストグラムでモメンタム</div></div>
+<div class='srow'><div class='lbl'>ボリンジャー</div><div class='val'>スクイーズ→ブレイク、バンドウォーク</div></div>
+<div class='srow'><div class='lbl'>ATR</div><div class='val'>ボラティリティ計測、SL設定に直結</div></div>
+<div class='srow'><div class='lbl'>一目均衡表</div><div class='val'>雲でトレンド・S/Rを一目で把握</div></div>
+</div>
+<div class="ftr">テクニカルインジケーター | URIKAI Trading Academy</div></div>
+
+<!-- 10: Quiz -->
+<div class="slide quiz" data-s="10"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
 <div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. RSIの買われすぎ水準は？</div>
 <div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">70以上</button>
 <button class="q-btn" onclick="pick(0,1)" id="qb0b">50以上</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. ATRは何を計測する指標？</div>
@@ -109,16 +373,19 @@
 <button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
 <div class="quiz-result" id="qResult"></div></div>
 <div class="ftr">テクニカルインジケーター | URIKAI Trading Academy</div></div>
-<div class="slide cls" data-s="8"><h2>Section 10 Complete</h2>
+
+<!-- 11: Closing -->
+<div class="slide cls" data-s="11"><h2>Section 10 Complete</h2>
 <div class="cls-buttons">
 <a class='cls-btn cls-btn-next' href='11.html'>Next → チャートパターン</a>
 <a class="cls-btn cls-btn-home" href="../index.html">Home</a>
 </div>
 <div style="width:120px;height:3px;background:#d4a537;margin:1rem auto"></div>
 <div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
+
 </div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let c=1;const t=8;
+let c=1;const t=11;
 function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
 document.getElementById('prevBtn').disabled=true;
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
