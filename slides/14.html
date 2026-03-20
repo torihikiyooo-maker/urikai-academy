@@ -79,37 +79,25 @@
 <!-- Simplified wave line for clarity -->
 <polyline points="40,235 75,190 105,215 150,155 185,185 240,100 280,135 330,65 370,95 420,48 460,38" stroke="#2e86c1" stroke-width="3" fill="none" opacity="0.8"/>
 <!-- Labels with description boxes -->
-<circle cx="40" cy="242" r="8" fill="#0a2f5c" stroke="#d4a537" stroke-width="1.5"/><text x="40" y="246" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="700">0</text>
-<circle cx="75" cy="185" r="8" fill="#27ae60" opacity="0.4"/><text x="75" y="183" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="700">1</text>
-<rect x="82" y="168" width="115" height="26" rx="5" fill="#1e3045" stroke="#27ae60" stroke-width="0.8"/>
-<text x="140" y="181" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">第1波：トレンドの始まり</text>
-<text x="140" y="191" text-anchor="middle" font-size="8" fill="#8b949e">少数だけが気づく</text>
+<!-- Wave number circles - positioned clearly away from line -->
+<circle cx="40" cy="248" r="9" fill="#0a2f5c" stroke="#d4a537" stroke-width="1.5"/><text x="40" y="252" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="700">0</text>
+<circle cx="75" cy="178" r="9" fill="#27ae60" opacity="0.5"/><text x="75" y="175" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">1</text>
+<circle cx="105" cy="228" r="9" fill="#e74c3c" opacity="0.5"/><text x="105" y="232" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">2</text>
+<circle cx="240" cy="88" r="10" fill="#27ae60" opacity="0.6" filter="url(#g14)"/><text x="240" y="92" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">3</text>
+<circle cx="280" cy="148" r="9" fill="#e74c3c" opacity="0.5"/><text x="280" y="152" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">4</text>
+<circle cx="460" cy="28" r="9" fill="#27ae60" opacity="0.5"/><text x="460" y="32" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">5</text>
 
-<circle cx="105" cy="220" r="8" fill="#e74c3c" opacity="0.4"/><text x="105" y="224" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="700">2</text>
-<rect x="112" y="218" width="125" height="26" rx="5" fill="#1e3045" stroke="#e74c3c" stroke-width="0.8"/>
-<text x="175" y="231" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">第2波：調整（0を割らない）</text>
-<text x="175" y="241" text-anchor="middle" font-size="8" fill="#8b949e">ルール①</text>
-
-<circle cx="240" cy="95" r="10" fill="#27ae60" opacity="0.5" filter="url(#g14)"/><circle cx="240" cy="95" r="8" fill="#27ae60" opacity="0.4"/><text x="240" y="99" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="700">3</text>
-<rect x="248" y="80" width="130" height="30" rx="5" fill="#27ae60" opacity="0.15" stroke="#27ae60" stroke-width="1"/>
-<text x="313" y="95" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700">第3波：最強・最長</text>
-<text x="313" y="107" text-anchor="middle" font-size="8" fill="#8b949e">ルール②：最短にならない</text>
-
-<circle cx="280" cy="140" r="8" fill="#e74c3c" opacity="0.4"/><text x="280" y="144" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="700">4</text>
-<rect x="288" y="128" width="130" height="26" rx="5" fill="#1e3045" stroke="#e74c3c" stroke-width="0.8"/>
-<text x="353" y="141" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">第4波：利確調整</text>
-<text x="353" y="151" text-anchor="middle" font-size="8" fill="#8b949e">ルール③</text>
-
-<circle cx="460" cy="32" r="8" fill="#27ae60" opacity="0.4"/><text x="460" y="36" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="700">5</text>
-<rect x="388" y="42" width="120" height="26" rx="5" fill="#1e3045" stroke="#d4a537" stroke-width="0.8"/>
-<text x="448" y="55" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="600">第5波：最後の推進</text>
-<text x="448" y="65" text-anchor="middle" font-size="8" fill="#8b949e">ダイバージェンス発生</text>
-
-<!-- Rule violation lines -->
-<line x1="40" y1="235" x2="120" y2="235" stroke="#e74c3c" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.4"/>
-<text x="80" y="250" text-anchor="middle" font-size="8" fill="#e74c3c">第2波はここを割らない</text>
-<line x1="75" y1="190" x2="295" y2="190" stroke="#d4a537" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.4"/>
-<text x="185" y="202" text-anchor="middle" font-size="8" fill="#d4a537">第4波はここに入らない</text>
+<!-- Description panel - right side, away from chart -->
+<rect x="380" y="120" width="128" height="140" rx="8" fill="#1e3045"/>
+<text x="444" y="138" text-anchor="middle" font-size="10" fill="#d4a537" font-weight="700">各波の特徴</text>
+<text x="444" y="156" text-anchor="middle" font-size="9" fill="#27ae60">①波：始まり</text>
+<text x="444" y="172" text-anchor="middle" font-size="9" fill="#e74c3c">②波：調整（浅い）</text>
+<text x="444" y="188" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="700">③波：最強・最長</text>
+<text x="444" y="204" text-anchor="middle" font-size="9" fill="#e74c3c">④波：利確調整</text>
+<text x="444" y="220" text-anchor="middle" font-size="9" fill="#d4a537">⑤波：最後（弱い）</text>
+<text x="444" y="248" text-anchor="middle" font-size="8" fill="#8b949e">②は0を超えない</text>
+<text x="444" y="258" text-anchor="middle" font-size="8" fill="#8b949e">③は最短にならない</text>
+<text x="444" y="268" text-anchor="middle" font-size="8" fill="#8b949e">④は①と重ならない</text>
 </svg></div></div>
 <div class="ftr">エリオット波動 | URIKAI Trading Academy</div></div>
 
@@ -190,24 +178,18 @@
 <!-- Simplified wave -->
 <polyline points="40,215 75,175 110,200 155,140 195,170 245,95 285,130 335,60 375,90 420,42 460,35" stroke="#2e86c1" stroke-width="2.5" fill="none" opacity="0.6"/>
 <!-- Fib levels for Wave 2 -->
-<line x1="50" y1="190" x2="120" y2="190" stroke="#d4a537" stroke-width="0.8" stroke-dasharray="3,2"/>
-<rect x="120" y="182" width="95" height="18" rx="4" fill="#e74c3c" opacity="0.15" stroke="#e74c3c" stroke-width="0.8"/>
-<text x="168" y="195" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">第2波：50-61.8%</text>
-<!-- Fib for Wave 3 -->
-<line x1="110" y1="50" x2="240" y2="50" stroke="#d4a537" stroke-width="0.8" stroke-dasharray="3,2"/>
-<rect x="240" y="40" width="105" height="22" rx="4" fill="#27ae60" opacity="0.15" stroke="#27ae60" stroke-width="1"/>
-<text x="292" y="55" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700">第3波：161.8%</text>
-<!-- Fib for Wave 4 -->
-<line x1="195" y1="115" x2="250" y2="115" stroke="#d4a537" stroke-width="0.8" stroke-dasharray="3,2"/>
-<rect x="250" y="107" width="105" height="18" rx="4" fill="#e74c3c" opacity="0.15" stroke="#e74c3c" stroke-width="0.8"/>
-<text x="302" y="120" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">第4波：23.6-38.2%</text>
-<!-- Fib for Wave 5 -->
-<rect x="315" y="22" width="95" height="18" rx="4" fill="#d4a537" opacity="0.15" stroke="#d4a537" stroke-width="0.8"/>
-<text x="362" y="35" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="600">第5波：≒ 第1波</text>
-<!-- Table at bottom -->
-<rect x="40" y="215" width="440" height="45" rx="6" fill="#1e3045"/>
-<text x="260" y="234" text-anchor="middle" font-size="11" fill="#d4a537" font-weight="600">各波がフィボ比率に収まっているか ＝ 波のカウントの検証方法</text>
-<text x="260" y="252" text-anchor="middle" font-size="10" fill="#8b949e">比率が合わない場合 → カウントが間違っている可能性が高い</text>
+<!-- Fib info panel - right side, clean and separate from chart -->
+<rect x="370" y="38" width="130" height="155" rx="8" fill="#1e3045"/>
+<text x="435" y="58" text-anchor="middle" font-size="11" fill="#d4a537" font-weight="700">フィボナッチ比率</text>
+<rect x="380" y="68" width="110" height="18" rx="3" fill="#e74c3c" opacity="0.15"/><text x="435" y="81" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">②波：50〜61.8%</text>
+<rect x="380" y="92" width="110" height="18" rx="3" fill="#27ae60" opacity="0.15"/><text x="435" y="105" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700">③波：161.8%</text>
+<rect x="380" y="116" width="110" height="18" rx="3" fill="#e74c3c" opacity="0.15"/><text x="435" y="129" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">④波：23.6〜38.2%</text>
+<rect x="380" y="140" width="110" height="18" rx="3" fill="#d4a537" opacity="0.15"/><text x="435" y="153" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="600">⑤波：≒ 第1波</text>
+<rect x="380" y="164" width="110" height="18" rx="3" fill="#8e44ad" opacity="0.15"/><text x="435" y="177" text-anchor="middle" font-size="9" fill="#8e44ad" font-weight="600">C波：A波の100〜161.8%</text>
+<!-- Bottom note -->
+<rect x="40" y="218" width="440" height="40" rx="6" fill="#1e3045"/>
+<text x="260" y="236" text-anchor="middle" font-size="11" fill="#d4a537" font-weight="600">各波がフィボ比率に収まっているか ＝ カウントの検証方法</text>
+<text x="260" y="252" text-anchor="middle" font-size="10" fill="#8b949e">比率が合わない → カウントが間違っている可能性</text>
 </svg></div></div>
 <div class="ftr">エリオット波動 | URIKAI Trading Academy</div></div>
 
