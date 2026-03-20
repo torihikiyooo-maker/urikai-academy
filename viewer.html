@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URIKAI - Viewer</title>
+    <style>
+        :root {
+            --primary: #0a2f5c;
+            --accent: #d4a537;
+            --bg: #0d1117;
+            --bg-card: #161b22;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --border: #30363d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Meiryo UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .toolbar {
+            background: var(--bg-card);
+            border-bottom: 2px solid var(--accent);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+        .toolbar a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .toolbar a:hover { text-decoration: underline; }
+        .toolbar .title {
+            color: var(--text);
+            font-size: 1rem;
+            font-weight: 600;
+            flex: 1;
+        }
+        .toolbar .download-btn {
+            background: var(--primary);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            border: 1px solid var(--accent);
+            transition: background 0.2s;
+        }
+        .toolbar .download-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .viewer-frame {
+            flex: 1;
+            border: none;
+            width: 100%;
+        }
+        .fallback {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+        }
+        .fallback p { color: var(--text-muted); max-width: 500px; }
+        .fallback .big-download {
+            background: linear-gradient(135deg, var(--accent), #b8912e);
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <a href="index.html">&larr; Back</a>
+        <span class="title" id="slideTitle">Loading...</span>
+        <a class="download-btn" id="downloadLink" href="#">Download PPTX</a>
+    </div>
+    <iframe class="viewer-frame" id="viewerFrame" src="about:blank"></iframe>
+    <div class="fallback" id="fallback" style="display:none;">
+        <h2 style="color: var(--accent);">スライドをダウンロード</h2>
+        <p>ブラウザでの表示に対応していない場合は、下のボタンからPPTXファイルをダウンロードしてPowerPointで開いてください。</p>
+        <a class="big-download" id="fallbackDownload" href="#">Download PPTX</a>
+    </div>
+
+    <script>
+        // Check session auth
+        if (sessionStorage.getItem('urikai_auth') !== 'true') {
+            window.location.href = 'index.html';
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const file = params.get('file');
+        const title = params.get('title') || file;
+        const num = params.get('num') || '';
+
+        document.getElementById('slideTitle').textContent = (num ? 'Section ' + num + ' — ' : '') + (title || '');
+
+        if (file) {
+            const baseUrl = window.location.origin + window.location.pathname.replace('viewer.html', '');
+            const fileUrl = baseUrl + encodeURIComponent(file);
+            const officeUrl = 'https://view.officeapps.live.com/op/embed.aspx?src=' + encodeURIComponent(fileUrl);
+
+            document.getElementById('downloadLink').href = file;
+            document.getElementById('fallbackDownload').href = file;
+
+            const iframe = document.getElementById('viewerFrame');
+            iframe.src = officeUrl;
+
+            // If iframe fails to load, show fallback after timeout
+            setTimeout(() => {
+                try {
+                    // Check if iframe loaded something
+                    if (iframe.contentDocument && iframe.contentDocument.body && iframe.contentDocument.body.innerHTML === '') {
+                        showFallback();
+                    }
+                } catch(e) {
+                    // Cross-origin - means it loaded something (office viewer)
+                }
+            }, 8000);
+        }
+
+        function showFallback() {
+            document.getElementById('viewerFrame').style.display = 'none';
+            document.getElementById('fallback').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
