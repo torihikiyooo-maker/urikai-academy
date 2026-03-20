@@ -1,209 +1,62 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - マルチタイムフレーム分析</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 13 — マルチタイムフレーム分析</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 8</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - マルチタイムフレーム分析</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 13 — マルチタイムフレーム分析</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 6</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 13</div><h1>マルチタイムフレーム分析</h1>
+<div class="sub">Multiple Timeframe Analysis ── 大局と局所を同時に見る</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>トップダウン分析</h2></div>
+<div class="body"><div class='txt'><ul><li>複数の時間軸で<strong>大きな流れ→エントリータイミング</strong>を判断</li><li>上位でトレンド確認→下位でエントリー</li><li>上位時間軸の方向に逆らうトレードは成功確率が低い</li><li>全時間軸が同じ方向＝<strong>タイムフレームアラインメント</strong>＝最強シグナル</li><li>スキャルピング：1H/15m/5m、デイトレ：日足/4H/15m、スイング：週足/日足/4H</li></ul><div class='pbox'>POINT：下位で良いセットアップに見えても、上位のS/Rに向かっている場合は見送る。</div></div></div>
+<div class="ftr">MTF分析 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>よくあるミス</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>分析麻痺</strong>──時間軸を増やしすぎて判断不能→<strong>3つに絞る</strong></li><li><strong>下位の過信</strong>──5分足だけで日足S/Rを無視→上位優先</li><li><strong>矛盾時の強行</strong>──方向が違う場合に無理にエントリー→見送る</li><li><strong>エントリー後の軸変更</strong>──不安で時間軸を変える→事前に決めた軸で管理</li><li>「迷ったらトレードしない」が最善の判断</li></ul></div></div>
+<div class="ftr">MTF分析 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="4"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>概念</div><div class='val'>上位→中位→下位のトップダウンアプローチ</div></div><div class='srow'><div class='lbl'>3つの軸</div><div class='val'>方向（上位）、セットアップ（中位）、エントリー（下位）</div></div><div class='srow'><div class='lbl'>アラインメント</div><div class='val'>全TF方向一致＝最高品質</div></div><div class='srow'><div class='lbl'>原則</div><div class='val'>上位優先、矛盾時は見送り、3軸に絞る</div></div></div>
+<div class="ftr">MTF分析 | URIKAI Trading Academy</div></div>
+<div class="slide quiz" data-s="5"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+<div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. トップダウン分析の順序は？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">下位→上位時間軸</button>
+<button class="q-btn" onclick="pick(0,1)" id="qb0b">上位→下位時間軸</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. 全時間軸のトレンドが一致することを何という？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(1,0)" id="qb1a">ダイバージェンス</button>
+<button class="q-btn" onclick="pick(1,1)" id="qb1b">タイムフレームアラインメント</button></div></div><div class="q-item" id="qi2"><div class="q-text">Q3. 上位と下位で方向が矛盾した場合は？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(2,0)" id="qb2a">下位時間軸を優先する</button>
+<button class="q-btn" onclick="pick(2,1)" id="qb2b">見送る・慎重に対応する</button></div></div>
+<button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
+<div class="quiz-result" id="qResult"></div></div>
+<div class="ftr">マルチタイムフレーム分析 | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="6"><h2>Section 13 Complete</h2>
+<div class="cls-buttons">
+<a class='cls-btn cls-btn-next' href='14.html'>Next → エリオット波動</a>
+<a class="cls-btn cls-btn-home" href="../index.html">Home</a>
 </div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 13</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">マルチタイムフレーム分析</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Multiple Timeframe Analysis ── 大局と局所を同時に見る</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">マルチタイムフレーム分析とは</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  複数の時間軸を使って、大きな流れ → 中期の方向 → エントリータイミングを判断</p>
-<p style="font-size:20px">▪  トップダウンアプローチ ── 上位時間軸から下位時間軸へ分析を進める</p>
-<p style="font-size:20px">▪  上位時間軸でトレンド方向を確認 → 下位時間軸でエントリータイミングを計る</p>
-<p style="font-size:20px">▪  「木を見て森を見ず」を防ぐための体系的フレームワーク</p>
-<p style="font-size:20px">▪  上位時間軸の方向に逆らうトレードは成功確率が低い</p>
-<p style="font-size:20px">▪  すべての時間軸が同じ方向 ＝ 最も強いシグナル（タイムフレームアラインメント）</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：下位時間軸で良いセットアップに見えても、上位時間軸のS/Rに向かっている場合は見送る。上位が常に優先。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">マルチタイムフレーム分析    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">トレードスタイル別 推奨タイムフレーム</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:92.25%;height:28.00%;overflow:hidden"><table style="border-collapse:collapse;width:100%;margin-top:4px"><tr><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">スタイル</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">方向確認（上位）</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">セットアップ（中位）</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">エントリー（下位）</th></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">スキャルピング</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">1時間足</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">15分足</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">1分足・5分足</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">デイトレード</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">日足</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">1時間足・4時間足</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">15分足</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">スイングトレード</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">週足</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">日足</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">4時間足</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">ポジショントレード</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">月足</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">週足</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">日足</td></tr></table></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">マルチタイムフレーム分析    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">トップダウン分析の手順</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  Step 1：上位時間軸でトレンド方向とS/Rを確認</p>
-<p style="font-size:20px">▪  Step 2：中位時間軸でセットアップ（パターン・フィボ・S/R反応）を探す</p>
-<p style="font-size:20px">▪  Step 3：下位時間軸でエントリートリガー（ローソク足パターン・ブレイク確認）を待つ</p>
-<p style="font-size:20px">▪  Step 4：リスク管理（SL/TP）は中位〜上位時間軸のS/Rに基づいて設定</p>
-<p style="font-size:20px">▪  例：日足で上昇トレンド確認 → 4H足でフィボ61.8%の押し目 → 15分足でピンバー → 買いエントリー</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">マルチタイムフレーム分析    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">タイムフレームアラインメント（合致）</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  全時間軸のトレンドが一致 ＝ 最高品質のトレードセットアップ</p>
-<p style="font-size:20px">▪  例：週足↑ 日足↑ 4H足↑ ＝ 強い上昇。買いのみを検討</p>
-<p style="font-size:20px">▪  上位と下位で方向が矛盾 ＝ 見送りまたは慎重に対応</p>
-<p style="font-size:20px">▪  アラインメントが取れている相場 ＝ トレンドフォローが最適</p>
-<p style="font-size:20px">▪  アラインメントが取れていない相場 ＝ レンジ/転換期の可能性</p>
-<p style="font-size:20px">▪  「迷ったらトレードしない」── アラインメントが明確な場面だけ参加</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">マルチタイムフレーム分析    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">よくあるミスと対策</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  分析麻痺 ── 時間軸を増やしすぎて判断できなくなる → 3つに絞る</p>
-<p style="font-size:20px">▪  下位時間軸の過信 ── 5分足だけ見て日足のS/Rを無視する → 上位優先</p>
-<p style="font-size:20px">▪  矛盾する信号 ── 上位と下位で方向が違う場合に無理にエントリー → 見送る</p>
-<p style="font-size:20px">▪  過剰な時間軸変更 ── エントリー後に時間軸を変えて不安になる → 事前に決めた軸で管理</p>
-<p style="font-size:20px">▪  エントリー時間軸とSL設定時間軸の不一致 → SLは中位以上の構造に基づく</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">マルチタイムフレーム分析    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">概念</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">上位→中位→下位の順に分析するトップダウンアプローチ</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">3つの軸</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">方向確認（上位）、セットアップ（中位）、エントリー（下位）</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">アラインメント</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">全時間軸の方向一致 ＝ 最高品質のセットアップ</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">基本原則</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">上位時間軸が常に優先、矛盾時は見送り</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">注意点</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">3軸に絞る、分析麻痺を避ける、SLは上位構造に基づく</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">マルチタイムフレーム分析    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → エリオット波動</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:1rem auto"></div>
+<div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 8;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=6;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+
+const answers=[1,1,1];const picks={};
+function pick(qi,oi){if(document.getElementById('qSubmit').textContent==='')return;picks[qi]=oi;
+document.getElementById('qb'+qi+'a').classList.toggle('selected',oi===0);
+document.getElementById('qb'+qi+'b').classList.toggle('selected',oi===1);
+if(Object.keys(picks).length===3)document.getElementById('qSubmit').disabled=false;}
+function submitQuiz(){let score=0;
+for(let i=0;i<3;i++){const btns=[document.getElementById('qb'+i+'a'),document.getElementById('qb'+i+'b')];
+btns.forEach(b=>b.disabled=true);
+if(picks[i]===answers[i]){score++;document.getElementById('qi'+i).classList.add('correct');btns[answers[i]].classList.add('right');}
+else{document.getElementById('qi'+i).classList.add('wrong');btns[picks[i]].classList.add('wrongsel');btns[answers[i]].classList.add('right');}}
+const r=document.getElementById('qResult');const btn=document.getElementById('qSubmit');
+if(score===3){r.className='quiz-result pass';r.textContent='全問正解！セクション13 受講完了';
+localStorage.setItem('urikai_done_13','true');btn.textContent='';btn.style.display='none';}
+else{r.className='quiz-result fail';r.textContent=score+'/3 正解 ── 全問正解が必要です';
+btn.textContent='もう一度';btn.onclick=()=>location.reload();}}
+</script></body></html>

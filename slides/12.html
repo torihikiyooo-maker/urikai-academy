@@ -1,218 +1,62 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - フィボナッチ</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 12 — フィボナッチ</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 8</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - フィボナッチ</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 12 — フィボナッチ</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 6</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 12</div><h1>フィボナッチ</h1>
+<div class="sub">Fibonacci ── 自然界の比率を相場に応用</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>フィボナッチ数列と比率</h2></div>
+<div class="body"><div class='txt'><ul><li>主要比率：<strong>23.6%、38.2%、50%、61.8%、78.6%</strong></li><li>エクステンション：<strong>127.2%、161.8%、200%、261.8%</strong></li><li>市場参加者が意識するためS/Rとして機能しやすい</li><li>38.2%＝浅い押し、50%＝中間、<strong>61.8%＝最重要</strong></li><li>61.8%を超えるとトレンド転換の可能性が高まる</li></ul><div class='pbox'>POINT：61.8%（黄金比）は最も注目されるレベル。</div></div></div>
+<div class="ftr">フィボナッチ | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>エクステンション・コンフルエンス</h2></div>
+<div class="body"><div class='txt'><ul><li>エクステンション＝利確ターゲットの推定ツール</li><li>リトレースメント＋S/Rの重なり＝<strong>コンフルエンス（合流）</strong></li><li>フィボ＋トレンドライン＋ローソク足パターン＝高信頼度トレード</li><li>SL：リトレースメントの次のレベルの少し外側</li><li>TP：エクステンションレベルを段階的に使用</li></ul><div class='pbox'>POINT：単独ではなく他ツールとのコンフルエンスを狙うことで精度が大幅に向上する。</div></div></div>
+<div class="ftr">フィボナッチ | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="4"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>基本比率</div><div class='val'>23.6%, 38.2%, 50%, 61.8%, 78.6%</div></div><div class='srow'><div class='lbl'>リトレースメント</div><div class='val'>押し目/戻りの深さを測定</div></div><div class='srow'><div class='lbl'>エクステンション</div><div class='val'>利確ターゲットの推定</div></div><div class='srow'><div class='lbl'>コンフルエンス</div><div class='val'>S/R、MA、パターンとの合流で信頼性向上</div></div></div>
+<div class="ftr">フィボナッチ | URIKAI Trading Academy</div></div>
+<div class="slide quiz" data-s="5"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+<div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. フィボナッチの最も注目されるリトレースメントは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">23.6%</button>
+<button class="q-btn" onclick="pick(0,1)" id="qb0b">61.8%</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. フィボナッチエクステンションは何に使う？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(1,0)" id="qb1a">損切りの設定</button>
+<button class="q-btn" onclick="pick(1,1)" id="qb1b">利確ターゲットの推定</button></div></div><div class="q-item" id="qi2"><div class="q-text">Q3. コンフルエンスとは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(2,0)" id="qb2a">複数の根拠が重なるレベル</button>
+<button class="q-btn" onclick="pick(2,1)" id="qb2b">1つの指標だけで判断すること</button></div></div>
+<button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
+<div class="quiz-result" id="qResult"></div></div>
+<div class="ftr">フィボナッチ | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="6"><h2>Section 12 Complete</h2>
+<div class="cls-buttons">
+<a class='cls-btn cls-btn-next' href='13.html'>Next → マルチタイムフレーム分析</a>
+<a class="cls-btn cls-btn-home" href="../index.html">Home</a>
 </div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 12</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">フィボナッチ</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Fibonacci ── 自然界の比率を相場分析に応用する</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">フィボナッチ数列と比率</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  フィボナッチ数列：0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144...</p>
-<p style="font-size:20px">▪  各数を次の数で割ると → 0.618（黄金比）に収束する</p>
-<p style="font-size:20px">▪  トレードで使う主要比率：23.6%、38.2%、50%、61.8%、78.6%</p>
-<p style="font-size:20px">▪  エクステンション比率：127.2%、161.8%、200%、261.8%</p>
-<p style="font-size:20px">▪  市場参加者がこれらのレベルを意識するため、S/Rとして機能しやすい</p>
-<p style="font-size:20px">▪  「自己成就的予言」の側面 ── 多くの人が使うほど効果的になる</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">フィボナッチ    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">フィボナッチリトレースメント</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  トレンドの始点と終点を結び、調整（押し目/戻り）の深さを測定</p>
-<p style="font-size:20px">▪  上昇トレンド：安値（始点）→ 高値（終点）に描画</p>
-<p style="font-size:20px">▪  下降トレンド：高値（始点）→ 安値（終点）に描画</p>
-<p style="font-size:20px">▪  主要リトレースメントレベル：</p>
-<p style="font-size:20px">▪    38.2% ── 浅い押し（強いトレンドで多い）</p>
-<p style="font-size:20px">▪    50.0% ── 中間の押し（最も一般的）</p>
-<p style="font-size:20px">▪    61.8% ── 深い押し（トレンド転換リスクも考慮）</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：61.8%（黄金比）は最も注目されるレベル。ここで反転すればトレンド継続、ここを超えるとトレンド転換の可能性が高まる。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">フィボナッチ    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">フィボナッチエクステンション</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  トレンドの目標価格（利確ポイント）を推定するツール</p>
-<p style="font-size:20px">▪  主要エクステンションレベル：127.2%、161.8%、200%、261.8%</p>
-<p style="font-size:20px">▪  リトレースメントからの反転後、次のターゲットとして使用</p>
-<p style="font-size:20px">▪  例：上昇→38.2%押し→反転上昇 → 127.2%がTP1、161.8%がTP2</p>
-<p style="font-size:20px">▪  エリオット波動の第3波や第5波のターゲット推定にも使用</p>
-<p style="font-size:20px">▪  S/Rと一致するエクステンションレベルは信頼性が高い</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">フィボナッチ    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">フィボナッチと他のツールの組み合わせ</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  フィボナッチ ＋ S/R ── フィボレベルとS/Rが重なる価格帯は最強のゾーン</p>
-<p style="font-size:20px">▪  フィボナッチ ＋ トレンドライン ── 両方が一致するポイントでの反転確率が高い</p>
-<p style="font-size:20px">▪  フィボナッチ ＋ チャートパターン ── パターン内でのフィボレベルを確認</p>
-<p style="font-size:20px">▪  フィボナッチ ＋ ローソク足 ── フィボレベルでの反転ローソク足パターンをトリガーに</p>
-<p style="font-size:20px">▪  フィボナッチ ＋ 移動平均線 ── フィボレベルとMAの交差ポイント</p>
-<p style="font-size:20px">▪  複数の根拠が重なるレベル ＝ コンフルエンス（合流）→ 高信頼度のトレード</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：フィボナッチ単独ではなく、他の分析ツールとの「コンフルエンス（合流）」を狙うことで精度が大幅に向上する。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">フィボナッチ    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">SL/TPの設定とフィボナッチ</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  SLの設定：リトレースメントの次のレベルの少し外側</p>
-<p style="font-size:20px">▪  例：61.8%で買いエントリー → SLは78.6%の少し下に設定</p>
-<p style="font-size:20px">▪  TPの設定：エクステンションレベルを段階的に使用</p>
-<p style="font-size:20px">▪  例：TP1 ＝ 直近高値、TP2 ＝ 127.2%、TP3 ＝ 161.8%</p>
-<p style="font-size:20px">▪  リスクリワード比を事前に計算してからエントリーを判断</p>
-<p style="font-size:20px">▪  フィボレベル間の距離がRR計算の基盤になる</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">フィボナッチ    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">基本比率</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">23.6%, 38.2%, 50%, 61.8%, 78.6%</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">リトレースメント</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">押し目/戻りの深さを測定</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">エクステンション</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">利確ターゲットの推定</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">コンフルエンス</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">S/R、MA、パターンとの合流で信頼性向上</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">SL/TP活用</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">フィボレベル間の距離でRR計算</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">フィボナッチ    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → マルチタイムフレーム分析</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:1rem auto"></div>
+<div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 8;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=6;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+
+const answers=[1,1,0];const picks={};
+function pick(qi,oi){if(document.getElementById('qSubmit').textContent==='')return;picks[qi]=oi;
+document.getElementById('qb'+qi+'a').classList.toggle('selected',oi===0);
+document.getElementById('qb'+qi+'b').classList.toggle('selected',oi===1);
+if(Object.keys(picks).length===3)document.getElementById('qSubmit').disabled=false;}
+function submitQuiz(){let score=0;
+for(let i=0;i<3;i++){const btns=[document.getElementById('qb'+i+'a'),document.getElementById('qb'+i+'b')];
+btns.forEach(b=>b.disabled=true);
+if(picks[i]===answers[i]){score++;document.getElementById('qi'+i).classList.add('correct');btns[answers[i]].classList.add('right');}
+else{document.getElementById('qi'+i).classList.add('wrong');btns[picks[i]].classList.add('wrongsel');btns[answers[i]].classList.add('right');}}
+const r=document.getElementById('qResult');const btn=document.getElementById('qSubmit');
+if(score===3){r.className='quiz-result pass';r.textContent='全問正解！セクション12 受講完了';
+localStorage.setItem('urikai_done_12','true');btn.textContent='';btn.style.display='none';}
+else{r.className='quiz-result fail';r.textContent=score+'/3 正解 ── 全問正解が必要です';
+btn.textContent='もう一度';btn.onclick=()=>location.reload();}}
+</script></body></html>
