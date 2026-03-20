@@ -134,22 +134,51 @@ class ChartSVG:
         return f'<text x="{self.w/2}" y="20" text-anchor="middle" font-size="13" fill="#d4a537" font-weight="700">{text}</text>'
 
     def bottom_note(self, text):
-        y = self.h - 12
-        tw = len(text) * 6 + 20
-        return (f'<rect x="{self.w/2-tw/2:.0f}" y="{y-12:.0f}" width="{tw}" height="18" rx="4" fill="#1e3045"/>'
+        y = self.h - 10
+        # Japanese chars are wider - approx 9px per char
+        tw = min(len(text) * 9 + 20, self.w - 20)
+        return (f'<rect x="{self.w/2-tw/2:.0f}" y="{y-14:.0f}" width="{tw}" height="20" rx="4" fill="#1e3045"/>'
                 f'<text x="{self.w/2}" y="{y:.0f}" text-anchor="middle" font-size="9" fill="#8b949e">{text}</text>')
 
     def side_panel(self, x, y, width, lines, title_text="", title_color="#d4a537"):
-        """Info panel with title and text lines"""
-        line_h = 18
-        h = len(lines) * line_h + (25 if title_text else 5) + 10
-        s = f'<rect x="{x}" y="{y}" width="{width}" height="{h}" rx="8" fill="#1e3045"/>'
-        cy = y + 18
+        """Info panel with title and text lines - auto-sizes to fit content"""
+        line_h = 17
+        h = len(lines) * line_h + (22 if title_text else 5) + 10
+        # Auto-calculate width based on longest text (approx 6px per char)
+        max_chars = max(len(t) for t, _ in lines)
         if title_text:
-            s += f'<text x="{x+width/2}" y="{cy}" text-anchor="middle" font-size="10" fill="{title_color}" font-weight="700">{title_text}</text>'
-            cy += 20
+            max_chars = max(max_chars, len(title_text))
+        auto_w = max(width, max_chars * 7 + 20)
+        # Ensure panel stays within SVG bounds
+        if x + auto_w > self.w - 5:
+            x = self.w - auto_w - 5
+        s = f'<rect x="{x}" y="{y}" width="{auto_w}" height="{h}" rx="6" fill="#1e3045"/>'
+        cy = y + 16
+        if title_text:
+            s += f'<text x="{x+auto_w/2}" y="{cy}" text-anchor="middle" font-size="10" fill="{title_color}" font-weight="700">{title_text}</text>'
+            cy += 18
         for text, color in lines:
-            s += f'<text x="{x+width/2}" y="{cy}" text-anchor="middle" font-size="9" fill="{color}">{text}</text>'
+            s += f'<text x="{x+auto_w/2}" y="{cy}" text-anchor="middle" font-size="9" fill="{color}">{text}</text>'
+            cy += line_h
+        return s
+
+    def legend_panel(self, lines, title_text="", title_color="#d4a537"):
+        """Legend panel positioned at bottom-right of chart, never overlapping candles"""
+        width = max(len(t) for t, _ in lines) * 7 + 20
+        if title_text:
+            width = max(width, len(title_text) * 7 + 20)
+        line_h = 16
+        h = len(lines) * line_h + (20 if title_text else 5) + 8
+        x = self.chart_right - width - 5
+        y = self.chart_bottom - h - 5
+        # Semi-transparent background
+        s = f'<rect x="{x}" y="{y}" width="{width}" height="{h}" rx="5" fill="#131c2b" opacity="0.9" stroke="#1e3045" stroke-width="1"/>'
+        cy = y + 14
+        if title_text:
+            s += f'<text x="{x+width/2}" y="{cy}" text-anchor="middle" font-size="9" fill="{title_color}" font-weight="700">{title_text}</text>'
+            cy += 16
+        for text, color in lines:
+            s += f'<text x="{x+width/2}" y="{cy}" text-anchor="middle" font-size="8" fill="{color}">{text}</text>'
             cy += line_h
         return s
 
@@ -160,7 +189,7 @@ class ChartSVG:
 
 def generate_sr_chart():
     """S/R chart with candles bouncing between support and resistance"""
-    chart = ChartSVG(520, 300)
+    chart = ChartSVG(520, 280)
 
     # Generate OHLC data: price bounces between support (1.0850) and resistance (1.0950)
     support = 1.0850
@@ -245,11 +274,10 @@ def generate_trendline_chart():
         candles_svg,
         tl,
         tl_upper,
-        chart.side_panel(390, 35, 120, [
+        chart.side_panel(10, chart.chart_bottom + 5, 120, [
             ("── サポートライン", "#27ae60"),
             ("- - レジスタンス", "#e74c3c"),
-            ("チャネル内で推移", "#8b949e"),
-        ], "チャネル"),
+        ], ""),
         chart.bottom_note("安値を結んだラインがサポート、平行線がレジスタンス")
     )
 
@@ -410,10 +438,10 @@ def generate_ma_cross_chart():
         candles_svg,
         ma_svg,
         cross_svg,
-        chart.side_panel(400, 35, 110, [
+        chart.side_panel(10, chart.chart_bottom + 5, 110, [
             ("━ 短期MA (5)", "#d4a537"),
             ("╌ 長期MA (12)", "#e74c3c"),
-        ], "移動平均線"),
+        ], ""),
         chart.bottom_note("短期MAが長期MAを上抜け ＝ 上昇シグナル")
     )
 
@@ -492,11 +520,10 @@ def generate_bb_chart():
         candles_svg,
         bb_svg,
         labels,
-        chart.side_panel(400, 35, 110, [
+        chart.side_panel(10, chart.chart_bottom + 5, 110, [
             ("━ ミドル(20SMA)", "#d4a537"),
             ("━ ±2σ バンド", "#2e86c1"),
-            ("░ バンド内領域", "#2e86c1"),
-        ], "バンド構成"),
+        ], ""),
     )
 
 
