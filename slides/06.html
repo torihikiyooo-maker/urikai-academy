@@ -11,31 +11,89 @@
 <div class="sub">取引執行の基本操作を理解する</div><div class="line"></div>
 <div class="brand">URIKAI Trading Academy</div></div>
 <div class="slide cnt" data-s="2"><div class="hdr"><h2>注文タイプの全体像</h2></div>
-<div class="body"><div class='txt'><ul><li><strong>成行注文（Market）</strong>── 現在の価格で即座に約定</li><li><strong>指値注文（Limit）</strong>── 有利な価格を指定して待つ</li><li><strong>逆指値注文（Stop）</strong>── ブレイクアウト用の注文</li><li><strong>ストップロス（SL）</strong>── 損失を限定する自動決済</li><li><strong>テイクプロフィット（TP）</strong>── 利益確定の自動決済</li><li><strong>トレーリングストップ</strong>── 価格追従型のSL</li></ul></div><div class='vis'><svg viewBox="0 0 520 310" width="100%" style="max-width:800px">
-<line x1="60" y1="20" x2="60" y2="270" stroke="#888" stroke-width="1.5"/>
-<text x="50" y="15" text-anchor="end" font-size="11" fill="#888">価格</text>
+<div class="body"><div class='txt'><ul><li><strong>成行注文（Market）</strong>── 現在の価格で即座に約定</li><li><strong>指値注文（Limit）</strong>── 有利な価格を指定して待つ</li><li><strong>逆指値注文（Stop）</strong>── ブレイクアウト用の注文</li><li><strong>ストップロス（SL）</strong>── 損失を限定する自動決済</li><li><strong>テイクプロフィット（TP）</strong>── 利益確定の自動決済</li><li><strong>トレーリングストップ</strong>── 価格追従型のSL</li></ul></div><div class='vis'><svg viewBox="0 0 540 320" width="100%" style="max-width:800px">
+<defs>
+<filter id="g6"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<marker id="a6u" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#27ae60"/></marker>
+<marker id="a6d" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#e74c3c"/></marker>
+</defs>
+<rect x="0" y="0" width="540" height="320" rx="8" fill="#131c2b"/>
+<!-- Grid -->
+<line x1="65" y1="50" x2="530" y2="50" stroke="#1e3045" stroke-width="0.5"/>
+<line x1="65" y1="100" x2="530" y2="100" stroke="#1e3045" stroke-width="0.5"/>
+<line x1="65" y1="150" x2="530" y2="150" stroke="#1e3045" stroke-width="0.5"/>
+<line x1="65" y1="200" x2="530" y2="200" stroke="#1e3045" stroke-width="0.5"/>
+<line x1="65" y1="250" x2="530" y2="250" stroke="#1e3045" stroke-width="0.5"/>
+<!-- Price axis -->
+<line x1="65" y1="30" x2="65" y2="290" stroke="#556" stroke-width="1"/>
+<text x="55" y="78" text-anchor="end" font-size="9" fill="#556">1.0850</text>
+<text x="55" y="158" text-anchor="end" font-size="9" fill="#556">1.0800</text>
+<text x="55" y="238" text-anchor="end" font-size="9" fill="#556">1.0750</text>
 
-<line x1="55" y1="60" x2="480" y2="60" stroke="#c0392b" stroke-width="1" stroke-dasharray="6,3" opacity="0.5"/>
-<text x="485" y="63" font-size="12" fill="#c0392b">Sell Limit</text>
-<rect x="65" y="48" width="120" height="24" rx="5" fill="#c0392b" opacity="0.15" stroke="#c0392b" stroke-width="1"/><text x="125" y="65" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="600">現在価格より上で売り</text>
+<!-- ===== Current price zone ===== -->
+<rect x="65" y="147" width="465" height="16" fill="#d4a537" opacity="0.08"/>
+<line x1="65" y1="155" x2="530" y2="155" stroke="#d4a537" stroke-width="2" opacity="0.6"/>
+<rect x="70" y="145" width="120" height="20" rx="5" fill="#d4a537" opacity="0.9"/>
+<text x="130" y="160" text-anchor="middle" font-size="11" fill="#0a2f5c" font-weight="800">現在の市場価格</text>
 
-<line x1="55" y1="110" x2="480" y2="110" stroke="#2e86c1" stroke-width="1" stroke-dasharray="6,3" opacity="0.5"/>
-<text x="485" y="113" font-size="12" fill="#2e86c1">Buy Stop</text>
-<rect x="65" y="98" width="120" height="24" rx="5" fill="#2e86c1" opacity="0.15" stroke="#2e86c1" stroke-width="1"/><text x="125" y="115" text-anchor="middle" font-size="11" fill="#2e86c1" font-weight="600">現在価格より上で買い</text>
+<!-- ===== Candles around current price ===== -->
+<rect x="200" y="135" width="10" height="18" fill="#27ae60" rx="1"/><line x1="205" y1="130" x2="205" y2="135" stroke="#27ae60" stroke-width="1"/>
+<rect x="215" y="140" width="10" height="14" fill="#e74c3c" rx="1"/><line x1="220" y1="154" x2="220" y2="160" stroke="#e74c3c" stroke-width="1"/>
+<rect x="230" y="138" width="10" height="12" fill="#27ae60" rx="1"/>
+<rect x="245" y="142" width="10" height="10" fill="#e74c3c" rx="1"/>
+<rect x="260" y="136" width="10" height="16" fill="#27ae60" rx="1"/>
 
-<rect x="55" y="148" width="180" height="34" rx="6" fill="#d4a537" opacity="0.2" stroke="#d4a537" stroke-width="2"/>
-<text x="145" y="170" text-anchor="middle" font-size="16" fill="#d4a537" font-weight="800">現在の市場価格</text>
+<!-- ===== SELL LIMIT (above price) ===== -->
+<rect x="65" y="72" width="465" height="22" fill="#e74c3c" opacity="0.06" rx="3"/>
+<line x1="65" y1="83" x2="530" y2="83" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.6"/>
+<rect x="330" y="70" width="95" height="26" rx="6" fill="#e74c3c" opacity="0.85"/>
+<text x="378" y="88" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Sell Limit</text>
+<rect x="435" y="72" width="95" height="22" rx="5" fill="#1e3045"/>
+<text x="482" y="87" text-anchor="middle" font-size="9" fill="#8b949e">現在より上で売り</text>
+<!-- Arrow showing where order sits -->
+<path d="M320,155 L320,95" stroke="#e74c3c" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
 
-<line x1="55" y1="210" x2="480" y2="210" stroke="#27ae60" stroke-width="1" stroke-dasharray="6,3" opacity="0.5"/>
-<text x="485" y="213" font-size="12" fill="#27ae60">Buy Limit</text>
-<rect x="65" y="198" width="120" height="24" rx="5" fill="#27ae60" opacity="0.15" stroke="#27ae60" stroke-width="1"/><text x="125" y="215" text-anchor="middle" font-size="11" fill="#27ae60" font-weight="600">現在価格より下で買い</text>
+<!-- ===== BUY STOP (above price) ===== -->
+<rect x="65" y="108" width="465" height="22" fill="#2e86c1" opacity="0.06" rx="3"/>
+<line x1="65" y1="119" x2="530" y2="119" stroke="#2e86c1" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.6"/>
+<rect x="330" y="106" width="95" height="26" rx="6" fill="#2e86c1" opacity="0.85"/>
+<text x="378" y="124" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Buy Stop</text>
+<rect x="435" y="108" width="95" height="22" rx="5" fill="#1e3045"/>
+<text x="482" y="123" text-anchor="middle" font-size="9" fill="#8b949e">現在より上で買い</text>
+<text x="490" y="136" text-anchor="middle" font-size="8" fill="#2e86c1">ブレイクアウト用</text>
 
-<line x1="55" y1="250" x2="480" y2="250" stroke="#c0392b" stroke-width="1" stroke-dasharray="6,3" opacity="0.5"/>
-<text x="485" y="253" font-size="12" fill="#c0392b">Sell Stop</text>
-<rect x="65" y="238" width="120" height="24" rx="5" fill="#c0392b" opacity="0.15" stroke="#c0392b" stroke-width="1"/><text x="125" y="255" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="600">現在価格より下で売り</text>
+<!-- ===== BUY LIMIT (below price) ===== -->
+<rect x="65" y="192" width="465" height="22" fill="#27ae60" opacity="0.06" rx="3"/>
+<line x1="65" y1="203" x2="530" y2="203" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.6"/>
+<rect x="330" y="190" width="95" height="26" rx="6" fill="#27ae60" opacity="0.85"/>
+<text x="378" y="208" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Buy Limit</text>
+<rect x="435" y="192" width="95" height="22" rx="5" fill="#1e3045"/>
+<text x="482" y="207" text-anchor="middle" font-size="9" fill="#8b949e">現在より下で買い</text>
+<text x="490" y="220" text-anchor="middle" font-size="8" fill="#27ae60">押し目買い用</text>
 
-<rect x="260" y="90" width="170" height="50" rx="8" fill="#0a2f5c"/><text x="345" y="112" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Stop Loss（SL）</text><text x="345" y="128" text-anchor="middle" fill="#d4a537" font-size="11">= 損失限定の命綱</text>
-<rect x="260" y="155" width="170" height="50" rx="8" fill="#27ae60"/><text x="345" y="177" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Take Profit（TP）</text><text x="345" y="193" text-anchor="middle" fill="#d5f5e3" font-size="11">= 利益確定の目標</text>
+<!-- ===== SELL STOP (below price) ===== -->
+<rect x="65" y="232" width="465" height="22" fill="#e74c3c" opacity="0.06" rx="3"/>
+<line x1="65" y1="243" x2="530" y2="243" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.6"/>
+<rect x="330" y="230" width="95" height="26" rx="6" fill="#e74c3c" opacity="0.85"/>
+<text x="378" y="248" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Sell Stop</text>
+<rect x="435" y="232" width="95" height="22" rx="5" fill="#1e3045"/>
+<text x="482" y="247" text-anchor="middle" font-size="9" fill="#8b949e">現在より下で売り</text>
+<text x="490" y="260" text-anchor="middle" font-size="8" fill="#e74c3c">下方ブレイク用</text>
+
+<!-- ===== SL & TP indicators ===== -->
+<rect x="70" y="270" width="220" height="38" rx="8" fill="#0a2f5c" opacity="0.8"/>
+<rect x="75" y="275" width="10" height="10" rx="2" fill="#e74c3c"/><text x="92" y="285" font-size="10" fill="#e74c3c" font-weight="700">SL（ストップロス）</text>
+<text x="92" y="300" font-size="9" fill="#8b949e">損失限定 ── 必ず設定する</text>
+
+<rect x="300" y="270" width="230" height="38" rx="8" fill="#0a2f5c" opacity="0.8"/>
+<rect x="305" y="275" width="10" height="10" rx="2" fill="#27ae60"/><text x="322" y="285" font-size="10" fill="#27ae60" font-weight="700">TP（テイクプロフィット）</text>
+<text x="322" y="300" font-size="9" fill="#8b949e">利益確定 ── 感情を排除する</text>
+
+<!-- Direction labels on left -->
+<rect x="70" y="38" width="55" height="16" rx="3" fill="#e74c3c" opacity="0.2"/>
+<text x="98" y="50" text-anchor="middle" font-size="8" fill="#e74c3c" font-weight="600">価格の上↑</text>
+<rect x="70" y="255" width="55" height="16" rx="3" fill="#27ae60" opacity="0.2"/>
+<text x="98" y="267" text-anchor="middle" font-size="8" fill="#27ae60" font-weight="600">価格の下↓</text>
 </svg></div></div>
 <div class="ftr">注文の種類 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>成行注文・指値注文・逆指値注文</h2></div>
 <div class="body"><div class='txt'><ul><li><strong>成行注文</strong> ＝ 即座に約定。確実だがスリッページの可能性あり</li><li><strong>Buy Limit</strong> ＝ 現在価格より<strong>下</strong>で買い（押し目買い）</li><li><strong>Sell Limit</strong> ＝ 現在価格より<strong>上</strong>で売り（戻り売り）</li><li><strong>Buy Stop</strong> ＝ 現在価格より<strong>上</strong>で買い（上方ブレイク）</li><li><strong>Sell Stop</strong> ＝ 現在価格より<strong>下</strong>で売り（下方ブレイク）</li></ul><div class='pbox'>POINT：Limitは「有利な価格で待つ」、Stopは「ブレイクを追いかける」注文。用途が全く異なる。</div></div></div>
