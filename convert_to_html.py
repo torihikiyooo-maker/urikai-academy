@@ -87,7 +87,12 @@ def process_text_frame(tf):
         styles = []
         if font_size:
             # Scale for web (larger for readability)
-            web_size = max(font_size * 0.85, 13)
+            if font_size >= 26:
+                # Titles - keep current size
+                web_size = font_size * 0.85
+            else:
+                # Body text - make significantly larger
+                web_size = max(font_size * 1.15, 16)
             styles.append(f"font-size:{web_size:.0f}px")
         if font_color:
             styles.append(f"color:{font_color}")
@@ -173,12 +178,12 @@ def table_to_html(table):
             if row_idx == 0:
                 cells_html.append(
                     f'<th style="background:#1a3c6e;color:#fff;padding:8px 12px;'
-                    f'font-size:15px;text-align:left;border:1px solid #30363d">{escaped}</th>'
+                    f'font-size:18px;text-align:left;border:1px solid #30363d">{escaped}</th>'
                 )
             else:
                 bg = "#eaecee" if row_idx % 2 == 0 else "transparent"
                 cells_html.append(
-                    f'<td style="background:{bg};padding:8px 12px;font-size:15px;'
+                    f'<td style="background:{bg};padding:8px 12px;font-size:18px;'
                     f'color:#2c3e50;border:1px solid #30363d">{escaped}</td>'
                 )
         tag = "tr"
