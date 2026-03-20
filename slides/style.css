@@ -42,10 +42,13 @@ body { font-family:'Segoe UI','Meiryo UI','Hiragino Sans',sans-serif; background
 .vis { flex:1.5; display:flex; align-items:center; justify-content:center; }
 .txt ul { list-style:none; padding:0; }
 .txt li { padding:0.5rem 0; font-size:1.4rem; color:var(--dark-text); line-height:1.7; }
-/* Text-only slides (no illustration): bigger text, full width */
-.body > .txt:only-child { max-width:100%; }
-.body > .txt:only-child li { font-size:1.65rem; line-height:1.8; padding:0.6rem 0; }
-.body > .txt:only-child .pbox { font-size:1.4rem; padding:1.2rem 1.6rem; }
+/* Text-only slides: when .body has no .vis child, enlarge text */
+.body:not(:has(.vis)) .txt { max-width:100%; flex:1; }
+.body:not(:has(.vis)) .txt li { font-size:1.65rem; line-height:1.8; padding:0.6rem 0; }
+.body:not(:has(.vis)) .txt .pbox { font-size:1.4rem; padding:1.2rem 1.6rem; }
+
+/* Summary slides: center and enlarge */
+.body.col { padding:2rem 3.5rem; justify-content:center; }
 .txt li::before { content:"▪ "; color:var(--navy); font-weight:bold; }
 .pbox { background:var(--info-bg); border-left:4px solid var(--blue); padding:1rem 1.4rem; margin-top:1rem; border-radius:0 6px 6px 0; font-size:1.25rem; color:var(--dark-text); line-height:1.6; }
 .ftr { background:var(--dark); padding:0.25rem 2rem; font-size:0.7rem; color:var(--text-muted); border-top:2px solid var(--accent); }
@@ -70,9 +73,9 @@ body { font-family:'Segoe UI','Meiryo UI','Hiragino Sans',sans-serif; background
 .cls .cls-btn-home:hover { background:rgba(255,255,255,0.2); transform:translateY(-2px); }
 
 /* Summary */
-.srow { display:flex; gap:1rem; align-items:center; margin:0.4rem 0; }
-.srow .lbl { background:var(--navy); color:#fff; padding:0.6rem 1.2rem; border-radius:8px; min-width:200px; text-align:center; font-weight:700; font-size:1.1rem; flex-shrink:0; }
-.srow .val { color:var(--dark-text); font-size:1.25rem; }
+.srow { display:flex; gap:1.2rem; align-items:center; margin:0.5rem 0; }
+.srow .lbl { background:var(--navy); color:#fff; padding:0.7rem 1.4rem; border-radius:10px; min-width:220px; text-align:center; font-weight:700; font-size:1.25rem; flex-shrink:0; }
+.srow .val { color:var(--dark-text); font-size:1.45rem; line-height:1.6; }
 
 /* Table */
 .stbl { border-collapse:collapse; width:100%; margin:0.5rem 0; }
