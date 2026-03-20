@@ -1,217 +1,60 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - 感情管理</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 30 — 感情管理</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 8</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - 感情管理</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 30 — 感情管理</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 5</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 30</div><h1>感情管理</h1>
+<div class="sub">Emotional Management</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>4つの感情・FOMO・リベンジ</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>恐怖・欲望・希望・後悔</strong>がトレーダーを破壊する</li><li><strong>FOMO</strong>＝乗り遅れの焦り→計画外エントリーの原因</li><li><strong>リベンジトレード</strong>＝損失の取り返し→口座崩壊の最大原因</li><li><strong>オーバートレード</strong>＝質の低いトレードの乱発</li><li>対策：ルーティン、チェックリスト、損失上限、ジャーナル</li></ul><div class='pbox'>POINT：リベンジトレードは最も危険。損切り＝計画通りのリスク管理と再定義する。</div></div></div>
+<div class="ftr">感情管理 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>4感情</div><div class='val'>恐怖・欲望・希望・後悔</div></div><div class='srow'><div class='lbl'>FOMO</div><div class='val'>乗り遅れの焦り→計画外エントリー</div></div><div class='srow'><div class='lbl'>リベンジ</div><div class='val'>損失取り返し→口座崩壊の元凶</div></div><div class='srow'><div class='lbl'>対策</div><div class='val'>ルーティン・チェックリスト・損失上限</div></div></div>
+<div class="ftr">感情管理 | URIKAI Trading Academy</div></div>
+<div class="slide quiz" data-s="4"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+<div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. リベンジトレードとは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">計画的な逆張り</button>
+<button class="q-btn" onclick="pick(0,1)" id="qb0b">損失を取り返すための衝動的トレード</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. FOMOの対策として有効なのは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(1,0)" id="qb1a">すぐに飛び乗る</button>
+<button class="q-btn" onclick="pick(1,1)" id="qb1b">エントリー条件リストを事前に作る</button></div></div><div class="q-item" id="qi2"><div class="q-text">Q3. 損切り後に最も重要なことは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(2,0)" id="qb2a">すぐに次のトレードで取り返す</button>
+<button class="q-btn" onclick="pick(2,1)" id="qb2b">15-30分チャートを見ない</button></div></div>
+<button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
+<div class="quiz-result" id="qResult"></div></div>
+<div class="ftr">感情管理 | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="5"><h2>Section 30 Complete</h2>
+<div class="cls-buttons">
+<a class='cls-btn cls-btn-next' href='31.html'>Next → 認知バイアス</a>
+<a class="cls-btn cls-btn-home" href="../index.html">Home</a>
 </div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 30</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">感情管理</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Emotional Management ── トレードの最大の敵は自分自身</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">トレーダーを破壊する4つの感情</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  恐怖（Fear）── エントリーできない、利確が早すぎる、SL直前で決済</p>
-<p style="font-size:20px">▪  欲望（Greed）── ロット過大、利確しない、低RRRトレード乱発</p>
-<p style="font-size:20px">▪  希望（Hope）── 負けトレードを放置、SLを外す、「戻るはず」</p>
-<p style="font-size:20px">▪  後悔（Regret）── 見送ったトレードを追いかける、過去の判断を引きずる</p>
-<p style="font-size:20px">▪  これらの感情は生存本能に基づくもの ── トレードでは逆に作用する</p>
-<p style="font-size:20px">▪  感情をゼロにすることは不可能 ── 管理する技術が必要</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">感情管理    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">FOMO（Fear of Missing Out）</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  FOMOとは ── 「乗り遅れたくない」という焦りの感情</p>
-<p style="font-size:20px">▪  発生場面：大きな値動きを見て飛び乗りたくなる</p>
-<p style="font-size:20px">▪  結果：不利な価格でエントリー、計画外のトレード、高値掴み</p>
-<p style="font-size:20px">▪  対策①：すべてのトレード機会を取る必要はないと理解する</p>
-<p style="font-size:20px">▪  対策②：エントリー条件を事前にリスト化し、合致しなければ見送る</p>
-<p style="font-size:20px">▪  対策③：「逃した魚は大きい」＝ 認知の歪み。次の機会は必ず来る</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">感情管理    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">リベンジトレード</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  リベンジトレード ＝ 損失を「取り返す」ために行う衝動的なトレード</p>
-<p style="font-size:20px">▪  特徴：ロット増大、分析不足、計画外のエントリー</p>
-<p style="font-size:20px">▪  心理的メカニズム：損失の痛み → 怒り → 衝動的な行動</p>
-<p style="font-size:20px">▪  結果：さらなる損失 → さらなるリベンジ → 口座崩壊の悪循環</p>
-<p style="font-size:20px">▪  対策①：損切り後は最低15〜30分間チャートを見ない</p>
-<p style="font-size:20px">▪  対策②：日次損失上限に達したらPCを閉じる（物理的に離れる）</p>
-<p style="font-size:20px">▪  対策③：「1回のトレードで全てを取り返す必要はない」と自分に言い聞かせる</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：リベンジトレードは最も口座を破壊する行為。「損切り＝間違い」ではなく「損切り＝計画通りのリスク管理」と再定義する。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">感情管理    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">オーバートレード</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  オーバートレード ＝ 必要以上にトレード回数が増える状態</p>
-<p style="font-size:20px">▪  原因：退屈、興奮、利益を出したい焦り、市場への依存</p>
-<p style="font-size:20px">▪  兆候：セットアップ基準を無意識に下げている、「何かないか」と探している</p>
-<p style="font-size:20px">▪  対策①：1日のトレード回数上限を設ける（例：最大3トレード）</p>
-<p style="font-size:20px">▪  対策②：チェックリストを作り、全条件合致のみエントリー</p>
-<p style="font-size:20px">▪  対策③：「トレードしない」ことも立派な戦略だと認識する</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">感情管理    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">感情管理のテクニック</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  トレード前のルーティン ── 深呼吸、チェックリスト確認、バイアス排除</p>
-<p style="font-size:20px">▪  トレード中 ── SL/TPを設定したら画面を離れる（監視しない）</p>
-<p style="font-size:20px">▪  トレード後 ── ジャーナルに感情の状態を記録する</p>
-<p style="font-size:20px">▪  物理的対策 ── 損失上限到達でアプリを閉じる、タイマーを設定する</p>
-<p style="font-size:20px">▪  長期的対策 ── 運動、睡眠、ストレス管理（トレード以外の生活の質）</p>
-<p style="font-size:20px">▪  プロの考え方 ── 「1トレードの結果は無意味、100トレードの結果が全て」</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">感情管理    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">4つの感情</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">恐怖・欲望・希望・後悔がトレーダーを破壊する</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">FOMO</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">乗り遅れの焦り → 計画外エントリーの原因</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">リベンジ</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">損失の取り返し → 口座崩壊の最大原因</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">オーバートレード</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">質の低いトレードの乱発 → 収益性の低下</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">対策</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">ルーティン、チェックリスト、損失上限、ジャーナル</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">感情管理    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → 認知バイアス</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:1rem auto"></div>
+<div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 8;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=5;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+
+const answers=[1,1,1];const picks={};
+function pick(qi,oi){if(document.getElementById('qSubmit').textContent==='')return;picks[qi]=oi;
+document.getElementById('qb'+qi+'a').classList.toggle('selected',oi===0);
+document.getElementById('qb'+qi+'b').classList.toggle('selected',oi===1);
+if(Object.keys(picks).length===3)document.getElementById('qSubmit').disabled=false;}
+function submitQuiz(){let score=0;
+for(let i=0;i<3;i++){const btns=[document.getElementById('qb'+i+'a'),document.getElementById('qb'+i+'b')];
+btns.forEach(b=>b.disabled=true);
+if(picks[i]===answers[i]){score++;document.getElementById('qi'+i).classList.add('correct');btns[answers[i]].classList.add('right');}
+else{document.getElementById('qi'+i).classList.add('wrong');btns[picks[i]].classList.add('wrongsel');btns[answers[i]].classList.add('right');}}
+const r=document.getElementById('qResult');const btn=document.getElementById('qSubmit');
+if(score===3){r.className='quiz-result pass';r.textContent='全問正解！セクション30 受講完了';
+localStorage.setItem('urikai_done_30','true');btn.textContent='';btn.style.display='none';}
+else{r.className='quiz-result fail';r.textContent=score+'/3 正解 ── 全問正解が必要です';
+btn.textContent='もう一度';btn.onclick=()=>location.reload();}}
+</script></body></html>

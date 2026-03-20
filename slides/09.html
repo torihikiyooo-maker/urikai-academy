@@ -1,227 +1,64 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - サポート&amp;レジスタンス</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 09 — サポート&amp;レジスタンス</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 9</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - サポート&amp;レジスタンス</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 09 — サポート&amp;レジスタンス</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 7</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 09</div><h1>サポート&amp;レジスタンス</h1>
+<div class="sub">Support &amp; Resistance ── 価格の壁を見極める</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>サポートとレジスタンスの定義</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>サポート（支持線）</strong>── 価格の下落を食い止める価格帯。買い注文が集中</li><li><strong>レジスタンス（抵抗線）</strong>── 価格の上昇を阻む価格帯。売り注文が集中</li><li>「線」ではなく<strong>「ゾーン」</strong>として捉えることが重要</li><li>過去に何度も反発した価格帯ほど強いS/Rとなる</li><li>すべてのテクニカル分析の<strong>土台</strong>となる最重要概念</li></ul><div class='pbox'>POINT：S/Rはピンポイントの線ではなくゾーン。ピップ単位の精度を求めると誤判断につながる。</div></div></div>
+<div class="ftr">サポート&レジスタンス | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>水平S/R・トレンドライン・チャネル</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>水平S/R</strong>── 過去の高値・安値、複数回タッチされた価格帯</li><li><strong>ラウンドナンバー</strong>（1.0000, 150.00等）＝ 心理的S/R</li><li><strong>上昇トレンドライン</strong>── 安値と安値を結ぶ線（サポート）</li><li><strong>下降トレンドライン</strong>── 高値と高値を結ぶ線（レジスタンス）</li><li><strong>チャネル</strong>── トレンドラインと平行線の間の価格帯</li><li>上位時間軸のS/Rほど強い：<strong>週足 ＞ 日足 ＞ 4H ＞ 1H</strong></li></ul></div></div>
+<div class="ftr">サポート&レジスタンス | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="4"><div class="hdr"><h2>ダイナミックS/Rとロールリバーサル</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>移動平均線</strong>が「動くS/R」として機能する</li><li><strong>20EMA</strong>＝短期、<strong>50SMA</strong>＝中期、<strong>200SMA</strong>＝長期S/R</li><li><strong>ロールリバーサル</strong>── サポートが破られるとレジスタンスに転換（逆も）</li><li>ブレイク→<strong>リテスト</strong>→反転確認 ＝ 高確率のエントリーパターン</li><li>リテスト時にローソク足パターンで反転確認するとさらに精度向上</li></ul><div class='pbox'>POINT：ブレイク→リテスト→反転確認のセットは最も信頼性の高いエントリーパターンの一つ。</div></div></div>
+<div class="ftr">サポート&レジスタンス | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="5"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>定義</div><div class='val'>買い/売り注文が集中する価格ゾーン</div></div><div class='srow'><div class='lbl'>水平S/R</div><div class='val'>過去の高値/安値、ラウンドナンバー</div></div><div class='srow'><div class='lbl'>トレンドライン</div><div class='val'>安値/高値を結ぶ斜めのS/R</div></div><div class='srow'><div class='lbl'>ダイナミックS/R</div><div class='val'>移動平均線が動くS/Rとして機能</div></div><div class='srow'><div class='lbl'>ロールリバーサル</div><div class='val'>サポート⇔レジスタンスの転換</div></div><div class='srow'><div class='lbl'>実践</div><div class='val'>上位TF優先、ゾーンで捉える、反応確認後にエントリー</div></div></div>
+<div class="ftr">サポート&レジスタンス | URIKAI Trading Academy</div></div>
+<div class="slide quiz" data-s="6"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+<div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. サポートとは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">価格の下落を食い止める価格帯</button>
+<button class="q-btn" onclick="pick(0,1)" id="qb0b">価格の上昇を阻む価格帯</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. ロールリバーサルとは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(1,0)" id="qb1a">サポートが破られるとレジスタンスに変わること</button>
+<button class="q-btn" onclick="pick(1,1)" id="qb1b">移動平均線のクロス</button></div></div><div class="q-item" id="qi2"><div class="q-text">Q3. S/Rは線とゾーンどちらで捉えるべき？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(2,0)" id="qb2a">ピンポイントの線</button>
+<button class="q-btn" onclick="pick(2,1)" id="qb2b">一定の幅を持つゾーン</button></div></div>
+<button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
+<div class="quiz-result" id="qResult"></div></div>
+<div class="ftr">サポート&amp;レジスタンス | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="7"><h2>Section 09 Complete</h2>
+<div class="cls-buttons">
+<a class='cls-btn cls-btn-next' href='10.html'>Next → テクニカルインジケーター</a>
+<a class="cls-btn cls-btn-home" href="../index.html">Home</a>
 </div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 09</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">サポート&amp;レジスタンス</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Support &amp; Resistance ── 価格の壁を見極める</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">サポートとレジスタンスの定義</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  サポート（支持線）── 価格の下落を食い止める価格帯。買い注文が集中</p>
-<p style="font-size:20px">▪  レジスタンス（抵抗線）── 価格の上昇を阻む価格帯。売り注文が集中</p>
-<p style="font-size:20px">▪  「線」ではなく「ゾーン」として捉えることが重要</p>
-<p style="font-size:20px">▪  過去に何度も反発した価格帯ほど強いS/Rとなる</p>
-<p style="font-size:20px">▪  S/Rは需要と供給のバランスが変化するポイント</p>
-<p style="font-size:20px">▪  すべてのテクニカル分析の土台となる最重要概念</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：S/Rは「ピンポイントの線」ではなく「一定の幅を持つゾーン」として認識する。ピップ単位の精度を求めると誤判断につながる。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">サポート&amp;レジスタンス    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">水平サポート&amp;レジスタンスの識別方法</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  過去の高値・安値が最もシンプルなS/R</p>
-<p style="font-size:20px">▪  複数回タッチされた価格帯 ── タッチ回数が多いほど重要</p>
-<p style="font-size:20px">▪  出来高が集中した価格帯 ＝ 多くの取引が行われた「記憶」が残る</p>
-<p style="font-size:20px">▪  ラウンドナンバー（1.0000, 150.00等）＝ 心理的S/R</p>
-<p style="font-size:20px">▪  直近の高値/安値 ＝ 短期的なS/Rとして機能</p>
-<p style="font-size:20px">▪  日足・週足レベルのS/Rは1時間足のS/Rより格段に強い</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">サポート&amp;レジスタンス    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">トレンドラインとチャネル</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  上昇トレンドライン ── 安値と安値を結ぶ右肩上がりの線（サポート）</p>
-<p style="font-size:20px">▪  下降トレンドライン ── 高値と高値を結ぶ右肩下がりの線（レジスタンス）</p>
-<p style="font-size:20px">▪  有効なトレンドラインは最低2点のタッチ、3点以上で信頼性向上</p>
-<p style="font-size:20px">▪  チャネル ── トレンドラインと平行線の間の価格帯</p>
-<p style="font-size:20px">▪  上昇チャネル：安値のサポートライン ＋ 高値のレジスタンスライン</p>
-<p style="font-size:20px">▪  チャネルブレイクはトレンド転換または加速のシグナル</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">サポート&amp;レジスタンス    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ダイナミックS/R（移動平均線）</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  移動平均線は「動くS/R」として機能する</p>
-<p style="font-size:20px">▪  20EMA ── 短期トレンドのダイナミックS/R</p>
-<p style="font-size:20px">▪  50SMA/EMA ── 中期のダイナミックS/R</p>
-<p style="font-size:20px">▪  200SMA/EMA ── 最も注目される長期S/R（機関投資家も重視）</p>
-<p style="font-size:20px">▪  上昇トレンドでは移動平均線がサポート、下降トレンドではレジスタンス</p>
-<p style="font-size:20px">▪  複数の移動平均線が集中する価格帯 ＝ 非常に強いS/R</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">サポート&amp;レジスタンス    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ロールリバーサル（S/Rの転換）</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  ロールリバーサル ── サポートが破られるとレジスタンスに変わる（逆も同様）</p>
-<p style="font-size:20px">▪  例：サポートを下方ブレイク → 戻りでそのラインがレジスタンスとして機能</p>
-<p style="font-size:20px">▪  「支持が崩れた場所には売り手がいる」という市場心理が背景</p>
-<p style="font-size:20px">▪  ブレイク後の最初の戻り（リテスト）は高確率のエントリーポイント</p>
-<p style="font-size:20px">▪  リテスト時にローソク足パターンで反転確認するとさらに精度向上</p>
-<p style="font-size:20px">▪  ロールリバーサルはすべてのS/Rで起こりうる汎用的な概念</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：ブレイク → リテスト → 反転確認 のセットは、最も信頼性の高いエントリーパターンの一つ。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">サポート&amp;レジスタンス    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">実践的な活用のポイント</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  上位時間軸のS/Rほど強い ── 週足 ＞ 日足 ＞ 4時間足 ＞ 1時間足</p>
-<p style="font-size:20px">▪  S/Rは「ゾーン」── 数pipsの余裕を持って設定する</p>
-<p style="font-size:20px">▪  S/Rでの反応を確認してからエントリー（飛び込みは避ける）</p>
-<p style="font-size:20px">▪  S/Rを引きすぎない ── 重要なレベルを3〜5本に絞る</p>
-<p style="font-size:20px">▪  「新鮮な」S/R（まだテストされていない）は反応が強い傾向</p>
-<p style="font-size:20px">▪  S/Rはエントリーだけでなく、SL/TPの設置場所としても重要</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">サポート&amp;レジスタンス    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">定義</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">買い/売り注文が集中する価格ゾーン</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">水平S/R</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">過去の高値/安値、ラウンドナンバー</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">トレンドライン</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">安値/高値を結ぶ斜めのS/R</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">ダイナミックS/R</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">移動平均線が動くS/Rとして機能</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">ロールリバーサル</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">サポート⇔レジスタンスの転換</p></div>
-<div style="position:absolute;left:3.75%;top:57.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">実践</p></div>
-<div style="position:absolute;left:26.25%;top:57.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">上位TF優先、ゾーンで捉える、反応確認後にエントリー</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">サポート&amp;レジスタンス    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="9" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → テクニカルインジケーター</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:1rem auto"></div>
+<div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 9;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=7;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+
+const answers=[0,0,1];const picks={};
+function pick(qi,oi){if(document.getElementById('qSubmit').textContent==='')return;picks[qi]=oi;
+document.getElementById('qb'+qi+'a').classList.toggle('selected',oi===0);
+document.getElementById('qb'+qi+'b').classList.toggle('selected',oi===1);
+if(Object.keys(picks).length===3)document.getElementById('qSubmit').disabled=false;}
+function submitQuiz(){let score=0;
+for(let i=0;i<3;i++){const btns=[document.getElementById('qb'+i+'a'),document.getElementById('qb'+i+'b')];
+btns.forEach(b=>b.disabled=true);
+if(picks[i]===answers[i]){score++;document.getElementById('qi'+i).classList.add('correct');btns[answers[i]].classList.add('right');}
+else{document.getElementById('qi'+i).classList.add('wrong');btns[picks[i]].classList.add('wrongsel');btns[answers[i]].classList.add('right');}}
+const r=document.getElementById('qResult');const btn=document.getElementById('qSubmit');
+if(score===3){r.className='quiz-result pass';r.textContent='全問正解！セクション09 受講完了';
+localStorage.setItem('urikai_done_09','true');btn.textContent='';btn.style.display='none';}
+else{r.className='quiz-result fail';r.textContent=score+'/3 正解 ── 全問正解が必要です';
+btn.textContent='もう一度';btn.onclick=()=>location.reload();}}
+</script></body></html>

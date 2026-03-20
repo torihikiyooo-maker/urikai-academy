@@ -1,210 +1,60 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - バックテストとシステム評価</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 34 — バックテストとシステム評価</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 8</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - バックテストとシステム評価</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 34 — バックテストとシステム評価</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 5</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 34</div><h1>バックテストとシステム評価</h1>
+<div class="sub">Backtesting &amp; System Evaluation</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>手順・評価指標・落とし穴</h2></div>
+<div class="body"><div class='txt'><ul><li>過去データで戦略の有効性を検証するプロセス</li><li>最低<strong>100トレード</strong>のサンプルが必要</li><li>指標：勝率、<strong>プロフィットファクター</strong>（1.5以上）、最大DD（20%以下）</li><li><strong>カーブフィッティング</strong>＝過去に最適化しすぎて将来に通用しない</li><li>ウォークフォワード分析→デモ口座フォワードテスト（1-3ヶ月）→ライブ</li></ul><div class='pbox'>POINT：結果が「良すぎる」場合は過学習の疑い。将来の実運用では機能しない可能性が高い。</div></div></div>
+<div class="ftr">バックテスト | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>目的</div><div class='val'>戦略の期待値とリスク特性を事前把握</div></div><div class='srow'><div class='lbl'>サンプル</div><div class='val'>最低100トレード以上</div></div><div class='srow'><div class='lbl'>指標</div><div class='val'>PF 1.5以上、最大DD 20%以下</div></div><div class='srow'><div class='lbl'>注意</div><div class='val'>カーブフィッティング、コスト無視を避ける</div></div></div>
+<div class="ftr">バックテスト | URIKAI Trading Academy</div></div>
+<div class="slide quiz" data-s="4"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+<div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. バックテストの最低サンプル数は？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">10トレード</button>
+<button class="q-btn" onclick="pick(0,1)" id="qb0b">100トレード以上</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. カーブフィッティングとは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(1,0)" id="qb1a">堅牢な戦略を構築すること</button>
+<button class="q-btn" onclick="pick(1,1)" id="qb1b">過去データに最適化しすぎること</button></div></div><div class="q-item" id="qi2"><div class="q-text">Q3. プロフィットファクターの望ましい水準は？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(2,0)" id="qb2a">0.5以上</button>
+<button class="q-btn" onclick="pick(2,1)" id="qb2b">1.5以上</button></div></div>
+<button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
+<div class="quiz-result" id="qResult"></div></div>
+<div class="ftr">バックテストとシステム評価 | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="5"><h2>Section 34 Complete</h2>
+<div class="cls-buttons">
+<a class='cls-btn cls-btn-next' href='35.html'>Next → トレード戦略集</a>
+<a class="cls-btn cls-btn-home" href="../index.html">Home</a>
 </div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 34</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">バックテストとシステム評価</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Backtesting &amp; System Evaluation ── 戦略を過去データで検証する</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">バックテストとは</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  過去のチャートデータを使って、戦略が有効だったかを検証するプロセス</p>
-<p style="font-size:20px">▪  「もしこのルールで過去にトレードしていたら、結果はどうなったか？」</p>
-<p style="font-size:20px">▪  バックテストなしにライブ口座でトレードするのは無謀</p>
-<p style="font-size:20px">▪  手動バックテストとソフトウェアバックテストの2種類</p>
-<p style="font-size:20px">▪  バックテストの目的：戦略の期待値とリスク特性を事前に把握する</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">バックテストとシステム評価    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">手動バックテストの手順</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  ①チャートリプレイ機能を使い、過去の日付から再生</p>
-<p style="font-size:20px">▪  ②自分のルールに従い、リアルタイムのようにエントリー/イグジットを記録</p>
-<p style="font-size:20px">▪  ③最低100トレード分のデータを収集する</p>
-<p style="font-size:20px">▪  ④結果を集計：勝率、平均利益、平均損失、期待値、最大DD</p>
-<p style="font-size:20px">▪  ⑤ツール：TradingViewリプレイ、Forex Tester、MT4/5ストラテジーテスター</p>
-<p style="font-size:20px">▪  ⑥手動のメリット：パターン認識力が向上する、戦略への理解が深まる</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">バックテストとシステム評価    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">バックテストの評価指標</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:92.25%;height:39.20%;overflow:hidden"><table style="border-collapse:collapse;width:100%;margin-top:4px"><tr><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">指標</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">意味</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">目安</th></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">勝率</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">勝ちトレードの割合</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">40-60%（戦略による）</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">プロフィットファクター</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">総利益 ÷ 総損失</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">1.5以上が望ましい</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">期待値</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">1トレードあたりの平均損益</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">プラスであること</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">最大ドローダウン</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">ピークからの最大下落</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">20%以下が望ましい</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">シャープレシオ</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">リターン ÷ リスク（標準偏差）</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">1.0以上が良好</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">リカバリーファクター</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">純利益 ÷ 最大DD</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">3.0以上が良好</td></tr></table></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">バックテストとシステム評価    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ウォークフォワード分析</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  過去データを「最適化期間」と「検証期間」に分ける</p>
-<p style="font-size:20px">▪  最適化期間でパラメータを調整 → 検証期間でパフォーマンスを確認</p>
-<p style="font-size:20px">▪  検証期間でも良好なら → 戦略は堅牢（ロバスト）</p>
-<p style="font-size:20px">▪  検証期間で成績が悪化 → 過学習（カーブフィッティング）の疑い</p>
-<p style="font-size:20px">▪  カーブフィッティング ＝ 過去データに最適化しすぎて将来に通用しない</p>
-<p style="font-size:20px">▪  ウォークフォワードはカーブフィッティングを検出する最良の方法</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：バックテストの結果が「良すぎる」場合は要注意。過去データに完璧にフィットした戦略は、将来の実運用で機能しない可能性が高い。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">バックテストとシステム評価    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">バックテストの落とし穴</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  カーブフィッティング ── パラメータを過去に最適化しすぎる</p>
-<p style="font-size:20px">▪  スプレッド・スリッページの無視 ── 実際のコストを含めないと結果が歪む</p>
-<p style="font-size:20px">▪  少ないサンプル数 ── 30トレードでは統計的に不十分。最低100トレード</p>
-<p style="font-size:20px">▪  生存者バイアス ── 上場廃止銘柄を除外した不完全なデータ</p>
-<p style="font-size:20px">▪  前方参照バイアス ── 当時知り得なかった情報を使ってしまう</p>
-<p style="font-size:20px">▪  最終検証 ── デモ口座でのフォワードテスト（最低1〜3ヶ月）を経てからライブへ</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">バックテストとシステム評価    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">目的</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">戦略の期待値とリスク特性を事前に把握</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">手順</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">チャートリプレイで100トレード以上を検証</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">指標</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">勝率、PF、期待値、最大DD、シャープレシオ</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">ウォークフォワード</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">過学習を検出する分割検証法</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">注意</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">カーブフィッティング、コスト無視、サンプル不足を避ける</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">バックテストとシステム評価    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → トレード戦略集</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:1rem auto"></div>
+<div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 8;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=5;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+
+const answers=[1,1,1];const picks={};
+function pick(qi,oi){if(document.getElementById('qSubmit').textContent==='')return;picks[qi]=oi;
+document.getElementById('qb'+qi+'a').classList.toggle('selected',oi===0);
+document.getElementById('qb'+qi+'b').classList.toggle('selected',oi===1);
+if(Object.keys(picks).length===3)document.getElementById('qSubmit').disabled=false;}
+function submitQuiz(){let score=0;
+for(let i=0;i<3;i++){const btns=[document.getElementById('qb'+i+'a'),document.getElementById('qb'+i+'b')];
+btns.forEach(b=>b.disabled=true);
+if(picks[i]===answers[i]){score++;document.getElementById('qi'+i).classList.add('correct');btns[answers[i]].classList.add('right');}
+else{document.getElementById('qi'+i).classList.add('wrong');btns[picks[i]].classList.add('wrongsel');btns[answers[i]].classList.add('right');}}
+const r=document.getElementById('qResult');const btn=document.getElementById('qSubmit');
+if(score===3){r.className='quiz-result pass';r.textContent='全問正解！セクション34 受講完了';
+localStorage.setItem('urikai_done_34','true');btn.textContent='';btn.style.display='none';}
+else{r.className='quiz-result fail';r.textContent=score+'/3 正解 ── 全問正解が必要です';
+btn.textContent='もう一度';btn.onclick=()=>location.reload();}}
+</script></body></html>

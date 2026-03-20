@@ -1,214 +1,60 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - 認知バイアス</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 31 — 認知バイアス</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 8</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - 認知バイアス</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 31 — 認知バイアス</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 5</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 31</div><h1>認知バイアス</h1>
+<div class="sub">Cognitive Biases</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>確証・損失回避・アンカリング</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>確証バイアス</strong>＝自分の信念に合う情報だけ集める</li><li><strong>損失回避</strong>＝損失の痛みは利益の喜びの2倍→利小損大の元凶</li><li><strong>アンカリング</strong>＝最初の価格に固執、<strong>後知恵</strong>＝「わかっていた」</li><li><strong>サンクコスト</strong>＝損失ポジションを持ち続ける</li><li>対策：<strong>ルール・チェックリスト・ジャーナル・定量的レビュー</strong></li></ul><div class='pbox'>POINT：損失回避バイアスこそ「損大利小」の元凶。SL/TPの自動設定が最も効果的な対抗手段。</div></div></div>
+<div class="ftr">認知バイアス | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>確証バイアス</div><div class='val'>自分の信念に合う情報だけ集める</div></div><div class='srow'><div class='lbl'>損失回避</div><div class='val'>損失の痛み2倍→利小損大の元凶</div></div><div class='srow'><div class='lbl'>その他</div><div class='val'>アンカリング・後知恵・サンクコスト</div></div><div class='srow'><div class='lbl'>対策</div><div class='val'>ルール・チェックリスト・ジャーナル</div></div></div>
+<div class="ftr">認知バイアス | URIKAI Trading Academy</div></div>
+<div class="slide quiz" data-s="4"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+<div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. 確証バイアスとは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">自分の信念に合う情報だけ集める傾向</button>
+<button class="q-btn" onclick="pick(0,1)" id="qb0b">すべての情報を平等に評価すること</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. 損失回避バイアスの影響は？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(1,0)" id="qb1a">利益を伸ばし損失を素早く切る</button>
+<button class="q-btn" onclick="pick(1,1)" id="qb1b">利益を早く確定し損失を引きずる</button></div></div><div class="q-item" id="qi2"><div class="q-text">Q3. バイアスへの最も効果的な対策は？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(2,0)" id="qb2a">経験を積めば自然に消える</button>
+<button class="q-btn" onclick="pick(2,1)" id="qb2b">ルール・チェックリストで守る</button></div></div>
+<button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
+<div class="quiz-result" id="qResult"></div></div>
+<div class="ftr">認知バイアス | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="5"><h2>Section 31 Complete</h2>
+<div class="cls-buttons">
+<a class='cls-btn cls-btn-next' href='32.html'>Next → 規律とルーティン</a>
+<a class="cls-btn cls-btn-home" href="../index.html">Home</a>
 </div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 31</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">認知バイアス</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Cognitive Biases ── 脳の錯覚がトレードを歪める</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">認知バイアスとは</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  人間の脳が効率的に判断するために使う「近道」が生むシステム的な誤り</p>
-<p style="font-size:20px">▪  進化の過程で生存に有利だった思考パターンが、トレードでは不利に働く</p>
-<p style="font-size:20px">▪  全てのトレーダーがバイアスの影響を受ける ── 例外はない</p>
-<p style="font-size:20px">▪  バイアスを完全に排除することは不可能 ── 認識し、対策を講じる</p>
-<p style="font-size:20px">▪  システマティックなルールとチェックリストがバイアス対策の最良の手段</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">認知バイアス    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">確証バイアス（Confirmation Bias）</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  自分の既存の信念を裏付ける情報のみを選択的に集める傾向</p>
-<p style="font-size:20px">▪  例：「ドル高になる」と信じると、ドル高の根拠だけが目に入る</p>
-<p style="font-size:20px">▪  反証となるデータを無意識に無視・過小評価する</p>
-<p style="font-size:20px">▪  対策：自分のポジションと逆の根拠を積極的に探す習慣をつける</p>
-<p style="font-size:20px">▪  対策：エントリー前に「このトレードが失敗する理由」を3つ挙げる</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">認知バイアス    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">損失回避バイアス（Loss Aversion）</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  損失の痛みは同額の利益の喜びの約2倍強く感じられる（プロスペクト理論）</p>
-<p style="font-size:20px">▪  結果：利益は早く確定し、損失は長く引きずる ── 最悪の行動パターン</p>
-<p style="font-size:20px">▪  「利小損大」の根本原因 ── 感情に従うと自然にこうなる</p>
-<p style="font-size:20px">▪  対策①：SL/TPを事前に設定し、手動で触らない</p>
-<p style="font-size:20px">▪  対策②：部分決済を活用し、利益確定のプレッシャーを軽減</p>
-<p style="font-size:20px">▪  対策③：RRRの概念を理解し、損失を「コスト」として受け入れる</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：損失回避バイアスこそが「損大利小」の元凶。SL/TPの自動設定はこのバイアスに対する最も効果的な対抗手段。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">認知バイアス    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">その他の重要なバイアス</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  直近バイアス（Recency Bias）── 直近のトレード結果に過度に影響される</p>
-<p style="font-size:20px">▪  アンカリング（Anchoring）── 最初に見た価格や情報に固執する</p>
-<p style="font-size:20px">▪  後知恵バイアス（Hindsight Bias）── 「わかっていた」と過去を歪曲する</p>
-<p style="font-size:20px">▪  サンクコスト効果 ── 「ここまで耐えたから」と損失ポジションを持ち続ける</p>
-<p style="font-size:20px">▪  群衆心理（Herding）── 多数派に合わせて行動する傾向</p>
-<p style="font-size:20px">▪  過信バイアス（Overconfidence）── 連勝後にリスクを過大に取る</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">認知バイアス    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">バイアスへの対策：システムで守る</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  明確なルールベースの戦略 ── 判断の余地を最小限にする</p>
-<p style="font-size:20px">▪  エントリーチェックリスト ── 全条件を満たさなければ不参加</p>
-<p style="font-size:20px">▪  トレードジャーナル ── 感情の記録と定期的な振り返り</p>
-<p style="font-size:20px">▪  事前のSL/TP設定 ── エントリー時に同時設定、後から変更しない</p>
-<p style="font-size:20px">▪  定量的な振り返り ── 「感覚」ではなく「数字」で判断</p>
-<p style="font-size:20px">▪  第三者のレビュー ── トレード仲間やメンターにチェックしてもらう</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">認知バイアス    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">確証バイアス</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">自分の信念に合う情報だけを集める</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">損失回避</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">損失の痛みが利益の喜びの2倍 → 利小損大の元凶</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">直近/アンカリング</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">直近の経験や最初の情報に過度に影響される</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">後知恵/サンクコスト</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">過去の認知を歪め、損切りを遅らせる</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">対策</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">ルール・チェックリスト・ジャーナル・定量的レビュー</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">認知バイアス    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → 規律とルーティン</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:1rem auto"></div>
+<div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 8;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=5;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+
+const answers=[0,1,1];const picks={};
+function pick(qi,oi){if(document.getElementById('qSubmit').textContent==='')return;picks[qi]=oi;
+document.getElementById('qb'+qi+'a').classList.toggle('selected',oi===0);
+document.getElementById('qb'+qi+'b').classList.toggle('selected',oi===1);
+if(Object.keys(picks).length===3)document.getElementById('qSubmit').disabled=false;}
+function submitQuiz(){let score=0;
+for(let i=0;i<3;i++){const btns=[document.getElementById('qb'+i+'a'),document.getElementById('qb'+i+'b')];
+btns.forEach(b=>b.disabled=true);
+if(picks[i]===answers[i]){score++;document.getElementById('qi'+i).classList.add('correct');btns[answers[i]].classList.add('right');}
+else{document.getElementById('qi'+i).classList.add('wrong');btns[picks[i]].classList.add('wrongsel');btns[answers[i]].classList.add('right');}}
+const r=document.getElementById('qResult');const btn=document.getElementById('qSubmit');
+if(score===3){r.className='quiz-result pass';r.textContent='全問正解！セクション31 受講完了';
+localStorage.setItem('urikai_done_31','true');btn.textContent='';btn.style.display='none';}
+else{r.className='quiz-result fail';r.textContent=score+'/3 正解 ── 全問正解が必要です';
+btn.textContent='もう一度';btn.onclick=()=>location.reload();}}
+</script></body></html>

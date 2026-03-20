@@ -1,224 +1,64 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - チャートパターン</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 11 — チャートパターン</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 9</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - チャートパターン</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 11 — チャートパターン</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 7</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 11</div><h1>チャートパターン</h1>
+<div class="sub">Chart Patterns ── 繰り返される価格形状</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>反転パターン：H&S・ダブルトップ/ボトム</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>ヘッドアンドショルダー</strong>── 3つの山（左肩・頭・右肩）、ネックライン下抜けで売り</li><li><strong>逆H&S</strong>── 下落トレンド底で出現、上昇転換</li><li><strong>ダブルトップ</strong>── 同じ価格帯で2回天井→下落（M型）</li><li><strong>ダブルボトム</strong>── 同じ価格帯で2回底→上昇（W型）</li><li>トリプルトップ/ボトム ── 3回タッチでさらに信頼性高い</li></ul><div class='pbox'>POINT：反転パターンはトレンドの天井/底で出現する。トレンド中腹では信頼度が低い。</div></div></div>
+<div class="ftr">チャートパターン | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>継続パターン：フラッグ・ペナント・ウェッジ</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>ブルフラッグ</strong>：上昇後にやや下向きの調整→上方ブレイク</li><li><strong>ベアフラッグ</strong>：下落後にやや上向きの調整→下方ブレイク</li><li><strong>ペナント</strong>：急騰/急落後の三角形の小さな調整</li><li><strong>ライジングウェッジ</strong>（弱気）/ <strong>フォーリングウェッジ</strong>（強気）</li><li>ターゲット：フラッグポールの長さをブレイクポイントに加算</li></ul></div></div>
+<div class="ftr">チャートパターン | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="4"><div class="hdr"><h2>トライアングル・ターゲット計測</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>アセンディング△</strong>：水平レジスタンス＋上昇サポート→上方ブレイク傾向</li><li><strong>ディセンディング△</strong>：水平サポート＋下降レジスタンス→下方ブレイク傾向</li><li><strong>シンメトリカル△</strong>：上下の収束→どちらにもブレイク可能</li><li>ターゲット：パターンの高さをブレイクポイントから計測</li><li>途中のS/Rレベルも考慮してTP設定を調整する</li></ul><div class='pbox'>POINT：計測値はあくまで目安。既知のS/Rが手前にあればそちらを優先する。</div></div></div>
+<div class="ftr">チャートパターン | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="5"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>反転</div><div class='val'>H&S、ダブルトップ/ボトム</div></div><div class='srow'><div class='lbl'>継続</div><div class='val'>フラッグ、ペナント</div></div><div class='srow'><div class='lbl'>ウェッジ</div><div class='val'>ライジング（弱気）、フォーリング（強気）</div></div><div class='srow'><div class='lbl'>トライアングル</div><div class='val'>アセンディング・ディセンディング・シンメトリカル</div></div><div class='srow'><div class='lbl'>ターゲット</div><div class='val'>パターンの高さをブレイクポイントから計測</div></div></div>
+<div class="ftr">チャートパターン | URIKAI Trading Academy</div></div>
+<div class="slide quiz" data-s="6"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+<div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. ヘッドアンドショルダーは何パターン？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">継続パターン</button>
+<button class="q-btn" onclick="pick(0,1)" id="qb0b">反転パターン</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. フラッグは何パターン？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(1,0)" id="qb1a">反転パターン</button>
+<button class="q-btn" onclick="pick(1,1)" id="qb1b">継続パターン</button></div></div><div class="q-item" id="qi2"><div class="q-text">Q3. パターンのターゲットの計測方法は？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(2,0)" id="qb2a">パターンの高さをブレイクポイントから計測</button>
+<button class="q-btn" onclick="pick(2,1)" id="qb2b">常に100pips固定</button></div></div>
+<button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
+<div class="quiz-result" id="qResult"></div></div>
+<div class="ftr">チャートパターン | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="7"><h2>Section 11 Complete</h2>
+<div class="cls-buttons">
+<a class='cls-btn cls-btn-next' href='12.html'>Next → フィボナッチ</a>
+<a class="cls-btn cls-btn-home" href="../index.html">Home</a>
 </div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 11</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">チャートパターン</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Chart Patterns ── 繰り返される価格形状を識別する</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">チャートパターンとは</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  価格チャート上に繰り返し出現する特定の形状・構造</p>
-<p style="font-size:20px">▪  市場参加者の集団心理が一定の行動パターンを生むために形成される</p>
-<p style="font-size:20px">▪  反転パターン ── トレンドの転換を示唆</p>
-<p style="font-size:20px">▪  継続パターン ── 既存トレンドの一時的な調整後の継続を示唆</p>
-<p style="font-size:20px">▪  パターンが完成するまでは「仮説」── ブレイクで確定する</p>
-<p style="font-size:20px">▪  パターンの大きさ（形成期間）が大きいほど、その後の値動きも大きい</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">チャートパターン    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ヘッドアンドショルダー（Head &amp; Shoulders）</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  最も有名な反転パターン ── 3つの山で構成（左肩・頭・右肩）</p>
-<p style="font-size:20px">▪  頭（Head）が最も高く、左右の肩（Shoulders）はほぼ同じ高さ</p>
-<p style="font-size:20px">▪  ネックライン ── 左肩と頭の間の安値と、頭と右肩の間の安値を結ぶ線</p>
-<p style="font-size:20px">▪  エントリー：ネックラインの下方ブレイクで売り</p>
-<p style="font-size:20px">▪  ターゲット：頭からネックラインまでの距離を、ブレイクポイントから下に計測</p>
-<p style="font-size:20px">▪  逆ヘッドアンドショルダー（Inverse H&amp;S）── 下落トレンドの底で出現、上昇転換</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">チャートパターン    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ダブルトップ / ダブルボトム</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  ダブルトップ ── 同じ価格帯で2回天井をつけた後に下落（M型）</p>
-<p style="font-size:20px">▪  ダブルボトム ── 同じ価格帯で2回底をつけた後に上昇（W型）</p>
-<p style="font-size:20px">▪  2つのピーク/ボトムの間にネックライン（中間の安値/高値）</p>
-<p style="font-size:20px">▪  ネックラインのブレイクでパターン完成</p>
-<p style="font-size:20px">▪  ターゲット：2つのピークからネックラインまでの距離</p>
-<p style="font-size:20px">▪  トリプルトップ/ボトム ── 3回のタッチでさらに信頼性が高い</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">チャートパターン    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">フラッグ / ペナント（継続パターン）</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  フラッグ ── 急騰/急落の後に形成される平行四辺形の調整パターン</p>
-<p style="font-size:20px">▪  ブルフラッグ：上昇後にやや下向きの平行チャネルで調整 → 上方ブレイク</p>
-<p style="font-size:20px">▪  ベアフラッグ：下落後にやや上向きの平行チャネルで調整 → 下方ブレイク</p>
-<p style="font-size:20px">▪  ペナント ── 急騰/急落後に形成される三角形の小さな調整</p>
-<p style="font-size:20px">▪  フラッグポール（旗竿）── 調整前の急騰/急落の部分</p>
-<p style="font-size:20px">▪  ターゲット：フラッグポールの長さをブレイクポイントに加算</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">チャートパターン    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ウェッジ / トライアングル</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  ライジングウェッジ ── 上昇する収束線。弱気パターン（下方ブレイク傾向）</p>
-<p style="font-size:20px">▪  フォーリングウェッジ ── 下降する収束線。強気パターン（上方ブレイク傾向）</p>
-<p style="font-size:20px">▪  アセンディングトライアングル ── 水平レジスタンス＋上昇サポート → 上方ブレイク傾向</p>
-<p style="font-size:20px">▪  ディセンディングトライアングル ── 水平サポート＋下降レジスタンス → 下方ブレイク傾向</p>
-<p style="font-size:20px">▪  シンメトリカルトライアングル ── 上下の収束 → どちらにもブレイク可能</p>
-<p style="font-size:20px">▪  ブレイクの方向と出来高の増大で確認する</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">チャートパターン    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">パターンの計測とターゲット設定</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  H&amp;S：頭 → ネックライン距離をブレイクから計測</p>
-<p style="font-size:20px">▪  ダブルトップ/ボトム：ピーク → ネックライン距離をブレイクから計測</p>
-<p style="font-size:20px">▪  トライアングル：トライアングルの最大幅をブレイクポイントに加算</p>
-<p style="font-size:20px">▪  フラッグ：フラッグポールの長さをブレイクポイントに加算</p>
-<p style="font-size:20px">▪  計測値はあくまで「目安」── 必ず到達するわけではない</p>
-<p style="font-size:20px">▪  途中のS/Rレベルも考慮してTP設定を調整する</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：パターンターゲットに到達する前に、既知のS/Rが存在する場合はそちらを優先する。計測値はあくまで参考目標。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">チャートパターン    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">反転パターン</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">H&amp;S、ダブルトップ/ボトム、トリプルトップ/ボトム</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">継続パターン</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">フラッグ、ペナント、レクタングル</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">ウェッジ</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">ライジング（弱気）、フォーリング（強気）</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">トライアングル</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">アセンディング・ディセンディング・シンメトリカル</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">ターゲット</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">パターンの高さをブレイクポイントから計測</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">チャートパターン    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="9" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → フィボナッチ</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:1rem auto"></div>
+<div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 9;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=7;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+
+const answers=[1,1,0];const picks={};
+function pick(qi,oi){if(document.getElementById('qSubmit').textContent==='')return;picks[qi]=oi;
+document.getElementById('qb'+qi+'a').classList.toggle('selected',oi===0);
+document.getElementById('qb'+qi+'b').classList.toggle('selected',oi===1);
+if(Object.keys(picks).length===3)document.getElementById('qSubmit').disabled=false;}
+function submitQuiz(){let score=0;
+for(let i=0;i<3;i++){const btns=[document.getElementById('qb'+i+'a'),document.getElementById('qb'+i+'b')];
+btns.forEach(b=>b.disabled=true);
+if(picks[i]===answers[i]){score++;document.getElementById('qi'+i).classList.add('correct');btns[answers[i]].classList.add('right');}
+else{document.getElementById('qi'+i).classList.add('wrong');btns[picks[i]].classList.add('wrongsel');btns[answers[i]].classList.add('right');}}
+const r=document.getElementById('qResult');const btn=document.getElementById('qSubmit');
+if(score===3){r.className='quiz-result pass';r.textContent='全問正解！セクション11 受講完了';
+localStorage.setItem('urikai_done_11','true');btn.textContent='';btn.style.display='none';}
+else{r.className='quiz-result fail';r.textContent=score+'/3 正解 ── 全問正解が必要です';
+btn.textContent='もう一度';btn.onclick=()=>location.reload();}}
+</script></body></html>

@@ -1,222 +1,60 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - ワイコフ理論</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 16 — ワイコフ理論</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 9</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - ワイコフ理論</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 16 — ワイコフ理論</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 5</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 16</div><h1>ワイコフ理論</h1>
+<div class="sub">Wyckoff Method</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>3つの法則と蓄積/分配</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>需給</strong>・<strong>因果</strong>・<strong>努力と結果</strong>の3法則</li><li>コンポジットマン＝市場を動かす大口プレイヤーの概念</li><li><strong>蓄積（Accumulation）</strong>：下落後の買い集め→Spring→上昇</li><li><strong>分配（Distribution）</strong>：上昇後の売り抜け→UTAD→下落</li><li>Springは個人の損切りを流動性として利用する大口の動き</li></ul><div class='pbox'>POINT：「コンポジットマンは今何をしているか？」が分析の基本姿勢。</div></div></div>
+<div class="ftr">ワイコフ | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>3法則</div><div class='val'>需給、因果、努力と結果</div></div><div class='srow'><div class='lbl'>蓄積</div><div class='val'>買い集め→Spring→上昇</div></div><div class='srow'><div class='lbl'>分配</div><div class='val'>売り抜け→UTAD→下落</div></div><div class='srow'><div class='lbl'>実践</div><div class='val'>出来高分析が鍵、他手法と併用</div></div></div>
+<div class="ftr">ワイコフ | URIKAI Trading Academy</div></div>
+<div class="slide quiz" data-s="4"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+<div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. ワイコフのコンポジットマンとは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">個人トレーダーの集団</button>
+<button class="q-btn" onclick="pick(0,1)" id="qb0b">市場を動かす大口プレイヤーの概念</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. Springとは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(1,0)" id="qb1a">レンジ上限を超えてから急反落</button>
+<button class="q-btn" onclick="pick(1,1)" id="qb1b">レンジ下限を割ってから急反転（ダマシ）</button></div></div><div class="q-item" id="qi2"><div class="q-text">Q3. 努力と結果の法則で不一致が起きた場合は？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(2,0)" id="qb2a">トレンド継続</button>
+<button class="q-btn" onclick="pick(2,1)" id="qb2b">トレンド転換の可能性</button></div></div>
+<button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
+<div class="quiz-result" id="qResult"></div></div>
+<div class="ftr">ワイコフ理論 | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="5"><h2>Section 16 Complete</h2>
+<div class="cls-buttons">
+<a class='cls-btn cls-btn-next' href='17.html'>Next → オーダーフロー分析</a>
+<a class="cls-btn cls-btn-home" href="../index.html">Home</a>
 </div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 16</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">ワイコフ理論</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Wyckoff Method ── 機関投資家の行動を読み解く</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ワイコフ理論の概要</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  Richard D. Wyckoff（1873-1934）が開発した相場分析手法</p>
-<p style="font-size:20px">▪  「市場は大口（スマートマネー）によって意図的に動かされている」という前提</p>
-<p style="font-size:20px">▪  価格と出来高の関係性から大口の行動を推測する</p>
-<p style="font-size:20px">▪  現代の機関投資家・ヘッジファンドの行動分析にも応用可能</p>
-<p style="font-size:20px">▪  テクニカル分析の中でも最も実践的な需給分析フレームワーク</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ワイコフ理論    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ワイコフの3つの法則</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  ①需要と供給の法則 ── 需要＞供給で上昇、供給＞需要で下落</p>
-<p style="font-size:20px">▪  ②因果の法則 ── レンジ（原因）の大きさが、トレンド（結果）の大きさを決める</p>
-<p style="font-size:20px">▪  ③努力と結果の法則 ── 出来高（努力）と値動き（結果）の一致/不一致を分析</p>
-<p style="font-size:20px">▪  努力と結果が一致 ── トレンド継続のサイン</p>
-<p style="font-size:20px">▪  努力と結果が不一致 ── トレンド転換の可能性</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：第3法則「努力と結果」が最も実践的。大きな出来高なのに価格が動かない ＝ 反対勢力の存在を示唆。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ワイコフ理論    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">コンポジットマン（Composite Man）</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  ワイコフが提唱した概念 ── 市場を動かす「一人の大口プレイヤー」として見る</p>
-<p style="font-size:20px">▪  コンポジットマンの行動パターン：</p>
-<p style="font-size:20px">▪  ①静かに買い集める（Accumulation / 蓄積）</p>
-<p style="font-size:20px">▪  ②価格を押し上げる（Markup / マークアップ）</p>
-<p style="font-size:20px">▪  ③静かに売り抜ける（Distribution / 分配）</p>
-<p style="font-size:20px">▪  ④価格を押し下げる（Markdown / マークダウン）</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：「コンポジットマンは今何をしているか？」を常に問いかけることが、ワイコフ分析の基本姿勢。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ワイコフ理論    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">アキュムレーション（蓄積）── 買い集めの局面</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  Phase A：下落トレンドの終了。PS（予備的サポート）、SC（セリングクライマックス）、AR（自動反発）、ST（二次テスト）</p>
-<p style="font-size:20px">▪  Phase B：大口が静かに買い集めるレンジ相場。出来高が増えるが価格は横ばい</p>
-<p style="font-size:20px">▪  Phase C：Spring（スプリング）── レンジ下限をわずかに割ってから急反転（ダマシ）</p>
-<p style="font-size:20px">▪  Phase D：SOS（Sign of Strength）── 出来高を伴った強い上昇。LPS（最後の押し目）</p>
-<p style="font-size:20px">▪  Phase E：マークアップ開始 ── 本格的な上昇トレンドの開始</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：Springは個人トレーダーの損切りを誘発する動き。大口はこの損切り注文を流動性として利用して買いポジションを構築する。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ワイコフ理論    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ディストリビューション（分配）── 売り抜けの局面</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  Phase A：上昇トレンドの終了。PSY（予備的供給）、BC（バイイングクライマックス）、AR（自動反落）、ST（二次テスト）</p>
-<p style="font-size:20px">▪  Phase B：大口が静かに売り抜けるレンジ相場</p>
-<p style="font-size:20px">▪  Phase C：UTAD（Upthrust After Distribution）── レンジ上限をわずかに超えてから急反落</p>
-<p style="font-size:20px">▪  Phase D：SOW（Sign of Weakness）── 出来高を伴った強い下落。LPSY（最後の戻り高値）</p>
-<p style="font-size:20px">▪  Phase E：マークダウン開始 ── 本格的な下落トレンドの開始</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ワイコフ理論    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">実践での活用と注意点</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  出来高分析が鍵 ── レンジ内での出来高増加は蓄積/分配の証拠</p>
-<p style="font-size:20px">▪  Spring/UTADはエントリーポイントとして非常に有効</p>
-<p style="font-size:20px">▪  他の分析手法（S/R、トレンドライン）との併用で精度向上</p>
-<p style="font-size:20px">▪  リアルタイムでは蓄積と分配の区別が難しい場合がある</p>
-<p style="font-size:20px">▪  FX市場は出来高データが正確でないため、ティックボリューム等で代用</p>
-<p style="font-size:20px">▪  習得には多くのチャート分析経験が必要</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ワイコフ理論    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">3つの法則</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">需給、因果、努力と結果</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">コンポジットマン</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">大口の行動パターンを読む思考フレーム</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">蓄積（Accumulation）</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">下落後の買い集め → Spring → 上昇開始</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">分配（Distribution）</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">上昇後の売り抜け → UTAD → 下落開始</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">実践</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">出来高分析が鍵、他手法と組み合わせて使用</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ワイコフ理論    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="9" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → オーダーフロー分析</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:1rem auto"></div>
+<div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 9;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=5;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+
+const answers=[1,1,1];const picks={};
+function pick(qi,oi){if(document.getElementById('qSubmit').textContent==='')return;picks[qi]=oi;
+document.getElementById('qb'+qi+'a').classList.toggle('selected',oi===0);
+document.getElementById('qb'+qi+'b').classList.toggle('selected',oi===1);
+if(Object.keys(picks).length===3)document.getElementById('qSubmit').disabled=false;}
+function submitQuiz(){let score=0;
+for(let i=0;i<3;i++){const btns=[document.getElementById('qb'+i+'a'),document.getElementById('qb'+i+'b')];
+btns.forEach(b=>b.disabled=true);
+if(picks[i]===answers[i]){score++;document.getElementById('qi'+i).classList.add('correct');btns[answers[i]].classList.add('right');}
+else{document.getElementById('qi'+i).classList.add('wrong');btns[picks[i]].classList.add('wrongsel');btns[answers[i]].classList.add('right');}}
+const r=document.getElementById('qResult');const btn=document.getElementById('qSubmit');
+if(score===3){r.className='quiz-result pass';r.textContent='全問正解！セクション16 受講完了';
+localStorage.setItem('urikai_done_16','true');btn.textContent='';btn.style.display='none';}
+else{r.className='quiz-result fail';r.textContent=score+'/3 正解 ── 全問正解が必要です';
+btn.textContent='もう一度';btn.onclick=()=>location.reload();}}
+</script></body></html>

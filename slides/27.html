@@ -1,203 +1,60 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - リスクリワード比と期待値</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 27 — リスクリワード比と期待値</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 7</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - リスクリワード比と期待値</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 27 — リスクリワード比と期待値</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 5</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 27</div><h1>リスクリワード比と期待値</h1>
+<div class="sub">Risk-Reward Ratio &amp; Expectancy</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>RRR・勝率・期待値</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>RRR</strong>＝利益目標÷損失許容。1:2以上が基準</li><li>勝率30%でもRRR 1:3なら<strong>十分に利益が出る</strong></li><li><strong>期待値</strong>＝（勝率×平均利益）−（負率×平均損失）</li><li>期待値プラス＝継続、マイナス＝戦略見直し</li><li>最低100トレード以上のデータで期待値を計算する</li></ul><div class='pbox'>POINT：勝率だけでは判断できない。RRR 1:3なら勝率30%でも利益が出る。期待値で判断する。</div></div></div>
+<div class="ftr">RR＆期待値 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>RRR</div><div class='val'>利益目標÷損失許容、1:2以上が基準</div></div><div class='srow'><div class='lbl'>勝率との関係</div><div class='val'>RRRが高ければ低勝率でも利益</div></div><div class='srow'><div class='lbl'>期待値</div><div class='val'>（勝率×平均利益）−（負率×平均損失）</div></div><div class='srow'><div class='lbl'>改善</div><div class='val'>エントリーの質、利益の伸ばし、損失の適正化</div></div></div>
+<div class="ftr">RR＆期待値 | URIKAI Trading Academy</div></div>
+<div class="slide quiz" data-s="4"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+<div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. RRR 1:3でSL 20pipsの場合、TPは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">40pips</button>
+<button class="q-btn" onclick="pick(0,1)" id="qb0b">60pips</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. 勝率30%でもRRR 1:3なら利益は出る？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(1,0)" id="qb1a">出る</button>
+<button class="q-btn" onclick="pick(1,1)" id="qb1b">出ない</button></div></div><div class="q-item" id="qi2"><div class="q-text">Q3. 期待値がマイナスの戦略を続けると？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(2,0)" id="qb2a">いずれ利益が出る</button>
+<button class="q-btn" onclick="pick(2,1)" id="qb2b">損失が膨らむ</button></div></div>
+<button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
+<div class="quiz-result" id="qResult"></div></div>
+<div class="ftr">リスクリワード比と期待値 | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="5"><h2>Section 27 Complete</h2>
+<div class="cls-buttons">
+<a class='cls-btn cls-btn-next' href='28.html'>Next → SLとTP戦略</a>
+<a class="cls-btn cls-btn-home" href="../index.html">Home</a>
 </div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 27</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">リスクリワード比と期待値</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Risk-Reward Ratio &amp; Expectancy ── トレードの数学的優位性</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">リスクリワード比（RRR）とは</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  RRR ＝ 利益目標（TP） ÷ 損失許容（SL）</p>
-<p style="font-size:20px">▪  例：SL 20pips、TP 60pips → RRR ＝ 1:3</p>
-<p style="font-size:20px">▪  RRR 1:2以上を基本とするトレーダーが多い</p>
-<p style="font-size:20px">▪  RRRが高いほど、低い勝率でも利益が出る</p>
-<p style="font-size:20px">▪  エントリー前にRRRを計算し、基準に満たなければ見送る</p>
-<p style="font-size:20px">▪  RRRは「トレードに参加する価値があるか」の判断基準</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">リスクリワード比と期待値    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">勝率とRRRの収益シミュレーション（100トレード、1回1万円リスク）</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:92.25%;height:28.00%;overflow:hidden"><table style="border-collapse:collapse;width:100%;margin-top:4px"><tr><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">勝率</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">RRR 1:1</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">RRR 1:2</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">RRR 1:3</th></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">30%</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">-40万円</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">-10万円</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">+20万円</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">40%</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">-20万円</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">+20万円</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">+60万円</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">50%</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">±0万円</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">+50万円</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">+100万円</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">60%</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">+20万円</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">+80万円</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">+140万円</td></tr></table></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">リスクリワード比と期待値    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">期待値（Expectancy）</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  期待値 ＝（勝率 × 平均利益）−（負率 × 平均損失）</p>
-<p style="font-size:20px">▪  例：勝率40%、平均利益3万円、平均損失1万円</p>
-<p style="font-size:20px">▪  期待値 ＝（0.40 × 30,000）−（0.60 × 10,000）＝ +6,000円/トレード</p>
-<p style="font-size:20px">▪  期待値がプラス ＝ 長期的に利益が出る戦略</p>
-<p style="font-size:20px">▪  期待値がマイナス ＝ 続けるほど損失が膨らむ戦略</p>
-<p style="font-size:20px">▪  最低でも100トレード以上のデータで期待値を計算すること</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：勝率だけでは戦略の良し悪しは判断できない。勝率30%でもRRR 1:3なら十分に利益が出る。期待値で判断する。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">リスクリワード比と期待値    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">期待値の改善方法</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  勝率を上げる ── エントリーの質を高める（コンフルエンス、確認待ち）</p>
-<p style="font-size:20px">▪  平均利益を上げる ── 利益を伸ばす（トレーリングストップ、部分決済）</p>
-<p style="font-size:20px">▪  平均損失を下げる ── SLを適正化する（広すぎず狭すぎず）</p>
-<p style="font-size:20px">▪  RRR基準を設ける ── 1:2未満のトレードは見送る</p>
-<p style="font-size:20px">▪  トレードジャーナルで定期的に期待値を計算・監視する</p>
-<p style="font-size:20px">▪  期待値がマイナスになったら戦略の見直しが必要</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">リスクリワード比と期待値    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">RRR</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">利益目標÷損失許容、1:2以上が基準</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">勝率との関係</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">RRRが高ければ低い勝率でも利益が出る</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">期待値</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">（勝率×平均利益）−（負率×平均損失）</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">判断基準</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">期待値プラス＝継続、マイナス＝見直し</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">改善</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">エントリーの質、利益の伸ばし、損失の適正化</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">リスクリワード比と期待値    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → ストップロスとテイクプロフィット戦略</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:1rem auto"></div>
+<div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 7;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=5;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+
+const answers=[1,0,1];const picks={};
+function pick(qi,oi){if(document.getElementById('qSubmit').textContent==='')return;picks[qi]=oi;
+document.getElementById('qb'+qi+'a').classList.toggle('selected',oi===0);
+document.getElementById('qb'+qi+'b').classList.toggle('selected',oi===1);
+if(Object.keys(picks).length===3)document.getElementById('qSubmit').disabled=false;}
+function submitQuiz(){let score=0;
+for(let i=0;i<3;i++){const btns=[document.getElementById('qb'+i+'a'),document.getElementById('qb'+i+'b')];
+btns.forEach(b=>b.disabled=true);
+if(picks[i]===answers[i]){score++;document.getElementById('qi'+i).classList.add('correct');btns[answers[i]].classList.add('right');}
+else{document.getElementById('qi'+i).classList.add('wrong');btns[picks[i]].classList.add('wrongsel');btns[answers[i]].classList.add('right');}}
+const r=document.getElementById('qResult');const btn=document.getElementById('qSubmit');
+if(score===3){r.className='quiz-result pass';r.textContent='全問正解！セクション27 受講完了';
+localStorage.setItem('urikai_done_27','true');btn.textContent='';btn.style.display='none';}
+else{r.className='quiz-result fail';r.textContent=score+'/3 正解 ── 全問正解が必要です';
+btn.textContent='もう一度';btn.onclick=()=>location.reload();}}
+</script></body></html>

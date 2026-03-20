@@ -1,210 +1,60 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - ドローダウン管理</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 29 — ドローダウン管理</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 8</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - ドローダウン管理</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 29 — ドローダウン管理</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 5</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 29</div><h1>ドローダウン管理</h1>
+<div class="sub">Drawdown Management</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>予防・回復・エクイティカーブ</h2></div>
+<div class="body"><div class='txt'><ul><li>50%のDD→回復に<strong>100%</strong>の利益が必要（指数関数的に困難）</li><li><strong>予防</strong>：1-2%ルール、日次上限3%、週次上限5%、連敗時ロット半減</li><li><strong>回復</strong>：分析→サイズ縮小→基本回帰→小さな勝ちの積み重ね</li><li><strong>エクイティカーブ</strong>が右肩下がり＝戦略の見直しが必要</li><li>1トレードで取り返そうとしない</li></ul><div class='pbox'>POINT：ドローダウン20%を超えないことを最優先。20%以内なら回復は現実的。</div></div></div>
+<div class="ftr">DD管理 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>回復コスト</div><div class='val'>50%DD→100%利益が必要</div></div><div class='srow'><div class='lbl'>予防</div><div class='val'>1-2%ルール、日次/週次上限</div></div><div class='srow'><div class='lbl'>回復</div><div class='val'>サイズ縮小→基本回帰</div></div><div class='srow'><div class='lbl'>監視</div><div class='val'>エクイティカーブで健全性判断</div></div></div>
+<div class="ftr">DD管理 | URIKAI Trading Academy</div></div>
+<div class="slide quiz" data-s="4"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+<div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. 50%のドローダウンから回復するには何%必要？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">50%</button>
+<button class="q-btn" onclick="pick(0,1)" id="qb0b">100%</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. 日次損失上限に達した場合は？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(1,0)" id="qb1a">ロットを倍にして取り返す</button>
+<button class="q-btn" onclick="pick(1,1)" id="qb1b">その日のトレードを終了する</button></div></div><div class="q-item" id="qi2"><div class="q-text">Q3. エクイティカーブが右肩下がりの場合は？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(2,0)" id="qb2a">戦略が機能している</button>
+<button class="q-btn" onclick="pick(2,1)" id="qb2b">戦略の見直しが必要</button></div></div>
+<button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
+<div class="quiz-result" id="qResult"></div></div>
+<div class="ftr">ドローダウン管理 | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="5"><h2>Section 29 Complete</h2>
+<div class="cls-buttons">
+<a class='cls-btn cls-btn-next' href='30.html'>Next → 感情管理</a>
+<a class="cls-btn cls-btn-home" href="../index.html">Home</a>
 </div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 29</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">ドローダウン管理</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Drawdown Management ── 損失期間を生き延びる技術</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ドローダウンとは</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  ドローダウン ＝ 口座残高のピークから谷までの下落幅（%）</p>
-<p style="font-size:20px">▪  最大ドローダウン ＝ 運用期間中の最も大きな下落幅</p>
-<p style="font-size:20px">▪  すべてのトレーダーがドローダウンを経験する ── 避けることはできない</p>
-<p style="font-size:20px">▪  重要なのは「ドローダウンの深さ」と「回復にかかる時間」</p>
-<p style="font-size:20px">▪  ドローダウンが深いほど、回復に指数関数的に多くの利益が必要</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ドローダウン管理    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ドローダウンと回復に必要な利益率</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:92.25%;height:44.80%;overflow:hidden"><table style="border-collapse:collapse;width:100%;margin-top:4px"><tr><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">ドローダウン</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">回復に必要な利益率</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">難易度</th></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">10%</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">11.1%</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">容易</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">20%</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">25.0%</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">やや困難</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">30%</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">42.9%</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">困難</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">40%</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">66.7%</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">非常に困難</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">50%</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">100.0%</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">極めて困難</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">60%</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">150.0%</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">ほぼ不可能</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">70%</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">233.3%</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">破綻レベル</td></tr></table></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ドローダウン管理    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ドローダウンの予防策</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  1-2%ルールの厳守 ── 1トレードのリスクを制限</p>
-<p style="font-size:20px">▪  日次損失上限 ── 例：1日の損失が3%に達したらその日は終了</p>
-<p style="font-size:20px">▪  週次損失上限 ── 例：週の損失が5%に達したら週末まで休止</p>
-<p style="font-size:20px">▪  連敗時の自動ルール ── 3連敗したらロットを半分にする</p>
-<p style="font-size:20px">▪  相関ポジションの制限 ── 同方向に複数ペアのポジションを持たない</p>
-<p style="font-size:20px">▪  高インパクトイベント前のポジション調整</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：ドローダウン20%を超えないことを最優先目標にする。20%以内なら回復は現実的だが、30%以上は心理的にも回復が困難になる。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ドローダウン管理    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ドローダウンからの回復戦略</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  まずトレードを止めて分析する ── 何が原因かを特定</p>
-<p style="font-size:20px">▪  ロットサイズを大幅に縮小する ── 通常の50%以下</p>
-<p style="font-size:20px">▪  基本に立ち返る ── 最もシンプルで得意な戦略だけに絞る</p>
-<p style="font-size:20px">▪  デモ口座で自信を回復してからライブに戻る</p>
-<p style="font-size:20px">▪  1トレードで取り返そうとしない ── 小さな勝ちを積み重ねる</p>
-<p style="font-size:20px">▪  トレードジャーナルの見直し ── 過去の成功パターンを再確認</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ドローダウン管理    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">エクイティカーブの監視</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  エクイティカーブ ＝ 口座残高の推移グラフ</p>
-<p style="font-size:20px">▪  右肩上がり ＝ 戦略が機能している</p>
-<p style="font-size:20px">▪  右肩下がり ＝ 戦略が機能していない → 見直しが必要</p>
-<p style="font-size:20px">▪  横ばい ＝ 利益と損失が相殺 → 改善の余地を探す</p>
-<p style="font-size:20px">▪  エクイティカーブがMA（20トレード移動平均）を下回ったら警戒</p>
-<p style="font-size:20px">▪  定期的な（月次/四半期）パフォーマンスレビューを行う</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ドローダウン管理    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">定義</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">ピークから谷までの口座残高下落幅</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">回復コスト</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">50%のDDには100%の回復利益が必要</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">予防</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">1-2%ルール、日次/週次上限、連敗ルール</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">回復</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">分析→サイズ縮小→基本回帰→小さな勝ちの積み重ね</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">監視</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">エクイティカーブで戦略の健全性を判断</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ドローダウン管理    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → 感情管理</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:1rem auto"></div>
+<div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 8;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=5;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+
+const answers=[1,1,1];const picks={};
+function pick(qi,oi){if(document.getElementById('qSubmit').textContent==='')return;picks[qi]=oi;
+document.getElementById('qb'+qi+'a').classList.toggle('selected',oi===0);
+document.getElementById('qb'+qi+'b').classList.toggle('selected',oi===1);
+if(Object.keys(picks).length===3)document.getElementById('qSubmit').disabled=false;}
+function submitQuiz(){let score=0;
+for(let i=0;i<3;i++){const btns=[document.getElementById('qb'+i+'a'),document.getElementById('qb'+i+'b')];
+btns.forEach(b=>b.disabled=true);
+if(picks[i]===answers[i]){score++;document.getElementById('qi'+i).classList.add('correct');btns[answers[i]].classList.add('right');}
+else{document.getElementById('qi'+i).classList.add('wrong');btns[picks[i]].classList.add('wrongsel');btns[answers[i]].classList.add('right');}}
+const r=document.getElementById('qResult');const btn=document.getElementById('qSubmit');
+if(score===3){r.className='quiz-result pass';r.textContent='全問正解！セクション29 受講完了';
+localStorage.setItem('urikai_done_29','true');btn.textContent='';btn.style.display='none';}
+else{r.className='quiz-result fail';r.textContent=score+'/3 正解 ── 全問正解が必要です';
+btn.textContent='もう一度';btn.onclick=()=>location.reload();}}
+</script></body></html>

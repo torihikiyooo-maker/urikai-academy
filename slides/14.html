@@ -1,224 +1,60 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - エリオット波動</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 14 — エリオット波動</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 9</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - エリオット波動</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 14 — エリオット波動</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 5</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 14</div><h1>エリオット波動</h1>
+<div class="sub">Elliott Wave Theory</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>推進波と修正波</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>推進5波＋修正3波＝1サイクル</strong></li><li>第2波は第1波の始点を超えない、第3波は最短にならない、第4波は第1波と重ならない</li><li>修正波：ジグザグ（5-3-5）、フラット（3-3-5）、トライアングル</li><li>第3波が最も強力。フィボナッチで各波のターゲットを推定</li><li>習得には長い経験が必要。他の分析と組み合わせて使用する</li></ul><div class='pbox'>POINT：エリオット波動は主観が入りやすい上級手法。単独ではなくS/R・フィボと併用する。</div></div></div>
+<div class="ftr">エリオット波動 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>基本</div><div class='val'>推進5波＋修正3波</div></div><div class='srow'><div class='lbl'>ルール</div><div class='val'>第2波/第3波/第4波の絶対ルール</div></div><div class='srow'><div class='lbl'>フィボ</div><div class='val'>各波のターゲットをフィボナッチで推定</div></div><div class='srow'><div class='lbl'>限界</div><div class='val'>主観的、経験が必要、他手法と併用</div></div></div>
+<div class="ftr">エリオット波動 | URIKAI Trading Academy</div></div>
+<div class="slide quiz" data-s="4"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+<div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. エリオット波動の推進波は何波構成？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">3波</button>
+<button class="q-btn" onclick="pick(0,1)" id="qb0b">5波</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. 第3波の特徴は？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(1,0)" id="qb1a">最も弱い波</button>
+<button class="q-btn" onclick="pick(1,1)" id="qb1b">最も強力で長い波</button></div></div><div class="q-item" id="qi2"><div class="q-text">Q3. 修正波のABC構造で最も予測が難しいのは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(2,0)" id="qb2a">推進波より修正波が複雑</button>
+<button class="q-btn" onclick="pick(2,1)" id="qb2b">修正波は常にシンプル</button></div></div>
+<button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
+<div class="quiz-result" id="qResult"></div></div>
+<div class="ftr">エリオット波動 | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="5"><h2>Section 14 Complete</h2>
+<div class="cls-buttons">
+<a class='cls-btn cls-btn-next' href='15.html'>Next → ハーモニックパターン</a>
+<a class="cls-btn cls-btn-home" href="../index.html">Home</a>
 </div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 14</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">エリオット波動</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Elliott Wave Theory ── 市場の波動構造を読み解く</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">エリオット波動理論とは</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  1930年代にラルフ・ネルソン・エリオットが発見した相場理論</p>
-<p style="font-size:20px">▪  市場の値動きには繰り返しの波動パターンが存在する</p>
-<p style="font-size:20px">▪  フラクタル構造 ── 大きな波の中に小さな波が入れ子状に存在</p>
-<p style="font-size:20px">▪  群集心理（楽観→悲観→楽観）の循環がパターンを生む</p>
-<p style="font-size:20px">▪  推進波（Impulse）5波 + 修正波（Corrective）3波 ＝ 1サイクル</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：エリオット波動は「市場参加者の集団心理が一定のパターンで循環する」という前提に基づく。パターン認識力と経験が求められる上級手法。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">エリオット波動    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">推進波（Impulse Wave）── 5波構造</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  第1波：新しいトレンドの始まり。多くの参加者はまだ気づかない</p>
-<p style="font-size:20px">▪  第2波：第1波の調整。第1波の始点を超えて戻ることはない（ルール）</p>
-<p style="font-size:20px">▪  第3波：最も強力で長い波（最短にはならない）。出来高増大、勢い最大</p>
-<p style="font-size:20px">▪  第4波：利益確定による調整。第1波の高値と重ならない（ルール）</p>
-<p style="font-size:20px">▪  第5波：最後の推進。勢いは第3波より弱い。ダイバージェンス発生</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">3つの絶対ルール：①第2波は第1波の始点を超えない ②第3波は最短にならない ③第4波は第1波の領域に入らない</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">エリオット波動    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">修正波（Corrective Wave）── ABC構造</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  A波：推進波の終了後に発生する最初の逆行</p>
-<p style="font-size:20px">▪  B波：A波に対する反動（推進波方向への戻り）。トラップになりやすい</p>
-<p style="font-size:20px">▪  C波：最終的な修正。A波と同程度かそれ以上の値幅</p>
-<p style="font-size:20px">▪  修正パターンの種類：ジグザグ（5-3-5）、フラット（3-3-5）、トライアングル（3-3-3-3-3）</p>
-<p style="font-size:20px">▪  修正波は推進波より複雑で予測が困難な傾向がある</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">エリオット波動    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">波の階層（Wave Degree）</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  グランドスーパーサイクル：数十年〜数百年単位</p>
-<p style="font-size:20px">▪  スーパーサイクル：数年〜数十年単位</p>
-<p style="font-size:20px">▪  サイクル：1年〜数年単位</p>
-<p style="font-size:20px">▪  プライマリー：数ヶ月〜1年単位</p>
-<p style="font-size:20px">▪  インターミディエイト：数週間〜数ヶ月単位</p>
-<p style="font-size:20px">▪  マイナー / ミニュエット：日〜数週間 / 時間〜日単位</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：すべての時間軸で同じ波動構造が入れ子状に存在する。上位の波の位置を把握することで、下位時間軸の方向性を判断できる。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">エリオット波動    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">フィボナッチとエリオット波動の関係</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  第2波のリトレースメント：第1波の50%〜61.8%が典型的</p>
-<p style="font-size:20px">▪  第3波のエクステンション：第1波の161.8%〜261.8%が目安</p>
-<p style="font-size:20px">▪  第4波のリトレースメント：第3波の23.6%〜38.2%が典型的</p>
-<p style="font-size:20px">▪  第5波のエクステンション：第1波と同程度か、第1波の61.8%</p>
-<p style="font-size:20px">▪  C波の長さ：A波の100%〜161.8%が一般的</p>
-<p style="font-size:20px">▪  フィボナッチ比率は波のターゲット設定とカウント検証に使用</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">エリオット波動    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">実践的な活用と限界</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  最も狙いやすい：第3波（最強のモメンタム）と第5波</p>
-<p style="font-size:20px">▪  第3波は第1波のブレイクアウト確認後にエントリー</p>
-<p style="font-size:20px">▪  修正波の終了（ABC完了）を待って推進波方向にエントリー</p>
-<p style="font-size:20px">▪  限界①：波のカウントに主観が入りやすい（人により異なる解釈）</p>
-<p style="font-size:20px">▪  限界②：リアルタイムでは「今何波目か」の判断が困難</p>
-<p style="font-size:20px">▪  限界③：習得に長い経験と練習が必要</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：エリオット波動は単独で使うより、他のテクニカル分析（S/R、フィボナッチ、インジケーター）と組み合わせて使用することで精度が向上する。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">エリオット波動    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">基本構造</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">推進5波 + 修正3波 ＝ 1サイクル</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">3つのルール</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">第2波/第3波/第4波に関する絶対ルール</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">修正パターン</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">ジグザグ・フラット・トライアングル</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">フィボナッチ</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">各波のターゲットをフィボナッチ比率で推定</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">限界</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">主観的、リアルタイム判断困難、経験が必要</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">エリオット波動    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="9" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → ハーモニックパターン</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:1rem auto"></div>
+<div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 9;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=5;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+
+const answers=[1,1,0];const picks={};
+function pick(qi,oi){if(document.getElementById('qSubmit').textContent==='')return;picks[qi]=oi;
+document.getElementById('qb'+qi+'a').classList.toggle('selected',oi===0);
+document.getElementById('qb'+qi+'b').classList.toggle('selected',oi===1);
+if(Object.keys(picks).length===3)document.getElementById('qSubmit').disabled=false;}
+function submitQuiz(){let score=0;
+for(let i=0;i<3;i++){const btns=[document.getElementById('qb'+i+'a'),document.getElementById('qb'+i+'b')];
+btns.forEach(b=>b.disabled=true);
+if(picks[i]===answers[i]){score++;document.getElementById('qi'+i).classList.add('correct');btns[answers[i]].classList.add('right');}
+else{document.getElementById('qi'+i).classList.add('wrong');btns[picks[i]].classList.add('wrongsel');btns[answers[i]].classList.add('right');}}
+const r=document.getElementById('qResult');const btn=document.getElementById('qSubmit');
+if(score===3){r.className='quiz-result pass';r.textContent='全問正解！セクション14 受講完了';
+localStorage.setItem('urikai_done_14','true');btn.textContent='';btn.style.display='none';}
+else{r.className='quiz-result fail';r.textContent=score+'/3 正解 ── 全問正解が必要です';
+btn.textContent='もう一度';btn.onclick=()=>location.reload();}}
+</script></body></html>
