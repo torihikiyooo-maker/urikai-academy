@@ -4,41 +4,47 @@
 </head><body>
 <div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 14 — エリオット波動</span>
 <div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
-<span class="page-info" id="pi">1 / 5</span>
+<span class="page-info" id="pi">1 / 10</span>
 <button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
 <div class="slide-area">
+
+<!-- 1: Cover -->
 <div class="slide cover active" data-s="1"><div class="sn">SECTION 14</div><h1>エリオット波動</h1>
-<div class="sub">Elliott Wave Theory</div><div class="line"></div>
+<div class="sub">Elliott Wave Theory ── 市場の波動構造を読み解く</div><div class="line"></div>
 <div class="brand">URIKAI Trading Academy</div></div>
-<div class="slide cnt" data-s="2"><div class="hdr"><h2>推進波と修正波</h2></div>
-<div class="body"><div class='txt'><ul><li><strong>推進5波＋修正3波＝1サイクル</strong></li><li>第2波は第1波の始点を超えない、第3波は最短にならない、第4波は第1波と重ならない</li><li>修正波：ジグザグ（5-3-5）、フラット（3-3-5）、トライアングル</li><li>第3波が最も強力。フィボナッチで各波のターゲットを推定</li><li>習得には長い経験が必要。他の分析と組み合わせて使用する</li></ul><div class='pbox'>POINT：エリオット波動は主観が入りやすい上級手法。単独ではなくS/R・フィボと併用する。</div></div>
-<div class="vis"><svg viewBox="0 0 520 280" width="100%" style="max-width:800px"><defs><filter id="g14"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+
+<!-- 2: 概要 + 全体図 -->
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>エリオット波動理論とは</h2></div>
+<div class="body"><div class="txt"><ul>
+<li>1930年代にラルフ・ネルソン・エリオットが発見した相場理論</li>
+<li>市場の値動きには<strong>繰り返しの波動パターン</strong>が存在する</li>
+<li><strong>フラクタル構造</strong> ── 大きな波の中に小さな波が入れ子状に存在</li>
+<li>群集心理（楽観→悲観→楽観）の循環がパターンを生む</li>
+<li><strong>推進波5波 ＋ 修正波3波 ＝ 1サイクル</strong></li>
+</ul><div class="pbox">POINT：エリオット波動は「市場参加者の集団心理が一定のパターンで循環する」という前提に基づく上級手法。</div></div>
+<div class="vis"><svg viewBox="0 0 520 280" width="100%" style="max-width:800px">
+<defs><filter id="g14"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
 <rect x="0" y="0" width="520" height="280" rx="8" fill="#131c2b"/>
-<line x1="30" y1="50" x2="490" y2="50" stroke="#1e3045" stroke-width="0.5"/>
-<line x1="30" y1="100" x2="490" y2="100" stroke="#1e3045" stroke-width="0.5"/>
-<line x1="30" y1="150" x2="490" y2="150" stroke="#1e3045" stroke-width="0.5"/>
-<line x1="30" y1="200" x2="490" y2="200" stroke="#1e3045" stroke-width="0.5"/>
-<line x1="30" y1="250" x2="490" y2="250" stroke="#1e3045" stroke-width="0.5"/>
-<text x="260" y="22" text-anchor="middle" font-size="14" fill="#d4a537" font-weight="700">エリオット波動 ── 推進5波 ＋ 修正ABC</text>
-<!-- Wave structure with candlestick clusters -->
-<!-- Wave 0→1 up -->
+<line x1="30" y1="50" x2="490" y2="50" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="100" x2="490" y2="100" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="150" x2="490" y2="150" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="200" x2="490" y2="200" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="250" x2="490" y2="250" stroke="#1e3045" stroke-width="0.5"/>
+<text x="260" y="22" text-anchor="middle" font-size="14" fill="#d4a537" font-weight="700">1サイクル ── 推進5波 ＋ 修正ABC</text>
+<!-- Wave 0→1 -->
 <rect x="42" y="225" width="8" height="15" fill="#27ae60" rx="1"/><rect x="54" y="218" width="8" height="15" fill="#27ae60" rx="1"/><rect x="66" y="208" width="8" height="15" fill="#27ae60" rx="1"/><rect x="78" y="195" width="8" height="15" fill="#27ae60" rx="1"/><rect x="90" y="182" width="8" height="15" fill="#27ae60" rx="1"/>
-<!-- Wave 1→2 down -->
+<!-- Wave 1→2 -->
 <rect x="105" y="188" width="8" height="12" fill="#e74c3c" rx="1"/><rect x="117" y="198" width="8" height="12" fill="#e74c3c" rx="1"/>
-<!-- Wave 2→3 up (strongest) -->
+<!-- Wave 2→3 (strongest) -->
 <rect x="132" y="185" width="8" height="18" fill="#27ae60" rx="1"/><rect x="144" y="168" width="8" height="20" fill="#27ae60" rx="1"/><rect x="156" y="148" width="8" height="22" fill="#27ae60" rx="1"/><rect x="168" y="125" width="8" height="25" fill="#27ae60" rx="1"/><rect x="180" y="100" width="8" height="28" fill="#27ae60" rx="1"/><rect x="192" y="72" width="8" height="30" fill="#27ae60" rx="1"/>
-<!-- Wave 3→4 down -->
+<!-- Wave 3→4 -->
 <rect x="207" y="82" width="8" height="18" fill="#e74c3c" rx="1"/><rect x="219" y="98" width="8" height="18" fill="#e74c3c" rx="1"/><rect x="231" y="112" width="8" height="15" fill="#e74c3c" rx="1"/>
-<!-- Wave 4→5 up -->
+<!-- Wave 4→5 -->
 <rect x="246" y="100" width="8" height="15" fill="#27ae60" rx="1"/><rect x="258" y="85" width="8" height="18" fill="#27ae60" rx="1"/><rect x="270" y="68" width="8" height="20" fill="#27ae60" rx="1"/><rect x="282" y="50" width="8" height="22" fill="#27ae60" rx="1"/>
-<!-- Wave A down -->
+<!-- Wave A -->
 <rect x="300" y="58" width="8" height="22" fill="#e74c3c" rx="1"/><rect x="312" y="78" width="8" height="25" fill="#e74c3c" rx="1"/><rect x="324" y="100" width="8" height="28" fill="#e74c3c" rx="1"/><rect x="336" y="128" width="8" height="22" fill="#e74c3c" rx="1"/>
-<!-- Wave B up -->
+<!-- Wave B -->
 <rect x="351" y="118" width="8" height="15" fill="#27ae60" rx="1"/><rect x="363" y="105" width="8" height="15" fill="#27ae60" rx="1"/>
-<!-- Wave C down -->
+<!-- Wave C -->
 <rect x="378" y="112" width="8" height="18" fill="#e74c3c" rx="1"/><rect x="390" y="128" width="8" height="20" fill="#e74c3c" rx="1"/><rect x="402" y="148" width="8" height="18" fill="#e74c3c" rx="1"/>
 <!-- Wave labels -->
-<circle cx="42" cy="240" r="10" fill="#0a2f5c" stroke="#d4a537" stroke-width="1"/><text x="42" y="244" text-anchor="middle" font-size="10" fill="#d4a537" font-weight="700">0</text>
+<circle cx="42" cy="242" r="10" fill="#0a2f5c" stroke="#d4a537" stroke-width="1"/><text x="42" y="246" text-anchor="middle" font-size="10" fill="#d4a537" font-weight="700">0</text>
 <circle cx="94" cy="175" r="10" fill="#27ae60" opacity="0.3"/><text x="94" y="173" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700">1</text>
 <circle cx="121" cy="212" r="10" fill="#e74c3c" opacity="0.3"/><text x="121" y="216" text-anchor="middle" font-size="10" fill="#e74c3c" font-weight="700">2</text>
 <circle cx="196" cy="62" r="10" fill="#27ae60" opacity="0.3"/><text x="196" y="58" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700">3</text>
@@ -54,11 +60,225 @@
 <rect x="420" y="85" width="85" height="35" rx="6" fill="#8e44ad" opacity="0.1" stroke="#8e44ad" stroke-width="1"/>
 <text x="462" y="101" text-anchor="middle" font-size="10" fill="#8e44ad" font-weight="600">修正波（ABC）</text>
 <text x="462" y="115" text-anchor="middle" font-size="9" fill="#8e44ad">調整方向</text>
-<rect x="100" y="258" width="320" height="16" rx="4" fill="#1e3045"/><text x="260" y="270" text-anchor="middle" font-size="9" fill="#8b949e">第3波が最も強力 ── フィボナッチで各波のターゲットを推定</text></svg></div></div>
-<div class="ftr">エリオット波動 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>まとめ</h2></div>
-<div class="body col"><div class='srow'><div class='lbl'>基本</div><div class='val'>推進5波＋修正3波</div></div><div class='srow'><div class='lbl'>ルール</div><div class='val'>第2波/第3波/第4波の絶対ルール</div></div><div class='srow'><div class='lbl'>フィボ</div><div class='val'>各波のターゲットをフィボナッチで推定</div></div><div class='srow'><div class='lbl'>限界</div><div class='val'>主観的、経験が必要、他手法と併用</div></div></div>
+</svg></div></div>
 <div class="ftr">エリオット波動 | URIKAI Trading Academy</div></div>
-<div class="slide quiz" data-s="4"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+
+<!-- 3: 推進波の詳細 -->
+<div class="slide cnt" data-s="3"><div class="hdr"><h2>推進波（Impulse Wave）── 5波構造の詳細</h2></div>
+<div class="body"><div class="txt"><ul>
+<li><strong>第1波</strong>：新しいトレンドの始まり。多くの参加者はまだ気づかない。出来高は少ない</li>
+<li><strong>第2波</strong>：第1波の調整。第1波の始点（0）を超えて戻ることは<strong>絶対にない</strong>（ルール①）</li>
+<li><strong>第3波</strong>：<strong>最も強力で最も長い波</strong>。出来高が最大、モメンタム最大。第3波は最短にはならない（ルール②）</li>
+<li><strong>第4波</strong>：利益確定による調整。第1波の高値と<strong>重ならない</strong>（ルール③）</li>
+<li><strong>第5波</strong>：最後の推進。勢いは第3波より弱い。<strong>ダイバージェンス</strong>が発生しやすい</li>
+</ul><div class="pbox">3つの絶対ルール：①第2波は第1波の始点を超えない ②第3波は最短にならない ③第4波は第1波の領域に入らない</div></div>
+<div class="vis"><svg viewBox="0 0 520 280" width="100%" style="max-width:800px">
+<rect x="0" y="0" width="520" height="280" rx="8" fill="#131c2b"/>
+<line x1="30" y1="50" x2="490" y2="50" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="100" x2="490" y2="100" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="150" x2="490" y2="150" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="200" x2="490" y2="200" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="250" x2="490" y2="250" stroke="#1e3045" stroke-width="0.5"/>
+<text x="260" y="22" text-anchor="middle" font-size="13" fill="#d4a537" font-weight="700">推進波の5波構造 ── 各波の特徴</text>
+<!-- Simplified wave line for clarity -->
+<polyline points="40,240 100,175 80,205 200,60 170,130 280,35" stroke="#2e86c1" stroke-width="3" fill="none" opacity="0.8"/>
+<!-- Labels with description boxes -->
+<circle cx="40" cy="242" r="8" fill="#0a2f5c" stroke="#d4a537" stroke-width="1.5"/><text x="40" y="246" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="700">0</text>
+<circle cx="100" cy="172" r="8" fill="#27ae60" opacity="0.4"/><text x="100" y="176" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="700">1</text>
+<rect x="108" y="162" width="120" height="28" rx="5" fill="#1e3045" stroke="#27ae60" stroke-width="0.8"/>
+<text x="168" y="176" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">第1波：トレンドの始まり</text>
+<text x="168" y="187" text-anchor="middle" font-size="8" fill="#8b949e">少数だけが気づく</text>
+
+<circle cx="80" cy="208" r="8" fill="#e74c3c" opacity="0.4"/><text x="80" y="212" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="700">2</text>
+<rect x="88" y="210" width="130" height="28" rx="5" fill="#1e3045" stroke="#e74c3c" stroke-width="0.8"/>
+<text x="153" y="224" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">第2波：調整（0を割らない）</text>
+<text x="153" y="235" text-anchor="middle" font-size="8" fill="#8b949e">ルール①：始点を超えない</text>
+
+<circle cx="200" cy="55" r="10" fill="#27ae60" opacity="0.5" filter="url(#g14)"/><circle cx="200" cy="55" r="8" fill="#27ae60" opacity="0.4"/><text x="200" y="59" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="700">3</text>
+<rect x="210" y="40" width="140" height="35" rx="5" fill="#27ae60" opacity="0.15" stroke="#27ae60" stroke-width="1"/>
+<text x="280" y="55" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700">第3波：最強・最長</text>
+<text x="280" y="68" text-anchor="middle" font-size="8" fill="#8b949e">ルール②：最短にならない</text>
+
+<circle cx="170" cy="133" r="8" fill="#e74c3c" opacity="0.4"/><text x="170" y="137" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="700">4</text>
+<rect x="178" y="120" width="140" height="28" rx="5" fill="#1e3045" stroke="#e74c3c" stroke-width="0.8"/>
+<text x="248" y="134" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">第4波：利確調整</text>
+<text x="248" y="145" text-anchor="middle" font-size="8" fill="#8b949e">ルール③：第1波と重ならない</text>
+
+<circle cx="280" cy="32" r="8" fill="#27ae60" opacity="0.4"/><text x="280" y="36" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="700">5</text>
+<rect x="295" y="30" width="130" height="28" rx="5" fill="#1e3045" stroke="#d4a537" stroke-width="0.8"/>
+<text x="360" y="44" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="600">第5波：最後の推進</text>
+<text x="360" y="55" text-anchor="middle" font-size="8" fill="#8b949e">勢い弱、ダイバージェンス発生</text>
+
+<!-- Rule violation lines -->
+<line x1="40" y1="240" x2="85" y2="240" stroke="#e74c3c" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.4"/>
+<text x="62" y="255" text-anchor="middle" font-size="8" fill="#e74c3c">第2波はここを割らない</text>
+<line x1="100" y1="175" x2="175" y2="175" stroke="#d4a537" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.4"/>
+<text x="140" y="170" text-anchor="middle" font-size="8" fill="#d4a537">第4波はここに入らない</text>
+</svg></div></div>
+<div class="ftr">エリオット波動 | URIKAI Trading Academy</div></div>
+
+<!-- 4: 修正波の詳細 -->
+<div class="slide cnt" data-s="4"><div class="hdr"><h2>修正波（Corrective Wave）── ABC構造</h2></div>
+<div class="body"><div class="txt"><ul>
+<li><strong>A波</strong>：推進波の終了後に発生する最初の逆行。まだ「押し目」と思われやすい</li>
+<li><strong>B波</strong>：A波に対する反動（推進波方向への戻り）。<strong>トラップになりやすい</strong></li>
+<li><strong>C波</strong>：最終的な修正。A波と同程度かそれ以上の値幅になることが多い</li>
+<li>修正パターンの種類：<strong>ジグザグ</strong>（5-3-5）、<strong>フラット</strong>（3-3-5）、<strong>トライアングル</strong>（3-3-3-3-3）</li>
+</ul><div class="pbox">修正波は推進波より複雑で予測が困難。B波は「偽の回復」でトレーダーを騙す罠になりやすい。</div></div>
+<div class="vis"><svg viewBox="0 0 520 270" width="100%" style="max-width:800px">
+<rect x="0" y="0" width="520" height="270" rx="8" fill="#131c2b"/>
+<line x1="30" y1="50" x2="490" y2="50" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="100" x2="490" y2="100" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="150" x2="490" y2="150" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="200" x2="490" y2="200" stroke="#1e3045" stroke-width="0.5"/>
+<text x="260" y="22" text-anchor="middle" font-size="13" fill="#d4a537" font-weight="700">修正波ABC ── 3つの修正パターン</text>
+
+<!-- Zigzag (left) -->
+<text x="100" y="45" text-anchor="middle" font-size="11" fill="#8e44ad" font-weight="700">ジグザグ（5-3-5）</text>
+<!-- Peak (wave 5 end) -->
+<rect x="42" y="55" width="7" height="12" fill="#27ae60" rx="1"/><rect x="53" y="50" width="7" height="10" fill="#27ae60" rx="1"/>
+<!-- A wave down (5 waves) -->
+<rect x="68" y="58" width="7" height="18" fill="#e74c3c" rx="1"/><rect x="80" y="75" width="7" height="20" fill="#e74c3c" rx="1"/><rect x="92" y="95" width="7" height="22" fill="#e74c3c" rx="1"/><rect x="104" y="118" width="7" height="18" fill="#e74c3c" rx="1"/><rect x="116" y="138" width="7" height="20" fill="#e74c3c" rx="1"/>
+<!-- B wave up (3 waves) -->
+<rect x="130" y="128" width="7" height="16" fill="#27ae60" rx="1"/><rect x="142" y="115" width="7" height="14" fill="#27ae60" rx="1"/><rect x="154" y="108" width="7" height="10" fill="#e74c3c" rx="1"/>
+<!-- C wave down (5 waves) -->
+<rect x="168" y="115" width="7" height="20" fill="#e74c3c" rx="1"/><rect x="180" y="135" width="7" height="22" fill="#e74c3c" rx="1"/><rect x="192" y="158" width="7" height="20" fill="#e74c3c" rx="1"/>
+<circle cx="68" cy="50" r="6" fill="#8e44ad" opacity="0.3"/><text x="68" y="48" text-anchor="middle" font-size="8" fill="#8e44ad" font-weight="700">5</text>
+<text x="98" y="170" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">A</text>
+<text x="145" y="102" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">B</text>
+<text x="185" y="185" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">C</text>
+
+<!-- Flat (middle) -->
+<text x="295" y="45" text-anchor="middle" font-size="11" fill="#8e44ad" font-weight="700">フラット（3-3-5）</text>
+<rect x="238" y="55" width="7" height="10" fill="#27ae60" rx="1"/><rect x="249" y="50" width="7" height="10" fill="#27ae60" rx="1"/>
+<!-- A (3 waves, sideways) -->
+<rect x="264" y="58" width="7" height="15" fill="#e74c3c" rx="1"/><rect x="276" y="72" width="7" height="16" fill="#e74c3c" rx="1"/><rect x="288" y="88" width="7" height="14" fill="#e74c3c" rx="1"/>
+<!-- B (3 waves, back up near start) -->
+<rect x="302" y="78" width="7" height="14" fill="#27ae60" rx="1"/><rect x="314" y="65" width="7" height="15" fill="#27ae60" rx="1"/><rect x="326" y="55" width="7" height="12" fill="#27ae60" rx="1"/>
+<!-- C (5 waves, sharp down) -->
+<rect x="340" y="62" width="7" height="18" fill="#e74c3c" rx="1"/><rect x="352" y="80" width="7" height="22" fill="#e74c3c" rx="1"/><rect x="364" y="102" width="7" height="25" fill="#e74c3c" rx="1"/><rect x="376" y="128" width="7" height="20" fill="#e74c3c" rx="1"/><rect x="388" y="148" width="7" height="22" fill="#e74c3c" rx="1"/>
+<text x="280" y="112" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">A</text>
+<text x="320" y="50" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">B</text>
+<text x="375" y="180" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">C</text>
+<rect x="280" y="115" width="75" height="16" rx="3" fill="#1e3045"/><text x="318" y="127" text-anchor="middle" font-size="8" fill="#8b949e">ABがほぼ同じ高さ</text>
+
+<!-- Triangle (bottom) -->
+<text x="260" y="210" text-anchor="middle" font-size="11" fill="#8e44ad" font-weight="700">トライアングル（3-3-3-3-3）</text>
+<!-- Converging lines -->
+<line x1="140" y1="218" x2="380" y2="238" stroke="#556" stroke-width="1" stroke-dasharray="4,2" opacity="0.4"/>
+<line x1="140" y1="258" x2="380" y2="242" stroke="#556" stroke-width="1" stroke-dasharray="4,2" opacity="0.4"/>
+<rect x="152" y="222" width="7" height="12" fill="#e74c3c" rx="1"/><rect x="170" y="248" width="7" height="10" fill="#27ae60" rx="1"/>
+<rect x="195" y="226" width="7" height="10" fill="#e74c3c" rx="1"/><rect x="218" y="245" width="7" height="8" fill="#27ae60" rx="1"/>
+<rect x="242" y="230" width="7" height="8" fill="#e74c3c" rx="1"/><rect x="265" y="242" width="7" height="6" fill="#27ae60" rx="1"/>
+<rect x="288" y="234" width="7" height="6" fill="#e74c3c" rx="1"/><rect x="310" y="240" width="7" height="4" fill="#27ae60" rx="1"/>
+<rect x="332" y="236" width="7" height="4" fill="#e74c3c" rx="1"/>
+<!-- Breakout -->
+<rect x="355" y="228" width="8" height="14" fill="#27ae60" rx="1"/><rect x="368" y="218" width="8" height="14" fill="#27ae60" rx="1"/>
+<text x="385" y="222" font-size="9" fill="#27ae60" font-weight="600">ブレイク</text>
+<rect x="400" y="218" width="110" height="28" rx="5" fill="#1e3045"/>
+<text x="455" y="232" text-anchor="middle" font-size="9" fill="#8b949e">5つの波で収束</text>
+<text x="455" y="244" text-anchor="middle" font-size="9" fill="#8b949e">→ ブレイク方向を確認</text>
+</svg></div></div>
+<div class="ftr">エリオット波動 | URIKAI Trading Academy</div></div>
+
+<!-- 5: フィボナッチとの関係 -->
+<div class="slide cnt" data-s="5"><div class="hdr"><h2>フィボナッチとエリオット波動の関係</h2></div>
+<div class="body"><div class="txt"><ul>
+<li><strong>第2波</strong>のリトレースメント：第1波の<strong>50%〜61.8%</strong>が典型的</li>
+<li><strong>第3波</strong>のエクステンション：第1波の<strong>161.8%〜261.8%</strong>が目安</li>
+<li><strong>第4波</strong>のリトレースメント：第3波の<strong>23.6%〜38.2%</strong>が典型的</li>
+<li><strong>第5波</strong>のエクステンション：第1波と同程度か、第1波の<strong>61.8%</strong></li>
+<li><strong>C波</strong>の長さ：A波の<strong>100%〜161.8%</strong>が一般的</li>
+</ul><div class="pbox">フィボナッチ比率は波のターゲット設定とカウント検証の両方に使用される。各波がフィボ比率に収まっているかでカウントの正確性を判断できる。</div></div>
+<div class="vis"><svg viewBox="0 0 520 270" width="100%" style="max-width:800px">
+<rect x="0" y="0" width="520" height="270" rx="8" fill="#131c2b"/>
+<line x1="30" y1="50" x2="490" y2="50" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="100" x2="490" y2="100" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="150" x2="490" y2="150" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="200" x2="490" y2="200" stroke="#1e3045" stroke-width="0.5"/>
+<text x="260" y="22" text-anchor="middle" font-size="13" fill="#d4a537" font-weight="700">各波のフィボナッチ比率</text>
+<!-- Simplified wave -->
+<polyline points="50,220 110,165 90,190 230,50 195,115 310,30" stroke="#2e86c1" stroke-width="2.5" fill="none" opacity="0.6"/>
+<!-- Fib levels for Wave 2 -->
+<line x1="50" y1="190" x2="120" y2="190" stroke="#d4a537" stroke-width="0.8" stroke-dasharray="3,2"/>
+<rect x="120" y="182" width="95" height="18" rx="4" fill="#e74c3c" opacity="0.15" stroke="#e74c3c" stroke-width="0.8"/>
+<text x="168" y="195" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">第2波：50-61.8%</text>
+<!-- Fib for Wave 3 -->
+<line x1="110" y1="50" x2="240" y2="50" stroke="#d4a537" stroke-width="0.8" stroke-dasharray="3,2"/>
+<rect x="240" y="40" width="105" height="22" rx="4" fill="#27ae60" opacity="0.15" stroke="#27ae60" stroke-width="1"/>
+<text x="292" y="55" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700">第3波：161.8%</text>
+<!-- Fib for Wave 4 -->
+<line x1="195" y1="115" x2="250" y2="115" stroke="#d4a537" stroke-width="0.8" stroke-dasharray="3,2"/>
+<rect x="250" y="107" width="105" height="18" rx="4" fill="#e74c3c" opacity="0.15" stroke="#e74c3c" stroke-width="0.8"/>
+<text x="302" y="120" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="600">第4波：23.6-38.2%</text>
+<!-- Fib for Wave 5 -->
+<rect x="315" y="22" width="95" height="18" rx="4" fill="#d4a537" opacity="0.15" stroke="#d4a537" stroke-width="0.8"/>
+<text x="362" y="35" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="600">第5波：≒ 第1波</text>
+<!-- Table at bottom -->
+<rect x="40" y="215" width="440" height="45" rx="6" fill="#1e3045"/>
+<text x="260" y="234" text-anchor="middle" font-size="11" fill="#d4a537" font-weight="600">各波がフィボ比率に収まっているか ＝ 波のカウントの検証方法</text>
+<text x="260" y="252" text-anchor="middle" font-size="10" fill="#8b949e">比率が合わない場合 → カウントが間違っている可能性が高い</text>
+</svg></div></div>
+<div class="ftr">エリオット波動 | URIKAI Trading Academy</div></div>
+
+<!-- 6: 波の階層（フラクタル） -->
+<div class="slide cnt" data-s="6"><div class="hdr"><h2>波の階層（Wave Degree）── フラクタル構造</h2></div>
+<div class="body"><div class="txt"><ul>
+<li><strong>グランドスーパーサイクル</strong>：数十年〜数百年単位</li>
+<li><strong>スーパーサイクル</strong>：数年〜数十年単位</li>
+<li><strong>サイクル / プライマリー</strong>：1年〜数年 / 数ヶ月〜1年</li>
+<li><strong>インターミディエイト / マイナー</strong>：数週間〜数ヶ月 / 日〜数週間</li>
+<li>すべての時間軸で<strong>同じ波動構造</strong>が入れ子状に存在する</li>
+</ul><div class="pbox">上位の波の位置を把握することで、下位時間軸の方向性を判断できる。第3波の中にも小さな5波構造がある。</div></div>
+<div class="vis"><svg viewBox="0 0 520 260" width="100%" style="max-width:800px">
+<rect x="0" y="0" width="520" height="260" rx="8" fill="#131c2b"/>
+<line x1="30" y1="50" x2="490" y2="50" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="100" x2="490" y2="100" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="150" x2="490" y2="150" stroke="#1e3045" stroke-width="0.5"/><line x1="30" y1="200" x2="490" y2="200" stroke="#1e3045" stroke-width="0.5"/>
+<text x="260" y="22" text-anchor="middle" font-size="13" fill="#d4a537" font-weight="700">フラクタル構造 ── 大きな波の中に小さな波</text>
+<!-- Large wave (primary) -->
+<polyline points="40,210 120,120 90,160 250,40 200,100 340,20" stroke="#2e86c1" stroke-width="3.5" fill="none" opacity="0.3"/>
+<!-- Labels for large wave -->
+<text x="40" y="225" font-size="10" fill="#2e86c1" font-weight="600">0</text>
+<text x="120" y="115" font-size="10" fill="#2e86c1" font-weight="600">1</text>
+<text x="90" y="172" font-size="10" fill="#2e86c1" font-weight="600">2</text>
+<text x="250" y="35" font-size="10" fill="#2e86c1" font-weight="600">3</text>
+<text x="200" y="112" font-size="10" fill="#2e86c1" font-weight="600">4</text>
+<text x="340" y="15" font-size="10" fill="#2e86c1" font-weight="600">5</text>
+<!-- Small waves inside wave 3 (fractal) -->
+<polyline points="92,158 105,142 98,150 130,108 118,128 155,78 142,98 180,55 170,68 200,42 250,38" stroke="#d4a537" stroke-width="1.5" fill="none" opacity="0.7"/>
+<!-- Highlight bracket around wave 3's internal structure -->
+<rect x="88" y="35" width="168" height="130" rx="6" fill="#d4a537" opacity="0.04" stroke="#d4a537" stroke-width="1" stroke-dasharray="4,2"/>
+<text x="172" y="175" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="600">第3波の内部にも5波構造が存在</text>
+<!-- Scale labels -->
+<rect x="370" y="35" width="130" height="90" rx="8" fill="#1e3045"/>
+<text x="435" y="55" text-anchor="middle" font-size="10" fill="#d4a537" font-weight="700">波の階層</text>
+<text x="435" y="75" text-anchor="middle" font-size="9" fill="#2e86c1">━━ 上位（大きな波）</text>
+<text x="435" y="95" text-anchor="middle" font-size="9" fill="#d4a537">─ ─ 下位（内部構造）</text>
+<text x="435" y="115" text-anchor="middle" font-size="8" fill="#8b949e">全ての時間軸で同じ構造</text>
+<!-- Time frame labels -->
+<rect x="370" y="140" width="130" height="95" rx="8" fill="#0a2f5c" opacity="0.5"/>
+<text x="435" y="160" text-anchor="middle" font-size="9" fill="#d4a537" font-weight="600">時間軸の目安</text>
+<text x="435" y="178" text-anchor="middle" font-size="8" fill="#8b949e">月足：サイクル級</text>
+<text x="435" y="193" text-anchor="middle" font-size="8" fill="#8b949e">週足：プライマリー級</text>
+<text x="435" y="208" text-anchor="middle" font-size="8" fill="#8b949e">日足：インターミディエイト</text>
+<text x="435" y="223" text-anchor="middle" font-size="8" fill="#8b949e">4H足：マイナー級</text>
+</svg></div></div>
+<div class="ftr">エリオット波動 | URIKAI Trading Academy</div></div>
+
+<!-- 7: 実践的活用 -->
+<div class="slide cnt" data-s="7"><div class="hdr"><h2>実践的な活用方法</h2></div>
+<div class="body"><div class="txt"><ul>
+<li>最も狙いやすいのは<strong>第3波</strong>（最強のモメンタム）── 第2波の終了を確認してエントリー</li>
+<li><strong>第5波</strong>でのダイバージェンスは反転の早期警告</li>
+<li>修正波の終了（ABC完了）を待って推進波方向にエントリー</li>
+<li>他のテクニカル（S/R、フィボナッチ）と組み合わせて精度を向上</li>
+<li>波のカウントに<strong>主観が入りやすい</strong> ── 複数のシナリオを常に持つ</li>
+</ul><div class="pbox">POINT：エリオット波動は単独で使うより、S/R・フィボナッチ・ローソク足パターンとの組み合わせで使用することで精度が向上する。「今何波目か」の判断が最重要。</div></div></div>
+<div class="ftr">エリオット波動 | URIKAI Trading Academy</div></div>
+
+<!-- 8: まとめ -->
+<div class="slide cnt" data-s="8"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col">
+<div class='srow'><div class='lbl'>基本構造</div><div class='val'>推進5波 ＋ 修正3波 ＝ 1サイクル</div></div>
+<div class='srow'><div class='lbl'>3つの絶対ルール</div><div class='val'>②波は0を超えない / ③波は最短にならない / ④波は①波と重ならない</div></div>
+<div class='srow'><div class='lbl'>修正パターン</div><div class='val'>ジグザグ（5-3-5）、フラット（3-3-5）、トライアングル（3-3-3-3-3）</div></div>
+<div class='srow'><div class='lbl'>フィボナッチ</div><div class='val'>各波のターゲットとカウント検証にフィボ比率を使用</div></div>
+<div class='srow'><div class='lbl'>フラクタル</div><div class='val'>全ての時間軸で同じ波動構造が入れ子状に存在</div></div>
+<div class='srow'><div class='lbl'>実践</div><div class='val'>第3波狙い、他ツールと併用、複数シナリオを持つ</div></div>
+</div>
+<div class="ftr">エリオット波動 | URIKAI Trading Academy</div></div>
+
+<!-- 9: Quiz -->
+<div class="slide quiz" data-s="9"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
 <div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. エリオット波動の推進波は何波構成？</div>
 <div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">3波</button>
 <button class="q-btn" onclick="pick(0,1)" id="qb0b">5波</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. 第3波の特徴は？</div>
@@ -69,16 +289,19 @@
 <button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
 <div class="quiz-result" id="qResult"></div></div>
 <div class="ftr">エリオット波動 | URIKAI Trading Academy</div></div>
-<div class="slide cls" data-s="5"><h2>Section 14 Complete</h2>
+
+<!-- 10: Closing -->
+<div class="slide cls" data-s="10"><h2>Section 14 Complete</h2>
 <div class="cls-buttons">
 <a class='cls-btn cls-btn-next' href='15.html'>Next → ハーモニックパターン</a>
 <a class="cls-btn cls-btn-home" href="../index.html">Home</a>
 </div>
 <div style="width:120px;height:3px;background:#d4a537;margin:1rem auto"></div>
 <div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
+
 </div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let c=1;const t=5;
+let c=1;const t=10;
 function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
 document.getElementById('prevBtn').disabled=true;
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
