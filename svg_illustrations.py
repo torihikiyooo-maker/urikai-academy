@@ -51,19 +51,34 @@ SVG_11 = '''<svg viewBox="0 0 500 280" width="100%" style="max-width:620px">
 <text x="410" y="62" text-anchor="middle" font-size="10" fill="#888">Top2</text>
 <text x="475" y="128" font-size="11" fill="#c0392b" font-weight="600">ネックライン</text>
 
-<text x="130" y="260" text-anchor="middle" font-size="13" fill="#27ae60" font-weight="600">ブルフラッグ ↑</text>
-<polyline points="40,250 70,210 60,215 90,218 80,222 110,225 140,195" stroke="#27ae60" stroke-width="2" fill="none"/>
-<text x="400" y="260" text-anchor="middle" font-size="13" fill="#2e86c1" font-weight="600">トライアングル △</text>
-<polyline points="310,230 340,210 350,235 380,215 390,232 420,220" stroke="#2e86c1" stroke-width="2" fill="none"/>
-<line x1="310" y1="240" x2="430" y2="225" stroke="#888" stroke-width="1" stroke-dasharray="3,2"/>
-<line x1="310" y1="205" x2="430" y2="218" stroke="#888" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="120" y="200" text-anchor="middle" font-size="13" fill="#27ae60" font-weight="600">ブルフラッグ ↑</text>
+<!-- Flagpole (sharp rise) -->
+<polyline points="30,270 50,230 55,210 60,180" stroke="#27ae60" stroke-width="3" fill="none"/>
+<!-- Flag (downward sloping channel with zigzag) -->
+<polyline points="60,180 80,195 70,188 95,208 85,200 110,218 100,212 120,228" stroke="#27ae60" stroke-width="2" fill="none"/>
+<!-- Breakout -->
+<polyline points="120,228 135,210 150,185" stroke="#27ae60" stroke-width="2.5" fill="none" stroke-dasharray="4,2"/>
+<text x="155" y="180" font-size="10" fill="#27ae60">ブレイク↑</text>
+
+<text x="380" y="200" text-anchor="middle" font-size="13" fill="#2e86c1" font-weight="600">シンメトリカル△</text>
+<!-- Triangle with clear zigzag converging -->
+<polyline points="280,210 310,240 330,220 350,238 365,225 380,234 395,228" stroke="#2e86c1" stroke-width="2" fill="none"/>
+<!-- Converging lines -->
+<line x1="280" y1="205" x2="400" y2="225" stroke="#888" stroke-width="1.5" stroke-dasharray="4,2"/>
+<line x1="280" y1="248" x2="400" y2="232" stroke="#888" stroke-width="1.5" stroke-dasharray="4,2"/>
+<!-- Breakout -->
+<polyline points="395,228 420,210 445,190" stroke="#2e86c1" stroke-width="2.5" fill="none" stroke-dasharray="4,2"/>
+<text x="450" y="188" font-size="10" fill="#2e86c1">ブレイク</text>
 <defs><marker id="ard" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#c0392b"/></marker></defs>
 </svg>'''
 
 # ===== 12: Fibonacci =====
 SVG_12 = '''<svg viewBox="0 0 500 300" width="100%" style="max-width:620px">
 <line x1="60" y1="20" x2="60" y2="280" stroke="#888" stroke-width="1.5"/>
-<polyline points="80,260 150,250 200,60 250,145 300,50" stroke="#2c3e50" stroke-width="2.5" fill="none"/>
+<!-- Clear uptrend then retracement -->
+<polyline points="80,260 110,230 100,245 140,190 125,210 170,140 155,165 200,60" stroke="#2c3e50" stroke-width="2" fill="none"/>
+<!-- Retracement down to 61.8% then bounce -->
+<polyline points="200,60 220,100 230,80 250,145 240,120 260,184 270,155 290,100 300,50" stroke="#2e86c1" stroke-width="2.5" fill="none"/>
 <line x1="190" y1="60" x2="420" y2="60" stroke="#0a2f5c" stroke-width="1" stroke-dasharray="4,3"/><text x="425" y="64" font-size="12" fill="#0a2f5c" font-weight="700">0% (高値)</text>
 <line x1="190" y1="137" x2="420" y2="137" stroke="#d4a537" stroke-width="1.5" stroke-dasharray="4,3"/><text x="425" y="141" font-size="12" fill="#d4a537" font-weight="700">38.2%</text>
 <line x1="190" y1="160" x2="420" y2="160" stroke="#2e86c1" stroke-width="1.5" stroke-dasharray="4,3"/><text x="425" y="164" font-size="12" fill="#2e86c1" font-weight="700">50.0%</text>
@@ -131,14 +146,28 @@ SVG_15 = '''<svg viewBox="0 0 500 260" width="100%" style="max-width:620px">
 
 SVG_16 = '''<svg viewBox="0 0 500 260" width="100%" style="max-width:620px">
 <text x="250" y="22" text-anchor="middle" font-size="15" fill="#2c3e50" font-weight="700">ワイコフ・蓄積（Accumulation）スキーマティック</text>
-<polyline points="30,60 80,100 100,140 90,180 110,190 95,210 80,200 120,150 160,130 200,90 250,70 300,50 350,40 420,30 470,20" stroke="#2c3e50" stroke-width="2" fill="none"/>
-<line x1="70" y1="200" x2="300" y2="200" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="5,3"/>
-<rect x="70" y="120" width="230" height="85" rx="6" fill="#27ae60" opacity="0.06" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,3"/>
-<text x="185" y="145" text-anchor="middle" font-size="12" fill="#27ae60" font-weight="600">蓄積レンジ（Accumulation）</text>
-<circle cx="95" cy="210" r="5" fill="#d4a537"/><text x="95" y="232" text-anchor="middle" font-size="11" fill="#d4a537" font-weight="700">Spring</text>
-<text x="95" y="246" text-anchor="middle" font-size="9" fill="#888">ダマシの下抜け</text>
-<path d="M300,50 L470,20" stroke="#27ae60" stroke-width="3" opacity="0.4"/>
-<text x="400" y="55" font-size="12" fill="#27ae60" font-weight="700">マークアップ ↑</text>
+<!-- Downtrend into range -->
+<polyline points="30,40 50,70 45,55 70,90 60,80 80,110" stroke="#c0392b" stroke-width="2" fill="none"/>
+<!-- Selling Climax -->
+<polyline points="80,110 90,160 85,140 95,190" stroke="#c0392b" stroke-width="2.5" fill="none"/>
+<text x="100" y="195" font-size="9" fill="#c0392b" font-weight="600">SC</text>
+<!-- Range trading -->
+<polyline points="95,190 110,145 120,170 140,140 150,175 165,150 175,165" stroke="#2c3e50" stroke-width="1.5" fill="none"/>
+<!-- Range boundaries -->
+<line x1="85" y1="130" x2="290" y2="130" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="85" y1="195" x2="290" y2="195" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="5,3"/>
+<rect x="85" y="130" width="205" height="65" rx="4" fill="#27ae60" opacity="0.05"/>
+<text x="187" y="125" text-anchor="middle" font-size="10" fill="#888">レンジ上限</text>
+<text x="187" y="210" text-anchor="middle" font-size="10" fill="#27ae60">レンジ下限（サポート）</text>
+<!-- SPRING: breaks below then snaps back -->
+<polyline points="175,165 190,185 200,205 210,215" stroke="#c0392b" stroke-width="2" fill="none"/>
+<polyline points="210,215 215,200 220,180 230,155 240,140" stroke="#27ae60" stroke-width="2.5" fill="none"/>
+<circle cx="210" cy="215" r="7" fill="#d4a537" opacity="0.4" stroke="#d4a537" stroke-width="2.5"/>
+<text x="210" y="240" text-anchor="middle" font-size="12" fill="#d4a537" font-weight="700">Spring</text>
+<text x="210" y="253" text-anchor="middle" font-size="9" fill="#888">レンジ下限を一瞬割って急反転</text>
+<!-- Markup phase -->
+<polyline points="240,140 260,110 275,125 300,85 320,100 350,60 380,75 420,35 460,20" stroke="#27ae60" stroke-width="2.5" fill="none"/>
+<text x="400" y="55" font-size="13" fill="#27ae60" font-weight="700">マークアップ ↑</text>
 </svg>'''
 
 SVG_17 = '''<svg viewBox="0 0 500 260" width="100%" style="max-width:620px">
