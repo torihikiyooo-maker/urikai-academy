@@ -4,7 +4,7 @@
 </head><body>
 <div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 06 — 注文の種類</span>
 <div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
-<span class="page-info" id="pi">1 / 6</span>
+<span class="page-info" id="pi">1 / 7</span>
 <button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
 <div class="slide-area">
 <div class="slide cover active" data-s="1"><div class="sn">SECTION 06</div><h1>注文の種類</h1>
@@ -44,16 +44,43 @@
 <div class="ftr">注文の種類 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="5"><div class="hdr"><h2>まとめ</h2></div>
 <div class="body col"><div class='srow'><div class='lbl'>成行注文</div><div class='val'>即座に約定、確実だがスリッページあり</div></div><div class='srow'><div class='lbl'>指値注文</div><div class='val'>有利な価格を指定、約定しない可能性あり</div></div><div class='srow'><div class='lbl'>逆指値注文</div><div class='val'>ブレイクアウト用、発動後は成行</div></div><div class='srow'><div class='lbl'>ストップロス</div><div class='val'>損失限定、全トレードで必須</div></div><div class='srow'><div class='lbl'>テイクプロフィット</div><div class='val'>利益確定の自動化、感情排除</div></div></div>
 <div class="ftr">注文の種類 | URIKAI Trading Academy</div></div>
-<div class="slide cls" data-s="6"><h2>End of Section</h2>
+<div class="slide quiz" data-s="6"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+<div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. 押し目買いに使う注文タイプは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">Buy Limit</button>
+<button class="q-btn" onclick="pick(0,1)" id="qb0b">Buy Stop</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. ストップロス（SL）を設定しないトレードのリスクは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(1,0)" id="qb1a">少しだけ危険</button>
+<button class="q-btn" onclick="pick(1,1)" id="qb1b">リスクが無限大</button></div></div><div class="q-item" id="qi2"><div class="q-text">Q3. ブレイクアウトエントリーに使う注文は？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(2,0)" id="qb2a">指値注文（Limit）</button>
+<button class="q-btn" onclick="pick(2,1)" id="qb2b">逆指値注文（Stop）</button></div></div>
+<button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
+<div class="quiz-result" id="qResult"></div></div>
+<div class="ftr">注文の種類 | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="7"><h2>End of Section</h2>
 <div class='nxt'>Next → 取引セッションと時間帯</div>
 <div style="width:120px;height:3px;background:#d4a537;margin:2rem auto"></div>
 <div style="color:#8b949e;font-size:0.85rem">URIKAI Trading Academy</div></div>
 </div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let c=1;const t=6;
+let c=1;const t=7;
 function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
 document.getElementById('prevBtn').disabled=true;
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
 document.addEventListener('contextmenu',e=>e.preventDefault());
 if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+
+const answers=[0,1,1];const picks={};
+function pick(qi,oi){if(document.getElementById('qSubmit').textContent==='')return;picks[qi]=oi;
+document.getElementById('qb'+qi+'a').classList.toggle('selected',oi===0);
+document.getElementById('qb'+qi+'b').classList.toggle('selected',oi===1);
+if(Object.keys(picks).length===3)document.getElementById('qSubmit').disabled=false;}
+function submitQuiz(){let score=0;
+for(let i=0;i<3;i++){const btns=[document.getElementById('qb'+i+'a'),document.getElementById('qb'+i+'b')];
+btns.forEach(b=>b.disabled=true);
+if(picks[i]===answers[i]){score++;document.getElementById('qi'+i).classList.add('correct');btns[answers[i]].classList.add('right');}
+else{document.getElementById('qi'+i).classList.add('wrong');btns[picks[i]].classList.add('wrongsel');btns[answers[i]].classList.add('right');}}
+const r=document.getElementById('qResult');const btn=document.getElementById('qSubmit');
+if(score===3){r.className='quiz-result pass';r.textContent='全問正解！セクション06 受講完了';
+localStorage.setItem('urikai_done_06','true');btn.textContent='';btn.style.display='none';}
+else{r.className='quiz-result fail';r.textContent=score+'/3 正解 ── 全問正解が必要です';
+btn.textContent='もう一度';btn.onclick=()=>location.reload();}}
 </script></body></html>

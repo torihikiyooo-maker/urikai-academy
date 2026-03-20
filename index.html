@@ -132,6 +132,40 @@
             margin-top: 0.25rem;
         }
 
+        .progress-bar-wrap {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            position: relative;
+        }
+
+        .progress-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 14px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 7px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d4a537, #27ae60);
+            border-radius: 7px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-pct {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #d4a537;
+            margin-top: 0.4rem;
+        }
+
         /* ===== Main ===== */
         main {
             max-width: 1200px;
@@ -265,6 +299,29 @@
             background: rgba(39, 174, 96, 0.1);
             padding: 0.2rem 0.6rem;
             border-radius: 4px;
+        }
+
+        .card-done {
+            font-size: 0.7rem;
+            color: #27ae60;
+            background: rgba(39, 174, 96, 0.15);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 700;
+            display: none;
+        }
+
+        .card-done.show {
+            display: inline-block;
+        }
+
+        .card.completed {
+            border-color: #27ae60;
+        }
+
+        .card.completed .card-num {
+            background: #27ae60;
+            color: #fff;
         }
 
         /* ===== Footer ===== */
@@ -419,9 +476,14 @@
             <div class="label">スライド</div>
         </div>
         <div class="hero-stat">
-            <div class="num">7</div>
-            <div class="label">カテゴリ</div>
+            <div class="num" id="doneCount">0</div>
+            <div class="label">受講完了</div>
         </div>
+    </div>
+    <div class="progress-bar-wrap">
+        <div class="progress-label">学習進捗</div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+        <div class="progress-pct" id="progressPct">0%</div>
     </div>
 </div>
 
@@ -439,7 +501,7 @@
             <div class="category-badge">7 sections / 61 slides</div>
         </div>
         <div class="cards">
-            <a class="card" href="slides/01.html">
+            <a class="card" href="slides/01.html" data-section="01">
                 <div class="card-num">01</div>
                 <div class="card-title">金融市場とは何か</div>
                 <div class="card-desc">金融市場の定義・4つの機能・一次市場と二次市場・規制と監督</div>
@@ -448,7 +510,7 @@
                     <span class="card-level">Beginner</span>
                 </div>
             </a>
-            <a class="card" href="slides/02.html">
+            <a class="card" href="slides/02.html" data-section="02">
                 <div class="card-num">02</div>
                 <div class="card-title">金融市場の種類</div>
                 <div class="card-desc">FX・株式・債券・商品・暗号資産・デリバティブ市場の比較と特徴</div>
@@ -457,7 +519,7 @@
                     <span class="card-level">Beginner</span>
                 </div>
             </a>
-            <a class="card" href="slides/03.html">
+            <a class="card" href="slides/03.html" data-section="03">
                 <div class="card-num">03</div>
                 <div class="card-title">市場参加者</div>
                 <div class="card-desc">中央銀行・商業銀行・ヘッジファンド・機関投資家・個人トレーダーの役割</div>
@@ -466,7 +528,7 @@
                     <span class="card-level">Beginner</span>
                 </div>
             </a>
-            <a class="card" href="slides/04.html">
+            <a class="card" href="slides/04.html" data-section="04">
                 <div class="card-num">04</div>
                 <div class="card-title">通貨ペアの基礎</div>
                 <div class="card-desc">通貨ペアの構造・分類・Pips・ロットサイズ・スプレッド</div>
@@ -475,7 +537,7 @@
                     <span class="card-level">Beginner</span>
                 </div>
             </a>
-            <a class="card" href="slides/05.html">
+            <a class="card" href="slides/05.html" data-section="05">
                 <div class="card-num">05</div>
                 <div class="card-title">市場の仕組み</div>
                 <div class="card-desc">取引所vs OTC・需給原理・レバレッジ・スリッページ・スワップ</div>
@@ -484,7 +546,7 @@
                     <span class="card-level">Beginner</span>
                 </div>
             </a>
-            <a class="card" href="slides/06.html">
+            <a class="card" href="slides/06.html" data-section="06">
                 <div class="card-num">06</div>
                 <div class="card-title">注文の種類</div>
                 <div class="card-desc">成行・指値・逆指値・ストップロス・テイクプロフィット・トレーリング</div>
@@ -493,7 +555,7 @@
                     <span class="card-level">Beginner</span>
                 </div>
             </a>
-            <a class="card" href="slides/07.html">
+            <a class="card" href="slides/07.html" data-section="07">
                 <div class="card-num">07</div>
                 <div class="card-title">取引セッションと時間帯</div>
                 <div class="card-desc">東京・ロンドン・NYセッションの特徴と時間帯別の戦略</div>
@@ -516,7 +578,7 @@
             <div class="category-badge">6 sections / 54 slides</div>
         </div>
         <div class="cards">
-            <a class="card" href="slides/08.html">
+            <a class="card" href="slides/08.html" data-section="08">
                 <div class="card-num">08</div>
                 <div class="card-title">ローソク足パターン</div>
                 <div class="card-desc">単体/複合パターン・強気/弱気反転・継続パターン・実践活用法</div>
@@ -525,7 +587,7 @@
                     <span class="card-level">Intermediate</span>
                 </div>
             </a>
-            <a class="card" href="slides/09.html">
+            <a class="card" href="slides/09.html" data-section="09">
                 <div class="card-num">09</div>
                 <div class="card-title">サポート&レジスタンス</div>
                 <div class="card-desc">水平S/R・トレンドライン・ダイナミックS/R・ロールリバーサル</div>
@@ -534,7 +596,7 @@
                     <span class="card-level">Intermediate</span>
                 </div>
             </a>
-            <a class="card" href="slides/10.html">
+            <a class="card" href="slides/10.html" data-section="10">
                 <div class="card-num">10</div>
                 <div class="card-title">テクニカルインジケーター</div>
                 <div class="card-desc">MA・RSI・MACD・ボリンジャーバンド・ATR・一目均衡表</div>
@@ -543,7 +605,7 @@
                     <span class="card-level">Intermediate</span>
                 </div>
             </a>
-            <a class="card" href="slides/11.html">
+            <a class="card" href="slides/11.html" data-section="11">
                 <div class="card-num">11</div>
                 <div class="card-title">チャートパターン</div>
                 <div class="card-desc">H&S・ダブルトップ/ボトム・フラッグ・ウェッジ・トライアングル</div>
@@ -552,7 +614,7 @@
                     <span class="card-level">Intermediate</span>
                 </div>
             </a>
-            <a class="card" href="slides/12.html">
+            <a class="card" href="slides/12.html" data-section="12">
                 <div class="card-num">12</div>
                 <div class="card-title">フィボナッチ</div>
                 <div class="card-desc">リトレースメント・エクステンション・コンフルエンス・SL/TP活用</div>
@@ -561,7 +623,7 @@
                     <span class="card-level">Intermediate</span>
                 </div>
             </a>
-            <a class="card" href="slides/13.html">
+            <a class="card" href="slides/13.html" data-section="13">
                 <div class="card-num">13</div>
                 <div class="card-title">マルチタイムフレーム分析</div>
                 <div class="card-desc">トップダウン分析・タイムフレーム選択・アラインメント</div>
@@ -584,7 +646,7 @@
             <div class="category-badge">6 sections / 53 slides</div>
         </div>
         <div class="cards">
-            <a class="card" href="slides/14.html">
+            <a class="card" href="slides/14.html" data-section="14">
                 <div class="card-num">14</div>
                 <div class="card-title">エリオット波動</div>
                 <div class="card-desc">推進5波・修正3波・波の階層・フィボナッチとの関係</div>
@@ -593,7 +655,7 @@
                     <span class="card-level">Advanced</span>
                 </div>
             </a>
-            <a class="card" href="slides/15.html">
+            <a class="card" href="slides/15.html" data-section="15">
                 <div class="card-num">15</div>
                 <div class="card-title">ハーモニックパターン</div>
                 <div class="card-desc">ABCD・ガートレー・バット・バタフライ・クラブ・PRZ</div>
@@ -602,7 +664,7 @@
                     <span class="card-level">Advanced</span>
                 </div>
             </a>
-            <a class="card" href="slides/16.html">
+            <a class="card" href="slides/16.html" data-section="16">
                 <div class="card-num">16</div>
                 <div class="card-title">ワイコフ理論</div>
                 <div class="card-desc">3つの法則・コンポジットマン・蓄積/分配スキーマティック</div>
@@ -611,7 +673,7 @@
                     <span class="card-level">Advanced</span>
                 </div>
             </a>
-            <a class="card" href="slides/17.html">
+            <a class="card" href="slides/17.html" data-section="17">
                 <div class="card-num">17</div>
                 <div class="card-title">オーダーフロー分析</div>
                 <div class="card-desc">DOM・歩み値・フットプリント・デルタ・アイスバーグ注文</div>
@@ -620,7 +682,7 @@
                     <span class="card-level">Advanced</span>
                 </div>
             </a>
-            <a class="card" href="slides/18.html">
+            <a class="card" href="slides/18.html" data-section="18">
                 <div class="card-num">18</div>
                 <div class="card-title">ボリュームプロファイル</div>
                 <div class="card-desc">POC・Value Area・HVN/LVN・マーケットプロファイル</div>
@@ -629,7 +691,7 @@
                     <span class="card-level">Advanced</span>
                 </div>
             </a>
-            <a class="card" href="slides/19.html">
+            <a class="card" href="slides/19.html" data-section="19">
                 <div class="card-num">19</div>
                 <div class="card-title">インターマーケット分析</div>
                 <div class="card-desc">通貨相関・金利と通貨・コモディティ連動・リスクオン/オフ・DXY</div>
@@ -652,7 +714,7 @@
             <div class="category-badge">4 sections / 37 slides</div>
         </div>
         <div class="cards">
-            <a class="card" href="slides/20.html">
+            <a class="card" href="slides/20.html" data-section="20">
                 <div class="card-num">20</div>
                 <div class="card-title">マクロ経済指標</div>
                 <div class="card-desc">GDP・CPI・NFP・PMI・経済カレンダーの活用法</div>
@@ -661,7 +723,7 @@
                     <span class="card-level">Intermediate</span>
                 </div>
             </a>
-            <a class="card" href="slides/21.html">
+            <a class="card" href="slides/21.html" data-section="21">
                 <div class="card-num">21</div>
                 <div class="card-title">中央銀行政策</div>
                 <div class="card-desc">金利決定・フォワードガイダンス・QE/QT・政策ダイバージェンス</div>
@@ -670,7 +732,7 @@
                     <span class="card-level">Intermediate</span>
                 </div>
             </a>
-            <a class="card" href="slides/22.html">
+            <a class="card" href="slides/22.html" data-section="22">
                 <div class="card-num">22</div>
                 <div class="card-title">地政学リスクとニューストレード</div>
                 <div class="card-desc">地政学イベント・ニュース戦略・高インパクト時のリスク管理</div>
@@ -679,7 +741,7 @@
                     <span class="card-level">Advanced</span>
                 </div>
             </a>
-            <a class="card" href="slides/23.html">
+            <a class="card" href="slides/23.html" data-section="23">
                 <div class="card-num">23</div>
                 <div class="card-title">各国経済プロファイル</div>
                 <div class="card-desc">USD/EUR/JPY/GBP/AUD/CAD/CHF/NZDの経済的特徴</div>
@@ -702,7 +764,7 @@
             <div class="category-badge">2 sections / 17 slides</div>
         </div>
         <div class="cards">
-            <a class="card" href="slides/24.html">
+            <a class="card" href="slides/24.html" data-section="24">
                 <div class="card-num">24</div>
                 <div class="card-title">COTレポートとポジション分析</div>
                 <div class="card-desc">CFTC週次データ・大口投機家ポジション・逆張りシグナル</div>
@@ -711,7 +773,7 @@
                     <span class="card-level">Advanced</span>
                 </div>
             </a>
-            <a class="card" href="slides/25.html">
+            <a class="card" href="slides/25.html" data-section="25">
                 <div class="card-num">25</div>
                 <div class="card-title">センチメント分析</div>
                 <div class="card-desc">リテールセンチメント・VIX・リスクオン/オフ・クレジットスプレッド</div>
@@ -734,7 +796,7 @@
             <div class="category-badge">4 sections / 31 slides</div>
         </div>
         <div class="cards">
-            <a class="card" href="slides/26.html">
+            <a class="card" href="slides/26.html" data-section="26">
                 <div class="card-num">26</div>
                 <div class="card-title">ポジションサイジング</div>
                 <div class="card-desc">1-2%ルール・ロット計算式・スケールイン/アウト</div>
@@ -743,7 +805,7 @@
                     <span class="card-level">Intermediate</span>
                 </div>
             </a>
-            <a class="card" href="slides/27.html">
+            <a class="card" href="slides/27.html" data-section="27">
                 <div class="card-num">27</div>
                 <div class="card-title">リスクリワード比と期待値</div>
                 <div class="card-desc">RRR計算・勝率との関係・期待値・収益シミュレーション</div>
@@ -752,7 +814,7 @@
                     <span class="card-level">Intermediate</span>
                 </div>
             </a>
-            <a class="card" href="slides/28.html">
+            <a class="card" href="slides/28.html" data-section="28">
                 <div class="card-num">28</div>
                 <div class="card-title">SLとTP戦略</div>
                 <div class="card-desc">ATRベースSL・構造ベースSL・部分決済・トレーリングストップ</div>
@@ -761,7 +823,7 @@
                     <span class="card-level">Intermediate</span>
                 </div>
             </a>
-            <a class="card" href="slides/29.html">
+            <a class="card" href="slides/29.html" data-section="29">
                 <div class="card-num">29</div>
                 <div class="card-title">ドローダウン管理</div>
                 <div class="card-desc">回復コスト・予防策・日次/週次上限・エクイティカーブ監視</div>
@@ -784,7 +846,7 @@
             <div class="category-badge">6 sections / 50 slides</div>
         </div>
         <div class="cards">
-            <a class="card" href="slides/30.html">
+            <a class="card" href="slides/30.html" data-section="30">
                 <div class="card-num">30</div>
                 <div class="card-title">感情管理</div>
                 <div class="card-desc">恐怖・欲望・FOMO・リベンジトレード・オーバートレード対策</div>
@@ -793,7 +855,7 @@
                     <span class="card-level">All Levels</span>
                 </div>
             </a>
-            <a class="card" href="slides/31.html">
+            <a class="card" href="slides/31.html" data-section="31">
                 <div class="card-num">31</div>
                 <div class="card-title">認知バイアス</div>
                 <div class="card-desc">確証バイアス・損失回避・アンカリング・後知恵・対策法</div>
@@ -802,7 +864,7 @@
                     <span class="card-level">All Levels</span>
                 </div>
             </a>
-            <a class="card" href="slides/32.html">
+            <a class="card" href="slides/32.html" data-section="32">
                 <div class="card-num">32</div>
                 <div class="card-title">規律とルーティン</div>
                 <div class="card-desc">プレマーケット・エントリーチェックリスト・ジャーナル・レビュー</div>
@@ -811,7 +873,7 @@
                     <span class="card-level">All Levels</span>
                 </div>
             </a>
-            <a class="card" href="slides/33.html">
+            <a class="card" href="slides/33.html" data-section="33">
                 <div class="card-num">33</div>
                 <div class="card-title">トレーディングプラン作成</div>
                 <div class="card-desc">プランの構成要素・リスクルール・運用と改善サイクル</div>
@@ -820,7 +882,7 @@
                     <span class="card-level">All Levels</span>
                 </div>
             </a>
-            <a class="card" href="slides/34.html">
+            <a class="card" href="slides/34.html" data-section="34">
                 <div class="card-num">34</div>
                 <div class="card-title">バックテストとシステム評価</div>
                 <div class="card-desc">手動バックテスト・評価指標・ウォークフォワード・落とし穴</div>
@@ -829,7 +891,7 @@
                     <span class="card-level">Advanced</span>
                 </div>
             </a>
-            <a class="card" href="slides/35.html">
+            <a class="card" href="slides/35.html" data-section="35">
                 <div class="card-num">35</div>
                 <div class="card-title">トレード戦略集</div>
                 <div class="card-desc">ブレイクアウト・プルバック・ミーンリバージョン・VWAP・ORB</div>
@@ -871,6 +933,34 @@
     if (sessionStorage.getItem('urikai_auth') === 'true') {
         document.getElementById('passwordOverlay').classList.add('hidden');
     }
+
+    // Progress tracking
+    function updateProgress() {
+        let done = 0;
+        for (let i = 1; i <= 35; i++) {
+            const num = String(i).padStart(2, '0');
+            const card = document.querySelector('[data-section="' + num + '"]');
+            if (localStorage.getItem('urikai_done_' + num) === 'true') {
+                done++;
+                if (card) {
+                    card.classList.add('completed');
+                    // Add badge if not exists
+                    const meta = card.querySelector('.card-meta');
+                    if (meta && !meta.querySelector('.card-done')) {
+                        const badge = document.createElement('span');
+                        badge.className = 'card-done show';
+                        badge.textContent = '✓ 完了';
+                        meta.appendChild(badge);
+                    }
+                }
+            }
+        }
+        const pct = Math.round((done / 35) * 100);
+        document.getElementById('doneCount').textContent = done;
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('progressPct').textContent = pct + '%';
+    }
+    updateProgress();
 </script>
 
 </body>

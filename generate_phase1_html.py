@@ -4,7 +4,42 @@ import os, html as H
 
 DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "slides")
 
-def wrap(num, title, section_name, total, slides_html, next_title=""):
+def wrap(num, title, section_name, total, slides_html, next_title="", quiz_data=None):
+    """quiz_data = [(question, optA, optB, correct_index_0or1), ...]"""
+    # Quiz slide is inserted before closing
+    quiz_slide_num = total - 1
+    closing_num = total
+    quiz_html = ""
+    quiz_js = ""
+    if quiz_data:
+        qitems = ""
+        for i, (q, a, b, ans) in enumerate(quiz_data):
+            qitems += f'''<div class="q-item" id="qi{i}"><div class="q-text">Q{i+1}. {q}</div>
+<div class="q-opts"><button class="q-btn" onclick="pick({i},0)" id="qb{i}a">{a}</button>
+<button class="q-btn" onclick="pick({i},1)" id="qb{i}b">{b}</button></div></div>'''
+        quiz_html = f'''<div class="slide quiz" data-s="{quiz_slide_num}"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+<div class="quiz-body">{qitems}
+<button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
+<div class="quiz-result" id="qResult"></div></div>
+<div class="ftr">{H.escape(title)} | URIKAI Trading Academy</div></div>'''
+        answers_js = ",".join(str(a) for _,_,_,a in quiz_data)
+        quiz_js = f'''
+const answers=[{answers_js}];const picks={{}};
+function pick(qi,oi){{if(document.getElementById('qSubmit').textContent==='')return;picks[qi]=oi;
+document.getElementById('qb'+qi+'a').classList.toggle('selected',oi===0);
+document.getElementById('qb'+qi+'b').classList.toggle('selected',oi===1);
+if(Object.keys(picks).length===3)document.getElementById('qSubmit').disabled=false;}}
+function submitQuiz(){{let score=0;
+for(let i=0;i<3;i++){{const btns=[document.getElementById('qb'+i+'a'),document.getElementById('qb'+i+'b')];
+btns.forEach(b=>b.disabled=true);
+if(picks[i]===answers[i]){{score++;document.getElementById('qi'+i).classList.add('correct');btns[answers[i]].classList.add('right');}}
+else{{document.getElementById('qi'+i).classList.add('wrong');btns[picks[i]].classList.add('wrongsel');btns[answers[i]].classList.add('right');}}}}
+const r=document.getElementById('qResult');const btn=document.getElementById('qSubmit');
+if(score===3){{r.className='quiz-result pass';r.textContent='全問正解！セクション{num} 受講完了';
+localStorage.setItem('urikai_done_{num}','true');btn.textContent='';btn.style.display='none';}}
+else{{r.className='quiz-result fail';r.textContent=score+'/3 正解 ── 全問正解が必要です';
+btn.textContent='もう一度';btn.onclick=()=>location.reload();}}}}'''
+
     return f'''<!DOCTYPE html>
 <html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>URIKAI - {H.escape(title)}</title><link rel="stylesheet" href="style.css">
@@ -18,6 +53,7 @@ def wrap(num, title, section_name, total, slides_html, next_title=""):
 <div class="sub">{H.escape(section_name)}</div><div class="line"></div>
 <div class="brand">URIKAI Trading Academy</div></div>
 {slides_html}
+{quiz_html}
 <div class="slide cls" data-s="{total}"><h2>End of Section</h2>
 {"<div class='nxt'>Next → "+H.escape(next_title)+"</div>" if next_title else ""}
 <div style="width:120px;height:3px;background:#d4a537;margin:2rem auto"></div>
@@ -30,6 +66,7 @@ document.getElementById('prevBtn').disabled=true;
 document.addEventListener('keydown',e=>{{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);}});
 document.addEventListener('contextmenu',e=>e.preventDefault());
 if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+{quiz_js}
 </script></body></html>'''
 
 def cnt(n, title, body_html, footer=""):
@@ -252,7 +289,12 @@ def gen_01():
              "POINT：規制の目的は投資家保護、市場の透明性確保、不正防止。規制されていないブローカーは避ける。"), "金融市場とは何か")
     sm = summary([("定義","資金の出し手と受け手を結ぶ場"),("4つの機能","価格発見・流動性・リスク移転・資本配分"),("市場構造","一次市場（発行）と二次市場（流通）"),("規制","各国の規制当局が市場の公正性を監督")])
     slides += cnt_col(5, "まとめ", sm, "金融市場とは何か")
-    return wrap("01","金融市場とは何か","金融市場の定義・役割・仕組み",6, slides, "金融市場の種類")
+    quiz = [
+        ("金融市場の最も基本的な役割は？", "資金の出し手と受け手を結びつける", "株価を上昇させる", 0),
+        ("トレーダーが主に参加するのは？", "一次市場（IPO）", "二次市場（流通）", 1),
+        ("金融市場の機能に含まれないものは？", "価格発見", "税金の徴収", 1),
+    ]
+    return wrap("01","金融市場とは何か","金融市場の定義・役割・仕組み",7, slides, "金融市場の種類", quiz)
 
 # ===== Section 02 =====
 def gen_02():
@@ -289,7 +331,12 @@ def gen_02():
              "POINT：個人トレーダーが取引するFXの多くは実質的にCFDの一種。"), "金融市場の種類")
     sm = summary([("FX","世界最大、24時間OTC、低コスト"),("株式","取引所ベース、企業価値への投資"),("債券","金利のベンチマーク、全市場に影響"),("商品","実需と投機、インフレ・地政学に敏感"),("暗号資産","24/7、高ボラ、規制発展途上"),("デリバティブ","先物・オプション・CFD")])
     slides += cnt_col(6, "まとめ", sm, "金融市場の種類")
-    return wrap("02","金融市場の種類","FX・株式・債券・商品・暗号資産・デリバティブ",7, slides, "市場参加者")
+    quiz = [
+        ("世界最大の金融市場は？", "株式市場", "FX（外国為替）市場", 1),
+        ("債券価格と利回りの関係は？", "逆相関（シーソー）", "正相関（連動）", 0),
+        ("CFDとは何か？", "現物を保有して取引する方式", "価格差で損益が確定する差金決済取引", 1),
+    ]
+    return wrap("02","金融市場の種類","FX・株式・債券・商品・暗号資産・デリバティブ",8, slides, "市場参加者", quiz)
 
 # ===== Section 03 =====
 def gen_03():
@@ -318,7 +365,12 @@ def gen_03():
              "POINT：個人トレーダーの最大の強みは「参加しない自由」。好条件のときだけ参加できる。"), "市場参加者")
     sm = summary([("中央銀行","金融政策で市場全体の方向性を決定"),("銀行","インターバンク市場で基準価格を形成"),("ヘッジファンド","積極的な戦略で大きなポジションを構築"),("個人トレーダー","全体の5-6%、機動性と選択の自由が武器")])
     slides += cnt_col(5, "まとめ", sm, "市場参加者")
-    return wrap("03","市場参加者","誰がこの市場で取引しているのか",6, slides, "通貨ペアの基礎")
+    quiz = [
+        ("FX市場で個人トレーダーの取引量は全体の約何%？", "約5-6%", "約30-40%", 0),
+        ("金融政策で市場全体の方向性を左右するのは？", "ヘッジファンド", "中央銀行", 1),
+        ("個人トレーダーの最大の強みは？", "資金力の大きさ", "参加しない自由がある", 1),
+    ]
+    return wrap("03","市場参加者","誰がこの市場で取引しているのか",7, slides, "通貨ペアの基礎", quiz)
 
 # ===== Section 04 =====
 def gen_04():
@@ -343,7 +395,12 @@ def gen_04():
              "POINT：スプレッドは実質的な取引手数料。スキャルピングでは収益に直結する。"), "通貨ペアの基礎")
     sm = summary([("通貨ペア","基軸/決済通貨の組み合わせ、2国間の相対評価"),("分類","メジャー・クロス円・マイナー・エキゾチック"),("Pip","最小価格変動単位、利益/損失の計測単位"),("ロット","取引量の単位、リスク管理の基本"),("スプレッド","Bid-Ask差、実質的な取引コスト")])
     slides += cnt_col(5, "まとめ", sm, "通貨ペアの基礎")
-    return wrap("04","通貨ペアの基礎","FX取引の基本単位を理解する",6, slides, "市場の仕組み")
+    quiz = [
+        ("EUR/USDでEURは何と呼ばれる？", "決済通貨（Quote）", "基軸通貨（Base）", 1),
+        ("USD/JPYが150.00から150.01に動いた場合、何pip？", "1 pip", "10 pips", 0),
+        ("スプレッドとは？", "Ask - Bidの差（取引コスト）", "レバレッジの倍率", 0),
+    ]
+    return wrap("04","通貨ペアの基礎","FX取引の基本単位を理解する",7, slides, "市場の仕組み", quiz)
 
 # ===== Section 05 =====
 def gen_05():
@@ -373,7 +430,12 @@ def gen_05():
             "デイトレーダーは翌日持越さないため基本的にスワップは無関係"]), "市場の仕組み")
     sm = summary([("需給","すべての価格変動は需要と供給で決まる"),("レバレッジ","利益も損失も倍増、管理が生命線"),("取引構造","取引所（株式）vs OTC（FX）"),("スリッページ","注文と約定のズレ、流動性に依存"),("スワップ","ポジション持越し時の金利差調整")])
     slides += cnt_col(5, "まとめ", sm, "市場の仕組み")
-    return wrap("05","市場の仕組み","価格が動く原理と取引構造",6, slides, "注文の種類")
+    quiz = [
+        ("価格が上がる原因は？", "需要 ＞ 供給", "供給 ＞ 需要", 0),
+        ("レバレッジ100倍で1万円の証拠金だと取引可能額は？", "10万円", "100万円", 1),
+        ("マージンコールとは？", "利益確定の通知", "証拠金不足の警告", 1),
+    ]
+    return wrap("05","市場の仕組み","価格が動く原理と取引構造",7, slides, "注文の種類", quiz)
 
 # ===== Section 06 =====
 def gen_06():
@@ -403,7 +465,12 @@ def gen_06():
              "POINT：ストップロスはトレーダーの生命保険。設定しない理由は一切ない。"), "注文の種類")
     sm = summary([("成行注文","即座に約定、確実だがスリッページあり"),("指値注文","有利な価格を指定、約定しない可能性あり"),("逆指値注文","ブレイクアウト用、発動後は成行"),("ストップロス","損失限定、全トレードで必須"),("テイクプロフィット","利益確定の自動化、感情排除")])
     slides += cnt_col(5, "まとめ", sm, "注文の種類")
-    return wrap("06","注文の種類","取引執行の基本操作を理解する",6, slides, "取引セッションと時間帯")
+    quiz = [
+        ("押し目買いに使う注文タイプは？", "Buy Limit", "Buy Stop", 0),
+        ("ストップロス（SL）を設定しないトレードのリスクは？", "少しだけ危険", "リスクが無限大", 1),
+        ("ブレイクアウトエントリーに使う注文は？", "指値注文（Limit）", "逆指値注文（Stop）", 1),
+    ]
+    return wrap("06","注文の種類","取引執行の基本操作を理解する",7, slides, "取引セッションと時間帯", quiz)
 
 # ===== Section 07 =====
 def gen_07():
@@ -427,7 +494,12 @@ def gen_07():
              "POINT：すべての時間帯で同じ戦略は通用しない。参加する時間帯の特性を理解し、適した戦略を選択する。"), "取引セッションと時間帯")
     sm = summary([("24時間市場","3セッションのリレー方式で世界をカバー"),("東京","穏やか、レンジ、JPY/AUD/NZD"),("ロンドン","高ボラ、トレンド、EUR/GBP/CHF"),("ニューヨーク","最大流動性、米指標発表、USD/CAD"),("オーバーラップ","21:00-1:00が1日で最も活発"),("戦略適合","時間帯に合わせた戦略選択が必須")])
     slides += cnt_col(5, "まとめ", sm, "取引セッションと時間帯")
-    return wrap("07","取引セッションと時間帯","市場のリズムを理解する",6, slides)
+    quiz = [
+        ("1日で最も取引が活発な時間帯は？", "東京セッション単独", "ロンドン×NY重複（21:00-1:00）", 1),
+        ("東京セッションの特徴は？", "穏やか、レンジ相場が多い", "トレンドが発生しやすい", 0),
+        ("FX取引量の約38%が行われるのは？", "ロンドン市場", "東京市場", 0),
+    ]
+    return wrap("07","取引セッションと時間帯","市場のリズムを理解する",7, slides, quiz_data=quiz)
 
 # ===== Generate All =====
 sections = [

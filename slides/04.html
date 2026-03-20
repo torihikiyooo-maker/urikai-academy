@@ -4,7 +4,7 @@
 </head><body>
 <div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 04 — 通貨ペアの基礎</span>
 <div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
-<span class="page-info" id="pi">1 / 6</span>
+<span class="page-info" id="pi">1 / 7</span>
 <button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
 <div class="slide-area">
 <div class="slide cover active" data-s="1"><div class="sn">SECTION 04</div><h1>通貨ペアの基礎</h1>
@@ -37,16 +37,43 @@
 <div class="ftr">通貨ペアの基礎 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="5"><div class="hdr"><h2>まとめ</h2></div>
 <div class="body col"><div class='srow'><div class='lbl'>通貨ペア</div><div class='val'>基軸/決済通貨の組み合わせ、2国間の相対評価</div></div><div class='srow'><div class='lbl'>分類</div><div class='val'>メジャー・クロス円・マイナー・エキゾチック</div></div><div class='srow'><div class='lbl'>Pip</div><div class='val'>最小価格変動単位、利益/損失の計測単位</div></div><div class='srow'><div class='lbl'>ロット</div><div class='val'>取引量の単位、リスク管理の基本</div></div><div class='srow'><div class='lbl'>スプレッド</div><div class='val'>Bid-Ask差、実質的な取引コスト</div></div></div>
 <div class="ftr">通貨ペアの基礎 | URIKAI Trading Academy</div></div>
-<div class="slide cls" data-s="6"><h2>End of Section</h2>
+<div class="slide quiz" data-s="6"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+<div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. EUR/USDでEURは何と呼ばれる？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">決済通貨（Quote）</button>
+<button class="q-btn" onclick="pick(0,1)" id="qb0b">基軸通貨（Base）</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. USD/JPYが150.00から150.01に動いた場合、何pip？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(1,0)" id="qb1a">1 pip</button>
+<button class="q-btn" onclick="pick(1,1)" id="qb1b">10 pips</button></div></div><div class="q-item" id="qi2"><div class="q-text">Q3. スプレッドとは？</div>
+<div class="q-opts"><button class="q-btn" onclick="pick(2,0)" id="qb2a">Ask - Bidの差（取引コスト）</button>
+<button class="q-btn" onclick="pick(2,1)" id="qb2b">レバレッジの倍率</button></div></div>
+<button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
+<div class="quiz-result" id="qResult"></div></div>
+<div class="ftr">通貨ペアの基礎 | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="7"><h2>End of Section</h2>
 <div class='nxt'>Next → 市場の仕組み</div>
 <div style="width:120px;height:3px;background:#d4a537;margin:2rem auto"></div>
 <div style="color:#8b949e;font-size:0.85rem">URIKAI Trading Academy</div></div>
 </div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let c=1;const t=6;
+let c=1;const t=7;
 function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
 document.getElementById('prevBtn').disabled=true;
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
 document.addEventListener('contextmenu',e=>e.preventDefault());
 if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+
+const answers=[1,0,0];const picks={};
+function pick(qi,oi){if(document.getElementById('qSubmit').textContent==='')return;picks[qi]=oi;
+document.getElementById('qb'+qi+'a').classList.toggle('selected',oi===0);
+document.getElementById('qb'+qi+'b').classList.toggle('selected',oi===1);
+if(Object.keys(picks).length===3)document.getElementById('qSubmit').disabled=false;}
+function submitQuiz(){let score=0;
+for(let i=0;i<3;i++){const btns=[document.getElementById('qb'+i+'a'),document.getElementById('qb'+i+'b')];
+btns.forEach(b=>b.disabled=true);
+if(picks[i]===answers[i]){score++;document.getElementById('qi'+i).classList.add('correct');btns[answers[i]].classList.add('right');}
+else{document.getElementById('qi'+i).classList.add('wrong');btns[picks[i]].classList.add('wrongsel');btns[answers[i]].classList.add('right');}}
+const r=document.getElementById('qResult');const btn=document.getElementById('qSubmit');
+if(score===3){r.className='quiz-result pass';r.textContent='全問正解！セクション04 受講完了';
+localStorage.setItem('urikai_done_04','true');btn.textContent='';btn.style.display='none';}
+else{r.className='quiz-result fail';r.textContent=score+'/3 正解 ── 全問正解が必要です';
+btn.textContent='もう一度';btn.onclick=()=>location.reload();}}
 </script></body></html>
