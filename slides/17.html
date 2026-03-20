@@ -12,23 +12,32 @@
 <div class="brand">URIKAI Trading Academy</div></div>
 <div class="slide cnt" data-s="2"><div class="hdr"><h2>DOM・歩み値・フットプリント</h2></div>
 <div class="body"><div class='txt'><ul><li><strong>DOM（板情報）</strong>＝各価格の指値注文量。サポート/レジスタンスの実態</li><li><strong>歩み値</strong>＝実際の約定データ。アグレッシブな売買を検知</li><li><strong>フットプリント</strong>＝ローソク足内の売買量を分解。デルタ分析</li><li><strong>累積デルタ</strong>のダイバージェンス＝反転の早期警告</li><li>ツール：Bookmap、Sierra Chart、ATAS、Jigsaw</li></ul><div class='pbox'>POINT：価格上昇中に累積デルタ下降＝買いの勢い弱体化。反転警告として機能する。</div></div>
-<div class="vis"><svg viewBox="0 0 500 260" width="100%" style="max-width:620px">
-<text x="130" y="20" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">板情報（DOM）</text>
-<rect x="30" y="30" width="200" height="200" rx="8" fill="#f8f9fa" stroke="#ddd" stroke-width="1"/>
-<rect x="40" y="45" width="80" height="22" rx="3" fill="#27ae60" opacity="0.7"/><text x="80" y="61" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">120 lot</text><text x="145" y="61" font-size="12" fill="#555">1.0805</text>
-<rect x="40" y="72" width="110" height="22" rx="3" fill="#27ae60" opacity="0.7"/><text x="95" y="88" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">180 lot</text><text x="175" y="88" font-size="12" fill="#555">1.0804</text>
-<rect x="40" y="99" width="150" height="22" rx="3" fill="#27ae60" opacity="0.9"/><text x="115" y="115" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">250 lot</text><text x="205" y="115" font-size="12" fill="#555" font-weight="700">1.0803</text>
-<rect x="40" y="130" width="90" height="22" rx="3" fill="#c0392b" opacity="0.7"/><text x="85" y="146" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">140 lot</text><text x="145" y="146" font-size="12" fill="#555">1.0802</text>
-<rect x="40" y="157" width="70" height="22" rx="3" fill="#c0392b" opacity="0.7"/><text x="75" y="173" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">100 lot</text><text x="145" y="173" font-size="12" fill="#555">1.0801</text>
-<rect x="40" y="184" width="50" height="22" rx="3" fill="#c0392b" opacity="0.5"/><text x="65" y="200" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">60 lot</text><text x="145" y="200" font-size="12" fill="#555">1.0800</text>
-<text x="80" y="228" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="600">買い（Bid）</text>
-<text x="165" y="228" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="600">売り（Ask）</text>
-<rect x="270" y="30" width="200" height="100" rx="8" fill="#e8f0fe" stroke="#2e86c1" stroke-width="1"/>
-<text x="370" y="55" text-anchor="middle" font-size="13" fill="#0a2f5c" font-weight="700">オーダーフローの要点</text>
-<text x="370" y="78" text-anchor="middle" font-size="11" fill="#555">バーの長さ ＝ 注文量</text>
-<text x="370" y="98" text-anchor="middle" font-size="11" fill="#555">大量注文 ＝ S/Rの存在</text>
-<text x="370" y="118" text-anchor="middle" font-size="11" fill="#555">リアルタイムの需給を可視化</text>
-</svg></div></div>
+<div class="vis"><svg viewBox="0 0 520 260" width="100%" style="max-width:800px"><defs><filter id="g17"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<rect x="0" y="0" width="520" height="260" rx="8" fill="#131c2b"/>
+<line x1="30" y1="50" x2="490" y2="50" stroke="#1e3045" stroke-width="0.5"/>
+<line x1="30" y1="100" x2="490" y2="100" stroke="#1e3045" stroke-width="0.5"/>
+<line x1="30" y1="150" x2="490" y2="150" stroke="#1e3045" stroke-width="0.5"/>
+<line x1="30" y1="200" x2="490" y2="200" stroke="#1e3045" stroke-width="0.5"/>
+<text x="140" y="22" text-anchor="middle" font-size="14" fill="#d4a537" font-weight="700">板情報（DOM）</text>
+<rect x="25" y="32" width="230" height="200" rx="6" fill="#0f1923" stroke="#1e3045" stroke-width="1"/>
+<text x="140" y="48" text-anchor="middle" font-size="10" fill="#556">Bid (買い)                Ask (売り)</text>
+<!-- Bid bars -->
+<rect x="72" y="58" width="60" height="18" rx="2" fill="#27ae60" opacity="0.6"/><text x="102" y="71" text-anchor="middle" font-size="9" fill="#fff">120</text><text x="155" y="71" font-size="10" fill="#8b949e">1.0805</text>
+<rect x="52" y="80" width="80" height="18" rx="2" fill="#27ae60" opacity="0.7"/><text x="92" y="93" text-anchor="middle" font-size="9" fill="#fff">180</text><text x="155" y="93" font-size="10" fill="#8b949e">1.0804</text>
+<rect x="32" y="102" width="100" height="18" rx="2" fill="#27ae60" opacity="0.85"/><text x="82" y="115" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">250</text><text x="155" y="115" font-size="10" fill="#d4a537" font-weight="700">1.0803</text>
+<!-- Ask bars -->
+<rect x="155" y="128" width="70" height="18" rx="2" fill="#e74c3c" opacity="0.6"/><text x="190" y="141" text-anchor="middle" font-size="9" fill="#fff">140</text><text x="105" y="141" font-size="10" fill="#8b949e" text-anchor="end">1.0802</text>
+<rect x="155" y="150" width="55" height="18" rx="2" fill="#e74c3c" opacity="0.5"/><text x="182" y="163" text-anchor="middle" font-size="9" fill="#fff">100</text><text x="105" y="163" font-size="10" fill="#8b949e" text-anchor="end">1.0801</text>
+<rect x="155" y="172" width="35" height="18" rx="2" fill="#e74c3c" opacity="0.4"/><text x="172" y="185" text-anchor="middle" font-size="9" fill="#fff">60</text><text x="105" y="185" font-size="10" fill="#8b949e" text-anchor="end">1.0800</text>
+<!-- Right panel -->
+<rect x="280" y="32" width="210" height="95" rx="6" fill="#1e3045"/>
+<text x="385" y="55" text-anchor="middle" font-size="13" fill="#d4a537" font-weight="700">オーダーフローの要点</text>
+<text x="385" y="78" text-anchor="middle" font-size="11" fill="#8b949e">バーの長さ ＝ 注文量</text>
+<text x="385" y="98" text-anchor="middle" font-size="11" fill="#8b949e">大量注文 ＝ S/Rの存在</text>
+<text x="385" y="118" text-anchor="middle" font-size="11" fill="#8b949e">リアルタイムの需給を可視化</text>
+<rect x="280" y="140" width="210" height="55" rx="6" fill="#0a2f5c" opacity="0.5"/>
+<text x="385" y="162" text-anchor="middle" font-size="11" fill="#d4a537" font-weight="600">1.0803に250ロットの買い注文</text>
+<text x="385" y="182" text-anchor="middle" font-size="10" fill="#8b949e">→ 強力なサポートの存在を示唆</text></svg></div></div>
 <div class="ftr">オーダーフロー | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>まとめ</h2></div>
 <div class="body col"><div class='srow'><div class='lbl'>概念</div><div class='val'>リアルタイムの売買データを直接分析</div></div><div class='srow'><div class='lbl'>DOM</div><div class='val'>各価格の注文量、S/Rの実態</div></div><div class='srow'><div class='lbl'>フットプリント</div><div class='val'>ローソク足内の売買量分解</div></div><div class='srow'><div class='lbl'>注意</div><div class='val'>スプーフィング存在、FXは制限あり</div></div></div>
 <div class="ftr">オーダーフロー | URIKAI Trading Academy</div></div>
