@@ -51,11 +51,16 @@
     }
 
     function initEditMode() {
+        // SVG elements
         document.querySelectorAll('svg').forEach(svg => {
-            // Make all text, rect (with text nearby), and labeled groups draggable
             svg.querySelectorAll('text, rect, circle, line, polyline, polygon, path').forEach(el => {
                 makeEditable(el);
             });
+        });
+        // HTML overlay labels (absolute positioned divs over images)
+        document.querySelectorAll('.vis div[style*="position:absolute"], .vis div[style*="position: absolute"]').forEach(el => {
+            el.style.cursor = 'move';
+            el.setAttribute('data-html-editable', 'true');
         });
     }
 
@@ -206,9 +211,81 @@
         }
     });
 
-    // Mouse events
+    // HTML overlay drag support
+    let htmlDragging = null;
+    let htmlStartX = 0, htmlStartY = 0;
+    let htmlOrigLeft = 0, htmlOrigTop = 0;
+
+    function onHtmlMouseDown(e) {
+        if (!editMode) return;
+        const el = e.target.closest('[data-html-editable]');
+        if (!el) return;
+        e.preventDefault();
+        e.stopPropagation();
+        htmlDragging = el;
+        htmlStartX = e.clientX;
+        htmlStartY = e.clientY;
+
+        const style = el.style;
+        // Parse current position
+        if (style.left) htmlOrigLeft = parseFloat(style.left);
+        else if (style.right) htmlOrigLeft = -parseFloat(style.right);
+        if (style.top) htmlOrigTop = parseFloat(style.top);
+        else if (style.bottom) htmlOrigTop = -parseFloat(style.bottom);
+
+        // Store whether it uses left/right/top/bottom
+        htmlDragging._usesRight = !!style.right && !style.left;
+        htmlDragging._usesBottom = !!style.bottom && !style.top;
+    }
+
+    function onHtmlMouseMove(e) {
+        if (!htmlDragging || !editMode) return;
+        e.preventDefault();
+
+        const parent = htmlDragging.parentElement;
+        const parentRect = parent.getBoundingClientRect();
+        const dx = e.clientX - htmlStartX;
+        const dy = e.clientY - htmlStartY;
+
+        // Convert pixel delta to percentage of parent
+        const dxPct = (dx / parentRect.width) * 100;
+        const dyPct = (dy / parentRect.height) * 100;
+
+        const newLeft = htmlOrigLeft + dxPct;
+        const newTop = htmlOrigTop + dyPct;
+
+        if (htmlDragging._usesRight) {
+            htmlDragging.style.right = (-newLeft).toFixed(1) + '%';
+            htmlDragging.style.left = '';
+        } else {
+            htmlDragging.style.left = newLeft.toFixed(1) + '%';
+            htmlDragging.style.right = '';
+        }
+
+        if (htmlDragging._usesBottom) {
+            htmlDragging.style.bottom = (-newTop).toFixed(1) + '%';
+            htmlDragging.style.top = '';
+        } else {
+            htmlDragging.style.top = newTop.toFixed(1) + '%';
+            htmlDragging.style.bottom = '';
+        }
+
+        const text = htmlDragging.textContent.substring(0, 15);
+        showIndicator(`"${text}" → left:${newLeft.toFixed(1)}% top:${newTop.toFixed(1)}%`, '#0a2f5c');
+    }
+
+    function onHtmlMouseUp() {
+        htmlDragging = null;
+    }
+
+    // Mouse events - SVG
     document.addEventListener('mousedown', onMouseDown);
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
+
+    // Mouse events - HTML overlays
+    document.addEventListener('mousedown', onHtmlMouseDown, true);
+    document.addEventListener('mousemove', onHtmlMouseMove);
+    document.addEventListener('mouseup', onHtmlMouseUp);
 
 })();
