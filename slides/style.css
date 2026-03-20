@@ -47,9 +47,23 @@ body { font-family:'Segoe UI','Meiryo UI','Hiragino Sans',sans-serif; background
 .ftr { background:var(--dark); padding:0.25rem 2rem; font-size:0.7rem; color:var(--text-muted); border-top:2px solid var(--accent); }
 
 /* Closing */
-.cls { background:linear-gradient(135deg,#1a1a2e,#0a2f5c); flex-direction:column; align-items:center; justify-content:center; text-align:center; }
-.cls h2 { color:var(--accent); font-size:2rem; }
-.cls .nxt { color:var(--text-muted); font-size:1.1rem; margin-top:1rem; }
+.cls { background:linear-gradient(135deg,#1a1a2e,#0a2f5c); flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:1.5rem; }
+.cls h2 { color:var(--accent); font-size:3.5rem; font-weight:800; }
+.cls .cls-buttons { display:flex; gap:1.5rem; margin-top:1rem; }
+.cls .cls-btn {
+    display:inline-block; padding:1rem 2.5rem; border-radius:12px;
+    font-size:1.3rem; font-weight:700; text-decoration:none;
+    transition:all 0.2s; cursor:pointer;
+}
+.cls .cls-btn-next {
+    background:linear-gradient(135deg,#d4a537,#c49a2e); color:#0a2f5c;
+    box-shadow:0 4px 16px rgba(212,165,55,0.3);
+}
+.cls .cls-btn-next:hover { transform:translateY(-2px); box-shadow:0 6px 24px rgba(212,165,55,0.4); }
+.cls .cls-btn-home {
+    background:rgba(255,255,255,0.1); color:#e6edf3; border:2px solid rgba(255,255,255,0.2);
+}
+.cls .cls-btn-home:hover { background:rgba(255,255,255,0.2); transform:translateY(-2px); }
 
 /* Summary */
 .srow { display:flex; gap:1rem; align-items:center; margin:0.4rem 0; }

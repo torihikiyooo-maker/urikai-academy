@@ -54,10 +54,13 @@ btn.textContent='もう一度';btn.onclick=()=>location.reload();}}}}'''
 <div class="brand">URIKAI Trading Academy</div></div>
 {slides_html}
 {quiz_html}
-<div class="slide cls" data-s="{total}"><h2>End of Section</h2>
-{"<div class='nxt'>Next → "+H.escape(next_title)+"</div>" if next_title else ""}
-<div style="width:120px;height:3px;background:#d4a537;margin:2rem auto"></div>
-<div style="color:#8b949e;font-size:0.85rem">URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="{total}"><h2>Section {num} Complete</h2>
+<div class="cls-buttons">
+{"<a class='cls-btn cls-btn-next' href='"+str(int(num)+1).zfill(2)+".html'>Next → "+H.escape(next_title)+"</a>" if next_title else ""}
+<a class="cls-btn cls-btn-home" href="../index.html">Home</a>
+</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:1rem auto"></div>
+<div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
 </div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
 let c=1;const t={total};
