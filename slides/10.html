@@ -11,7 +11,21 @@
 <div class="sub">Technical Indicators ── 価格データを数値化する</div><div class="line"></div>
 <div class="brand">URIKAI Trading Academy</div></div>
 <div class="slide cnt" data-s="2"><div class="hdr"><h2>インジケーターの分類</h2></div>
-<div class="body"><div class='txt'><ul><li>価格・出来高データに数学的計算を適用して導出される<strong>補助指標</strong></li><li><strong>先行指標（Leading）</strong>── 価格変動の前にシグナル（RSI、ストキャス）</li><li><strong>遅行指標（Lagging）</strong>── 価格変動の後に確認（MA、MACD）</li><li>先行指標：早いがダマシ多い / 遅行指標：遅いが信頼性高い</li><li>同じ種類のインジケーターを重複させない（RSI＋ストキャスは冗長）</li></ul><div class='pbox'>POINT：インジケーターは「確認ツール」であり、単独のエントリーシグナルではない。</div></div></div>
+<div class="body"><div class='txt'><ul><li>価格・出来高データに数学的計算を適用して導出される<strong>補助指標</strong></li><li><strong>先行指標（Leading）</strong>── 価格変動の前にシグナル（RSI、ストキャス）</li><li><strong>遅行指標（Lagging）</strong>── 価格変動の後に確認（MA、MACD）</li><li>先行指標：早いがダマシ多い / 遅行指標：遅いが信頼性高い</li><li>同じ種類のインジケーターを重複させない（RSI＋ストキャスは冗長）</li></ul><div class='pbox'>POINT：インジケーターは「確認ツール」であり、単独のエントリーシグナルではない。</div></div>
+<div class="vis"><svg viewBox="0 0 500 300" width="100%" style="max-width:620px">
+<rect x="30" y="10" width="440" height="170" rx="8" fill="#f8f9fa" stroke="#ddd" stroke-width="1"/>
+<text x="50" y="30" font-size="11" fill="#888">価格チャート</text>
+<polyline points="50,120 90,100 120,130 160,90 200,110 240,70 280,85 320,60 360,75 400,50 440,65" stroke="#2c3e50" stroke-width="2" fill="none"/>
+<polyline points="50,130 90,120 120,125 160,110 200,115 240,100 280,95 320,85 360,80 400,75 440,70" stroke="#d4a537" stroke-width="1.5" fill="none" stroke-dasharray="4,2"/>
+<text x="445" y="68" font-size="10" fill="#d4a537">20 EMA</text>
+<polyline points="50,140 90,135 120,132 160,125 200,120 240,115 280,110 320,105 360,100 400,95 440,90" stroke="#c0392b" stroke-width="1.5" fill="none" stroke-dasharray="4,2"/>
+<text x="445" y="88" font-size="10" fill="#c0392b">200 SMA</text>
+<rect x="30" y="195" width="440" height="95" rx="8" fill="#f8f9fa" stroke="#ddd" stroke-width="1"/>
+<text x="50" y="215" font-size="11" fill="#888">RSI (14)</text>
+<line x1="50" y1="225" x2="450" y2="225" stroke="#c0392b" stroke-width="0.8" stroke-dasharray="3,3"/><text x="455" y="228" font-size="9" fill="#c0392b">70</text>
+<line x1="50" y1="260" x2="450" y2="260" stroke="#27ae60" stroke-width="0.8" stroke-dasharray="3,3"/><text x="455" y="263" font-size="9" fill="#27ae60">30</text>
+<polyline points="50,250 90,240 120,255 160,230 200,245 240,220 280,225 320,215 360,228 400,222 440,232" stroke="#8e44ad" stroke-width="2" fill="none"/>
+</svg></div></div>
 <div class="ftr">テクニカルインジケーター | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>移動平均線（MA）・RSI</h2></div>
 <div class="body"><div class='txt'><ul><li><strong>SMA</strong>（単純平均）vs <strong>EMA</strong>（直近重視で反応が速い）</li><li>期間：<strong>20</strong>（短期）、<strong>50</strong>（中期）、<strong>200</strong>（長期）</li><li><strong>ゴールデンクロス</strong>＝短期MAが長期MAを上抜け → 上昇シグナル</li><li><strong>RSI</strong>：70以上＝買われすぎ、30以下＝売られすぎ</li><li><strong>RSIダイバージェンス</strong>：価格は高値更新なのにRSIは下降 → 弱体化警告</li></ul></div></div>
 <div class="ftr">テクニカルインジケーター | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="4"><div class="hdr"><h2>MACD・ボリンジャーバンド・ATR</h2></div>
