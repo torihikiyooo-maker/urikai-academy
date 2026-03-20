@@ -12,89 +12,205 @@
 <div class="brand">URIKAI Trading Academy</div></div>
 <div class="slide cnt" data-s="2"><div class="hdr"><h2>サポートとレジスタンスの定義</h2></div>
 <div class="body"><div class='txt'><ul><li><strong>サポート（支持線）</strong>── 価格の下落を食い止める価格帯。買い注文が集中</li><li><strong>レジスタンス（抵抗線）</strong>── 価格の上昇を阻む価格帯。売り注文が集中</li><li>「線」ではなく<strong>「ゾーン」</strong>として捉えることが重要</li><li>過去に何度も反発した価格帯ほど強いS/Rとなる</li><li>すべてのテクニカル分析の<strong>土台</strong>となる最重要概念</li></ul><div class='pbox'>POINT：S/Rはピンポイントの線ではなくゾーン。ピップ単位の精度を求めると誤判断につながる。</div></div>
-<div class="vis"><svg viewBox="0 0 500 300" width="100%" style="max-width:620px">
-<line x1="40" y1="20" x2="40" y2="280" stroke="#888" stroke-width="1.5"/>
-<line x1="40" y1="280" x2="480" y2="280" stroke="#888" stroke-width="1.5"/>
-<line x1="40" y1="80" x2="460" y2="80" stroke="#c0392b" stroke-width="2" stroke-dasharray="8,4"/>
-<text x="465" y="78" font-size="13" fill="#c0392b" font-weight="700">レジスタンス</text>
-<line x1="40" y1="200" x2="460" y2="200" stroke="#27ae60" stroke-width="2" stroke-dasharray="8,4"/>
-<text x="465" y="198" font-size="13" fill="#27ae60" font-weight="700">サポート</text>
-<polyline points="60,220 100,190 130,210 170,180 200,205 240,85 270,100 300,75 330,95 360,82 400,90 430,78" stroke="#2e86c1" stroke-width="2.5" fill="none"/>
-<circle cx="240" cy="85" r="6" fill="#c0392b"/><text x="248" y="72" font-size="11" fill="#c0392b" font-weight="600">反発</text>
-<circle cx="300" cy="75" r="6" fill="#c0392b"/><text x="308" y="62" font-size="11" fill="#c0392b" font-weight="600">反発</text>
-<circle cx="100" cy="190" r="6" fill="#27ae60"/><text x="108" y="185" font-size="11" fill="#27ae60" font-weight="600">反発</text>
-<circle cx="200" cy="205" r="6" fill="#27ae60"/><text x="208" y="222" font-size="11" fill="#27ae60" font-weight="600">反発</text>
-<rect x="35" y="70" width="430" height="140" fill="#2e86c1" opacity="0.04" rx="4"/>
-<text x="260" y="150" text-anchor="middle" font-size="14" fill="#555" font-weight="600">レンジ（取引ゾーン）</text>
+<div class="vis"><svg viewBox="0 0 520 310" width="100%" style="max-width:650px">
+<defs>
+<linearGradient id="gridBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a2332"/><stop offset="100%" stop-color="#0f1923"/></linearGradient>
+<linearGradient id="resZone" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e74c3c" stop-opacity="0.15"/><stop offset="100%" stop-color="#e74c3c" stop-opacity="0.03"/></linearGradient>
+<linearGradient id="supZone" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#27ae60" stop-opacity="0.03"/><stop offset="100%" stop-color="#27ae60" stop-opacity="0.15"/></linearGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- Chart background -->
+<rect x="0" y="0" width="520" height="310" rx="8" fill="url(#gridBg)"/>
+<!-- Grid lines -->
+<line x1="40" y1="50" x2="490" y2="50" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="100" x2="490" y2="100" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="150" x2="490" y2="150" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="200" x2="490" y2="200" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="250" x2="490" y2="250" stroke="#1e3045" stroke-width="0.5"/>
+<line x1="100" y1="30" x2="100" y2="280" stroke="#1e3045" stroke-width="0.5"/><line x1="170" y1="30" x2="170" y2="280" stroke="#1e3045" stroke-width="0.5"/><line x1="240" y1="30" x2="240" y2="280" stroke="#1e3045" stroke-width="0.5"/><line x1="310" y1="30" x2="310" y2="280" stroke="#1e3045" stroke-width="0.5"/><line x1="380" y1="30" x2="380" y2="280" stroke="#1e3045" stroke-width="0.5"/><line x1="450" y1="30" x2="450" y2="280" stroke="#1e3045" stroke-width="0.5"/>
+<!-- Resistance zone -->
+<rect x="40" y="68" width="450" height="24" fill="url(#resZone)" rx="2"/>
+<line x1="40" y1="80" x2="490" y2="80" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.8"/>
+<rect x="460" y="68" width="55" height="20" rx="4" fill="#e74c3c" opacity="0.9"/><text x="488" y="83" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">抵抗帯</text>
+<!-- Support zone -->
+<rect x="40" y="205" width="450" height="24" fill="url(#supZone)" rx="2"/>
+<line x1="40" y1="215" x2="490" y2="215" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.8"/>
+<rect x="460" y="208" width="55" height="20" rx="4" fill="#27ae60" opacity="0.9"/><text x="488" y="223" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">支持帯</text>
+<!-- Candlesticks -->
+<!-- Near support - bullish candles bouncing -->
+<line x1="60" y1="230" x2="60" y2="212" stroke="#27ae60" stroke-width="1"/><rect x="55" y="218" width="10" height="12" fill="#27ae60" rx="1"/>
+<line x1="78" y1="240" x2="78" y2="195" stroke="#27ae60" stroke-width="1"/><rect x="73" y="210" width="10" height="25" fill="#27ae60" rx="1"/>
+<line x1="96" y1="225" x2="96" y2="185" stroke="#e74c3c" stroke-width="1"/><rect x="91" y="190" width="10" height="25" fill="#e74c3c" rx="1"/>
+<line x1="114" y1="213" x2="114" y2="170" stroke="#27ae60" stroke-width="1"/><rect x="109" y="185" width="10" height="25" fill="#27ae60" rx="1"/>
+<line x1="132" y1="220" x2="132" y2="160" stroke="#27ae60" stroke-width="1"/><rect x="127" y="175" width="10" height="35" fill="#27ae60" rx="1"/>
+<!-- Rise -->
+<line x1="150" y1="190" x2="150" y2="145" stroke="#27ae60" stroke-width="1"/><rect x="145" y="150" width="10" height="30" fill="#27ae60" rx="1"/>
+<line x1="168" y1="160" x2="168" y2="120" stroke="#27ae60" stroke-width="1"/><rect x="163" y="125" width="10" height="28" fill="#27ae60" rx="1"/>
+<line x1="186" y1="135" x2="186" y2="100" stroke="#27ae60" stroke-width="1"/><rect x="181" y="105" width="10" height="22" fill="#27ae60" rx="1"/>
+<!-- Hit resistance -->
+<line x1="204" y1="110" x2="204" y2="78" stroke="#27ae60" stroke-width="1"/><rect x="199" y="82" width="10" height="22" fill="#27ae60" rx="1"/>
+<line x1="222" y1="95" x2="222" y2="75" stroke="#e74c3c" stroke-width="1"/><rect x="217" y="78" width="10" height="15" fill="#e74c3c" rx="1"/>
+<line x1="240" y1="82" x2="240" y2="98" stroke="#e74c3c" stroke-width="1"/><rect x="235" y="82" width="10" height="12" fill="#e74c3c" rx="1"/>
+<!-- Fall from resistance -->
+<line x1="258" y1="88" x2="258" y2="115" stroke="#e74c3c" stroke-width="1"/><rect x="253" y="90" width="10" height="20" fill="#e74c3c" rx="1"/>
+<line x1="276" y1="105" x2="276" y2="140" stroke="#e74c3c" stroke-width="1"/><rect x="271" y="110" width="10" height="25" fill="#e74c3c" rx="1"/>
+<line x1="294" y1="130" x2="294" y2="160" stroke="#e74c3c" stroke-width="1"/><rect x="289" y="135" width="10" height="20" fill="#e74c3c" rx="1"/>
+<!-- Back to support -->
+<line x1="312" y1="150" x2="312" y2="185" stroke="#e74c3c" stroke-width="1"/><rect x="307" y="155" width="10" height="25" fill="#e74c3c" rx="1"/>
+<line x1="330" y1="175" x2="330" y2="218" stroke="#e74c3c" stroke-width="1"/><rect x="325" y="180" width="10" height="30" fill="#e74c3c" rx="1"/>
+<!-- Bounce at support again -->
+<line x1="348" y1="225" x2="348" y2="195" stroke="#27ae60" stroke-width="1"/><rect x="343" y="200" width="10" height="20" fill="#27ae60" rx="1"/>
+<line x1="366" y1="215" x2="366" y2="175" stroke="#27ae60" stroke-width="1"/><rect x="361" y="185" width="10" height="25" fill="#27ae60" rx="1"/>
+<line x1="384" y1="195" x2="384" y2="155" stroke="#27ae60" stroke-width="1"/><rect x="379" y="160" width="10" height="28" fill="#27ae60" rx="1"/>
+<!-- Rising again -->
+<line x1="402" y1="170" x2="402" y2="130" stroke="#27ae60" stroke-width="1"/><rect x="397" y="135" width="10" height="28" fill="#27ae60" rx="1"/>
+<line x1="420" y1="145" x2="420" y2="105" stroke="#27ae60" stroke-width="1"/><rect x="415" y="110" width="10" height="28" fill="#27ae60" rx="1"/>
+<line x1="438" y1="120" x2="438" y2="85" stroke="#27ae60" stroke-width="1"/><rect x="433" y="88" width="10" height="25" fill="#27ae60" rx="1"/>
+<!-- Glow markers on bounce points -->
+<circle cx="78" cy="215" r="10" fill="#27ae60" opacity="0.2" filter="url(#glow)"/><circle cx="78" cy="215" r="4" fill="#27ae60"/>
+<circle cx="348" cy="215" r="10" fill="#27ae60" opacity="0.2" filter="url(#glow)"/><circle cx="348" cy="215" r="4" fill="#27ae60"/>
+<circle cx="222" cy="80" r="10" fill="#e74c3c" opacity="0.2" filter="url(#glow)"/><circle cx="222" cy="80" r="4" fill="#e74c3c"/>
+<circle cx="438" cy="85" r="10" fill="#e74c3c" opacity="0.2" filter="url(#glow)"/><circle cx="438" cy="85" r="4" fill="#e74c3c"/>
+<!-- Labels -->
+<rect x="58" y="240" width="65" height="18" rx="3" fill="#27ae60" opacity="0.3"/><text x="90" y="254" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="600">サポート反発</text>
+<rect x="328" y="240" width="65" height="18" rx="3" fill="#27ae60" opacity="0.3"/><text x="360" y="254" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="600">サポート反発</text>
+<rect x="200" y="55" width="70" height="18" rx="3" fill="#e74c3c" opacity="0.3"/><text x="235" y="68" text-anchor="middle" font-size="10" fill="#e74c3c" font-weight="600">レジスタンス反発</text>
+<!-- Price labels on Y axis -->
+<text x="35" y="84" text-anchor="end" font-size="9" fill="#556">1.0950</text>
+<text x="35" y="150" text-anchor="end" font-size="9" fill="#556">1.0900</text>
+<text x="35" y="219" text-anchor="end" font-size="9" fill="#556">1.0850</text>
+<rect x="140" y="288" width="240" height="18" rx="4" fill="#1e3045"/>
+<text x="260" y="301" text-anchor="middle" font-size="10" fill="#8b949e">サポートとレジスタンスの間で価格が推移する</text>
 </svg></div></div>
 <div class="ftr">サポート&レジスタンス | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>水平S/R・トレンドライン・チャネル</h2></div>
 <div class="body"><div class='txt'><ul><li><strong>水平S/R</strong>── 過去の高値・安値、複数回タッチされた価格帯</li><li><strong>ラウンドナンバー</strong>（1.0000, 150.00等）＝ 心理的S/R</li><li><strong>上昇トレンドライン</strong>── 安値と安値を結ぶ線（サポート）</li><li><strong>下降トレンドライン</strong>── 高値と高値を結ぶ線（レジスタンス）</li><li><strong>チャネル</strong>── トレンドラインと平行線の間の価格帯</li><li>上位時間軸のS/Rほど強い：<strong>週足 ＞ 日足 ＞ 4H ＞ 1H</strong></li></ul></div>
-<div class="vis"><svg viewBox="0 0 500 280" width="100%" style="max-width:620px">
-<text x="120" y="20" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">上昇トレンドライン</text>
-<!-- Trendline aligned to swing lows -->
-<line x1="40" y1="248" x2="195" y2="165" stroke="#27ae60" stroke-width="2.5"/>
-<!-- Price zigzag: lows touch the trendline exactly -->
-<polyline points="40,248 65,165 85,224 115,138 135,197 165,108 185,170 210,80" stroke="#2c3e50" stroke-width="2" fill="none"/>
-<!-- Touch points on trendline (aligned to lows) -->
-<circle cx="40" cy="248" r="5" fill="#27ae60"/><circle cx="85" cy="224" r="5" fill="#27ae60"/><circle cx="135" cy="197" r="5" fill="#27ae60"/><circle cx="185" cy="170" r="5" fill="#27ae60"/>
-<text x="42" y="268" font-size="10" fill="#27ae60" font-weight="600">タッチ1</text>
-<text x="87" y="240" font-size="10" fill="#27ae60" font-weight="600">タッチ2</text>
-<text x="137" y="213" font-size="10" fill="#27ae60" font-weight="600">タッチ3</text>
-<text x="187" y="186" font-size="10" fill="#27ae60" font-weight="600">タッチ4</text>
+<div class="vis"><svg viewBox="0 0 520 280" width="100%" style="max-width:650px">
+<defs>
+<linearGradient id="gridBg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a2332"/><stop offset="100%" stop-color="#0f1923"/></linearGradient>
+<filter id="gl2"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect x="0" y="0" width="520" height="280" rx="8" fill="url(#gridBg2)"/>
+<!-- Grid -->
+<line x1="40" y1="50" x2="490" y2="50" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="100" x2="490" y2="100" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="150" x2="490" y2="150" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="200" x2="490" y2="200" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="250" x2="490" y2="250" stroke="#1e3045" stroke-width="0.5"/>
 
-<text x="380" y="20" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">上昇チャネル</text>
-<!-- Channel lower line aligned to swing lows -->
-<line x1="280" y1="255" x2="445" y2="145" stroke="#27ae60" stroke-width="2" stroke-dasharray="6,3"/>
-<!-- Channel upper line aligned to swing highs (parallel) -->
-<line x1="305" y1="183" x2="470" y2="73" stroke="#c0392b" stroke-width="2" stroke-dasharray="6,3"/>
-<!-- Price bouncing: lows touch lower line, highs touch upper line -->
-<polyline points="280,255 305,183 330,222 355,150 380,188 405,117 430,155 455,83" stroke="#2c3e50" stroke-width="2" fill="none"/>
-<!-- Bounce markers on lower line (support) -->
-<circle cx="280" cy="255" r="4" fill="#27ae60"/><circle cx="330" cy="222" r="4" fill="#27ae60"/><circle cx="380" cy="188" r="4" fill="#27ae60"/><circle cx="430" cy="155" r="4" fill="#27ae60"/>
-<!-- Bounce markers on upper line (resistance) -->
-<circle cx="305" cy="183" r="4" fill="#c0392b"/><circle cx="355" cy="150" r="4" fill="#c0392b"/><circle cx="405" cy="117" r="4" fill="#c0392b"/><circle cx="455" cy="83" r="4" fill="#c0392b"/>
-<text x="380" y="270" text-anchor="middle" font-size="11" fill="#555">安値はサポートライン上、高値はレジスタンスライン上</text>
+<text x="250" y="22" text-anchor="middle" font-size="14" fill="#d4a537" font-weight="700">上昇トレンドライン & チャネル</text>
+
+<!-- Trendline (lower/support) aligned to swing lows -->
+<line x1="50" y1="245" x2="460" y2="105" stroke="#27ae60" stroke-width="2" opacity="0.9"/>
+<!-- Channel upper (resistance) parallel -->
+<line x1="50" y1="175" x2="460" y2="35" stroke="#e74c3c" stroke-width="2" stroke-dasharray="6,3" opacity="0.7"/>
+<!-- Channel fill -->
+<polygon points="50,245 460,105 460,35 50,175" fill="#2e86c1" opacity="0.04"/>
+
+<!-- Candlesticks bouncing in channel -->
+<!-- Swing 1: low at support -->
+<line x1="70" y1="235" x2="70" y2="195" stroke="#27ae60" stroke-width="1.2"/><rect x="64" y="200" width="12" height="35" fill="#27ae60" rx="1"/>
+<line x1="90" y1="210" x2="90" y2="170" stroke="#27ae60" stroke-width="1.2"/><rect x="84" y="175" width="12" height="28" fill="#27ae60" rx="1"/>
+<!-- Swing 1: high at resistance -->
+<line x1="110" y1="180" x2="110" y2="160" stroke="#e74c3c" stroke-width="1.2"/><rect x="104" y="162" width="12" height="14" fill="#e74c3c" rx="1"/>
+<line x1="130" y1="170" x2="130" y2="185" stroke="#e74c3c" stroke-width="1.2"/><rect x="124" y="172" width="12" height="10" fill="#e74c3c" rx="1"/>
+<!-- Swing 2: back to support -->
+<line x1="150" y1="185" x2="150" y2="215" stroke="#e74c3c" stroke-width="1.2"/><rect x="144" y="190" width="12" height="20" fill="#e74c3c" rx="1"/>
+<line x1="170" y1="225" x2="170" y2="185" stroke="#27ae60" stroke-width="1.2"/><rect x="164" y="195" width="12" height="25" fill="#27ae60" rx="1"/>
+<!-- Swing 2: rise to resistance -->
+<line x1="190" y1="195" x2="190" y2="155" stroke="#27ae60" stroke-width="1.2"/><rect x="184" y="160" width="12" height="28" fill="#27ae60" rx="1"/>
+<line x1="210" y1="160" x2="210" y2="130" stroke="#27ae60" stroke-width="1.2"/><rect x="204" y="135" width="12" height="20" fill="#27ae60" rx="1"/>
+<!-- Swing 2: high at resistance -->
+<line x1="230" y1="140" x2="230" y2="125" stroke="#e74c3c" stroke-width="1.2"/><rect x="224" y="127" width="12" height="10" fill="#e74c3c" rx="1"/>
+<!-- Swing 3: back to support -->
+<line x1="250" y1="135" x2="250" y2="165" stroke="#e74c3c" stroke-width="1.2"/><rect x="244" y="140" width="12" height="20" fill="#e74c3c" rx="1"/>
+<line x1="270" y1="175" x2="270" y2="155" stroke="#27ae60" stroke-width="1.2"/><rect x="264" y="158" width="12" height="14" fill="#27ae60" rx="1"/>
+<!-- Swing 3: rise -->
+<line x1="290" y1="160" x2="290" y2="120" stroke="#27ae60" stroke-width="1.2"/><rect x="284" y="125" width="12" height="28" fill="#27ae60" rx="1"/>
+<line x1="310" y1="125" x2="310" y2="95" stroke="#27ae60" stroke-width="1.2"/><rect x="304" y="100" width="12" height="20" fill="#27ae60" rx="1"/>
+<!-- Swing 3: high -->
+<line x1="330" y1="102" x2="330" y2="90" stroke="#e74c3c" stroke-width="1.2"/><rect x="324" y="92" width="12" height="8" fill="#e74c3c" rx="1"/>
+<!-- Swing 4: back down -->
+<line x1="350" y1="100" x2="350" y2="135" stroke="#e74c3c" stroke-width="1.2"/><rect x="344" y="105" width="12" height="25" fill="#e74c3c" rx="1"/>
+<line x1="370" y1="145" x2="370" y2="120" stroke="#27ae60" stroke-width="1.2"/><rect x="364" y="125" width="12" height="16" fill="#27ae60" rx="1"/>
+<!-- Swing 4: rise to resistance -->
+<line x1="390" y1="125" x2="390" y2="85" stroke="#27ae60" stroke-width="1.2"/><rect x="384" y="90" width="12" height="28" fill="#27ae60" rx="1"/>
+<line x1="410" y1="90" x2="410" y2="60" stroke="#27ae60" stroke-width="1.2"/><rect x="404" y="65" width="12" height="20" fill="#27ae60" rx="1"/>
+<line x1="430" y1="68" x2="430" y2="52" stroke="#e74c3c" stroke-width="1.2"/><rect x="424" y="54" width="12" height="10" fill="#e74c3c" rx="1"/>
+
+<!-- Glow on support touches -->
+<circle cx="70" cy="238" r="8" fill="#27ae60" opacity="0.15" filter="url(#gl2)"/><circle cx="70" cy="238" r="3" fill="#27ae60"/>
+<circle cx="170" cy="218" r="8" fill="#27ae60" opacity="0.15" filter="url(#gl2)"/><circle cx="170" cy="218" r="3" fill="#27ae60"/>
+<circle cx="270" cy="172" r="8" fill="#27ae60" opacity="0.15" filter="url(#gl2)"/><circle cx="270" cy="172" r="3" fill="#27ae60"/>
+<circle cx="370" cy="140" r="8" fill="#27ae60" opacity="0.15" filter="url(#gl2)"/><circle cx="370" cy="140" r="3" fill="#27ae60"/>
+<!-- Glow on resistance touches -->
+<circle cx="110" cy="162" r="8" fill="#e74c3c" opacity="0.15" filter="url(#gl2)"/><circle cx="110" cy="162" r="3" fill="#e74c3c"/>
+<circle cx="230" cy="127" r="8" fill="#e74c3c" opacity="0.15" filter="url(#gl2)"/><circle cx="230" cy="127" r="3" fill="#e74c3c"/>
+<circle cx="330" cy="92" r="8" fill="#e74c3c" opacity="0.15" filter="url(#gl2)"/><circle cx="330" cy="92" r="3" fill="#e74c3c"/>
+<circle cx="430" cy="54" r="8" fill="#e74c3c" opacity="0.15" filter="url(#gl2)"/><circle cx="430" cy="54" r="3" fill="#e74c3c"/>
+
+<!-- Labels -->
+<rect x="440" y="98" width="70" height="18" rx="4" fill="#27ae60" opacity="0.8"/><text x="475" y="111" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">サポートライン</text>
+<rect x="440" y="30" width="70" height="18" rx="4" fill="#e74c3c" opacity="0.8"/><text x="475" y="43" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">レジスタンス</text>
+<rect x="170" y="260" width="180" height="16" rx="4" fill="#1e3045"/><text x="260" y="273" text-anchor="middle" font-size="9" fill="#8b949e">チャネル内で安値はサポート上、高値はレジスタンス上</text>
 </svg></div></div>
 <div class="ftr">サポート&レジスタンス | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="4"><div class="hdr"><h2>ダイナミックS/Rとロールリバーサル</h2></div>
 <div class="body"><div class='txt'><ul><li><strong>移動平均線</strong>が「動くS/R」として機能する</li><li><strong>20EMA</strong>＝短期、<strong>50SMA</strong>＝中期、<strong>200SMA</strong>＝長期S/R</li><li><strong>ロールリバーサル</strong>── サポートが破られるとレジスタンスに転換（逆も）</li><li>ブレイク→<strong>リテスト</strong>→反転確認 ＝ 高確率のエントリーパターン</li><li>リテスト時にローソク足パターンで反転確認するとさらに精度向上</li></ul><div class='pbox'>POINT：ブレイク→リテスト→反転確認のセットは最も信頼性の高いエントリーパターンの一つ。</div></div>
-<div class="vis"><svg viewBox="0 0 500 290" width="100%" style="max-width:620px">
-<text x="250" y="22" text-anchor="middle" font-size="15" fill="#2c3e50" font-weight="700">ロールリバーサル（S/R転換）</text>
+<div class="vis"><svg viewBox="0 0 520 290" width="100%" style="max-width:650px">
+<defs>
+<linearGradient id="gridBg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a2332"/><stop offset="100%" stop-color="#0f1923"/></linearGradient>
+<filter id="gl3"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect x="0" y="0" width="520" height="290" rx="8" fill="url(#gridBg3)"/>
+<!-- Grid -->
+<line x1="40" y1="50" x2="490" y2="50" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="100" x2="490" y2="100" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="150" x2="490" y2="150" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="200" x2="490" y2="200" stroke="#1e3045" stroke-width="0.5"/><line x1="40" y1="250" x2="490" y2="250" stroke="#1e3045" stroke-width="0.5"/>
 
-<!-- S/R Line -->
-<line x1="30" y1="130" x2="470" y2="130" stroke="#2e86c1" stroke-width="2.5" stroke-dasharray="8,4"/>
+<text x="260" y="22" text-anchor="middle" font-size="14" fill="#d4a537" font-weight="700">ロールリバーサル（S/R転換）</text>
 
-<!-- Phase 1: Natural downtrend approaching support, bouncing twice -->
-<polyline points="45,55 65,90 55,70 80,105 70,85 95,128" stroke="#2c3e50" stroke-width="2" fill="none"/>
-<circle cx="95" cy="128" r="5" fill="#27ae60"/>
-<polyline points="95,128 110,85 125,128" stroke="#2c3e50" stroke-width="2" fill="none"/>
-<circle cx="125" cy="128" r="5" fill="#27ae60"/>
-<text x="110" y="118" font-size="10" fill="#27ae60" font-weight="600">反発</text>
+<!-- S/R Line with zone -->
+<rect x="40" y="118" width="450" height="14" fill="#2e86c1" opacity="0.1"/>
+<line x1="40" y1="125" x2="490" y2="125" stroke="#2e86c1" stroke-width="2" stroke-dasharray="8,4" opacity="0.8"/>
 
-<!-- Phase 2: Break below support -->
-<polyline points="125,128 140,145 150,175 160,195" stroke="#c0392b" stroke-width="3" fill="none"/>
-<text x="170" y="185" font-size="12" fill="#c0392b" font-weight="700">下方ブレイク</text>
+<!-- Phase 1: Price above, bouncing off support - candlesticks -->
+<line x1="55" y1="75" x2="55" y2="55" stroke="#27ae60" stroke-width="1.2"/><rect x="49" y="58" width="12" height="14" fill="#27ae60" rx="1"/>
+<line x1="73" y1="80" x2="73" y2="95" stroke="#e74c3c" stroke-width="1.2"/><rect x="67" y="82" width="12" height="10" fill="#e74c3c" rx="1"/>
+<line x1="91" y1="90" x2="91" y2="110" stroke="#e74c3c" stroke-width="1.2"/><rect x="85" y="95" width="12" height="12" fill="#e74c3c" rx="1"/>
+<!-- Bounce at support -->
+<line x1="109" y1="122" x2="109" y2="95" stroke="#27ae60" stroke-width="1.2"/><rect x="103" y="100" width="12" height="20" fill="#27ae60" rx="1"/>
+<circle cx="109" cy="122" r="6" fill="#27ae60" opacity="0.15" filter="url(#gl3)"/><circle cx="109" cy="122" r="3" fill="#27ae60"/>
+<line x1="127" y1="105" x2="127" y2="80" stroke="#27ae60" stroke-width="1.2"/><rect x="121" y="85" width="12" height="15" fill="#27ae60" rx="1"/>
+<!-- Another approach and bounce -->
+<line x1="145" y1="85" x2="145" y2="105" stroke="#e74c3c" stroke-width="1.2"/><rect x="139" y="88" width="12" height="14" fill="#e74c3c" rx="1"/>
+<line x1="163" y1="100" x2="163" y2="120" stroke="#e74c3c" stroke-width="1.2"/><rect x="157" y="105" width="12" height="12" fill="#e74c3c" rx="1"/>
+<line x1="181" y1="123" x2="181" y2="100" stroke="#27ae60" stroke-width="1.2"/><rect x="175" y="105" width="12" height="15" fill="#27ae60" rx="1"/>
+<circle cx="181" cy="123" r="6" fill="#27ae60" opacity="0.15" filter="url(#gl3)"/><circle cx="181" cy="123" r="3" fill="#27ae60"/>
 
-<!-- Phase 3: Retest from below - gradual rise back to the line -->
-<polyline points="160,195 180,215 200,195 220,170 240,150 255,132" stroke="#2c3e50" stroke-width="2" fill="none"/>
-<circle cx="255" cy="132" r="8" fill="none" stroke="#d4a537" stroke-width="2.5"/>
-<text x="275" y="112" font-size="13" fill="#d4a537" font-weight="700">リテスト</text>
-<text x="275" y="98" font-size="10" fill="#888">（下から戻って触れる）</text>
+<!-- Phase 1 label -->
+<rect x="60" y="35" width="100" height="16" rx="3" fill="#27ae60" opacity="0.8"/><text x="110" y="47" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">サポートとして反発</text>
 
-<!-- Phase 4: Rejection and fall -->
-<polyline points="255,135 265,155 280,185 295,210 315,240 335,260" stroke="#c0392b" stroke-width="2.5" fill="none"/>
+<!-- Phase 2: BREAK below -->
+<line x1="199" y1="115" x2="199" y2="135" stroke="#e74c3c" stroke-width="1.2"/><rect x="193" y="118" width="12" height="14" fill="#e74c3c" rx="1"/>
+<line x1="217" y1="130" x2="217" y2="155" stroke="#e74c3c" stroke-width="1.2"/><rect x="211" y="135" width="12" height="18" fill="#e74c3c" rx="1"/>
+<line x1="235" y1="150" x2="235" y2="180" stroke="#e74c3c" stroke-width="1.2"/><rect x="229" y="155" width="12" height="22" fill="#e74c3c" rx="1"/>
+<line x1="253" y1="175" x2="253" y2="200" stroke="#e74c3c" stroke-width="1.2"/><rect x="247" y="180" width="12" height="18" fill="#e74c3c" rx="1"/>
 
-<!-- Labels - positioned to avoid overlapping the line -->
-<text x="350" y="220" font-size="12" fill="#c0392b" font-weight="700">レジスタンスとして反落 ↓</text>
+<!-- Break label -->
+<rect x="200" y="203" width="75" height="16" rx="3" fill="#e74c3c" opacity="0.8"/><text x="238" y="215" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">下方ブレイク ↓</text>
 
-<!-- Before/After labels -->
-<rect x="30" y="38" width="115" height="20" rx="4" fill="#27ae60" opacity="0.2"/>
-<text x="88" y="53" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="700">サポート（転換前）</text>
-<rect x="340" y="155" width="125" height="20" rx="4" fill="#c0392b" opacity="0.2"/>
-<text x="403" y="170" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">レジスタンス（転換後）</text>
+<!-- Phase 3: RETEST - price rises back to the line from below -->
+<line x1="271" y1="195" x2="271" y2="175" stroke="#27ae60" stroke-width="1.2"/><rect x="265" y="178" width="12" height="14" fill="#27ae60" rx="1"/>
+<line x1="289" y1="178" x2="289" y2="155" stroke="#27ae60" stroke-width="1.2"/><rect x="283" y="158" width="12" height="16" fill="#27ae60" rx="1"/>
+<line x1="307" y1="158" x2="307" y2="138" stroke="#27ae60" stroke-width="1.2"/><rect x="301" y="142" width="12" height="14" fill="#27ae60" rx="1"/>
+<line x1="325" y1="140" x2="325" y2="124" stroke="#27ae60" stroke-width="1.2"/><rect x="319" y="127" width="12" height="10" fill="#27ae60" rx="1"/>
+<!-- Touch the line = retest -->
+<circle cx="325" cy="125" r="12" fill="none" stroke="#d4a537" stroke-width="2.5" stroke-dasharray="4,2"/>
+<circle cx="325" cy="125" r="5" fill="#d4a537" opacity="0.3" filter="url(#gl3)"/>
+<rect x="340" y="108" width="85" height="16" rx="3" fill="#d4a537" opacity="0.9"/><text x="382" y="120" text-anchor="middle" font-size="9" fill="#0a2f5c" font-weight="700">リテスト（下から戻る）</text>
 
-<!-- Summary box -->
-<rect x="50" y="268" width="400" height="20" rx="6" fill="#e8f0fe"/>
-<text x="250" y="282" text-anchor="middle" font-size="11" fill="#0a2f5c" font-weight="600">サポート下抜け → リテスト（下から戻る）→ レジスタンスとして反落</text>
+<!-- Phase 4: REJECTION - falls away as resistance -->
+<line x1="343" y1="128" x2="343" y2="145" stroke="#e74c3c" stroke-width="1.2"/><rect x="337" y="130" width="12" height="12" fill="#e74c3c" rx="1"/>
+<line x1="361" y1="142" x2="361" y2="165" stroke="#e74c3c" stroke-width="1.2"/><rect x="355" y="148" width="12" height="14" fill="#e74c3c" rx="1"/>
+<line x1="379" y1="162" x2="379" y2="192" stroke="#e74c3c" stroke-width="1.2"/><rect x="373" y="168" width="12" height="20" fill="#e74c3c" rx="1"/>
+<line x1="397" y1="188" x2="397" y2="220" stroke="#e74c3c" stroke-width="1.2"/><rect x="391" y="195" width="12" height="22" fill="#e74c3c" rx="1"/>
+<line x1="415" y1="218" x2="415" y2="252" stroke="#e74c3c" stroke-width="1.2"/><rect x="409" y="225" width="12" height="25" fill="#e74c3c" rx="1"/>
+<line x1="433" y1="248" x2="433" y2="265" stroke="#e74c3c" stroke-width="1.2"/><rect x="427" y="250" width="12" height="14" fill="#e74c3c" rx="1"/>
+
+<!-- Phase 4 label -->
+<rect x="420" y="140" width="85" height="16" rx="3" fill="#e74c3c" opacity="0.8"/><text x="462" y="152" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">レジスタンスで反落 ↓</text>
+
+<!-- Bottom summary -->
+<rect x="100" y="273" width="320" height="16" rx="4" fill="#1e3045"/><text x="260" y="285" text-anchor="middle" font-size="9" fill="#8b949e">サポート下抜け → リテスト（下から戻る）→ レジスタンスとして反落 → 下落継続</text>
 </svg></div></div>
 <div class="ftr">サポート&レジスタンス | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="5"><div class="hdr"><h2>まとめ</h2></div>
 <div class="body col"><div class='srow'><div class='lbl'>定義</div><div class='val'>買い/売り注文が集中する価格ゾーン</div></div><div class='srow'><div class='lbl'>水平S/R</div><div class='val'>過去の高値/安値、ラウンドナンバー</div></div><div class='srow'><div class='lbl'>トレンドライン</div><div class='val'>安値/高値を結ぶ斜めのS/R</div></div><div class='srow'><div class='lbl'>ダイナミックS/R</div><div class='val'>移動平均線が動くS/Rとして機能</div></div><div class='srow'><div class='lbl'>ロールリバーサル</div><div class='val'>サポート⇔レジスタンスの転換</div></div><div class='srow'><div class='lbl'>実践</div><div class='val'>上位TF優先、ゾーンで捉える、反応確認後にエントリー</div></div></div>
