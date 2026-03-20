@@ -53,7 +53,7 @@
     function initEditMode() {
         document.querySelectorAll('svg').forEach(svg => {
             // Make all text, rect (with text nearby), and labeled groups draggable
-            svg.querySelectorAll('text, rect, circle').forEach(el => {
+            svg.querySelectorAll('text, rect, circle, line, polyline, polygon, path').forEach(el => {
                 makeEditable(el);
             });
         });
@@ -68,12 +68,25 @@
         dragging = el;
         const svg = el.closest('svg');
         const pt = getSVGPoint(svg, e);
+        dragging._startPt = pt;
 
-        // Get current position
-        const x = parseFloat(el.getAttribute('x') || el.getAttribute('cx') || 0);
-        const y = parseFloat(el.getAttribute('y') || el.getAttribute('cy') || 0);
-        offsetX = pt.x - x;
-        offsetY = pt.y - y;
+        // Store original positions for all element types
+        const tag = el.tagName;
+        if (tag === 'line') {
+            dragging._origX1 = parseFloat(el.getAttribute('x1') || 0);
+            dragging._origY1 = parseFloat(el.getAttribute('y1') || 0);
+            dragging._origX2 = parseFloat(el.getAttribute('x2') || 0);
+            dragging._origY2 = parseFloat(el.getAttribute('y2') || 0);
+        } else if (tag === 'polyline' || tag === 'polygon') {
+            dragging._origPoints = el.getAttribute('points');
+        } else if (tag === 'path') {
+            dragging._origD = el.getAttribute('d');
+        } else {
+            const x = parseFloat(el.getAttribute('x') || el.getAttribute('cx') || 0);
+            const y = parseFloat(el.getAttribute('y') || el.getAttribute('cy') || 0);
+            offsetX = pt.x - x;
+            offsetY = pt.y - y;
+        }
     }
 
     function onMouseMove(e) {
@@ -82,39 +95,45 @@
 
         const svg = dragging.closest('svg');
         const pt = getSVGPoint(svg, e);
-        const newX = Math.round(pt.x - offsetX);
-        const newY = Math.round(pt.y - offsetY);
+        const dx = Math.round(pt.x - dragging._startPt.x);
+        const dy = Math.round(pt.y - dragging._startPt.y);
+        const tag = dragging.tagName;
 
-        // Move the element
-        if (dragging.tagName === 'text') {
+        if (tag === 'text' || tag === 'rect') {
+            const newX = Math.round(pt.x - offsetX);
+            const newY = Math.round(pt.y - offsetY);
             dragging.setAttribute('x', newX);
             dragging.setAttribute('y', newY);
-        } else if (dragging.tagName === 'circle') {
+        } else if (tag === 'circle') {
+            const newX = Math.round(pt.x - offsetX);
+            const newY = Math.round(pt.y - offsetY);
             dragging.setAttribute('cx', newX);
             dragging.setAttribute('cy', newY);
-        } else if (dragging.tagName === 'rect') {
-            dragging.setAttribute('x', newX);
-            dragging.setAttribute('y', newY);
-        } else if (dragging.tagName === 'line') {
-            // For lines, move both endpoints
-            const dx = newX - parseFloat(dragging.getAttribute('x1'));
-            const dy = newY - parseFloat(dragging.getAttribute('y1'));
-            dragging.setAttribute('x1', newX);
-            dragging.setAttribute('y1', newY);
-            dragging.setAttribute('x2', parseFloat(dragging.getAttribute('x2')) + dx);
-            dragging.setAttribute('y2', parseFloat(dragging.getAttribute('y2')) + dy);
+        } else if (tag === 'line') {
+            dragging.setAttribute('x1', Math.round(dragging._origX1 + dx));
+            dragging.setAttribute('y1', Math.round(dragging._origY1 + dy));
+            dragging.setAttribute('x2', Math.round(dragging._origX2 + dx));
+            dragging.setAttribute('y2', Math.round(dragging._origY2 + dy));
+        } else if (tag === 'polyline' || tag === 'polygon') {
+            const origPts = dragging._origPoints.trim().split(/[\s,]+/);
+            const newPts = [];
+            for (let i = 0; i < origPts.length; i += 2) {
+                newPts.push(Math.round(parseFloat(origPts[i]) + dx) + ',' + Math.round(parseFloat(origPts[i+1]) + dy));
+            }
+            dragging.setAttribute('points', newPts.join(' '));
+        } else if (tag === 'path') {
+            // Translate path by wrapping in transform
+            dragging.setAttribute('transform', `translate(${dx},${dy})`);
         }
 
         // Track the change
         const slideEl = dragging.closest('[data-s]');
         const slideNum = slideEl ? slideEl.getAttribute('data-s') : '?';
-        const tag = dragging.tagName;
-        const text = dragging.textContent || '';
-        const key = `slide${slideNum}_${tag}_${text.substring(0,15)}`;
-        changes[key] = { slide: slideNum, tag, text: text.substring(0,20), x: newX, y: newY };
+        const text = dragging.textContent || tag;
+        const key = `slide${slideNum}_${tag}_${text.substring(0,15)}_${Math.random().toString(36).substr(2,4)}`;
+        changes[key] = { slide: slideNum, tag, text: text.substring(0,20), dx, dy };
 
-        // Show position
-        showIndicator(`${tag} "${text.substring(0,10)}" → x:${newX} y:${newY}`, '#0a2f5c');
+        showIndicator(`${tag} → dx:${dx} dy:${dy}`, '#0a2f5c');
     }
 
     function onMouseUp() {
