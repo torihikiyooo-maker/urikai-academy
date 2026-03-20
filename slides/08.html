@@ -6,111 +6,58 @@
 <title>URIKAI - ローソク足パターン</title>
 <style>
 :root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
+    --bg: #0d1117; --bg-card: #161b22; --bg-slide: #f4f6f7;
+    --accent: #d4a537; --text: #e6edf3; --text-muted: #8b949e;
+    --border: #30363d; --dark: #1a1a2e; --navy: #0a2f5c;
+    --bull: #27ae60; --bear: #c0392b; --dark-text: #2c3e50;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
+body { font-family:'Segoe UI','Meiryo UI',sans-serif; background:var(--bg); color:var(--text); height:100vh; display:flex; flex-direction:column; user-select:none; }
+.toolbar { background:var(--bg-card); border-bottom:2px solid var(--accent); padding:0.5rem 1.5rem; display:flex; align-items:center; gap:1rem; flex-shrink:0; }
+.toolbar a { color:var(--accent); text-decoration:none; font-size:0.9rem; font-weight:600; }
+.toolbar .title { color:var(--text); font-size:0.95rem; font-weight:600; flex:1; }
+.nav-controls { display:flex; align-items:center; gap:0.5rem; }
+.nav-btn { background:var(--border); color:var(--text); border:none; width:36px; height:36px; border-radius:6px; font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.nav-btn:hover { background:var(--accent); color:#0a2f5c; }
+.nav-btn:disabled { opacity:0.3; cursor:default; }
+.page-info { color:var(--text-muted); font-size:0.8rem; min-width:60px; text-align:center; }
+.slide-area { flex:1; display:flex; align-items:center; justify-content:center; padding:1rem; overflow:hidden; }
+.slide { width:100%; max-width:1400px; aspect-ratio:16/9; border-radius:8px; box-shadow:0 4px 30px rgba(0,0,0,0.5); display:none; overflow:hidden; position:relative; }
+.slide.active { display:flex; }
+.hint { text-align:center; padding:0.3rem; color:var(--text-muted); font-size:0.7rem; }
+
+/* Cover */
+.cover { background:linear-gradient(135deg,#1a1a2e,#0a2f5c); flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+.cover .sn { color:var(--accent); font-size:1rem; letter-spacing:4px; }
+.cover h1 { color:#fff; font-size:2.8rem; font-weight:800; }
+.cover .sub { color:var(--text-muted); font-size:1.1rem; }
+.cover .line { width:120px; height:3px; background:var(--accent); margin:1.5rem auto; }
+
+/* Content */
+.cnt { background:var(--bg-slide); flex-direction:column; }
+.hdr { background:var(--dark); padding:0.8rem 2rem; border-bottom:3px solid var(--accent); }
+.hdr h2 { color:#fff; font-size:1.5rem; font-weight:700; }
+.body { flex:1; display:flex; padding:1.2rem 2rem; gap:2rem; overflow:hidden; }
+.body.col { flex-direction:column; }
+.txt { flex:1; }
+.vis { flex:1; display:flex; align-items:center; justify-content:center; }
+.txt ul { list-style:none; padding:0; }
+.txt li { padding:0.35rem 0; font-size:1.05rem; color:var(--dark-text); line-height:1.6; }
+.txt li::before { content:"▪ "; color:var(--navy); font-weight:bold; }
+.pbox { background:#e8f0fe; border-left:4px solid #2e86c1; padding:0.7rem 1rem; margin-top:0.8rem; border-radius:0 6px 6px 0; font-size:0.95rem; color:var(--dark-text); line-height:1.5; }
+.ftr { background:var(--dark); padding:0.25rem 2rem; font-size:0.7rem; color:var(--text-muted); border-top:2px solid var(--accent); }
+
+/* Closing */
+.cls { background:linear-gradient(135deg,#1a1a2e,#0a2f5c); flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+.cls h2 { color:var(--accent); font-size:2rem; }
+.cls .nxt { color:var(--text-muted); font-size:1.1rem; margin-top:1rem; }
+
+/* Summary row */
+.srow { display:flex; gap:1rem; align-items:center; margin:0.3rem 0; }
+.srow .lbl { background:var(--navy); color:#fff; padding:0.5rem 1rem; border-radius:8px; min-width:180px; text-align:center; font-weight:700; font-size:0.95rem; flex-shrink:0; }
+.srow .val { color:var(--dark-text); font-size:1rem; }
+
+svg text { font-family:'Segoe UI','Meiryo UI',sans-serif; }
 </style>
 </head>
 <body>
@@ -118,110 +65,250 @@ body {
     <a href="../index.html">&larr; Back</a>
     <span class="title">Section 08 — ローソク足パターン</span>
     <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 9</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
+        <button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+        <span class="page-info" id="pi">1 / 9</span>
+        <button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button>
     </div>
 </div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 08</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">ローソク足パターン</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Candlestick Patterns ── 値動きの言語を読む</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ローソク足の基本構造</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  ローソク足は4つの価格データで構成：始値・高値・安値・終値（OHLC）</p>
-<p style="font-size:20px">▪  陽線（Bullish）── 終値 ＞ 始値（買い優勢で終了）</p>
-<p style="font-size:20px">▪  陰線（Bearish）── 終値 ＜ 始値（売り優勢で終了）</p>
-<p style="font-size:20px">▪  実体（Body）── 始値と終値の間の太い部分 ＝ 売買の決着</p>
-<p style="font-size:20px">▪  ヒゲ（Shadow/Wick）── 高値/安値への一時的な伸び ＝ 拒否された価格帯</p>
-<p style="font-size:20px">▪  実体の大きさとヒゲの長さの比率が市場心理を表現する</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：ローソク足1本1本が「買い手と売り手の戦いの結果」を表している。実体は決着、ヒゲは拒否を意味する。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ローソク足パターン    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">単体パターン ── 1本のローソク足</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  同時線（Doji）── 始値 ≒ 終値。迷い、トレンド転換の可能性</p>
-<p style="font-size:20px">▪  ハンマー（Hammer）── 下ヒゲが長い陽線/小陰線。下落トレンド終了のシグナル</p>
-<p style="font-size:20px">▪  シューティングスター（Shooting Star）── 上ヒゲが長い。上昇トレンド終了のシグナル</p>
-<p style="font-size:20px">▪  大陽線（Marubozu Bullish）── ヒゲがほぼなく実体が長い ＝ 強い買い圧力</p>
-<p style="font-size:20px">▪  大陰線（Marubozu Bearish）── ヒゲがほぼなく実体が長い ＝ 強い売り圧力</p>
-<p style="font-size:20px">▪  コマ（Spinning Top）── 実体が小さくヒゲが両側に ＝ 方向感のない膠着状態</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ローソク足パターン    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">反転パターン（強気）── 下落からの転換</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  モーニングスター（Morning Star）── 3本構成：大陰線→小実体→大陽線</p>
-<p style="font-size:20px">▪  強気エンゴルフィング（Bullish Engulfing）── 陰線を次の陽線が完全に包み込む</p>
-<p style="font-size:20px">▪  三兵（Three White Soldiers）── 3本連続の大陽線。強い上昇モメンタム</p>
-<p style="font-size:20px">▪  ピアシングライン（Piercing Line）── 陰線の後、陽線が50%以上まで回復</p>
-<p style="font-size:20px">▪  ツイーザーボトム（Tweezer Bottom）── 2本が同じ安値で反転</p>
-<p style="font-size:20px">▪  これらは下落トレンドの底、またはサポート付近で出現すると信頼性が高い</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ローソク足パターン    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">反転パターン（弱気）── 上昇からの転換</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  イブニングスター（Evening Star）── 3本構成：大陽線→小実体→大陰線</p>
-<p style="font-size:20px">▪  弱気エンゴルフィング（Bearish Engulfing）── 陽線を次の陰線が完全に包み込む</p>
-<p style="font-size:20px">▪  三羽烏（Three Black Crows）── 3本連続の大陰線。強い下落モメンタム</p>
-<p style="font-size:20px">▪  ダーククラウドカバー（Dark Cloud Cover）── 陽線の後、陰線が50%以上まで下落</p>
-<p style="font-size:20px">▪  ツイーザートップ（Tweezer Top）── 2本が同じ高値で反転</p>
-<p style="font-size:20px">▪  上昇トレンドの天井、またはレジスタンス付近で出現すると信頼性が高い</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ローソク足パターン    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">継続パターン</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  上げ三法（Rising Three Methods）── 大陽線の後に3本の小陰線、再び大陽線</p>
-<p style="font-size:20px">▪  下げ三法（Falling Three Methods）── 大陰線の後に3本の小陽線、再び大陰線</p>
-<p style="font-size:20px">▪  窓（Gap / Window）── 前のローソク足と次のローソク足の間に空白が生じる</p>
-<p style="font-size:20px">▪  上昇途中の窓 ＝ 強い買い意欲のサイン（サポートとして機能しやすい）</p>
-<p style="font-size:20px">▪  下落途中の窓 ＝ 強い売り意欲のサイン（レジスタンスとして機能しやすい）</p>
-<p style="font-size:20px">▪  「窓埋め」── 空いた窓は後から埋められる傾向がある</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ローソク足パターン    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ローソク足パターンの実践的活用法</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  コンテキストが最重要 ── 同じパターンでもトレンドやS/Rの位置で意味が変わる</p>
-<p style="font-size:20px">▪  確認（Confirmation）を待つ ── パターン出現後、次の足で方向を確認してからエントリー</p>
-<p style="font-size:20px">▪  S/Rとの組み合わせ ── サポートでの強気パターン、レジスタンスでの弱気パターンは信頼度が高い</p>
-<p style="font-size:20px">▪  時間軸が大きいほど信頼性が高い ── 日足 ＞ 4時間足 ＞ 1時間足</p>
-<p style="font-size:20px">▪  単独での使用は避ける ── 他のテクニカル分析との複合で判断する</p>
-<p style="font-size:20px">▪  パターンは「確率」── 100%正確なパターンは存在しない</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：ローソク足パターンは「状況判断のツール」であり「エントリーシグナル」ではない。必ずコンテキスト（トレンド・S/R・出来高）と組み合わせる。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ローソク足パターン    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">基本構造</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">OHLC、実体＝決着、ヒゲ＝拒否</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">単体パターン</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">Doji, Hammer, Shooting Star, Marubozu</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">強気反転</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">Morning Star, Bullish Engulfing, Three White Soldiers</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">弱気反転</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">Evening Star, Bearish Engulfing, Three Black Crows</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">継続</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">三法、窓（ギャップ）</p></div>
-<div style="position:absolute;left:3.75%;top:57.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">実践</p></div>
-<div style="position:absolute;left:26.25%;top:57.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">コンテキスト最重要、確認を待つ、S/Rと組み合わせ</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">ローソク足パターン    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="9" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → サポート&amp;レジスタンス</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
+<div class="slide-area">
+
+<!-- 1: Cover -->
+<div class="slide cover" data-s="1">
+    <div class="sn">SECTION 08</div>
+    <h1>ローソク足パターン</h1>
+    <div class="sub">Candlestick Patterns ── 値動きの言語を読む</div>
+    <div class="line"></div>
+    <div style="color:#8b949e;font-size:0.85rem">URIKAI Trading Academy</div>
 </div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+
+<!-- 2: 基本構造 -->
+<div class="slide cnt" data-s="2">
+    <div class="hdr"><h2>ローソク足の基本構造</h2></div>
+    <div class="body">
+        <div class="txt">
+            <ul>
+                <li>4つの価格で構成：<strong>始値・高値・安値・終値（OHLC）</strong></li>
+                <li><strong>陽線（Bullish）</strong>── 終値 ＞ 始値（買い優勢）</li>
+                <li><strong>陰線（Bearish）</strong>── 終値 ＜ 始値（売り優勢）</li>
+                <li><strong>実体（Body）</strong>── 始値と終値の間 ＝ 売買の決着</li>
+                <li><strong>ヒゲ（Wick）</strong>── 高値/安値への伸び ＝ 拒否された価格帯</li>
+            </ul>
+            <div class="pbox">POINT：ローソク足1本が「買い手と売り手の戦いの結果」を表す。実体＝決着、ヒゲ＝拒否。</div>
+        </div>
+        <div class="vis">
+            <svg viewBox="0 0 420 320" width="100%" style="max-width:420px">
+                <defs><marker id="ag" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#27ae60" opacity="0.5"/></marker><marker id="ar" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#c0392b" opacity="0.5"/></marker></defs>
+                <text x="90" y="22" text-anchor="middle" font-size="16" fill="#27ae60" font-weight="700">陽線</text>
+                <line x1="90" y1="38" x2="90" y2="80" stroke="#27ae60" stroke-width="3"/>
+                <rect x="60" y="80" width="60" height="130" fill="#27ae60" rx="4"/>
+                <line x1="90" y1="210" x2="90" y2="265" stroke="#27ae60" stroke-width="3"/>
+                <text x="155" y="48" font-size="13" fill="#555">← 高値（High）</text>
+                <text x="155" y="92" font-size="13" fill="#555">← 終値（Close）</text>
+                <text x="155" y="218" font-size="13" fill="#555">← 始値（Open）</text>
+                <text x="155" y="272" font-size="13" fill="#555">← 安値（Low）</text>
+                <text x="28" y="62" font-size="12" fill="#888" text-anchor="middle">上ヒゲ</text>
+                <text x="28" y="242" font-size="12" fill="#888" text-anchor="middle">下ヒゲ</text>
+                <line x1="128" y1="86" x2="135" y2="86" stroke="#555" stroke-width="1"/><line x1="135" y1="86" x2="135" y2="205" stroke="#555" stroke-width="1"/><line x1="128" y1="205" x2="135" y2="205" stroke="#555" stroke-width="1"/>
+                <text x="143" y="150" font-size="13" fill="#27ae60" font-weight="700">実体</text>
+                <path d="M90,220 L90,75" stroke="#27ae60" stroke-width="1.5" fill="none" marker-end="url(#ag)" opacity="0.3"/>
+
+                <text x="330" y="22" text-anchor="middle" font-size="16" fill="#c0392b" font-weight="700">陰線</text>
+                <line x1="330" y1="38" x2="330" y2="80" stroke="#c0392b" stroke-width="3"/>
+                <rect x="300" y="80" width="60" height="130" fill="#c0392b" rx="4"/>
+                <line x1="330" y1="210" x2="330" y2="265" stroke="#c0392b" stroke-width="3"/>
+                <text x="290" y="92" text-anchor="end" font-size="13" fill="#555">始値 →</text>
+                <text x="290" y="218" text-anchor="end" font-size="13" fill="#555">終値 →</text>
+                <path d="M330,75 L330,220" stroke="#c0392b" stroke-width="1.5" fill="none" marker-end="url(#ar)" opacity="0.3"/>
+
+                <text x="210" y="305" text-anchor="middle" font-size="12" fill="#888">陽線は上昇、陰線は下落を示す</text>
+            </svg>
+        </div>
+    </div>
+    <div class="ftr">ローソク足パターン | URIKAI Trading Academy</div>
+</div>
+
+<!-- 3: 単体パターン -->
+<div class="slide cnt" data-s="3">
+    <div class="hdr"><h2>単体パターン ── 1本のローソク足</h2></div>
+    <div class="body col">
+        <div class="vis" style="flex:none;padding:0.5rem 0">
+            <svg viewBox="0 0 900 190" width="100%" style="max-width:900px">
+                <g transform="translate(75,5)"><line x1="0" y1="15" x2="0" y2="65" stroke="#555" stroke-width="3"/><rect x="-22" y="65" width="44" height="5" fill="#555" rx="2"/><line x1="0" y1="70" x2="0" y2="130" stroke="#555" stroke-width="3"/><text x="0" y="155" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">同時線</text><text x="0" y="175" text-anchor="middle" font-size="11" fill="#888">Doji / 迷い</text></g>
+                <g transform="translate(225,5)"><line x1="0" y1="25" x2="0" y2="40" stroke="#27ae60" stroke-width="3"/><rect x="-20" y="40" width="40" height="28" fill="#27ae60" rx="3"/><line x1="0" y1="68" x2="0" y2="135" stroke="#27ae60" stroke-width="3"/><text x="0" y="155" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">ハンマー</text><text x="0" y="175" text-anchor="middle" font-size="11" fill="#27ae60">強気反転↑</text></g>
+                <g transform="translate(375,5)"><line x1="0" y1="10" x2="0" y2="95" stroke="#c0392b" stroke-width="3"/><rect x="-20" y="95" width="40" height="28" fill="#c0392b" rx="3"/><line x1="0" y1="123" x2="0" y2="135" stroke="#c0392b" stroke-width="3"/><text x="0" y="155" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">流れ星</text><text x="0" y="175" text-anchor="middle" font-size="11" fill="#c0392b">弱気反転↓</text></g>
+                <g transform="translate(525,5)"><rect x="-20" y="18" width="40" height="115" fill="#27ae60" rx="3"/><text x="0" y="155" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">大陽線</text><text x="0" y="175" text-anchor="middle" font-size="11" fill="#27ae60">強い買い圧力</text></g>
+                <g transform="translate(675,5)"><rect x="-20" y="18" width="40" height="115" fill="#c0392b" rx="3"/><text x="0" y="155" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">大陰線</text><text x="0" y="175" text-anchor="middle" font-size="11" fill="#c0392b">強い売り圧力</text></g>
+                <g transform="translate(825,5)"><line x1="0" y1="18" x2="0" y2="55" stroke="#555" stroke-width="3"/><rect x="-20" y="55" width="40" height="20" fill="#888" rx="3"/><line x1="0" y1="75" x2="0" y2="135" stroke="#555" stroke-width="3"/><text x="0" y="155" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">コマ</text><text x="0" y="175" text-anchor="middle" font-size="11" fill="#888">方向感なし</text></g>
+            </svg>
+        </div>
+        <div class="pbox" style="margin:0">各パターンの意味はヒゲと実体の比率で決まる。ハンマーは「下を試したが買い手が勝った」、流れ星は「上を試したが売り手が勝った」証拠。</div>
+    </div>
+    <div class="ftr">ローソク足パターン | URIKAI Trading Academy</div>
+</div>
+
+<!-- 4: 強気反転 -->
+<div class="slide cnt" data-s="4">
+    <div class="hdr"><h2>反転パターン（強気）── 下落からの転換</h2></div>
+    <div class="body">
+        <div class="txt">
+            <ul>
+                <li><strong>モーニングスター</strong> ── 大陰線→小実体→大陽線</li>
+                <li><strong>強気エンゴルフィング</strong> ── 陰線を陽線が完全に包み込む</li>
+                <li><strong>三兵</strong> ── 3本連続の大陽線</li>
+                <li><strong>ピアシングライン</strong> ── 陰線の後、陽線が50%以上回復</li>
+            </ul>
+            <div class="pbox">下落トレンドの底、またはサポート付近で出現すると信頼性が高い。</div>
+        </div>
+        <div class="vis">
+            <svg viewBox="0 0 440 300" width="100%" style="max-width:440px">
+                <text x="110" y="22" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">モーニングスター</text>
+                <g transform="translate(35,30)"><rect x="10" y="15" x2="10" width="32" height="100" fill="#c0392b" rx="3"/><line x1="26" y1="8" x2="26" y2="15" stroke="#c0392b" stroke-width="2.5"/><line x1="26" y1="115" x2="26" y2="125" stroke="#c0392b" stroke-width="2.5"/><rect x="55" y="108" width="22" height="10" fill="#888" rx="2"/><line x1="66" y1="98" x2="66" y2="108" stroke="#888" stroke-width="2"/><line x1="66" y1="118" x2="66" y2="132" stroke="#888" stroke-width="2"/><rect x="92" y="25" width="32" height="95" fill="#27ae60" rx="3"/><line x1="108" y1="18" x2="108" y2="25" stroke="#27ae60" stroke-width="2.5"/><line x1="108" y1="120" x2="108" y2="130" stroke="#27ae60" stroke-width="2.5"/></g>
+                <text x="135" y="175" font-size="22" fill="#27ae60">↑</text>
+
+                <text x="340" y="22" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">強気エンゴルフィング</text>
+                <g transform="translate(275,30)"><rect x="20" y="50" width="28" height="50" fill="#c0392b" rx="3"/><line x1="34" y1="40" x2="34" y2="50" stroke="#c0392b" stroke-width="2.5"/><line x1="34" y1="100" x2="34" y2="115" stroke="#c0392b" stroke-width="2.5"/><rect x="58" y="30" width="36" height="95" fill="#27ae60" rx="3" opacity="0.9"/><line x1="76" y1="20" x2="76" y2="30" stroke="#27ae60" stroke-width="2.5"/><line x1="76" y1="125" x2="76" y2="138" stroke="#27ae60" stroke-width="2.5"/></g>
+                <text x="355" y="175" font-size="22" fill="#27ae60">↑</text>
+
+                <text x="110" y="210" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">三兵（Three White Soldiers）</text>
+                <g transform="translate(35,218)"><rect x="15" y="42" width="28" height="50" fill="#27ae60" rx="3"/><rect x="52" y="26" width="28" height="50" fill="#27ae60" rx="3"/><rect x="89" y="8" width="28" height="50" fill="#27ae60" rx="3"/></g>
+
+                <text x="340" y="210" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">ピアシングライン</text>
+                <g transform="translate(285,218)"><rect x="15" y="8" width="30" height="65" fill="#c0392b" rx="3"/><line x1="10" y1="40" x2="100" y2="40" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/><text x="103" y="44" font-size="11" fill="#888">50%</text><rect x="55" y="28" width="30" height="52" fill="#27ae60" rx="3"/><line x1="70" y1="80" x2="70" y2="88" stroke="#27ae60" stroke-width="2"/></g>
+            </svg>
+        </div>
+    </div>
+    <div class="ftr">ローソク足パターン | URIKAI Trading Academy</div>
+</div>
+
+<!-- 5: 弱気反転 -->
+<div class="slide cnt" data-s="5">
+    <div class="hdr"><h2>反転パターン（弱気）── 上昇からの転換</h2></div>
+    <div class="body">
+        <div class="txt">
+            <ul>
+                <li><strong>イブニングスター</strong> ── 大陽線→小実体→大陰線</li>
+                <li><strong>弱気エンゴルフィング</strong> ── 陽線を陰線が完全に包み込む</li>
+                <li><strong>三羽烏</strong> ── 3本連続の大陰線</li>
+                <li><strong>ダーククラウドカバー</strong> ── 陽線の後、陰線が50%以上下落</li>
+            </ul>
+            <div class="pbox">上昇トレンドの天井、またはレジスタンス付近で出現すると信頼性が高い。</div>
+        </div>
+        <div class="vis">
+            <svg viewBox="0 0 440 300" width="100%" style="max-width:440px">
+                <text x="110" y="22" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">イブニングスター</text>
+                <g transform="translate(35,30)"><rect x="10" y="25" width="32" height="100" fill="#27ae60" rx="3"/><line x1="26" y1="15" x2="26" y2="25" stroke="#27ae60" stroke-width="2.5"/><line x1="26" y1="125" x2="26" y2="135" stroke="#27ae60" stroke-width="2.5"/><rect x="55" y="18" width="22" height="10" fill="#888" rx="2"/><line x1="66" y1="8" x2="66" y2="18" stroke="#888" stroke-width="2"/><line x1="66" y1="28" x2="66" y2="42" stroke="#888" stroke-width="2"/><rect x="92" y="20" width="32" height="100" fill="#c0392b" rx="3"/><line x1="108" y1="12" x2="108" y2="20" stroke="#c0392b" stroke-width="2.5"/><line x1="108" y1="120" x2="108" y2="132" stroke="#c0392b" stroke-width="2.5"/></g>
+                <text x="135" y="175" font-size="22" fill="#c0392b">↓</text>
+
+                <text x="340" y="22" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">弱気エンゴルフィング</text>
+                <g transform="translate(275,30)"><rect x="20" y="35" width="28" height="50" fill="#27ae60" rx="3"/><line x1="34" y1="25" x2="34" y2="35" stroke="#27ae60" stroke-width="2.5"/><line x1="34" y1="85" x2="34" y2="100" stroke="#27ae60" stroke-width="2.5"/><rect x="58" y="18" width="36" height="95" fill="#c0392b" rx="3" opacity="0.9"/><line x1="76" y1="8" x2="76" y2="18" stroke="#c0392b" stroke-width="2.5"/><line x1="76" y1="113" x2="76" y2="128" stroke="#c0392b" stroke-width="2.5"/></g>
+                <text x="355" y="175" font-size="22" fill="#c0392b">↓</text>
+
+                <text x="110" y="210" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">三羽烏（Three Black Crows）</text>
+                <g transform="translate(35,218)"><rect x="15" y="5" width="28" height="50" fill="#c0392b" rx="3"/><rect x="52" y="22" width="28" height="50" fill="#c0392b" rx="3"/><rect x="89" y="38" width="28" height="50" fill="#c0392b" rx="3"/></g>
+
+                <text x="340" y="210" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">ダーククラウドカバー</text>
+                <g transform="translate(285,218)"><rect x="15" y="15" width="30" height="65" fill="#27ae60" rx="3"/><line x1="30" y1="80" x2="30" y2="88" stroke="#27ae60" stroke-width="2"/><line x1="10" y1="48" x2="100" y2="48" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/><text x="103" y="52" font-size="11" fill="#888">50%</text><rect x="55" y="8" width="30" height="55" fill="#c0392b" rx="3"/><line x1="70" y1="3" x2="70" y2="8" stroke="#c0392b" stroke-width="2"/></g>
+            </svg>
+        </div>
+    </div>
+    <div class="ftr">ローソク足パターン | URIKAI Trading Academy</div>
+</div>
+
+<!-- 6: 継続パターン -->
+<div class="slide cnt" data-s="6">
+    <div class="hdr"><h2>継続パターン</h2></div>
+    <div class="body">
+        <div class="txt">
+            <ul>
+                <li><strong>上げ三法</strong> ── 大陽線→3本の小陰線→大陽線で上昇継続</li>
+                <li><strong>下げ三法</strong> ── 大陰線→3本の小陽線→大陰線で下落継続</li>
+                <li><strong>窓（Gap）</strong> ── 前の足と次の足の間に価格の空白</li>
+                <li>上昇途中の窓＝強い買い意欲（サポートとして機能）</li>
+                <li>「窓埋め」── 空いた窓は後から埋められる傾向がある</li>
+            </ul>
+        </div>
+        <div class="vis">
+            <svg viewBox="0 0 440 280" width="100%" style="max-width:440px">
+                <text x="130" y="22" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">上げ三法（Rising Three Methods）</text>
+                <g transform="translate(20,30)"><rect x="10" y="25" width="32" height="105" fill="#27ae60" rx="3"/><rect x="52" y="42" width="20" height="32" fill="#c0392b" rx="2"/><rect x="80" y="52" width="20" height="32" fill="#c0392b" rx="2"/><rect x="108" y="48" width="20" height="28" fill="#c0392b" rx="2"/><rect x="138" y="10" width="32" height="120" fill="#27ae60" rx="3"/><line x1="5" y1="25" x2="175" y2="25" stroke="#27ae60" stroke-width="0.7" stroke-dasharray="4,3" opacity="0.5"/><line x1="5" y1="130" x2="175" y2="130" stroke="#27ae60" stroke-width="0.7" stroke-dasharray="4,3" opacity="0.5"/></g>
+                <text x="120" y="170" text-anchor="middle" font-size="13" fill="#27ae60" font-weight="600">→ トレンド継続 ↑</text>
+
+                <text x="340" y="22" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">窓（Gap）</text>
+                <g transform="translate(255,30)"><rect x="10" y="75" width="28" height="52" fill="#27ae60" rx="3"/><line x1="24" y1="68" x2="24" y2="75" stroke="#27ae60" stroke-width="2"/><line x1="24" y1="127" x2="24" y2="138" stroke="#27ae60" stroke-width="2"/><rect x="48" y="45" width="28" height="52" fill="#27ae60" rx="3"/><line x1="62" y1="35" x2="62" y2="45" stroke="#27ae60" stroke-width="2"/><line x1="62" y1="97" x2="62" y2="108" stroke="#27ae60" stroke-width="2"/><rect x="40" y="68" width="34" height="7" fill="#d4a537" opacity="0.4" rx="2"/><text x="95" y="76" font-size="12" fill="#d4a537" font-weight="700">← 窓</text><rect x="86" y="22" width="28" height="52" fill="#27ae60" rx="3"/><line x1="100" y1="12" x2="100" y2="22" stroke="#27ae60" stroke-width="2"/><line x1="100" y1="74" x2="100" y2="85" stroke="#27ae60" stroke-width="2"/></g>
+
+                <text x="130" y="210" text-anchor="middle" font-size="14" fill="#2c3e50" font-weight="700">下げ三法（Falling Three Methods）</text>
+                <g transform="translate(20,218)"><rect x="10" y="0" width="32" height="85" fill="#c0392b" rx="3"/><rect x="52" y="12" width="20" height="28" fill="#27ae60" rx="2"/><rect x="80" y="8" width="20" height="28" fill="#27ae60" rx="2"/><rect x="108" y="15" width="20" height="22" fill="#27ae60" rx="2"/><rect x="138" y="-5" width="32" height="95" fill="#c0392b" rx="3"/></g>
+                <text x="120" y="312" text-anchor="middle" font-size="13" fill="#c0392b" font-weight="600">→ トレンド継続 ↓</text>
+            </svg>
+        </div>
+    </div>
+    <div class="ftr">ローソク足パターン | URIKAI Trading Academy</div>
+</div>
+
+<!-- 7: コンテキスト -->
+<div class="slide cnt" data-s="7">
+    <div class="hdr"><h2>コンテキストが全て ── S/Rとの組み合わせ</h2></div>
+    <div class="body">
+        <div class="txt">
+            <ul>
+                <li>同じパターンでも<strong>出現場所</strong>で信頼度が変わる</li>
+                <li><strong>サポート上</strong>の強気パターン → 信頼度が高い</li>
+                <li><strong>レジスタンス付近</strong>の弱気パターン → 信頼度が高い</li>
+                <li>トレンド中腹の反転パターンは信頼度が低い</li>
+                <li>上位時間軸ほど信頼性が高い（日足 ＞ 4H ＞ 1H）</li>
+                <li>確認（次の足で方向確認）を待ってからエントリー</li>
+            </ul>
+            <div class="pbox">POINT：パターン単独ではなく、S/R＋トレンド＋上位TFとの組み合わせで判断する。</div>
+        </div>
+        <div class="vis">
+            <svg viewBox="0 0 420 290" width="100%" style="max-width:420px">
+                <line x1="30" y1="200" x2="380" y2="200" stroke="#2e86c1" stroke-width="2.5" stroke-dasharray="8,4"/>
+                <text x="385" y="198" font-size="13" fill="#2e86c1" font-weight="700">サポート</text>
+                <rect x="50" y="55" width="20" height="52" fill="#c0392b" rx="2"/><rect x="80" y="75" width="20" height="48" fill="#c0392b" rx="2"/><rect x="110" y="98" width="20" height="52" fill="#c0392b" rx="2"/><rect x="140" y="120" width="20" height="48" fill="#c0392b" rx="2"/><rect x="170" y="142" width="20" height="42" fill="#c0392b" rx="2"/>
+                <!-- Hammer at support -->
+                <line x1="210" y1="155" x2="210" y2="168" stroke="#27ae60" stroke-width="3"/><rect x="198" y="168" width="24" height="15" fill="#27ae60" rx="2"/><line x1="210" y1="183" x2="210" y2="198" stroke="#27ae60" stroke-width="4"/>
+                <circle cx="210" cy="186" r="28" fill="none" stroke="#d4a537" stroke-width="2.5" stroke-dasharray="5,3"/>
+                <text x="248" y="184" font-size="13" fill="#d4a537" font-weight="700">ハンマー＋</text><text x="248" y="200" font-size="13" fill="#d4a537" font-weight="700">サポート</text>
+                <rect x="240" y="132" width="20" height="38" fill="#27ae60" rx="2"/><rect x="270" y="108" width="20" height="42" fill="#27ae60" rx="2"/><rect x="300" y="80" width="20" height="48" fill="#27ae60" rx="2"/><rect x="330" y="48" width="20" height="52" fill="#27ae60" rx="2"/>
+                <rect x="35" y="238" width="360" height="38" fill="#e8f0fe" rx="8"/>
+                <text x="215" y="262" text-anchor="middle" font-size="14" fill="#0a2f5c" font-weight="700">信頼度: パターン単体 ＜ パターン＋S/R ＜ パターン＋S/R＋上位TF</text>
+            </svg>
+        </div>
+    </div>
+    <div class="ftr">ローソク足パターン | URIKAI Trading Academy</div>
+</div>
+
+<!-- 8: まとめ -->
+<div class="slide cnt" data-s="8">
+    <div class="hdr"><h2>まとめ</h2></div>
+    <div class="body col" style="justify-content:center;gap:0.6rem;padding:1.5rem 2rem">
+        <div class="srow"><div class="lbl">基本構造</div><div class="val">OHLC、実体＝決着、ヒゲ＝拒否</div></div>
+        <div class="srow"><div class="lbl">単体パターン</div><div class="val">Doji, Hammer, Shooting Star, Marubozu, Spinning Top</div></div>
+        <div class="srow"><div class="lbl">強気反転</div><div class="val">Morning Star, Bullish Engulfing, Three White Soldiers, Piercing Line</div></div>
+        <div class="srow"><div class="lbl">弱気反転</div><div class="val">Evening Star, Bearish Engulfing, Three Black Crows, Dark Cloud Cover</div></div>
+        <div class="srow"><div class="lbl">継続パターン</div><div class="val">上げ三法 / 下げ三法、窓（Gap）</div></div>
+        <div class="srow"><div class="lbl">最重要ポイント</div><div class="val">コンテキスト（S/R＋トレンド＋上位TF）と組み合わせて初めて機能する</div></div>
+    </div>
+    <div class="ftr">ローソク足パターン | URIKAI Trading Academy</div>
+</div>
+
+<!-- 9: Closing -->
+<div class="slide cls" data-s="9">
+    <h2>End of Section</h2>
+    <div class="nxt">Next → サポート&レジスタンス</div>
+    <div style="width:120px;height:3px;background:#d4a537;margin:2rem auto"></div>
+    <div style="color:#8b949e;font-size:0.85rem">URIKAI Trading Academy</div>
+</div>
+
+</div>
+<div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 9;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
+let c=1;const t=9;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.querySelector('[data-s="1"]').classList.add('active');document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
 </script>
 </body>
 </html>
