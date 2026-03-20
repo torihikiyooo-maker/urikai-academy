@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URIKAI - ハーモニックパターン</title>
+<style>
+:root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --accent: #d4a537;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --border: #30363d;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: 'Segoe UI','Meiryo UI',sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.toolbar {
+    background: var(--bg-card);
+    border-bottom: 2px solid var(--accent);
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+.toolbar a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.toolbar a:hover { text-decoration: underline; }
+.toolbar .title {
+    color: var(--text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    flex: 1;
+}
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.nav-btn {
+    background: var(--border);
+    color: var(--text);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
+.page-info {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    min-width: 60px;
+    text-align: center;
+}
+.slide-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow: hidden;
+}
+.slide {
+    width: 100%;
+    max-width: 1100px;
+    aspect-ratio: 16/9;
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    display: none;
+    overflow: hidden;
+}
+.slide.active {
+    display: block;
+}
+.slide p {
+    margin: 0;
+    padding: 1px 0;
+    line-height: 1.5;
+}
+.slide table {
+    font-family: 'Segoe UI','Meiryo UI',sans-serif;
+}
+/* Keyboard hint */
+.hint {
+    text-align: center;
+    padding: 0.4rem;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+    <a href="../index.html">&larr; Back</a>
+    <span class="title">Section 15 — ハーモニックパターン</span>
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
+        <span class="page-info" id="pageInfo">1 / 9</span>
+        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
+    </div>
+</div>
+<div class="slide-container">
+<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">SECTION 15</p></div>
+<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:26px;font-weight:700;text-align:center">ハーモニックパターン</p></div>
+<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:11px;text-align:center">Harmonic Patterns ── フィボナッチ比率に基づく精密パターン</p></div>
+<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">ハーモニックパターンとは</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:10px">▪  Scott Carneyが体系化したフィボナッチ比率ベースのパターン認識手法</p>
+<p style="font-size:10px">▪  特定のフィボナッチ比率で構成される幾何学的な価格パターン</p>
+<p style="font-size:10px">▪  PRZ（Potential Reversal Zone）── 複数のフィボナッチが収束する反転ゾーン</p>
+<p style="font-size:10px">▪  高い精度でエントリーポイントと損切りレベルを特定できる</p>
+<p style="font-size:10px">▪  XABCD の5点で構成されるパターンが基本形</p></div>
+<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:10px;text-align:center">POINT：ハーモニックパターンは「価格が特定のフィボナッチ比率に従って動く」という前提に基づく。精密な計測が必要な上級テクニック。</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">ハーモニックパターン    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">ABCDパターン ── 基本ビルディングブロック</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  最もシンプルなハーモニックパターン（4点で構成）</p>
+<p style="font-size:10px">▪  AB：最初の推進レグ</p>
+<p style="font-size:10px">▪  BC：ABの38.2%〜88.6%リトレースメント</p>
+<p style="font-size:10px">▪  CD：BCの127.2%〜261.8%エクステンション</p>
+<p style="font-size:10px">▪  AB = CD（等しい値幅）になるケースが最も一般的</p>
+<p style="font-size:10px">▪  他のすべてのハーモニックパターンの基礎構造</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">ハーモニックパターン    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">主要ハーモニックパターン一覧</p></div>
+<div style="position:absolute;left:3.75%;top:17.33%;width:92.25%;height:33.60%;overflow:hidden"><table style="border-collapse:collapse;width:100%;margin-top:4px"><tr><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">パターン</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">XAに対するB</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">XAに対するD</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">特徴</th></tr><tr><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">ガートレー</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">61.8%</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">78.6%</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">最も一般的、X点内で完結</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">バット</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">38.2%〜50%</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">88.6%</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">深いリトレース、精度が高い</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">バタフライ</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">78.6%</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">127.2%〜161.8%</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">X点を超える拡張パターン</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">クラブ</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">38.2%〜61.8%</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">161.8%</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">最も深い拡張、PRZが明確</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">サイファー</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">38.2%〜61.8%</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">78.6%(XC)</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">C点がX点を超える独自構造</td></tr></table></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">ハーモニックパターン    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">ガートレーパターン（Gartley 222）</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  H.M. Gartleyが1935年に発見、Scott Carneyがフィボナッチ比率を追加</p>
+<p style="font-size:10px">▪  構造：XA → AB（XAの61.8%）→ BC（ABの38.2-88.6%）→ CD（XAの78.6%）</p>
+<p style="font-size:10px">▪  D点（PRZ）でエントリー：XAの78.6%リトレースメント付近</p>
+<p style="font-size:10px">▪  ストップロス：X点の少し外側</p>
+<p style="font-size:10px">▪  テイクプロフィット：AD値幅の38.2%、61.8%、または A点</p>
+<p style="font-size:10px">▪  成功率が比較的高いとされるパターン</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">ハーモニックパターン    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">ハーモニックパターンのトレード方法</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:10px">▪  ①パターンの形成を認識（XABCの4点が確定した段階で待ち構え）</p>
+<p style="font-size:10px">▪  ②D点のPRZ（潜在的反転ゾーン）を事前に計算</p>
+<p style="font-size:10px">▪  ③PRZに到達したら反転のプライスアクション確認を待つ</p>
+<p style="font-size:10px">▪  ④エントリー：PRZでの反転確認後</p>
+<p style="font-size:10px">▪  ⑤ストップロス：X点（ガートレー/バット）またはPRZの少し外</p>
+<p style="font-size:10px">▪  ⑥テイクプロフィット：ADの38.2%、61.8%、A点（段階的利確）</p></div>
+<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:10px;text-align:center">POINT：PRZに到達しただけではエントリーしない。反転のローソク足パターン（ピンバー、エンゴルフィング等）を確認してからエントリーすること。</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">ハーモニックパターン    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">限界と注意点</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  パターンの識別に高い精度が必要 ── 比率が少しずれると別パターンに</p>
+<p style="font-size:10px">▪  完璧な比率のパターンは実際の相場では稀 ── 許容範囲の設定が必要</p>
+<p style="font-size:10px">▪  全てのパターンが機能するわけではない ── 確率的アプローチが前提</p>
+<p style="font-size:10px">▪  自動認識ツール（TradingViewのハーモニック検出等）の活用が実用的</p>
+<p style="font-size:10px">▪  他のテクニカル分析（S/R、トレンド方向）との組み合わせで精度向上</p>
+<p style="font-size:10px">▪  習得には相当な練習量が必要</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">ハーモニックパターン    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">まとめ</p></div>
+<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">基本概念</p></div>
+<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">フィボナッチ比率で構成される精密な反転パターン</p></div>
+<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">ABCD</p></div>
+<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">基本構造、全ハーモニックの土台</p></div>
+<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">主要パターン</p></div>
+<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">ガートレー、バット、バタフライ、クラブ</p></div>
+<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">トレード手法</p></div>
+<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">PRZで反転確認後エントリー、段階的利確</p></div>
+<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">注意点</p></div>
+<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">精密な計測が必要、確率的アプローチ前提</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">ハーモニックパターン    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="9" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:20px;font-weight:700;text-align:center">End of Section</p></div>
+<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:11px;text-align:center">Next → ワイコフ理論</p></div>
+<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">URIKAI Trading Academy</p></div></div>
+</div>
+<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<script>
+let current = 1;
+const total = 9;
+function navigate(dir) {
+    current = Math.max(1, Math.min(total, current + dir));
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
+    document.getElementById('pageInfo').textContent = current + ' / ' + total;
+    document.getElementById('prevBtn').disabled = current === 1;
+    document.getElementById('nextBtn').disabled = current === total;
+}
+// Init
+document.querySelector('[data-slide="1"]').classList.add('active');
+document.getElementById('prevBtn').disabled = true;
+// Keyboard
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
+    if (e.key === 'ArrowLeft') navigate(-1);
+});
+// Block right-click
+document.addEventListener('contextmenu', e => e.preventDefault());
+// Auth check
+if (sessionStorage.getItem('urikai_auth') !== 'true') {
+    window.location.href = '../index.html';
+}
+</script>
+</body>
+</html>

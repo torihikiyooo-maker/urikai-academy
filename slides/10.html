@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URIKAI - テクニカルインジケーター</title>
+<style>
+:root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --accent: #d4a537;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --border: #30363d;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: 'Segoe UI','Meiryo UI',sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.toolbar {
+    background: var(--bg-card);
+    border-bottom: 2px solid var(--accent);
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+.toolbar a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.toolbar a:hover { text-decoration: underline; }
+.toolbar .title {
+    color: var(--text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    flex: 1;
+}
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.nav-btn {
+    background: var(--border);
+    color: var(--text);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
+.page-info {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    min-width: 60px;
+    text-align: center;
+}
+.slide-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow: hidden;
+}
+.slide {
+    width: 100%;
+    max-width: 1100px;
+    aspect-ratio: 16/9;
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    display: none;
+    overflow: hidden;
+}
+.slide.active {
+    display: block;
+}
+.slide p {
+    margin: 0;
+    padding: 1px 0;
+    line-height: 1.5;
+}
+.slide table {
+    font-family: 'Segoe UI','Meiryo UI',sans-serif;
+}
+/* Keyboard hint */
+.hint {
+    text-align: center;
+    padding: 0.4rem;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+    <a href="../index.html">&larr; Back</a>
+    <span class="title">Section 10 — テクニカルインジケーター</span>
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
+        <span class="page-info" id="pageInfo">1 / 11</span>
+        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
+    </div>
+</div>
+<div class="slide-container">
+<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">SECTION 10</p></div>
+<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:26px;font-weight:700;text-align:center">テクニカルインジケーター</p></div>
+<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:11px;text-align:center">Technical Indicators ── 価格データを数値化する</p></div>
+<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">テクニカルインジケーターとは</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  価格・出来高データに数学的計算を適用して導出される補助指標</p>
+<p style="font-size:10px">▪  先行指標（Leading）── 価格変動の「前」にシグナルを出す（RSI、ストキャスティクス）</p>
+<p style="font-size:10px">▪  遅行指標（Lagging）── 価格変動の「後」にシグナルを確認する（MA、MACD）</p>
+<p style="font-size:10px">▪  先行指標：早いがダマシが多い / 遅行指標：遅いが信頼性が高い</p>
+<p style="font-size:10px">▪  インジケーターは「確認ツール」であり、単独のエントリーシグナルではない</p>
+<p style="font-size:10px">▪  同じ種類のインジケーターを重複させない（例：RSI＋ストキャスティクスは冗長）</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">テクニカルインジケーター    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">移動平均線（Moving Averages）</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:10px">▪  SMA（単純移動平均）── 指定期間の終値の単純平均</p>
+<p style="font-size:10px">▪  EMA（指数平滑移動平均）── 直近の価格に重みを置く → 反応が速い</p>
+<p style="font-size:10px">▪  よく使われる期間：20（短期）、50（中期）、100（中長期）、200（長期）</p>
+<p style="font-size:10px">▪  ゴールデンクロス ── 短期MAが長期MAを上抜け → 上昇シグナル</p>
+<p style="font-size:10px">▪  デッドクロス ── 短期MAが長期MAを下抜け → 下落シグナル</p>
+<p style="font-size:10px">▪  トレンドフィルターとして：価格がMAの上 ＝ 上昇基調、下 ＝ 下落基調</p></div>
+<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:10px;text-align:center">POINT：200SMA/EMAは世界中のトレーダーが注目するレベル。機関投資家も長期トレンドの判断に使用する。</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">テクニカルインジケーター    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">RSI（Relative Strength Index）</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  一定期間の上昇幅と下落幅の比率から「買われすぎ/売られすぎ」を測定</p>
+<p style="font-size:10px">▪  期間：14が標準、0〜100のスケール</p>
+<p style="font-size:10px">▪  70以上 ＝ 買われすぎ（過熱）、30以下 ＝ 売られすぎ（売り枯れ）</p>
+<p style="font-size:10px">▪  50ライン ── 上昇/下落の境界線。50の上 ＝ 強気、下 ＝ 弱気</p>
+<p style="font-size:10px">▪  ダイバージェンス：価格は高値更新なのにRSIは下降 → トレンド弱体化の警告</p>
+<p style="font-size:10px">▪  強いトレンド中は買われすぎ/売られすぎが長期間続くため逆張りは危険</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">テクニカルインジケーター    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">MACD（Moving Average Convergence Divergence）</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  2本のEMAの差分（乖離）を可視化するトレンド系インジケーター</p>
+<p style="font-size:10px">▪  MACDライン ＝ 短期EMA（12）- 長期EMA（26）</p>
+<p style="font-size:10px">▪  シグナルライン ＝ MACDラインの9期間EMA</p>
+<p style="font-size:10px">▪  ヒストグラム ＝ MACDライン - シグナルライン（モメンタムの強さ）</p>
+<p style="font-size:10px">▪  ゴールデンクロス：MACDがシグナルを上抜け → 買いシグナル</p>
+<p style="font-size:10px">▪  ゼロライン超え：MACDがゼロを上抜け → 上昇トレンド確認</p>
+<p style="font-size:10px">▪  ダイバージェンス：価格とMACDの方向が不一致 → トレンド転換の警告</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">テクニカルインジケーター    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">ボリンジャーバンド</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  移動平均線を中心に標準偏差で上下のバンドを描く</p>
+<p style="font-size:10px">▪  ミドルバンド ＝ 20SMA、アッパー ＝ +2σ、ロワー ＝ -2σ</p>
+<p style="font-size:10px">▪  統計的に価格の約95%がバンド内に収まる</p>
+<p style="font-size:10px">▪  スクイーズ ── バンド幅が縮小 ＝ 低ボラティリティ → ブレイクアウトの前兆</p>
+<p style="font-size:10px">▪  エクスパンション ── バンド幅が拡大 ＝ 高ボラティリティ → トレンド発生中</p>
+<p style="font-size:10px">▪  バンドウォーク ── 強いトレンドで価格がバンドに沿って移動する現象</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">テクニカルインジケーター    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">ATR（Average True Range）</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:10px">▪  一定期間の「真の値幅」の平均 ＝ ボラティリティの数値指標</p>
+<p style="font-size:10px">▪  ATRが高い ＝ ボラティリティが高い、ATRが低い ＝ ボラティリティが低い</p>
+<p style="font-size:10px">▪  方向性は示さない ── 上昇/下落のどちらにも使える</p>
+<p style="font-size:10px">▪  ストップロスの設定に活用：SL ＝ エントリー価格 ± ATR × 1.5〜2.0</p>
+<p style="font-size:10px">▪  ポジションサイジングの調整：ATR高 → ロット減、ATR低 → ロット増</p>
+<p style="font-size:10px">▪  市場環境の変化を検知：ATRの急上昇 ＝ 市場の変調</p></div>
+<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:10px;text-align:center">POINT：ATRは最も実用的なインジケーターの一つ。SLの設定とポジションサイズの調整に直接使える。</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">テクニカルインジケーター    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">一目均衡表（Ichimoku Cloud）</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  転換線（Tenkan-sen）── 過去9期間の中値。短期トレンド</p>
+<p style="font-size:10px">▪  基準線（Kijun-sen）── 過去26期間の中値。中期トレンド</p>
+<p style="font-size:10px">▪  先行スパンA/B ── 雲（Cloud/Kumo）を形成。将来のS/Rゾーン</p>
+<p style="font-size:10px">▪  遅行スパン（Chikou Span）── 現在の終値を26期間前にプロット</p>
+<p style="font-size:10px">▪  価格が雲の上 ＝ 強気、下 ＝ 弱気、中 ＝ 方向性なし</p>
+<p style="font-size:10px">▪  転換線が基準線を上抜け ＝ 買いシグナル（雲の上ならさらに強い）</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">テクニカルインジケーター    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="9" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">インジケーター活用の注意点</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  インジケーターを増やしすぎない ── 2〜3個を組み合わせるのが最適</p>
+<p style="font-size:10px">▪  同種インジケーターの重複を避ける ── トレンド系＋オシレーター系を1つずつ</p>
+<p style="font-size:10px">▪  推奨組み合わせ例：MA（トレンド方向）＋ RSI（タイミング）＋ ATR（SL設定）</p>
+<p style="font-size:10px">▪  インジケーターは「確認」のためのツール ── 価格とS/Rが最優先</p>
+<p style="font-size:10px">▪  パラメータの最適化に走りすぎない ── 標準設定が最も多くのトレーダーに使われている</p>
+<p style="font-size:10px">▪  バックテストで自分のスタイルに合う組み合わせを検証する</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">テクニカルインジケーター    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="10" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">まとめ</p></div>
+<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">分類</p></div>
+<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">先行指標（RSI等）と遅行指標（MA等）</p></div>
+<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">移動平均線</p></div>
+<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">トレンド方向の判断、ダイナミックS/R</p></div>
+<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">RSI</p></div>
+<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">買われすぎ/売られすぎ、ダイバージェンス</p></div>
+<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">MACD</p></div>
+<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">トレンドとモメンタム、ゴールデン/デッドクロス</p></div>
+<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">ボリンジャーバンド</p></div>
+<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">スクイーズ→ブレイクアウト、バンドウォーク</p></div>
+<div style="position:absolute;left:3.75%;top:57.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">ATR</p></div>
+<div style="position:absolute;left:26.25%;top:57.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">ボラティリティ計測、SL設定に直結</p></div>
+<div style="position:absolute;left:3.75%;top:65.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">一目均衡表</p></div>
+<div style="position:absolute;left:26.25%;top:65.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">雲でトレンド・S/Rを一目で把握</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">テクニカルインジケーター    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="11" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:20px;font-weight:700;text-align:center">End of Section</p></div>
+<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:11px;text-align:center">Next → チャートパターン</p></div>
+<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">URIKAI Trading Academy</p></div></div>
+</div>
+<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<script>
+let current = 1;
+const total = 11;
+function navigate(dir) {
+    current = Math.max(1, Math.min(total, current + dir));
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
+    document.getElementById('pageInfo').textContent = current + ' / ' + total;
+    document.getElementById('prevBtn').disabled = current === 1;
+    document.getElementById('nextBtn').disabled = current === total;
+}
+// Init
+document.querySelector('[data-slide="1"]').classList.add('active');
+document.getElementById('prevBtn').disabled = true;
+// Keyboard
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
+    if (e.key === 'ArrowLeft') navigate(-1);
+});
+// Block right-click
+document.addEventListener('contextmenu', e => e.preventDefault());
+// Auth check
+if (sessionStorage.getItem('urikai_auth') !== 'true') {
+    window.location.href = '../index.html';
+}
+</script>
+</body>
+</html>

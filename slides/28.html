@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URIKAI - SLとTP戦略</title>
+<style>
+:root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --accent: #d4a537;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --border: #30363d;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: 'Segoe UI','Meiryo UI',sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.toolbar {
+    background: var(--bg-card);
+    border-bottom: 2px solid var(--accent);
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+.toolbar a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.toolbar a:hover { text-decoration: underline; }
+.toolbar .title {
+    color: var(--text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    flex: 1;
+}
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.nav-btn {
+    background: var(--border);
+    color: var(--text);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
+.page-info {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    min-width: 60px;
+    text-align: center;
+}
+.slide-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow: hidden;
+}
+.slide {
+    width: 100%;
+    max-width: 1100px;
+    aspect-ratio: 16/9;
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    display: none;
+    overflow: hidden;
+}
+.slide.active {
+    display: block;
+}
+.slide p {
+    margin: 0;
+    padding: 1px 0;
+    line-height: 1.5;
+}
+.slide table {
+    font-family: 'Segoe UI','Meiryo UI',sans-serif;
+}
+/* Keyboard hint */
+.hint {
+    text-align: center;
+    padding: 0.4rem;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+    <a href="../index.html">&larr; Back</a>
+    <span class="title">Section 28 — SLとTP戦略</span>
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
+        <span class="page-info" id="pageInfo">1 / 8</span>
+        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
+    </div>
+</div>
+<div class="slide-container">
+<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">SECTION 28</p></div>
+<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:26px;font-weight:700;text-align:center">ストップロスとテイクプロフィット戦略</p></div>
+<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:11px;text-align:center">SL &amp; TP Strategies ── 出口戦略の体系化</p></div>
+<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">ストップロスの種類</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:10px">▪  固定Pip SL ── 一律のPip数で設定（例：常に30pips）。シンプルだが市場環境を無視</p>
+<p style="font-size:10px">▪  ATRベースSL ── ATR × 1.5〜2.0で設定。ボラティリティに自動適応</p>
+<p style="font-size:10px">▪  構造ベースSL ── S/R、スイングハイ/ローの外側に設定。最も合理的</p>
+<p style="font-size:10px">▪  時間ベースSL ── 一定時間内に動かなければ決済。デイトレード向き</p>
+<p style="font-size:10px">▪  推奨：構造ベースを基本とし、ATRで妥当性を検証する</p></div>
+<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:10px;text-align:center">POINT：SLは「ここを超えたらトレードの根拠が崩れる」ポイントに置く。損失額から逆算して置く場所を決めてはいけない。</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">SLとTP戦略    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">ATRベースのストップロス設定</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  ATR（14期間）の値を基準にSL幅を決定</p>
+<p style="font-size:10px">▪  ATR × 1.5 ＝ 通常のボラティリティを許容する標準的なSL</p>
+<p style="font-size:10px">▪  ATR × 2.0 ＝ より余裕のあるSL（ノイズによる損切りを減らす）</p>
+<p style="font-size:10px">▪  例：ATR ＝ 20pips → SL ＝ 30pips（1.5倍）or 40pips（2倍）</p>
+<p style="font-size:10px">▪  ATRが上昇している市場 → SL幅も自動的に広がる → ロットを減らす</p>
+<p style="font-size:10px">▪  構造（S/Rの外側）とATRの両方が示す位置が理想的なSL</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">SLとTP戦略    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">テイクプロフィット戦略</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  固定TP ── RRRに基づいて事前に設定（例：SL 20pips → TP 40pips）</p>
+<p style="font-size:10px">▪  S/RベースTP ── 次のS/Rレベルに設定。最も合理的</p>
+<p style="font-size:10px">▪  フィボナッチTP ── エクステンションレベル（127.2%、161.8%）に設定</p>
+<p style="font-size:10px">▪  部分決済 ── TP1で50%決済、残りをトレーリング</p>
+<p style="font-size:10px">▪  トレーリングストップ ── ATRトレール、構造トレール、MAトレール</p>
+<p style="font-size:10px">▪  推奨：TP1（S/R）で部分決済 ＋ 残りをトレーリング</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">SLとTP戦略    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">トレーリングストップの種類</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  固定Pipトレール ── 一定Pip数で追従（例：30pips幅で追従）</p>
+<p style="font-size:10px">▪  ATRトレール ── ATR × 倍率で動的に追従。ボラに適応</p>
+<p style="font-size:10px">▪  構造トレール ── 新しいスイングロー/ハイにSLを移動。最も合理的</p>
+<p style="font-size:10px">▪  MAトレール ── 移動平均線（20EMA等）を割ったら決済</p>
+<p style="font-size:10px">▪  ブレイクイーブン移動 ── 一定の利益が出たらSLをエントリー価格に移動</p>
+<p style="font-size:10px">▪  注意：トレーリングを狭くしすぎるとノイズで決済される</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">SLとTP戦略    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">よくあるSL/TPのミス</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  SLを不利な方向に動かす ── 「もう少し待てば戻る」は致命的思考</p>
+<p style="font-size:10px">▪  SLを狭くしすぎる ── ノイズで頻繁に損切り → 勝率が極端に低下</p>
+<p style="font-size:10px">▪  SLを広くしすぎる ── 1回の損失が大きすぎ → ドローダウン悪化</p>
+<p style="font-size:10px">▪  TPを置かない ── 利益確定のタイミングを逃し、利益が損失に変わる</p>
+<p style="font-size:10px">▪  全ポジションを一括決済 ── 部分決済を活用すればリスクと利益のバランスが改善</p>
+<p style="font-size:10px">▪  エントリー後にSL/TPを変更する ── 事前の計画通りに実行する規律が必要</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">SLとTP戦略    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">まとめ</p></div>
+<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">SLの種類</p></div>
+<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">固定Pip、ATRベース、構造ベース、時間ベース</p></div>
+<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">ATR SL</p></div>
+<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">ATR × 1.5-2.0でボラに適応したSL幅</p></div>
+<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">TP戦略</p></div>
+<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">S/Rベース、フィボ、部分決済＋トレーリング</p></div>
+<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">トレーリング</p></div>
+<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">固定/ATR/構造/MAトレール</p></div>
+<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">鉄則</p></div>
+<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">SLを不利に動かさない、事前計画を遵守</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">SLとTP戦略    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:20px;font-weight:700;text-align:center">End of Section</p></div>
+<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:11px;text-align:center">Next → ドローダウン管理</p></div>
+<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">URIKAI Trading Academy</p></div></div>
+</div>
+<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<script>
+let current = 1;
+const total = 8;
+function navigate(dir) {
+    current = Math.max(1, Math.min(total, current + dir));
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
+    document.getElementById('pageInfo').textContent = current + ' / ' + total;
+    document.getElementById('prevBtn').disabled = current === 1;
+    document.getElementById('nextBtn').disabled = current === total;
+}
+// Init
+document.querySelector('[data-slide="1"]').classList.add('active');
+document.getElementById('prevBtn').disabled = true;
+// Keyboard
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
+    if (e.key === 'ArrowLeft') navigate(-1);
+});
+// Block right-click
+document.addEventListener('contextmenu', e => e.preventDefault());
+// Auth check
+if (sessionStorage.getItem('urikai_auth') !== 'true') {
+    window.location.href = '../index.html';
+}
+</script>
+</body>
+</html>

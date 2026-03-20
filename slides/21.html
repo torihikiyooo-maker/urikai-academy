@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URIKAI - 中央銀行政策</title>
+<style>
+:root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --accent: #d4a537;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --border: #30363d;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: 'Segoe UI','Meiryo UI',sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.toolbar {
+    background: var(--bg-card);
+    border-bottom: 2px solid var(--accent);
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+.toolbar a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.toolbar a:hover { text-decoration: underline; }
+.toolbar .title {
+    color: var(--text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    flex: 1;
+}
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.nav-btn {
+    background: var(--border);
+    color: var(--text);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
+.page-info {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    min-width: 60px;
+    text-align: center;
+}
+.slide-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow: hidden;
+}
+.slide {
+    width: 100%;
+    max-width: 1100px;
+    aspect-ratio: 16/9;
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    display: none;
+    overflow: hidden;
+}
+.slide.active {
+    display: block;
+}
+.slide p {
+    margin: 0;
+    padding: 1px 0;
+    line-height: 1.5;
+}
+.slide table {
+    font-family: 'Segoe UI','Meiryo UI',sans-serif;
+}
+/* Keyboard hint */
+.hint {
+    text-align: center;
+    padding: 0.4rem;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+    <a href="../index.html">&larr; Back</a>
+    <span class="title">Section 21 — 中央銀行政策</span>
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
+        <span class="page-info" id="pageInfo">1 / 10</span>
+        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
+    </div>
+</div>
+<div class="slide-container">
+<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">SECTION 21</p></div>
+<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:26px;font-weight:700;text-align:center">中央銀行政策</p></div>
+<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:11px;text-align:center">Central Bank Policy ── 市場を支配する金融政策の読み方</p></div>
+<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">中央銀行の役割と目的</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  物価の安定（インフレ目標：多くの国で2%）</p>
+<p style="font-size:10px">▪  最大雇用の達成（FRBのデュアルマンデート）</p>
+<p style="font-size:10px">▪  金融システムの安定維持</p>
+<p style="font-size:10px">▪  金融政策ツールで経済を調整：金利操作、量的緩和/引締め</p>
+<p style="font-size:10px">▪  中央銀行の決定は為替・株式・債券すべての市場に影響</p>
+<p style="font-size:10px">▪  「中央銀行に逆らうな」── 市場の最も有名な格言の一つ</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">中央銀行政策    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">金利決定のメカニズム</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:10px">▪  政策金利 ＝ 中央銀行が金融機関に貸し出す際の基準金利</p>
+<p style="font-size:10px">▪  利上げ → 通貨の魅力向上 → 資金流入 → 通貨高</p>
+<p style="font-size:10px">▪  利下げ → 通貨の魅力低下 → 資金流出 → 通貨安</p>
+<p style="font-size:10px">▪  金利変更そのものより「市場予想とのサプライズ」が値動きを生む</p>
+<p style="font-size:10px">▪  据え置きでも、声明文のトーン変化で大きく動くことがある</p>
+<p style="font-size:10px">▪  FedWatch等のツールで市場の金利織り込み度を確認可能</p></div>
+<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:10px;text-align:center">POINT：FXの中長期トレンドは金利差で決まる。高金利通貨が買われ、低金利通貨が売られる「キャリートレード」の流れが基本。</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">中央銀行政策    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">フォワードガイダンスとドットプロット</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  フォワードガイダンス ── 将来の金融政策の方向性を市場に予告する手法</p>
+<p style="font-size:10px">▪  「当分の間、緩和的な政策を維持する」→ 通貨安誘導</p>
+<p style="font-size:10px">▪  「インフレ抑制に必要な措置を講じる」→ 利上げ示唆 → 通貨高</p>
+<p style="font-size:10px">▪  ドットプロット（FRB）── FOMC参加者の金利予想を点で示したチャート</p>
+<p style="font-size:10px">▪  ドットの中央値が市場の金利期待に大きく影響</p>
+<p style="font-size:10px">▪  声明文の文言変更（「patient」→「vigilant」等）が重要シグナル</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">中央銀行政策    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">量的緩和（QE）と量的引き締め（QT）</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  QE ── 中央銀行が国債等を買い入れて市場に資金を供給</p>
+<p style="font-size:10px">▪  QEの効果：金利低下、資産価格上昇、通貨安</p>
+<p style="font-size:10px">▪  QT ── 中央銀行が保有資産を縮小し市場から資金を回収</p>
+<p style="font-size:10px">▪  QTの効果：金利上昇、資産価格に下落圧力、通貨高</p>
+<p style="font-size:10px">▪  QE/QTの規模と期間が市場への影響の大きさを決める</p>
+<p style="font-size:10px">▪  バランスシートの規模変化を追跡することが重要</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">中央銀行政策    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">金融政策ダイバージェンス</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:10px">▪  ダイバージェンス ＝ 各国の金融政策の方向性の「ずれ」</p>
+<p style="font-size:10px">▪  例：FRBが利上げ中にBOJが緩和継続 → USD高 / JPY安</p>
+<p style="font-size:10px">▪  金融政策ダイバージェンスはFXの中期トレンドの最大ドライバー</p>
+<p style="font-size:10px">▪  ダイバージェンスが拡大 → トレンドが強まる</p>
+<p style="font-size:10px">▪  ダイバージェンスが縮小 → トレンド反転の可能性</p>
+<p style="font-size:10px">▪  各主要中央銀行のスタンスを常に把握しておくことが重要</p></div>
+<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:10px;text-align:center">POINT：「どの中央銀行がタカ派で、どの中央銀行がハト派か」── この一覧を頭に入れておくだけで、FXの大きな流れが見える。</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">中央銀行政策    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">主要中央銀行の会合スケジュール</p></div>
+<div style="position:absolute;left:3.75%;top:17.33%;width:92.25%;height:39.20%;overflow:hidden"><table style="border-collapse:collapse;width:100%;margin-top:4px"><tr><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">中央銀行</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">会合頻度</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">主な特徴</th></tr><tr><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">FRB（FOMC）</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">年8回</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">世界最重要、ドットプロット年4回</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">ECB</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">年8回</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">ユーロ圏の金融政策、記者会見あり</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">BOJ</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">年8回</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">異次元緩和の歴史、為替介入リスク</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">BOE（MPC）</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">年8回</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">投票結果の内訳が注目される</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">RBA</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">年8回</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">声明文のトーン変化に敏感</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">BOC</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">年8回</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">原油価格との連動に注目</td></tr></table></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">中央銀行政策    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">中央銀行イベント時のトレード</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  発表前：ポジション縮小またはノーポジションが安全</p>
+<p style="font-size:10px">▪  発表直後：スプレッド拡大・スリッページ大 → 飛び乗りは危険</p>
+<p style="font-size:10px">▪  声明文の精読：金利だけでなく、文言のニュアンス変化をチェック</p>
+<p style="font-size:10px">▪  記者会見（総裁/議長）：声明文以上の情報が出ることがある</p>
+<p style="font-size:10px">▪  初動の反応は必ずしも最終方向ではない → 落ち着きを待つ</p>
+<p style="font-size:10px">▪  議事録（数週間後に公開）も市場を動かすことがある</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">中央銀行政策    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="9" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">まとめ</p></div>
+<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">役割</p></div>
+<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">物価安定、雇用最大化、金融システム安定</p></div>
+<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">金利</p></div>
+<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">利上げ＝通貨高、利下げ＝通貨安が基本</p></div>
+<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">ガイダンス</p></div>
+<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">声明文・ドットプロットで将来の政策を示唆</p></div>
+<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">QE/QT</p></div>
+<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">資金供給（緩和）vs 資金回収（引締め）</p></div>
+<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">ダイバージェンス</p></div>
+<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">各国の政策方向の差がFXトレンドを決定</p></div>
+<div style="position:absolute;left:3.75%;top:57.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">トレード</p></div>
+<div style="position:absolute;left:26.25%;top:57.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">発表前後は慎重に、声明文の文言変化に注目</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">中央銀行政策    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="10" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:20px;font-weight:700;text-align:center">End of Section</p></div>
+<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:11px;text-align:center">Next → 地政学リスクとニューストレード</p></div>
+<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">URIKAI Trading Academy</p></div></div>
+</div>
+<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<script>
+let current = 1;
+const total = 10;
+function navigate(dir) {
+    current = Math.max(1, Math.min(total, current + dir));
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
+    document.getElementById('pageInfo').textContent = current + ' / ' + total;
+    document.getElementById('prevBtn').disabled = current === 1;
+    document.getElementById('nextBtn').disabled = current === total;
+}
+// Init
+document.querySelector('[data-slide="1"]').classList.add('active');
+document.getElementById('prevBtn').disabled = true;
+// Keyboard
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
+    if (e.key === 'ArrowLeft') navigate(-1);
+});
+// Block right-click
+document.addEventListener('contextmenu', e => e.preventDefault());
+// Auth check
+if (sessionStorage.getItem('urikai_auth') !== 'true') {
+    window.location.href = '../index.html';
+}
+</script>
+</body>
+</html>

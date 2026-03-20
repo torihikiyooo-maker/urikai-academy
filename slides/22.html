@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URIKAI - 地政学リスクとニューストレード</title>
+<style>
+:root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --accent: #d4a537;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --border: #30363d;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: 'Segoe UI','Meiryo UI',sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.toolbar {
+    background: var(--bg-card);
+    border-bottom: 2px solid var(--accent);
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+.toolbar a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.toolbar a:hover { text-decoration: underline; }
+.toolbar .title {
+    color: var(--text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    flex: 1;
+}
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.nav-btn {
+    background: var(--border);
+    color: var(--text);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
+.page-info {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    min-width: 60px;
+    text-align: center;
+}
+.slide-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow: hidden;
+}
+.slide {
+    width: 100%;
+    max-width: 1100px;
+    aspect-ratio: 16/9;
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    display: none;
+    overflow: hidden;
+}
+.slide.active {
+    display: block;
+}
+.slide p {
+    margin: 0;
+    padding: 1px 0;
+    line-height: 1.5;
+}
+.slide table {
+    font-family: 'Segoe UI','Meiryo UI',sans-serif;
+}
+/* Keyboard hint */
+.hint {
+    text-align: center;
+    padding: 0.4rem;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+    <a href="../index.html">&larr; Back</a>
+    <span class="title">Section 22 — 地政学リスクとニューストレード</span>
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
+        <span class="page-info" id="pageInfo">1 / 8</span>
+        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
+    </div>
+</div>
+<div class="slide-container">
+<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">SECTION 22</p></div>
+<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:26px;font-weight:700;text-align:center">地政学リスクとニューストレード</p></div>
+<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:11px;text-align:center">Geopolitical Risk &amp; News Trading ── 予測不能なイベントへの対処</p></div>
+<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">地政学リスクの種類</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  戦争・軍事衝突 ── 最も急激なリスクオフ反応を引き起こす</p>
+<p style="font-size:10px">▪  選挙・政権交代 ── 政策変更期待で通貨が大きく動く</p>
+<p style="font-size:10px">▪  貿易戦争・関税 ── 長期的な経済構造への影響</p>
+<p style="font-size:10px">▪  経済制裁 ── 対象国の通貨・資産に直接影響</p>
+<p style="font-size:10px">▪  テロ・自然災害 ── 短期的な市場混乱を引き起こす</p>
+<p style="font-size:10px">▪  デフォルトリスク ── 国家の債務不履行懸念</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">地政学リスクとニューストレード    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">地政学イベントの市場への影響</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  リスクオフ反応：安全資産（JPY, CHF, USD, 金, 米国債）が買われる</p>
+<p style="font-size:10px">▪  リスク資産（新興国通貨, 株式, 暗号資産）が売られる</p>
+<p style="font-size:10px">▪  ボラティリティの急上昇 ── VIXスパイク</p>
+<p style="font-size:10px">▪  流動性の急低下 ── スプレッド拡大、スリッページ増大</p>
+<p style="font-size:10px">▪  初動は感情的な反応 → その後、合理的な評価に移行する傾向</p>
+<p style="font-size:10px">▪  地政学リスクの「慣れ」── 長期化すると市場は徐々に織り込む</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">地政学リスクとニューストレード    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">ニューストレードの基本戦略</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:10px">▪  ストラドル戦略 ── 指標発表前に両方向に逆指値注文を配置</p>
+<p style="font-size:10px">▪  フェード戦略 ── 指標発表直後の過剰反応の反転を狙う</p>
+<p style="font-size:10px">▪  待機戦略 ── 発表後の初動を見送り、方向が定まってからエントリー</p>
+<p style="font-size:10px">▪  コンセンサスとの乖離幅が値動きの大きさを決定する</p>
+<p style="font-size:10px">▪  「噂で買って事実で売る」── 期待で動いた後、発表で反転するパターン</p></div>
+<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:10px;text-align:center">POINT：ニューストレードは上級者向け。初心者は「重要指標発表前にポジションをスクエアにする」だけでリスクを大幅に軽減できる。</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">地政学リスクとニューストレード    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">リスク管理：高インパクトイベント時</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  ポジションサイズの縮小 ── 通常の50%以下が推奨</p>
+<p style="font-size:10px">▪  ストップロスの拡大 ── ボラティリティに応じてSLを広げる（またはノーポジション）</p>
+<p style="font-size:10px">▪  既存ポジションの部分利確 ── イベント前にリスクを減らす</p>
+<p style="font-size:10px">▪  スリッページを考慮 ── SLが設定通りに約定しない可能性を織り込む</p>
+<p style="font-size:10px">▪  複数通貨での同方向ポジションを避ける ── 相関リスクの集中を防ぐ</p>
+<p style="font-size:10px">▪  最善の策 ── 不確実性が高いときは市場に参加しない</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">地政学リスクとニューストレード    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">ニューストレードでよくあるミス</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  発表直後に飛び乗る ── スプレッド拡大で不利なエントリーになる</p>
+<p style="font-size:10px">▪  SLなしでニュース跨ぎ ── 想定外の結果で大損失のリスク</p>
+<p style="font-size:10px">▪  ポジションサイズを変えない ── 通常時と同じロットで高ボラに突入</p>
+<p style="font-size:10px">▪  初動を最終方向と思い込む ── 最初の反応は反転することが多い</p>
+<p style="font-size:10px">▪  全指標でトレードしようとする ── 高インパクト指標に絞る</p>
+<p style="font-size:10px">▪  「予想」を持ちすぎる ── 方向を当てようとせず、反応を見てから動く</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">地政学リスクとニューストレード    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">まとめ</p></div>
+<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">地政学リスク</p></div>
+<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">戦争・選挙・貿易戦争が市場を急変させる</p></div>
+<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">市場反応</p></div>
+<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">リスクオフ＝安全資産高、ボラ上昇、流動性低下</p></div>
+<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">ニュース戦略</p></div>
+<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">ストラドル、フェード、待機の3パターン</p></div>
+<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">リスク管理</p></div>
+<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">サイズ縮小、SL拡大、またはノーポジション</p></div>
+<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">鉄則</p></div>
+<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">不確実性が高いときは参加しないのが最善</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">地政学リスクとニューストレード    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:20px;font-weight:700;text-align:center">End of Section</p></div>
+<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:11px;text-align:center">Next → 各国経済プロファイル</p></div>
+<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">URIKAI Trading Academy</p></div></div>
+</div>
+<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<script>
+let current = 1;
+const total = 8;
+function navigate(dir) {
+    current = Math.max(1, Math.min(total, current + dir));
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
+    document.getElementById('pageInfo').textContent = current + ' / ' + total;
+    document.getElementById('prevBtn').disabled = current === 1;
+    document.getElementById('nextBtn').disabled = current === total;
+}
+// Init
+document.querySelector('[data-slide="1"]').classList.add('active');
+document.getElementById('prevBtn').disabled = true;
+// Keyboard
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
+    if (e.key === 'ArrowLeft') navigate(-1);
+});
+// Block right-click
+document.addEventListener('contextmenu', e => e.preventDefault());
+// Auth check
+if (sessionStorage.getItem('urikai_auth') !== 'true') {
+    window.location.href = '../index.html';
+}
+</script>
+</body>
+</html>

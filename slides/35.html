@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URIKAI - トレード戦略集</title>
+<style>
+:root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --accent: #d4a537;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --border: #30363d;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: 'Segoe UI','Meiryo UI',sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.toolbar {
+    background: var(--bg-card);
+    border-bottom: 2px solid var(--accent);
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+.toolbar a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.toolbar a:hover { text-decoration: underline; }
+.toolbar .title {
+    color: var(--text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    flex: 1;
+}
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.nav-btn {
+    background: var(--border);
+    color: var(--text);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
+.page-info {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    min-width: 60px;
+    text-align: center;
+}
+.slide-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow: hidden;
+}
+.slide {
+    width: 100%;
+    max-width: 1100px;
+    aspect-ratio: 16/9;
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    display: none;
+    overflow: hidden;
+}
+.slide.active {
+    display: block;
+}
+.slide p {
+    margin: 0;
+    padding: 1px 0;
+    line-height: 1.5;
+}
+.slide table {
+    font-family: 'Segoe UI','Meiryo UI',sans-serif;
+}
+/* Keyboard hint */
+.hint {
+    text-align: center;
+    padding: 0.4rem;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+    <a href="../index.html">&larr; Back</a>
+    <span class="title">Section 35 — トレード戦略集</span>
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
+        <span class="page-info" id="pageInfo">1 / 10</span>
+        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
+    </div>
+</div>
+<div class="slide-container">
+<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">SECTION 35</p></div>
+<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:26px;font-weight:700;text-align:center">トレード戦略集</p></div>
+<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:11px;text-align:center">Trading Strategies ── 代表的な戦略と選び方</p></div>
+<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">トレード戦略の分類</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  トレンドフォロー ── 既存のトレンドに乗る（順張り）</p>
+<p style="font-size:10px">▪  逆張り（Mean Reversion）── 行きすぎた価格の戻りを狙う</p>
+<p style="font-size:10px">▪  ブレイクアウト ── レンジやパターンの突破を狙う</p>
+<p style="font-size:10px">▪  モメンタム ── 強い勢いのある方向に追随する</p>
+<p style="font-size:10px">▪  レンジ ── S/R間の反復運動を利用する</p>
+<p style="font-size:10px">▪  戦略の良し悪しは「市場環境との適合性」で決まる</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">トレード戦略集    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">ブレイクアウト戦略</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  レンジ、チャートパターン、S/Rの突破でエントリー</p>
+<p style="font-size:10px">▪  エントリー：ブレイク確認（終値ベース）+ 出来高増大</p>
+<p style="font-size:10px">▪  SL：ブレイクしたレンジ/パターンの反対側</p>
+<p style="font-size:10px">▪  TP：パターンの計測値、次のS/R、フィボエクステンション</p>
+<p style="font-size:10px">▪  偽ブレイク（フェイクアウト）に注意 → リテストの確認を待つのが安全</p>
+<p style="font-size:10px">▪  適した環境：レンジ相場からトレンド相場への転換期</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">トレード戦略集    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">プルバック / リトレースメント戦略</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  トレンド方向への押し目買い・戻り売り</p>
+<p style="font-size:10px">▪  エントリー条件：上位TFのトレンド確認 ＋ フィボ/S/Rでの反転確認</p>
+<p style="font-size:10px">▪  SL：リトレースメントレベルの外側</p>
+<p style="font-size:10px">▪  TP：直近高値/安値、フィボエクステンション</p>
+<p style="font-size:10px">▪  最もリスクリワードが良い戦略の一つ（トレンド方向 ＋ 有利な価格）</p>
+<p style="font-size:10px">▪  適した環境：明確なトレンド相場の調整局面</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">トレード戦略集    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">ミーンリバージョン（平均回帰）戦略</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:10px">▪  価格が「平均」から大きく乖離した後、平均に戻る性質を利用</p>
+<p style="font-size:10px">▪  ツール：ボリンジャーバンド（±2σ）、RSI（30以下/70以上）</p>
+<p style="font-size:10px">▪  エントリー：極端な価格帯でのローソク足反転パターン</p>
+<p style="font-size:10px">▪  SL：バンドの外側またはATR × 倍率</p>
+<p style="font-size:10px">▪  TP：ミドルバンド（20SMA）、RSI 50レベル</p>
+<p style="font-size:10px">▪  適した環境：レンジ相場。トレンド相場では非常に危険</p></div>
+<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:10px;text-align:center">POINT：ミーンリバージョンはレンジ相場専用。トレンド発生中に逆張りすると「落ちるナイフを掴む」ことになる。必ず市場環境を先に確認。</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">トレード戦略集    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">VWAP戦略 / ORB戦略</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  VWAP（出来高加重平均価格）── 機関投資家のベンチマーク</p>
+<p style="font-size:10px">▪  価格がVWAPの上 ＝ 買い方有利、下 ＝ 売り方有利</p>
+<p style="font-size:10px">▪  VWAPへの回帰（ミーンリバージョン）and VWAPブレイクアウトの2パターン</p>
+<p style="font-size:10px">▪  ORB（Opening Range Breakout）── セッション開始後の最初のレンジ（15-30分）を定義</p>
+<p style="font-size:10px">▪  レンジ上限を超えたら買い、下限を割ったら売り</p>
+<p style="font-size:10px">▪  デイトレード向き、ロンドン/NYオープンで特に有効</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">トレード戦略集    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">戦略比較表</p></div>
+<div style="position:absolute;left:3.75%;top:17.33%;width:92.25%;height:33.60%;overflow:hidden"><table style="border-collapse:collapse;width:100%;margin-top:4px"><tr><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">戦略</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">最適な市場環境</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">推奨TF</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">勝率傾向</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">RRR傾向</th></tr><tr><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">ブレイクアウト</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">レンジ→トレンド転換</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">1H-日足</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">低〜中</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">高</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">プルバック</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">トレンド相場</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">4H-日足</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">中〜高</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">高</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">ミーンリバージョン</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">レンジ相場</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">15分-4H</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">高</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">低〜中</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">VWAP</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">デイトレ/レンジ&amp;トレンド</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">5分-1H</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">中</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">中</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">ORB</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">ボラタイルなオープン</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">5分-15分</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">中</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">中〜高</td></tr></table></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">トレード戦略集    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">自分に合った戦略の選び方</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:10px">▪  性格：忍耐強い → スイング/プルバック、せっかち → スキャルピング/ORB</p>
+<p style="font-size:10px">▪  生活スタイル：時間が限られる → スイング/日足、常時監視可能 → デイトレ</p>
+<p style="font-size:10px">▪  リスク許容度：保守的 → プルバック/ミーンリバージョン、積極的 → ブレイクアウト</p>
+<p style="font-size:10px">▪  1つの戦略を徹底的にマスターすることが最優先</p>
+<p style="font-size:10px">▪  複数戦略を同時に学ぶと中途半端になる → まず1つを100トレード</p>
+<p style="font-size:10px">▪  バックテストでデータを取り、自分の性格との相性を確認する</p></div>
+<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:10px;text-align:center">POINT：最良の戦略は「自分が一貫して実行できる戦略」。勝率が高くても、自分の性格や生活に合わなければ長期的に実行できない。</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">トレード戦略集    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="9" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">まとめ</p></div>
+<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">分類</p></div>
+<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">トレンドフォロー、逆張り、ブレイクアウト、モメンタム、レンジ</p></div>
+<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">ブレイクアウト</p></div>
+<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">パターン/レンジ突破、フェイクアウトに注意</p></div>
+<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">プルバック</p></div>
+<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">トレンド中の押し目/戻り、高RRR</p></div>
+<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">ミーンリバージョン</p></div>
+<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">BB/RSI極値からの回帰、レンジ相場専用</p></div>
+<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">選び方</p></div>
+<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">性格・生活・リスク許容度に合う1つを徹底マスター</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">トレード戦略集    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="10" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:20px;font-weight:700;text-align:center">End of Section</p></div>
+<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">URIKAI Trading Academy</p></div></div>
+</div>
+<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<script>
+let current = 1;
+const total = 10;
+function navigate(dir) {
+    current = Math.max(1, Math.min(total, current + dir));
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
+    document.getElementById('pageInfo').textContent = current + ' / ' + total;
+    document.getElementById('prevBtn').disabled = current === 1;
+    document.getElementById('nextBtn').disabled = current === total;
+}
+// Init
+document.querySelector('[data-slide="1"]').classList.add('active');
+document.getElementById('prevBtn').disabled = true;
+// Keyboard
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
+    if (e.key === 'ArrowLeft') navigate(-1);
+});
+// Block right-click
+document.addEventListener('contextmenu', e => e.preventDefault());
+// Auth check
+if (sessionStorage.getItem('urikai_auth') !== 'true') {
+    window.location.href = '../index.html';
+}
+</script>
+</body>
+</html>

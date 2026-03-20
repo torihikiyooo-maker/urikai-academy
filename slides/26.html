@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URIKAI - ポジションサイジング</title>
+<style>
+:root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --accent: #d4a537;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --border: #30363d;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: 'Segoe UI','Meiryo UI',sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.toolbar {
+    background: var(--bg-card);
+    border-bottom: 2px solid var(--accent);
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+.toolbar a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.toolbar a:hover { text-decoration: underline; }
+.toolbar .title {
+    color: var(--text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    flex: 1;
+}
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.nav-btn {
+    background: var(--border);
+    color: var(--text);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
+.page-info {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    min-width: 60px;
+    text-align: center;
+}
+.slide-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow: hidden;
+}
+.slide {
+    width: 100%;
+    max-width: 1100px;
+    aspect-ratio: 16/9;
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    display: none;
+    overflow: hidden;
+}
+.slide.active {
+    display: block;
+}
+.slide p {
+    margin: 0;
+    padding: 1px 0;
+    line-height: 1.5;
+}
+.slide table {
+    font-family: 'Segoe UI','Meiryo UI',sans-serif;
+}
+/* Keyboard hint */
+.hint {
+    text-align: center;
+    padding: 0.4rem;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+    <a href="../index.html">&larr; Back</a>
+    <span class="title">Section 26 — ポジションサイジング</span>
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
+        <span class="page-info" id="pageInfo">1 / 8</span>
+        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
+    </div>
+</div>
+<div class="slide-container">
+<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">SECTION 26</p></div>
+<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:26px;font-weight:700;text-align:center">ポジションサイジング</p></div>
+<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:11px;text-align:center">Position Sizing ── 1トレードあたりのリスク量を制御する</p></div>
+<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">なぜポジションサイジングが最重要なのか</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:10px">▪  エントリー手法より資金管理のほうが長期的な成績に影響する</p>
+<p style="font-size:10px">▪  同じ手法でもロットサイズが適切でなければ破綻する</p>
+<p style="font-size:10px">▪  プロトレーダーの共通点：ポジションサイズを厳密に管理している</p>
+<p style="font-size:10px">▪  良いトレードでも大きすぎるサイズなら破壊的な結果を招く</p>
+<p style="font-size:10px">▪  ポジションサイジングは「生存」のための技術</p></div>
+<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:10px;text-align:center">POINT：ポジションサイジングはトレードで唯一「完全にコントロールできる」変数。エントリーやイグジットは市場次第だが、サイズは自分で決められる。</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">ポジションサイジング    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">1-2%ルール</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  1トレードあたりのリスクを口座資金の1〜2%に限定する</p>
+<p style="font-size:10px">▪  例：100万円口座 → 1トレードの最大損失額 ＝ 1〜2万円</p>
+<p style="font-size:10px">▪  連続10回負けても口座の10〜20%の損失に留まる</p>
+<p style="font-size:10px">▪  資金が増えたらリスク額も比例して増加（複利効果）</p>
+<p style="font-size:10px">▪  資金が減ったらリスク額も減少（ドローダウン時の防御）</p>
+<p style="font-size:10px">▪  初心者は1%、慣れてきたら条件次第で2%まで</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">ポジションサイジング    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">ポジションサイズの計算式</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:10px">▪  ポジションサイズ ＝（口座残高 × リスク%）÷（SL幅pips × 1pipあたりの金額）</p>
+<p style="font-size:10px">▪  例：口座100万円、リスク1%、SL ＝ 30pips、1pip ＝ 1,000円（0.1lot）</p>
+<p style="font-size:10px">▪  計算：(1,000,000 × 0.01) ÷ (30 × 1,000) = 0.33 → 0.03 lot</p>
+<p style="font-size:10px">▪  SLが広い → ロットが小さくなる（自動調整）</p>
+<p style="font-size:10px">▪  SLが狭い → ロットが大きくなる（ただし上限を設ける）</p>
+<p style="font-size:10px">▪  この計算を毎トレード行うこと。感覚でロットを決めない</p></div>
+<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:10px;text-align:center">POINT：SL幅が先、ロットが後。先にストップロスの位置をテクニカルで決め、そこからロットを逆算する。</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">ポジションサイジング    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">ポジションサイズの計算例</p></div>
+<div style="position:absolute;left:3.75%;top:17.33%;width:92.25%;height:33.60%;overflow:hidden"><table style="border-collapse:collapse;width:100%;margin-top:4px"><tr><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">口座残高</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">リスク%</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">SL幅</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">1pipの価値</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:12px;text-align:left;border:1px solid #30363d">ポジションサイズ</th></tr><tr><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">50万円</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">1%</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">20 pips</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">1,000円/0.1lot</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">0.25 lot</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">50万円</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">1%</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">50 pips</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">1,000円/0.1lot</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">0.10 lot</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">100万円</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">2%</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">30 pips</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">1,000円/0.1lot</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">0.67 lot</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">100万円</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">1%</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">30 pips</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">1,000円/0.1lot</td><td style="background:#eaecee;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">0.33 lot</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">30万円</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">1%</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">40 pips</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">1,000円/0.1lot</td><td style="background:transparent;padding:8px 12px;font-size:12px;color:#2c3e50;border:1px solid #30363d">0.075 lot</td></tr></table></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">ポジションサイジング    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">スケールイン / スケールアウト</p></div>
+<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:10px">▪  スケールイン ── ポジションを分割して段階的に構築</p>
+<p style="font-size:10px">▪  例：総ロットの1/3ずつ、3回に分けてエントリー</p>
+<p style="font-size:10px">▪  メリット：平均エントリー価格の改善、リスク分散</p>
+<p style="font-size:10px">▪  スケールアウト ── ポジションを分割して段階的に決済</p>
+<p style="font-size:10px">▪  例：TP1で1/2決済、残りをトレーリング</p>
+<p style="font-size:10px">▪  メリット：確実に利益を確保しつつ、利益を伸ばす余地を残す</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">ポジションサイジング    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:14px;font-weight:700">まとめ</p></div>
+<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">重要性</p></div>
+<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">長期成績を左右する最重要の資金管理技術</p></div>
+<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">1-2%ルール</p></div>
+<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">1トレードのリスクを口座の1-2%に制限</p></div>
+<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">計算式</p></div>
+<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">（残高×リスク%）÷（SL×pip価値）＝ ロット</p></div>
+<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">原則</p></div>
+<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">SL幅が先、ロットが後。毎回計算する</p></div>
+<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:10px;font-weight:700;text-align:center">スケール</p></div>
+<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:10px">分割エントリー/決済でリスク分散と利益最大化</p></div>
+<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:10px;text-align:center">ポジションサイジング    |    URIKAI Trading Academy</p></div></div>
+<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:20px;font-weight:700;text-align:center">End of Section</p></div>
+<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:11px;text-align:center">Next → リスクリワード比と期待値</p></div>
+<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:10px;text-align:center">URIKAI Trading Academy</p></div></div>
+</div>
+<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<script>
+let current = 1;
+const total = 8;
+function navigate(dir) {
+    current = Math.max(1, Math.min(total, current + dir));
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
+    document.getElementById('pageInfo').textContent = current + ' / ' + total;
+    document.getElementById('prevBtn').disabled = current === 1;
+    document.getElementById('nextBtn').disabled = current === total;
+}
+// Init
+document.querySelector('[data-slide="1"]').classList.add('active');
+document.getElementById('prevBtn').disabled = true;
+// Keyboard
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
+    if (e.key === 'ArrowLeft') navigate(-1);
+});
+// Block right-click
+document.addEventListener('contextmenu', e => e.preventDefault());
+// Auth check
+if (sessionStorage.getItem('urikai_auth') !== 'true') {
+    window.location.href = '../index.html';
+}
+</script>
+</body>
+</html>
