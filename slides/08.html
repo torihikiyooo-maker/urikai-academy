@@ -23,33 +23,15 @@
 <li><strong>実体（Body）</strong>── 始値と終値の間 ＝ 売買の決着</li>
 <li><strong>ヒゲ（Wick）</strong>── 高値/安値への伸び ＝ 拒否された価格帯</li>
 </ul><div class="pbox">POINT：ローソク足1本が「買い手と売り手の戦いの結果」を表す。実体＝決着、ヒゲ＝拒否。</div></div>
-<div class="vis"><svg viewBox="0 0 420 320" width="100%" style="max-width:800px">
-<defs><filter id="g8"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-<rect x="0" y="0" width="420" height="320" rx="8" fill="#131c2b"/>
-<line x1="20" y1="50" x2="400" y2="50" stroke="#1e3045" stroke-width="0.5"/><line x1="20" y1="100" x2="400" y2="100" stroke="#1e3045" stroke-width="0.5"/><line x1="20" y1="150" x2="400" y2="150" stroke="#1e3045" stroke-width="0.5"/><line x1="20" y1="200" x2="400" y2="200" stroke="#1e3045" stroke-width="0.5"/><line x1="20" y1="250" x2="400" y2="250" stroke="#1e3045" stroke-width="0.5"/>
-<!-- Bullish -->
-<text x="105" y="25" text-anchor="middle" font-size="15" fill="#27ae60" font-weight="700">陽線（Bullish）</text>
-<line x1="105" y1="40" x2="105" y2="80" stroke="#27ae60" stroke-width="2.5"/>
-<rect x="80" y="80" width="50" height="120" fill="#27ae60" rx="3"/>
-<line x1="105" y1="200" x2="105" y2="250" stroke="#27ae60" stroke-width="2.5"/>
-<text x="145" y="48" font-size="12" fill="#8b949e">← 高値</text>
-<text x="145" y="90" font-size="12" fill="#27ae60" font-weight="600">← 終値</text>
-<text x="145" y="208" font-size="12" fill="#27ae60" font-weight="600">← 始値</text>
-<text x="145" y="258" font-size="12" fill="#8b949e">← 安値</text>
-<text x="60" y="62" font-size="10" fill="#556" text-anchor="end">上ヒゲ</text>
-<text x="60" y="230" font-size="10" fill="#556" text-anchor="end">下ヒゲ</text>
-<rect x="134" y="85" width="4" height="110" fill="#27ae60" opacity="0.2" rx="2"/>
-<text x="148" y="145" font-size="11" fill="#27ae60" font-weight="600">実体</text>
-<!-- Bearish -->
-<text x="310" y="25" text-anchor="middle" font-size="15" fill="#e74c3c" font-weight="700">陰線（Bearish）</text>
-<line x1="310" y1="40" x2="310" y2="80" stroke="#e74c3c" stroke-width="2.5"/>
-<rect x="285" y="80" width="50" height="120" fill="#e74c3c" rx="3"/>
-<line x1="310" y1="200" x2="310" y2="250" stroke="#e74c3c" stroke-width="2.5"/>
-<text x="275" y="90" font-size="12" fill="#e74c3c" font-weight="600" text-anchor="end">始値 →</text>
-<text x="275" y="208" font-size="12" fill="#e74c3c" font-weight="600" text-anchor="end">終値 →</text>
-<rect x="95" y="280" width="220" height="22" rx="4" fill="#1e3045"/>
-<text x="205" y="296" text-anchor="middle" font-size="11" fill="#8b949e">陽線は上昇を、陰線は下落を示す</text>
-</svg></div></div>
+<div class="vis" style="position:relative;flex:1.5;display:flex;align-items:center;justify-content:center;">
+<img src="img/08-1.png" style="max-width:600px;width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.4);" alt="ローソク足の基本構造"/>
+<div style="position:absolute;left:18%;top:8%;color:#27ae60;font-size:0.9rem;font-weight:700;">陽線（Bullish）</div>
+<div style="position:absolute;right:18%;top:8%;color:#e74c3c;font-size:0.9rem;font-weight:700;">陰線（Bearish）</div>
+<div style="position:absolute;left:5%;top:20%;color:#8b949e;font-size:0.75rem;">← 高値</div>
+<div style="position:absolute;left:5%;top:42%;color:#27ae60;font-size:0.75rem;font-weight:600;">← 終値</div>
+<div style="position:absolute;left:5%;top:62%;color:#27ae60;font-size:0.75rem;font-weight:600;">← 始値</div>
+<div style="position:absolute;left:5%;bottom:18%;color:#8b949e;font-size:0.75rem;">← 安値</div>
+</div></div>
 <div class="ftr">ローソク足パターン | URIKAI Trading Academy</div></div>
 
 <!-- 3: 単体パターン -->
