@@ -12,19 +12,30 @@
 <div class="brand">URIKAI Trading Academy</div></div>
 <div class="slide cnt" data-s="2"><div class="hdr"><h2>SLの種類・TP戦略・トレーリング</h2></div>
 <div class="body"><div class='txt'><ul><li><strong>構造ベースSL</strong>（S/R外側）が最も合理的。<strong>ATR×1.5-2.0</strong>で検証</li><li><strong>TP戦略</strong>：S/Rベース、フィボエクステンション、部分決済＋トレーリング</li><li><strong>トレーリング</strong>：固定pip/ATR/構造/MAトレール</li><li>SLを不利な方向に動かすのは<strong>絶対禁止</strong></li><li>推奨：TP1（S/R）で50%決済＋残りをトレーリング</li></ul><div class='pbox'>POINT：SLは「根拠が崩れるポイント」に置く。損失額から逆算して場所を決めてはいけない。</div></div>
-<div class="vis"><svg viewBox="0 0 500 200" width="100%" style="max-width:620px">
-<line x1="60" y1="20" x2="60" y2="180" stroke="#888" stroke-width="1.5"/>
-<polyline points="80,150 120,140 160,130 200,100 220,95 250,80 280,75 300,70" stroke="#2c3e50" stroke-width="2" fill="none"/>
-<circle cx="200" cy="100" r="6" fill="#2e86c1"/><text x="210" y="95" font-size="12" fill="#2e86c1" font-weight="700">エントリー</text>
-<line x1="60" y1="150" x2="350" y2="150" stroke="#c0392b" stroke-width="2" stroke-dasharray="6,3"/>
-<text x="355" y="148" font-size="12" fill="#c0392b" font-weight="700">SL（構造ベース）</text>
-<line x1="60" y1="50" x2="350" y2="50" stroke="#27ae60" stroke-width="2" stroke-dasharray="6,3"/>
-<text x="355" y="48" font-size="12" fill="#27ae60" font-weight="700">TP1（次のS/R）</text>
-<line x1="60" y1="30" x2="350" y2="30" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
-<text x="355" y="28" font-size="11" fill="#27ae60" opacity="0.7">TP2（トレーリング）</text>
-<rect x="62" y="50" width="6" height="100" rx="2" fill="#27ae60" opacity="0.1"/>
-<text x="65" y="105" font-size="10" fill="#27ae60" transform="rotate(-90,65,105)">利益</text>
-<rect x="62" y="100" width="6" height="50" rx="2" fill="#c0392b" opacity="0.1"/>
+<div class="vis"><svg viewBox="0 0 520 200" width="100%" style="max-width:800px">
+<rect x="0" y="0" width="520" height="200" rx="8" fill="#131c2b"/>
+<line x1="30" y1="50" x2="490" y2="50" stroke="#1e3045" stroke-width="0.5"/>
+<line x1="30" y1="100" x2="490" y2="100" stroke="#1e3045" stroke-width="0.5"/>
+<line x1="30" y1="150" x2="490" y2="150" stroke="#1e3045" stroke-width="0.5"/>
+<line x1="55" y1="15" x2="55" y2="178" stroke="#556" stroke-width="1"/>
+<!-- Candles going up -->
+<rect x="72" y="145" width="8" height="15" fill="#27ae60" rx="1"/><rect x="84" y="135" width="8" height="15" fill="#27ae60" rx="1"/><rect x="96" y="125" width="8" height="15" fill="#27ae60" rx="1"/>
+<rect x="108" y="110" width="8" height="18" fill="#27ae60" rx="1"/><circle cx="112" cy="110" r="4" fill="#2e86c1" opacity="0.4"/><text x="125" y="108" font-size="9" fill="#2e86c1" font-weight="600">エントリー</text>
+<rect x="120" y="100" width="8" height="12" fill="#27ae60" rx="1"/><rect x="132" y="92" width="8" height="10" fill="#27ae60" rx="1"/>
+<line x1="55" y1="148" x2="250" y2="148" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="6,3"/>
+<rect x="252" y="142" width="82" height="14" rx="3" fill="#e74c3c" opacity="0.7"/><text x="293" y="153" text-anchor="middle" font-size="9" fill="#fff" font-weight="600">SL（構造ベース）</text>
+<line x1="55" y1="58" x2="250" y2="58" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="6,3"/>
+<rect x="252" y="52" width="70" height="14" rx="3" fill="#27ae60" opacity="0.7"/><text x="287" y="63" text-anchor="middle" font-size="9" fill="#fff" font-weight="600">TP1（S/R）</text>
+<line x1="55" y1="35" x2="250" y2="35" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+<rect x="252" y="29" width="95" height="14" rx="3" fill="#27ae60" opacity="0.4"/><text x="300" y="40" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">TP2（トレーリング）</text>
+<rect x="370" y="20" width="130" height="65" rx="8" fill="#1e3045"/>
+<text x="435" y="42" text-anchor="middle" font-size="11" fill="#d4a537" font-weight="700">推奨：</text>
+<text x="435" y="60" text-anchor="middle" font-size="10" fill="#8b949e">TP1で50%決済</text>
+<text x="435" y="76" text-anchor="middle" font-size="10" fill="#8b949e">残りトレーリング</text>
+<rect x="370" y="100" width="130" height="65" rx="8" fill="#e74c3c" opacity="0.08" stroke="#e74c3c" stroke-width="1"/>
+<text x="435" y="122" text-anchor="middle" font-size="11" fill="#e74c3c" font-weight="700">鉄則：</text>
+<text x="435" y="140" text-anchor="middle" font-size="10" fill="#8b949e">SLを不利な方向に</text>
+<text x="435" y="156" text-anchor="middle" font-size="10" fill="#e74c3c" font-weight="600">動かさない</text>
 </svg></div></div>
 <div class="ftr">SL＆TP | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>まとめ</h2></div>
 <div class="body col"><div class='srow'><div class='lbl'>SL</div><div class='val'>構造ベース＋ATRで検証、不利移動は絶対禁止</div></div><div class='srow'><div class='lbl'>TP</div><div class='val'>S/R・フィボ・部分決済＋トレーリング</div></div><div class='srow'><div class='lbl'>トレーリング</div><div class='val'>ATR/構造/MAトレール</div></div><div class='srow'><div class='lbl'>鉄則</div><div class='val'>SLは根拠崩壊ポイントに置く</div></div></div>
