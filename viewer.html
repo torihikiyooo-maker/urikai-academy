@@ -45,45 +45,49 @@
             font-weight: 600;
             flex: 1;
         }
-        .toolbar .download-btn {
-            background: var(--primary);
-            color: var(--accent);
-            padding: 0.4rem 1rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            text-decoration: none;
-            border: 1px solid var(--accent);
-            transition: background 0.2s;
-        }
-        .toolbar .download-btn:hover {
-            background: var(--accent);
-            color: var(--primary);
-            text-decoration: none;
+        .viewer-container {
+            flex: 1;
+            position: relative;
         }
         .viewer-frame {
-            flex: 1;
-            border: none;
             width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
-        .fallback {
-            flex: 1;
+        /* Loading overlay - covers iframe until Office viewer loads */
+        .loading-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--bg);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             gap: 1.5rem;
-            padding: 2rem;
-            text-align: center;
+            z-index: 10;
+            transition: opacity 0.5s ease;
         }
-        .fallback p { color: var(--text-muted); max-width: 500px; }
-        .fallback .big-download {
-            background: linear-gradient(135deg, var(--accent), #b8912e);
-            color: var(--primary);
-            padding: 1rem 2.5rem;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-decoration: none;
+        .loading-overlay.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .loading-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -91,13 +95,13 @@
     <div class="toolbar">
         <a href="index.html">&larr; Back</a>
         <span class="title" id="slideTitle">Loading...</span>
-        <a class="download-btn" id="downloadLink" href="#">Download PPTX</a>
     </div>
-    <iframe class="viewer-frame" id="viewerFrame" src="about:blank"></iframe>
-    <div class="fallback" id="fallback" style="display:none;">
-        <h2 style="color: var(--accent);">スライドをダウンロード</h2>
-        <p>ブラウザでの表示に対応していない場合は、下のボタンからPPTXファイルをダウンロードしてPowerPointで開いてください。</p>
-        <a class="big-download" id="fallbackDownload" href="#">Download PPTX</a>
+    <div class="viewer-container">
+        <iframe class="viewer-frame" id="viewerFrame" src="about:blank"></iframe>
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">スライドを読み込み中...</div>
+        </div>
     </div>
 
     <script>
@@ -118,29 +122,25 @@
             const fileUrl = baseUrl + encodeURIComponent(file);
             const officeUrl = 'https://view.officeapps.live.com/op/embed.aspx?src=' + encodeURIComponent(fileUrl);
 
-            document.getElementById('downloadLink').href = file;
-            document.getElementById('fallbackDownload').href = file;
-
             const iframe = document.getElementById('viewerFrame');
             iframe.src = officeUrl;
 
-            // If iframe fails to load, show fallback after timeout
+            // Fade out loading overlay after iframe loads
+            iframe.addEventListener('load', () => {
+                // Wait a bit for Office viewer to render past its splash
+                setTimeout(() => {
+                    document.getElementById('loadingOverlay').classList.add('fade-out');
+                }, 2000);
+            });
+
+            // Fallback: remove overlay after max wait time
             setTimeout(() => {
-                try {
-                    // Check if iframe loaded something
-                    if (iframe.contentDocument && iframe.contentDocument.body && iframe.contentDocument.body.innerHTML === '') {
-                        showFallback();
-                    }
-                } catch(e) {
-                    // Cross-origin - means it loaded something (office viewer)
-                }
+                document.getElementById('loadingOverlay').classList.add('fade-out');
             }, 8000);
         }
 
-        function showFallback() {
-            document.getElementById('viewerFrame').style.display = 'none';
-            document.getElementById('fallback').style.display = 'flex';
-        }
+        // Block right-click to discourage saving
+        document.addEventListener('contextmenu', e => e.preventDefault());
     </script>
 </body>
 </html>
