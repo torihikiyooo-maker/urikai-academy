@@ -1,219 +1,61 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - 取引セッションと時間帯</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 07 — 取引セッションと時間帯</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 9</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
-</div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 07</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">取引セッションと時間帯</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">市場のリズムを理解する</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">FX市場の24時間サイクル</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  FX市場は月曜早朝（NZ/シドニー）〜土曜早朝（NY）まで連続稼働</p>
-<p style="font-size:20px">▪  3つの主要セッションがリレー形式で市場を回す</p>
-<p style="font-size:20px">▪  東京セッション → ロンドンセッション → ニューヨークセッション</p>
-<p style="font-size:20px">▪  セッション間の「オーバーラップ」が最も活発な時間帯</p>
-<p style="font-size:20px">▪  各セッションごとに取引される主要通貨・ボラティリティが異なる</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">取引セッションと時間帯    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">3大セッションの特徴</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:92.25%;height:28.00%;overflow:hidden"><table style="border-collapse:collapse;width:100%;margin-top:4px"><tr><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">セッション</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">時間（JST）</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">特徴</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">主要通貨</th></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">東京（アジア）</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">6:00 - 15:00</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">比較的穏やか、レンジ相場が多い</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">JPY, AUD, NZD</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">ロンドン（欧州）</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">16:00 - 翌1:00</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">ボラティリティ増大、トレンド発生</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">EUR, GBP, CHF</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">ニューヨーク（米国）</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">21:00 - 翌6:00</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">最大の流動性、経済指標発表多数</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">USD, CAD</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">ロンドン×NY重複</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">21:00 - 翌1:00</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">1日で最も活発、大きな値動き</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">全通貨ペア</td></tr></table></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">取引セッションと時間帯    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">東京セッション</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  日本時間 6:00〜15:00（夏時間による変動あり）</p>
-<p style="font-size:20px">▪  アジア・オセアニア圏の参加者が中心</p>
-<p style="font-size:20px">▪  相対的にボラティリティが低い → レンジ戦略が機能しやすい</p>
-<p style="font-size:20px">▪  JPY、AUD、NZDの動きに注目</p>
-<p style="font-size:20px">▪  仲値（9:55）前後にUSD/JPYが動く傾向（実需のドル買い）</p>
-<p style="font-size:20px">▪  ロンドンオープン前に東京セッションのレンジをブレイクすることが多い</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">取引セッションと時間帯    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ロンドンセッション</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  日本時間 16:00〜翌1:00（冬時間は17:00〜翌2:00）</p>
-<p style="font-size:20px">▪  世界のFX取引の約38%がロンドン市場で行われる</p>
-<p style="font-size:20px">▪  ボラティリティが急激に増加 → トレンドが発生しやすい</p>
-<p style="font-size:20px">▪  EUR、GBP、CHFの値動きが活発に</p>
-<p style="font-size:20px">▪  東京セッションのレンジをブレイクする動きが頻出</p>
-<p style="font-size:20px">▪  欧州の経済指標発表が相場を動かす</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">取引セッションと時間帯    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ニューヨークセッション</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  日本時間 21:00〜翌6:00（冬時間は22:00〜翌7:00）</p>
-<p style="font-size:20px">▪  ロンドンとのオーバーラップ時間帯が最も流動性が高い</p>
-<p style="font-size:20px">▪  米国の経済指標（NFP、CPI、FOMC等）がこの時間帯に発表される</p>
-<p style="font-size:20px">▪  指標発表後の急激な値動きに注意</p>
-<p style="font-size:20px">▪  NYクローズ（日本時間翌6:00/7:00）は日足の確定時刻</p>
-<p style="font-size:20px">▪  NY午後はロンドン勢の退出で流動性が低下する傾向</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">取引セッションと時間帯    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">時間帯と戦略の関係</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  東京セッション → レンジ取引、逆張り戦略が機能しやすい</p>
-<p style="font-size:20px">▪  ロンドンオープン → ブレイクアウト戦略が有効な時間帯</p>
-<p style="font-size:20px">▪  ロンドン×NYオーバーラップ → トレンドフォロー、モメンタム戦略</p>
-<p style="font-size:20px">▪  NY午後〜東京オープン前 → 流動性低下、スプレッド拡大に注意</p>
-<p style="font-size:20px">▪  重要指標発表前後 → 指標トレードまたはポジション管理の時間帯</p>
-<p style="font-size:20px">▪  自分のライフスタイルに合ったセッションを主戦場にする</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：すべての時間帯で同じ戦略は通用しない。自分が参加する時間帯の特性を理解し、それに適した戦略を選択すること。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">取引セッションと時間帯    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">24時間市場</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">3セッションのリレー方式で世界をカバー</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">東京</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">穏やか、レンジ相場、JPY/AUD/NZD</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">ロンドン</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">高ボラ、トレンド発生、EUR/GBP/CHF</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">ニューヨーク</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">最大流動性、米指標発表、USD/CAD</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">オーバーラップ</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">21:00-1:00が1日で最も活発な時間帯</p></div>
-<div style="position:absolute;left:3.75%;top:57.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">戦略適合</p></div>
-<div style="position:absolute;left:26.25%;top:57.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">時間帯に合わせた戦略選択が必須</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">取引セッションと時間帯    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="9" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - 取引セッションと時間帯</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 07 — 取引セッションと時間帯</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 6</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 07</div><h1>取引セッションと時間帯</h1>
+<div class="sub">市場のリズムを理解する</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>FX市場の24時間サイクル</h2></div>
+<div class="body"><div class='txt'><ul><li>FX市場は<strong>月曜早朝〜土曜早朝まで連続稼働</strong></li><li><strong>3つの主要セッション</strong>がリレー形式で市場を回す</li><li>東京セッション → ロンドンセッション → ニューヨークセッション</li><li>セッション間の「<strong>オーバーラップ</strong>」が最も活発な時間帯</li><li>各セッションごとに主要通貨・ボラティリティが異なる</li></ul><div class='pbox'>POINT：市場は24時間開いているが、「波の大きさ」は時間帯で全く違う。</div></div><div class='vis'><svg viewBox="0 0 520 300" width="100%" style="max-width:640px">
+<rect x="10" y="10" width="500" height="55" rx="8" fill="#f8f9fa" stroke="#ddd" stroke-width="1"/>
+<text x="30" y="28" font-size="10" fill="#888">0:00</text><text x="120" y="28" font-size="10" fill="#888">6:00</text><text x="240" y="28" font-size="10" fill="#888">12:00</text><text x="350" y="28" font-size="10" fill="#888">18:00</text><text x="475" y="28" font-size="10" fill="#888">24:00</text>
+<rect x="80" y="35" width="150" height="24" rx="5" fill="#c0392b" opacity="0.7"/><text x="155" y="52" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">東京 6:00-15:00</text>
+<rect x="230" y="35" width="150" height="24" rx="5" fill="#2e86c1" opacity="0.7"/><text x="305" y="52" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">ロンドン 16:00-1:00</text>
+<rect x="330" y="35" width="150" height="24" rx="5" fill="#27ae60" opacity="0.7"/><text x="405" y="52" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">NY 21:00-6:00</text>
+
+<rect x="330" y="35" width="50" height="24" rx="0" fill="#d4a537" opacity="0.4"/>
+
+<rect x="10" y="85" width="240" height="65" rx="8" fill="#c0392b" opacity="0.1" stroke="#c0392b" stroke-width="1"/>
+<text x="130" y="108" text-anchor="middle" font-size="16" fill="#c0392b" font-weight="700">東京セッション</text>
+<text x="130" y="130" text-anchor="middle" font-size="12" fill="#555">穏やか・レンジ相場 | JPY AUD NZD</text>
+
+<rect x="270" y="85" width="240" height="65" rx="8" fill="#2e86c1" opacity="0.1" stroke="#2e86c1" stroke-width="1"/>
+<text x="390" y="108" text-anchor="middle" font-size="16" fill="#2e86c1" font-weight="700">ロンドンセッション</text>
+<text x="390" y="130" text-anchor="middle" font-size="12" fill="#555">高ボラ・トレンド | EUR GBP CHF</text>
+
+<rect x="10" y="165" width="240" height="65" rx="8" fill="#27ae60" opacity="0.1" stroke="#27ae60" stroke-width="1"/>
+<text x="130" y="188" text-anchor="middle" font-size="16" fill="#27ae60" font-weight="700">NYセッション</text>
+<text x="130" y="210" text-anchor="middle" font-size="12" fill="#555">最大流動性・指標発表 | USD CAD</text>
+
+<rect x="270" y="165" width="240" height="65" rx="8" fill="#d4a537" opacity="0.15" stroke="#d4a537" stroke-width="2"/>
+<text x="390" y="188" text-anchor="middle" font-size="16" fill="#d4a537" font-weight="700">LDN × NY 重複</text>
+<text x="390" y="210" text-anchor="middle" font-size="12" fill="#555">21:00-1:00 JST 最も活発</text>
+
+<rect x="10" y="250" width="500" height="35" rx="8" fill="#e8f0fe"/>
+<text x="260" y="273" text-anchor="middle" font-size="14" fill="#0a2f5c" font-weight="700">自分のライフスタイルに合ったセッションを「主戦場」にする</text>
+</svg></div></div>
+<div class="ftr">取引セッションと時間帯 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>3大セッションの特徴</h2></div>
+<div class="body col"><table class='stbl'><tr><th>セッション</th><th>時間（JST）</th><th>特徴</th><th>主要通貨</th></tr><tr><td>東京（アジア）</td><td>6:00-15:00</td><td>穏やか、レンジ相場が多い</td><td>JPY, AUD, NZD</td></tr><tr><td>ロンドン（欧州）</td><td>16:00-翌1:00</td><td>ボラ増大、トレンド発生</td><td>EUR, GBP, CHF</td></tr><tr><td>ニューヨーク</td><td>21:00-翌6:00</td><td>最大流動性、指標発表多数</td><td>USD, CAD</td></tr><tr><td>LDN×NY重複</td><td>21:00-翌1:00</td><td>1日で最も活発</td><td>全通貨ペア</td></tr></table></div>
+<div class="ftr">取引セッションと時間帯 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="4"><div class="hdr"><h2>時間帯と戦略の関係</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>東京</strong> → レンジ取引、逆張り戦略が機能しやすい</li><li><strong>ロンドンオープン</strong> → ブレイクアウト戦略が有効</li><li><strong>LDN×NY重複</strong> → トレンドフォロー、モメンタム戦略</li><li><strong>NY午後〜東京前</strong> → 流動性低下、スプレッド拡大に注意</li><li>自分のライフスタイルに合ったセッションを<strong>主戦場</strong>にする</li></ul><div class='pbox'>POINT：すべての時間帯で同じ戦略は通用しない。参加する時間帯の特性を理解し、適した戦略を選択する。</div></div></div>
+<div class="ftr">取引セッションと時間帯 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="5"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>24時間市場</div><div class='val'>3セッションのリレー方式で世界をカバー</div></div><div class='srow'><div class='lbl'>東京</div><div class='val'>穏やか、レンジ、JPY/AUD/NZD</div></div><div class='srow'><div class='lbl'>ロンドン</div><div class='val'>高ボラ、トレンド、EUR/GBP/CHF</div></div><div class='srow'><div class='lbl'>ニューヨーク</div><div class='val'>最大流動性、米指標発表、USD/CAD</div></div><div class='srow'><div class='lbl'>オーバーラップ</div><div class='val'>21:00-1:00が1日で最も活発</div></div><div class='srow'><div class='lbl'>戦略適合</div><div class='val'>時間帯に合わせた戦略選択が必須</div></div></div>
+<div class="ftr">取引セッションと時間帯 | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="6"><h2>End of Section</h2>
+
+<div style="width:120px;height:3px;background:#d4a537;margin:2rem auto"></div>
+<div style="color:#8b949e;font-size:0.85rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 9;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=6;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+</script></body></html>

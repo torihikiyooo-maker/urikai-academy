@@ -1,218 +1,49 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - 市場参加者</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 03 — 市場参加者</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 9</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
-</div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 03</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">市場参加者</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">誰がこの市場で取引しているのか</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">市場参加者の階層構造</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  中央銀行 ── 金融政策で市場全体の方向性を左右する最上位の存在</p>
-<p style="font-size:20px">▪  商業銀行 / 投資銀行 ── インターバンク市場の主役、巨額の取引量</p>
-<p style="font-size:20px">▪  ヘッジファンド ── 大きなポジション、高頻度・高レバレッジ戦略</p>
-<p style="font-size:20px">▪  機関投資家 ── 年金基金、保険会社、運用会社（中長期運用）</p>
-<p style="font-size:20px">▪  事業法人 ── 貿易決済・海外送金のための実需取引</p>
-<p style="font-size:20px">▪  個人トレーダー（リテール）── 全体の約5-6%、ブローカー経由で参加</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：個人トレーダーの取引量は市場全体のごく一部。大手プレイヤーの動きを理解し、その流れに沿った取引を心がけることが重要。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">市場参加者    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">中央銀行の役割</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  金融政策で金利を操作 → 通貨の価値を左右する</p>
-<p style="font-size:20px">▪  量的緩和（QE）で市場に資金を供給 / 量的引き締め（QT）で資金を回収</p>
-<p style="font-size:20px">▪  為替介入で直接的に通貨レートに影響を与えることがある</p>
-<p style="font-size:20px">▪  フォワードガイダンスで市場の期待をコントロール</p>
-<p style="font-size:20px">▪  中央銀行の発言・声明ひとつで相場が大きく変動する</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">市場参加者    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">主要中央銀行一覧</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:92.25%;height:50.40%;overflow:hidden"><table style="border-collapse:collapse;width:100%;margin-top:4px"><tr><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">中央銀行</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">略称</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">対象通貨</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">政策金利名</th></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">米連邦準備制度</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">FRB / Fed</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">USD</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">FF金利</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">欧州中央銀行</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">ECB</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">EUR</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">主要リファイナンス金利</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">日本銀行</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">BOJ</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">JPY</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">政策金利（短期）</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">イングランド銀行</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">BOE</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">GBP</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">バンクレート</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">オーストラリア準備銀行</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">RBA</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">AUD</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">キャッシュレート</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">カナダ銀行</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">BOC</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">CAD</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">オーバーナイト金利</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">スイス国立銀行</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">SNB</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">CHF</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">政策金利</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">NZ準備銀行</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">RBNZ</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">NZD</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">OCR</td></tr></table></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">市場参加者    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">商業銀行とインターバンク市場</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  インターバンク市場 ＝ 銀行同士が直接取引する市場</p>
-<p style="font-size:20px">▪  主要プレイヤー：JPMorgan、Citi、Deutsche Bank、UBS、HSBC等</p>
-<p style="font-size:20px">▪  取引単位は数百万〜数十億ドル規模</p>
-<p style="font-size:20px">▪  為替レートの「基準価格」はここで形成される</p>
-<p style="font-size:20px">▪  個人トレーダーの注文はブローカーを通じてこの市場にアクセス</p>
-<p style="font-size:20px">▪  ECN/STPブローカーはより直接的にインターバンクに接続</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">市場参加者    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ヘッジファンドと機関投資家</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  ヘッジファンド ── 高度な戦略（マクロ・アルゴ・裁定）で積極的にリターンを追求</p>
-<p style="font-size:20px">▪  機関投資家 ── 年金基金・保険会社・投信会社、中長期の安定運用が主目的</p>
-<p style="font-size:20px">▪  両者とも巨額の資金を動かし、市場トレンドの形成に寄与</p>
-<p style="font-size:20px">▪  ヘッジファンドの動向はCOTレポートで一部確認可能</p>
-<p style="font-size:20px">▪  機関投資家のリバランス（四半期末等）は短期的な価格変動の原因になる</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">市場参加者    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">個人トレーダーの立ち位置</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  市場全体に占める割合は約5-6%（FX市場の場合）</p>
-<p style="font-size:20px">▪  情報の非対称性 ── 機関は専用データ・アナリストチームを保有</p>
-<p style="font-size:20px">▪  資金力の差 ── 機関は数十億〜数兆円規模のポジション</p>
-<p style="font-size:20px">▪  時間軸の差 ── 機関は中長期、個人は短期が多い傾向</p>
-<p style="font-size:20px">▪  個人の強み ── 機動性が高い、取引しない選択ができる</p>
-<p style="font-size:20px">▪  最大の武器 ── 好条件のときだけ参加する自由がある</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：個人トレーダーの最大の強みは「参加しない自由」。機関投資家は常にポジションを持つ義務があるが、個人にはそれがない。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">市場参加者    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">中央銀行</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">金融政策で市場全体の方向性を決定</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">銀行</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">インターバンク市場で基準価格を形成</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">ヘッジファンド</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">積極的な戦略で大きなポジションを構築</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">機関投資家</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">中長期運用、リバランスが短期変動の原因に</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">個人トレーダー</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">全体の5-6%、機動性と選択の自由が武器</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">市場参加者    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="9" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → 通貨ペアの基礎</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - 市場参加者</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 03 — 市場参加者</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 6</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 03</div><h1>市場参加者</h1>
+<div class="sub">誰がこの市場で取引しているのか</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>市場参加者の階層構造</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>中央銀行</strong> ── 金融政策で市場全体の方向性を左右する最上位の存在</li><li><strong>商業銀行/投資銀行</strong> ── インターバンク市場の主役、巨額の取引量</li><li><strong>ヘッジファンド</strong> ── 大きなポジション、高頻度・高レバレッジ戦略</li><li><strong>機関投資家</strong> ── 年金基金、保険会社、運用会社（中長期運用）</li><li><strong>個人トレーダー</strong> ── 全体の約5-6%、ブローカー経由で参加</li></ul><div class='pbox'>POINT：個人トレーダーの取引量は市場全体のごく一部。大手の流れに沿った取引を心がける。</div></div><div class='vis'><svg viewBox="0 0 500 340" width="100%" style="max-width:620px">
+<polygon points="250,10 420,280 80,280" fill="none" stroke="#d4a537" stroke-width="2" opacity="0.3"/>
+<rect x="185" y="25" width="130" height="42" rx="8" fill="#0a2f5c"/><text x="250" y="52" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">中央銀行</text>
+<rect x="155" y="82" width="190" height="42" rx="8" fill="#1a3c6e"/><text x="250" y="109" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">商業銀行・投資銀行</text>
+<rect x="130" y="140" width="240" height="42" rx="8" fill="#2c5f8a"/><text x="250" y="167" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">ヘッジファンド</text>
+<rect x="105" y="198" width="290" height="42" rx="8" fill="#3a7ca5"/><text x="250" y="225" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">機関投資家（年金・保険・運用会社）</text>
+<rect x="80" y="255" width="340" height="42" rx="8" fill="#5dade2" opacity="0.8"/><text x="250" y="282" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">個人トレーダー（リテール）≈ 5-6%</text>
+
+<text x="440" y="52" font-size="12" fill="#d4a537" font-weight="600">影響力 大</text>
+<text x="440" y="282" font-size="12" fill="#5dade2" font-weight="600">影響力 小</text>
+<line x1="435" y1="58" x2="435" y2="268" stroke="#888" stroke-width="1" stroke-dasharray="3,3"/>
+<path d="M435,60 L435,270" stroke="#888" stroke-width="1" marker-end="url(#ad)"/>
+<defs><marker id="ad" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#888"/></marker></defs>
+
+<text x="250" y="325" text-anchor="middle" font-size="13" fill="#555" font-weight="600">個人の強み：「参加しない自由」がある</text>
+</svg></div></div>
+<div class="ftr">市場参加者 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>中央銀行の役割</h2></div>
+<div class="body"><div class='txt'><ul><li>金融政策で<strong>金利を操作</strong> → 通貨の価値を左右する</li><li><strong>量的緩和（QE）</strong>で市場に資金を供給 / <strong>量的引き締め（QT）</strong>で資金を回収</li><li>為替介入で直接的に通貨レートに影響を与えることがある</li><li>フォワードガイダンスで市場の期待をコントロール</li><li>中央銀行の発言・声明ひとつで相場が大きく変動する</li><li>主要：<strong>FRB（米）、ECB（欧）、BOJ（日）、BOE（英）</strong></li></ul></div></div>
+<div class="ftr">市場参加者 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="4"><div class="hdr"><h2>個人トレーダーの立ち位置</h2></div>
+<div class="body"><div class='txt'><ul><li>市場全体に占める割合は<strong>約5-6%</strong>（FX市場の場合）</li><li><strong>情報の非対称性</strong> ── 機関は専用データ・アナリストチームを保有</li><li><strong>資金力の差</strong> ── 機関は数十億〜数兆円規模のポジション</li><li><strong>時間軸の差</strong> ── 機関は中長期、個人は短期が多い傾向</li><li><strong>個人の強み</strong> ── 機動性が高い、取引しない選択ができる</li></ul><div class='pbox'>POINT：個人トレーダーの最大の強みは「参加しない自由」。好条件のときだけ参加できる。</div></div></div>
+<div class="ftr">市場参加者 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="5"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>中央銀行</div><div class='val'>金融政策で市場全体の方向性を決定</div></div><div class='srow'><div class='lbl'>銀行</div><div class='val'>インターバンク市場で基準価格を形成</div></div><div class='srow'><div class='lbl'>ヘッジファンド</div><div class='val'>積極的な戦略で大きなポジションを構築</div></div><div class='srow'><div class='lbl'>個人トレーダー</div><div class='val'>全体の5-6%、機動性と選択の自由が武器</div></div></div>
+<div class="ftr">市場参加者 | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="6"><h2>End of Section</h2>
+<div class='nxt'>Next → 通貨ペアの基礎</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:2rem auto"></div>
+<div style="color:#8b949e;font-size:0.85rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 9;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=6;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+</script></body></html>

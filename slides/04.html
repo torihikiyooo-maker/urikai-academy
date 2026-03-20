@@ -1,221 +1,52 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - 通貨ペアの基礎</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 04 — 通貨ペアの基礎</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 9</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
-</div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 04</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">通貨ペアの基礎</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">FX取引の基本単位を理解する</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">通貨ペアとは</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  FXは常に2つの通貨を交換する取引</p>
-<p style="font-size:20px">▪  EUR/USD → ユーロ（基軸通貨）÷ ドル（決済通貨）</p>
-<p style="font-size:20px">▪  基軸通貨（Base Currency）＝ 買う/売る対象</p>
-<p style="font-size:20px">▪  決済通貨（Quote Currency）＝ 価格の単位</p>
-<p style="font-size:20px">▪  EUR/USD = 1.0800 → 1ユーロを買うのに1.0800ドル必要</p>
-<p style="font-size:20px">▪  「EUR/USDを買う」＝ ユーロを買ってドルを売る</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：通貨ペアは2つの国（経済圏）の相対的な強さを表す。片方が強くなれば、もう片方は相対的に弱くなる。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">通貨ペアの基礎    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">通貨ペアの分類</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:92.25%;height:28.00%;overflow:hidden"><table style="border-collapse:collapse;width:100%;margin-top:4px"><tr><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">分類</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">代表的なペア</th><th style="background:#1a3c6e;color:#fff;padding:8px 12px;font-size:18px;text-align:left;border:1px solid #30363d">特徴</th></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">メジャーペア</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">EUR/USD, USD/JPY, GBP/USD</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">流動性最高、スプレッド最狭</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">クロス円</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">EUR/JPY, GBP/JPY, AUD/JPY</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">日本人に人気、ボラティリティあり</td></tr><tr><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">マイナーペア</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">EUR/GBP, AUD/NZD, EUR/CHF</td><td style="background:transparent;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">流動性やや低い</td></tr><tr><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">エキゾチックペア</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">USD/TRY, USD/ZAR, USD/MXN</td><td style="background:#eaecee;padding:8px 12px;font-size:18px;color:#2c3e50;border:1px solid #30363d">スプレッド広い、高スワップ</td></tr></table></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">通貨ペアの基礎    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">主要通貨の特徴</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  USD（米ドル）── 世界の基軸通貨、全取引の88%に関与</p>
-<p style="font-size:20px">▪  EUR（ユーロ）── 第2の準備通貨、ユーロ圏20カ国の統一通貨</p>
-<p style="font-size:20px">▪  JPY（日本円）── 安全通貨、リスクオフ時に買われやすい</p>
-<p style="font-size:20px">▪  GBP（英ポンド）── ボラティリティが高い、ロンドン市場と連動</p>
-<p style="font-size:20px">▪  AUD（豪ドル）── 資源国通貨、リスクオン時に買われやすい</p>
-<p style="font-size:20px">▪  CHF（スイスフラン）── 安全通貨、SNBの介入に注意</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">通貨ペアの基礎    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">Pips（ピップス）</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  Pip ＝ 通貨ペアの最小価格変動単位</p>
-<p style="font-size:20px">▪  多くのペア：小数点以下4桁目の1の変動 = 1 pip</p>
-<p style="font-size:20px">▪  例：EUR/USD 1.0800 → 1.0801 ＝ 1 pip 上昇</p>
-<p style="font-size:20px">▪  JPYペアのみ：小数点以下2桁目の1の変動 = 1 pip</p>
-<p style="font-size:20px">▪  例：USD/JPY 150.00 → 150.01 ＝ 1 pip 上昇</p>
-<p style="font-size:20px">▪  Pipette（ピペット）= 0.1 pip（小数点以下5桁目 / 3桁目）</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：Pipはトレーダーの共通言語。利益・損失・スプレッドすべてPipで計測する。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">通貨ペアの基礎    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">ロットサイズ</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  スタンダードロット（1.0 lot）＝ 100,000通貨 → 1 pip ≈ $10</p>
-<p style="font-size:20px">▪  ミニロット（0.1 lot）＝ 10,000通貨 → 1 pip ≈ $1</p>
-<p style="font-size:20px">▪  マイクロロット（0.01 lot）＝ 1,000通貨 → 1 pip ≈ $0.10</p>
-<p style="font-size:20px">▪  ロットサイズが大きいほど、1 pipあたりの損益が大きくなる</p>
-<p style="font-size:20px">▪  自分の資金量とリスク許容度に合ったロットサイズを選ぶこと</p>
-<p style="font-size:20px">▪  リスク管理の第一歩はロットサイズの適正化</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">通貨ペアの基礎    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">Bid / Ask とスプレッド</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  Bid（売値）＝ トレーダーが売ることができる価格</p>
-<p style="font-size:20px">▪  Ask（買値）＝ トレーダーが買うことができる価格</p>
-<p style="font-size:20px">▪  スプレッド ＝ Ask - Bid ＝ 取引ごとに発生するコスト</p>
-<p style="font-size:20px">▪  例：EUR/USD Bid 1.0800 / Ask 1.0802 → スプレッド 0.2 pips</p>
-<p style="font-size:20px">▪  流動性が高い時間帯 → スプレッド縮小</p>
-<p style="font-size:20px">▪  重要指標発表時・低流動性時 → スプレッド拡大</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：スプレッドは実質的な取引手数料。スキャルピングやデイトレードではスプレッドコストが収益に直結する。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">通貨ペアの基礎    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">通貨ペア</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">基軸通貨/決済通貨の組み合わせ、2国間の相対評価</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">分類</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">メジャー・クロス円・マイナー・エキゾチック</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">Pip</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">最小価格変動単位、利益/損失の計測単位</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">ロット</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">取引量の単位、リスク管理の基本</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">スプレッド</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">Bid-Ask差、実質的な取引コスト</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">通貨ペアの基礎    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="9" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → 市場の仕組み</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - 通貨ペアの基礎</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 04 — 通貨ペアの基礎</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 6</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 04</div><h1>通貨ペアの基礎</h1>
+<div class="sub">FX取引の基本単位を理解する</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>通貨ペアとは</h2></div>
+<div class="body"><div class='txt'><ul><li>FXは常に<strong>2つの通貨を交換</strong>する取引</li><li>EUR/USD → ユーロ（<strong>基軸通貨</strong>）÷ ドル（<strong>決済通貨</strong>）</li><li>EUR/USD = 1.0800 → 1ユーロを買うのに1.0800ドル必要</li><li>「EUR/USDを買う」＝ ユーロを買ってドルを売る</li><li>通貨ペアは<strong>2つの国の経済の相対的な強さ</strong>を表す</li></ul><div class='pbox'>POINT：通貨ペアは2国間の経済の綱引き。強い方が買われ、弱い方が売られる。</div></div><div class='vis'><svg viewBox="0 0 500 300" width="100%" style="max-width:620px">
+<rect x="30" y="20" width="180" height="80" rx="12" fill="#27ae60"/><text x="120" y="55" text-anchor="middle" fill="#fff" font-size="22" font-weight="800">EUR</text><text x="120" y="78" text-anchor="middle" fill="#d5f5e3" font-size="13">基軸通貨（Base）</text>
+<text x="245" y="70" text-anchor="middle" fill="#d4a537" font-size="36" font-weight="800">/</text>
+<rect x="290" y="20" width="180" height="80" rx="12" fill="#2e86c1"/><text x="380" y="55" text-anchor="middle" fill="#fff" font-size="22" font-weight="800">USD</text><text x="380" y="78" text-anchor="middle" fill="#d6eaf8" font-size="13">決済通貨（Quote）</text>
+
+<rect x="120" y="125" width="260" height="50" rx="8" fill="#f8f9fa" stroke="#ddd" stroke-width="1"/>
+<text x="250" y="150" text-anchor="middle" font-size="16" fill="#0a2f5c" font-weight="700">EUR/USD = 1.0800</text>
+<text x="250" y="167" text-anchor="middle" font-size="12" fill="#888">「1ユーロ = 1.0800ドル」</text>
+
+<rect x="30" y="200" width="210" height="75" rx="8" fill="#e8f0fe" stroke="#2e86c1" stroke-width="1"/>
+<text x="135" y="225" text-anchor="middle" fill="#0a2f5c" font-size="14" font-weight="700">Pip（ピップ）</text>
+<text x="135" y="248" text-anchor="middle" fill="#555" font-size="12">小数点4桁目の変動 = 1pip</text>
+<text x="135" y="265" text-anchor="middle" fill="#555" font-size="12">1.0800 → 1.0801 = +1pip</text>
+
+<rect x="260" y="200" width="210" height="75" rx="8" fill="#e8f0fe" stroke="#2e86c1" stroke-width="1"/>
+<text x="365" y="225" text-anchor="middle" fill="#0a2f5c" font-size="14" font-weight="700">ロットサイズ</text>
+<text x="365" y="248" text-anchor="middle" fill="#555" font-size="12">1.0 lot = 100,000通貨</text>
+<text x="365" y="265" text-anchor="middle" fill="#555" font-size="12">1pip ≈ $10の損益</text>
+</svg></div></div>
+<div class="ftr">通貨ペアの基礎 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>通貨ペアの分類</h2></div>
+<div class="body col"><table class='stbl'><tr><th>分類</th><th>代表的なペア</th><th>特徴</th></tr><tr><td>メジャーペア</td><td>EUR/USD, USD/JPY, GBP/USD</td><td>流動性最高、スプレッド最狭</td></tr><tr><td>クロス円</td><td>EUR/JPY, GBP/JPY, AUD/JPY</td><td>日本人に人気、ボラあり</td></tr><tr><td>マイナーペア</td><td>EUR/GBP, AUD/NZD, EUR/CHF</td><td>流動性やや低い</td></tr><tr><td>エキゾチック</td><td>USD/TRY, USD/ZAR, USD/MXN</td><td>スプレッド広い、高スワップ</td></tr></table></div>
+<div class="ftr">通貨ペアの基礎 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="4"><div class="hdr"><h2>Pips・ロット・スプレッド</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>Pip</strong> ＝ 最小価格変動単位（4桁目 or JPYペアは2桁目）</li><li><strong>スタンダードロット</strong>（1.0）＝ 100,000通貨 → 1pip ≈ $10</li><li><strong>ミニロット</strong>（0.1）＝ 10,000通貨 → 1pip ≈ $1</li><li><strong>マイクロロット</strong>（0.01）＝ 1,000通貨 → 1pip ≈ $0.10</li><li><strong>スプレッド</strong> ＝ Ask - Bid ＝ 毎回の取引コスト</li><li>流動性が高い時間帯 → スプレッド縮小、指標発表時 → 拡大</li></ul><div class='pbox'>POINT：スプレッドは実質的な取引手数料。スキャルピングでは収益に直結する。</div></div></div>
+<div class="ftr">通貨ペアの基礎 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="5"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>通貨ペア</div><div class='val'>基軸/決済通貨の組み合わせ、2国間の相対評価</div></div><div class='srow'><div class='lbl'>分類</div><div class='val'>メジャー・クロス円・マイナー・エキゾチック</div></div><div class='srow'><div class='lbl'>Pip</div><div class='val'>最小価格変動単位、利益/損失の計測単位</div></div><div class='srow'><div class='lbl'>ロット</div><div class='val'>取引量の単位、リスク管理の基本</div></div><div class='srow'><div class='lbl'>スプレッド</div><div class='val'>Bid-Ask差、実質的な取引コスト</div></div></div>
+<div class="ftr">通貨ペアの基礎 | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="6"><h2>End of Section</h2>
+<div class='nxt'>Next → 市場の仕組み</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:2rem auto"></div>
+<div style="color:#8b949e;font-size:0.85rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 9;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=6;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+</script></body></html>

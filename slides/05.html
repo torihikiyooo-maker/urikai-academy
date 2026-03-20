@@ -1,216 +1,63 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - 市場の仕組み</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 05 — 市場の仕組み</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 8</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
-</div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 05</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">市場の仕組み</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">価格が動く原理と取引構造</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">取引所取引 vs OTC取引</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  取引所取引 ── 中央の取引所を通じて売買（株式、先物、オプション）</p>
-<p style="font-size:20px">▪  OTC（Over The Counter）取引 ── 当事者同士が直接取引（FX）</p>
-<p style="font-size:20px">▪  FXは世界中の銀行ネットワークで成り立つ分散型OTC市場</p>
-<p style="font-size:20px">▪  取引所取引：価格の透明性が高い、規格化された商品</p>
-<p style="font-size:20px">▪  OTC取引：柔軟な条件設定が可能、24時間取引、カウンターパーティリスクあり</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">市場の仕組み    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">需要と供給 ── 価格変動の原理</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  価格が上がる ＝ 買い手 ＞ 売り手（需要 ＞ 供給）</p>
-<p style="font-size:20px">▪  価格が下がる ＝ 売り手 ＞ 買い手（供給 ＞ 需要）</p>
-<p style="font-size:20px">▪  すべての値動きはこの1つの原理から生まれる</p>
-<p style="font-size:20px">▪  ニュース、経済指標、テクニカルシグナル → すべて需給バランスを変化させる手段</p>
-<p style="font-size:20px">▪  流動性が薄い時間帯 ＝ 少しの売買で価格が大きく変動する</p>
-<p style="font-size:20px">▪  大口注文が入る価格帯を意識することがトレードの基本</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：あらゆる分析手法は、最終的に「需要と供給のバランスがどちらに傾くか」を予測するためのツール。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">市場の仕組み    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">レバレッジとマージン</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  レバレッジ ＝ 証拠金の何倍もの取引を可能にする仕組み</p>
-<p style="font-size:20px">▪  例：100倍レバレッジ → 1万円の証拠金で100万円分の取引が可能</p>
-<p style="font-size:20px">▪  マージン（証拠金）＝ 取引に必要な担保金</p>
-<p style="font-size:20px">▪  必要証拠金 ＝ 取引額 ÷ レバレッジ倍率</p>
-<p style="font-size:20px">▪  マージンコール ＝ 証拠金不足の警告（追加入金または決済が必要）</p>
-<p style="font-size:20px">▪  ストップアウト ＝ 証拠金維持率が基準以下で強制決済</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：レバレッジは利益も損失も倍増させる。高いレバレッジ＝高リスク。適正なレバレッジ管理がトレーダーの生存に直結する。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">市場の仕組み    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">スリッページとリクイディティ</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  スリッページ ＝ 注文価格と実際の約定価格のズレ</p>
-<p style="font-size:20px">▪  流動性が低いとスリッページが大きくなる</p>
-<p style="font-size:20px">▪  重要指標発表直後はスリッページリスクが最大</p>
-<p style="font-size:20px">▪  リクイディティ（流動性）＝ 市場の厚み・注文板の密度</p>
-<p style="font-size:20px">▪  流動性が高い ＝ 大きな注文でも価格への影響が小さい</p>
-<p style="font-size:20px">▪  流動性が低い ＝ 小さな注文でも価格が大きく動く</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">市場の仕組み    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">スワップ（ロールオーバー）</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  スワップ ＝ ポジションを翌日に持ち越す際の金利差調整</p>
-<p style="font-size:20px">▪  高金利通貨を買い、低金利通貨を売る → プラススワップ</p>
-<p style="font-size:20px">▪  低金利通貨を買い、高金利通貨を売る → マイナススワップ</p>
-<p style="font-size:20px">▪  水曜日（木曜早朝）は3倍スワップ（土日分の繰延べ）</p>
-<p style="font-size:20px">▪  スワップ金額はブローカーにより異なる</p>
-<p style="font-size:20px">▪  デイトレーダーは翌日持ち越さないため基本的にスワップは無関係</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">市場の仕組み    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">取引構造</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">取引所（株式・先物）vs OTC（FX）</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">需給</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">すべての価格変動は需要と供給のバランスで決まる</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">レバレッジ</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">利益も損失も倍増、管理がトレーダーの生命線</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">スリッページ</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">注文と約定のズレ、流動性に依存</p></div>
-<div style="position:absolute;left:3.75%;top:49.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">スワップ</p></div>
-<div style="position:absolute;left:26.25%;top:49.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">ポジション持ち越し時の金利差調整</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">市場の仕組み    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="8" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → 注文の種類</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - 市場の仕組み</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 05 — 市場の仕組み</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 6</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 05</div><h1>市場の仕組み</h1>
+<div class="sub">価格が動く原理と取引構造</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>需要と供給 ── 価格変動の原理</h2></div>
+<div class="body"><div class='txt'><ul><li>価格が上がる ＝ <strong>買い手 ＞ 売り手</strong>（需要 ＞ 供給）</li><li>価格が下がる ＝ <strong>売り手 ＞ 買い手</strong>（供給 ＞ 需要）</li><li>すべての値動きはこの<strong>1つの原理</strong>から生まれる</li><li>ニュース・指標・テクニカル → すべて需給バランスを変化させる手段</li><li>流動性が薄い時間帯 ＝ 少しの売買で大きく変動する</li></ul><div class='pbox'>POINT：あらゆる分析手法は「需要と供給のバランスがどちらに傾くか」を予測するためのツール。</div></div><div class='vis'><svg viewBox="0 0 500 320" width="100%" style="max-width:620px">
+<line x1="60" y1="30" x2="60" y2="260" stroke="#555" stroke-width="2"/><line x1="60" y1="260" x2="460" y2="260" stroke="#555" stroke-width="2"/>
+<text x="30" y="150" text-anchor="middle" font-size="13" fill="#555" font-weight="600" transform="rotate(-90,30,150)">価格</text>
+<text x="260" y="290" text-anchor="middle" font-size="13" fill="#555" font-weight="600">取引量</text>
+
+<line x1="80" y1="230" x2="420" y2="60" stroke="#27ae60" stroke-width="3"/><text x="430" y="55" font-size="14" fill="#27ae60" font-weight="700">需要</text>
+<line x1="80" y1="60" x2="420" y2="230" stroke="#c0392b" stroke-width="3"/><text x="430" y="235" font-size="14" fill="#c0392b" font-weight="700">供給</text>
+
+<circle cx="250" cy="145" r="8" fill="#d4a537"/>
+<text x="265" y="138" font-size="14" fill="#d4a537" font-weight="700">均衡価格</text>
+<line x1="60" y1="145" x2="245" y2="145" stroke="#d4a537" stroke-width="1" stroke-dasharray="5,3"/>
+
+<rect x="80" y="300" width="380" height="20" rx="4" fill="#e8f0fe"/><text x="270" y="315" text-anchor="middle" font-size="12" fill="#0a2f5c" font-weight="600">需要 ＞ 供給 → 価格上昇 ｜ 供給 ＞ 需要 → 価格下落</text>
+</svg></div></div>
+<div class="ftr">市場の仕組み | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>レバレッジとマージン</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>レバレッジ</strong> ＝ 証拠金の何倍もの取引を可能にする仕組み</li><li>例：100倍レバレッジ → 1万円で100万円分の取引が可能</li><li><strong>マージン</strong>（証拠金）＝ 取引に必要な担保金</li><li><strong>マージンコール</strong> ＝ 証拠金不足の警告</li><li><strong>ストップアウト</strong> ＝ 証拠金維持率が基準以下で強制決済</li></ul><div class='pbox'>POINT：レバレッジは利益も損失も倍増させる。適正な管理がトレーダーの生存に直結する。</div></div><div class='vis'><svg viewBox="0 0 500 280" width="100%" style="max-width:620px">
+<rect x="30" y="20" width="120" height="100" rx="10" fill="#27ae60"/><text x="90" y="58" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">証拠金</text><text x="90" y="82" text-anchor="middle" fill="#fff" font-size="24" font-weight="800">1万円</text>
+<text x="180" y="75" text-anchor="middle" font-size="28" fill="#d4a537" font-weight="800">×</text>
+<rect x="210" y="35" width="80" height="55" rx="10" fill="#d4a537"/><text x="250" y="68" text-anchor="middle" fill="#0a2f5c" font-size="20" font-weight="800">100倍</text>
+<text x="315" y="75" text-anchor="middle" font-size="28" fill="#555" font-weight="800">=</text>
+<rect x="340" y="20" width="140" height="100" rx="10" fill="#0a2f5c"/><text x="410" y="58" text-anchor="middle" fill="#d4a537" font-size="14" font-weight="700">取引可能額</text><text x="410" y="85" text-anchor="middle" fill="#fff" font-size="22" font-weight="800">100万円</text>
+
+<rect x="30" y="150" width="200" height="55" rx="8" fill="#27ae60" opacity="0.15" stroke="#27ae60" stroke-width="1.5"/>
+<text x="130" y="172" text-anchor="middle" font-size="14" fill="#27ae60" font-weight="700">利益も100倍</text>
+<text x="130" y="192" text-anchor="middle" font-size="12" fill="#555">+1% → +1万円の利益</text>
+
+<rect x="270" y="150" width="200" height="55" rx="8" fill="#c0392b" opacity="0.15" stroke="#c0392b" stroke-width="1.5"/>
+<text x="370" y="172" text-anchor="middle" font-size="14" fill="#c0392b" font-weight="700">損失も100倍</text>
+<text x="370" y="192" text-anchor="middle" font-size="12" fill="#555">-1% → -1万円の損失</text>
+
+<rect x="30" y="225" width="440" height="40" rx="8" fill="#e8f0fe"/><text x="250" y="250" text-anchor="middle" font-size="14" fill="#0a2f5c" font-weight="700">レバレッジは利益も損失も倍増させる ── 管理が生命線</text>
+</svg></div></div>
+<div class="ftr">市場の仕組み | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="4"><div class="hdr"><h2>取引構造・スリッページ・スワップ</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>取引所取引</strong>（株式・先物）vs <strong>OTC取引</strong>（FX）</li><li><strong>スリッページ</strong> ＝ 注文価格と約定価格のズレ。流動性低下時に拡大</li><li>重要指標発表直後はスリッページリスクが最大</li><li><strong>スワップ</strong> ＝ ポジション翌日持越し時の金利差調整</li><li>高金利通貨を買い＋低金利通貨を売り → プラススワップ</li><li>デイトレーダーは翌日持越さないため基本的にスワップは無関係</li></ul></div></div>
+<div class="ftr">市場の仕組み | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="5"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>需給</div><div class='val'>すべての価格変動は需要と供給で決まる</div></div><div class='srow'><div class='lbl'>レバレッジ</div><div class='val'>利益も損失も倍増、管理が生命線</div></div><div class='srow'><div class='lbl'>取引構造</div><div class='val'>取引所（株式）vs OTC（FX）</div></div><div class='srow'><div class='lbl'>スリッページ</div><div class='val'>注文と約定のズレ、流動性に依存</div></div><div class='srow'><div class='lbl'>スワップ</div><div class='val'>ポジション持越し時の金利差調整</div></div></div>
+<div class="ftr">市場の仕組み | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="6"><h2>End of Section</h2>
+<div class='nxt'>Next → 注文の種類</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:2rem auto"></div>
+<div style="color:#8b949e;font-size:0.85rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 8;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=6;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+</script></body></html>

@@ -1,202 +1,50 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URIKAI - 金融市場とは何か</title>
-<style>
-:root {
-    --bg: #0d1117;
-    --bg-card: #161b22;
-    --accent: #d4a537;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --border: #30363d;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-}
-.toolbar {
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--accent);
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-}
-.toolbar a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-.toolbar a:hover { text-decoration: underline; }
-.toolbar .title {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 600;
-    flex: 1;
-}
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.nav-btn {
-    background: var(--border);
-    color: var(--text);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--accent); color: #0a2f5c; }
-.nav-btn:disabled { opacity: 0.3; cursor: default; }
-.nav-btn:disabled:hover { background: var(--border); color: var(--text); }
-.page-info {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    min-width: 60px;
-    text-align: center;
-}
-.slide-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-.slide {
-    width: 100%;
-    max-width: 1400px;
-    aspect-ratio: 16/9;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    display: none;
-    overflow: hidden;
-}
-.slide.active {
-    display: block;
-}
-.slide p {
-    margin: 0;
-    padding: 1px 0;
-    line-height: 1.5;
-}
-.slide table {
-    font-family: 'Segoe UI','Meiryo UI',sans-serif;
-}
-/* Keyboard hint */
-.hint {
-    text-align: center;
-    padding: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-</style>
-</head>
-<body>
-<div class="toolbar">
-    <a href="../index.html">&larr; Back</a>
-    <span class="title">Section 01 — 金融市場とは何か</span>
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&larr;</button>
-        <span class="page-info" id="pageInfo">1 / 7</span>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&rarr;</button>
-    </div>
-</div>
-<div class="slide-container">
-<div class="slide" data-slide="1" style="background:None"><div style="position:absolute;left:7.50%;top:24.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:18px;text-align:center">SECTION 01</p></div>
-<div style="position:absolute;left:7.50%;top:33.33%;width:82.50%;height:20.00%;overflow:hidden"><p style="font-size:41px;font-weight:700;text-align:center">金融市場とは何か</p></div>
-<div style="position:absolute;left:7.50%;top:56.00%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">金融市場の定義・役割・仕組み</p></div>
-<div style="position:absolute;left:7.50%;top:76.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="2" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">金融市場の定義</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  金融市場 ＝ お金や金融商品が売買される「場」</p>
-<p style="font-size:20px">▪  買い手と売り手が価格を決定する仕組み（オークション方式）</p>
-<p style="font-size:20px">▪  実体経済の資金循環を担うインフラ</p>
-<p style="font-size:20px">▪  市場がなければ、企業は資金調達ができず経済活動が停滞する</p>
-<p style="font-size:20px">▪  世界中の金融市場は相互に連動している</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：金融市場は、資金を必要とする主体と、資金を運用したい主体を結びつける場である。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">金融市場とは何か    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="3" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">金融市場の4つの機能</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:50.67%;overflow:hidden"><p style="font-size:20px">▪  価格発見（Price Discovery）── 需要と供給から公正な価格を見つける</p>
-<p style="font-size:20px">▪  流動性の提供（Liquidity）── いつでも売買できる環境を作る</p>
-<p style="font-size:20px">▪  リスク移転（Risk Transfer）── ヘッジによりリスクを引き受けたい人に移す</p>
-<p style="font-size:20px">▪  資本配分（Capital Allocation）── 有望な事業・国に資金が集まる仕組み</p></div>
-<div style="position:absolute;left:6.45%;top:72.00%;width:85.80%;height:14.67%;overflow:hidden"><p style="font-size:16px;text-align:center">POINT：これら4つの機能が正常に働いている市場ほど、効率的で健全な市場と言える。</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">金融市場とは何か    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="4" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">金融市場の構造</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  一次市場（Primary Market）── 新規発行（IPO・新発債）の取引</p>
-<p style="font-size:20px">▪  二次市場（Secondary Market）── 既発の金融商品の流通・売買</p>
-<p style="font-size:20px">▪  トレーダーが参加するのは主に二次市場</p>
-<p style="font-size:20px">▪  一次市場の動向（IPO・増資・起債）も二次市場に影響を与える</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">金融市場とは何か    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="5" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">規制と監督</p></div>
-<div style="position:absolute;left:6.00%;top:17.33%;width:86.25%;height:69.33%;overflow:hidden"><p style="font-size:20px">▪  各国の金融規制当局が市場の公正性を監督</p>
-<p style="font-size:20px">▪  日本：金融庁（FSA）、証券取引等監視委員会（SESC）</p>
-<p style="font-size:20px">▪  米国：SEC（証券取引委員会）、CFTC（商品先物取引委員会）</p>
-<p style="font-size:20px">▪  英国：FCA（金融行動監視機構）</p>
-<p style="font-size:20px">▪  規制の目的：投資家保護、市場の透明性確保、不正防止</p>
-<p style="font-size:20px">▪  ブローカー選びでは規制ライセンスの確認が必須</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">金融市場とは何か    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="6" style="background:None"><div style="position:absolute;left:6.00%;top:2.00%;width:82.50%;height:8.67%;overflow:hidden"><p style="font-size:22px;font-weight:700">まとめ</p></div>
-<div style="position:absolute;left:3.75%;top:17.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">定義</p></div>
-<div style="position:absolute;left:26.25%;top:17.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">金融市場は資金の出し手と受け手を結ぶ場</p></div>
-<div style="position:absolute;left:3.75%;top:25.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">4つの機能</p></div>
-<div style="position:absolute;left:26.25%;top:25.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">価格発見・流動性・リスク移転・資本配分</p></div>
-<div style="position:absolute;left:3.75%;top:33.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">市場構造</p></div>
-<div style="position:absolute;left:26.25%;top:33.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">一次市場（発行）と二次市場（流通）</p></div>
-<div style="position:absolute;left:3.75%;top:41.33%;width:21.00%;height:6.00%;overflow:hidden;border-radius:8px"><p style="font-size:16px;font-weight:700;text-align:center">規制</p></div>
-<div style="position:absolute;left:26.25%;top:41.73%;width:69.75%;height:6.00%;overflow:hidden"><p style="font-size:16px">各国の規制当局が市場の公正性を監督</p></div>
-<div style="position:absolute;left:0.00%;top:95.33%;width:100.00%;height:4.67%;overflow:hidden"><p style="font-size:16px;text-align:center">金融市場とは何か    |    URIKAI Trading Academy</p></div></div>
-<div class="slide" data-slide="7" style="background:None"><div style="position:absolute;left:7.50%;top:37.33%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:31px;font-weight:700;text-align:center">End of Section</p></div>
-<div style="position:absolute;left:7.50%;top:50.67%;width:82.50%;height:10.67%;overflow:hidden"><p style="font-size:23px;text-align:center">Next → 金融市場の種類</p></div>
-<div style="position:absolute;left:7.50%;top:72.00%;width:82.50%;height:6.67%;overflow:hidden"><p style="font-size:16px;text-align:center">URIKAI Trading Academy</p></div></div>
-</div>
-<div class="hint">&larr; &rarr; Arrow keys to navigate</div>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URIKAI - 金融市場とは何か</title><link rel="stylesheet" href="style.css">
+</head><body>
+<div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 01 — 金融市場とは何か</span>
+<div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
+<span class="page-info" id="pi">1 / 6</span>
+<button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
+<div class="slide-area">
+<div class="slide cover active" data-s="1"><div class="sn">SECTION 01</div><h1>金融市場とは何か</h1>
+<div class="sub">金融市場の定義・役割・仕組み</div><div class="line"></div>
+<div class="brand">URIKAI Trading Academy</div></div>
+<div class="slide cnt" data-s="2"><div class="hdr"><h2>金融市場の定義</h2></div>
+<div class="body"><div class='txt'><ul><li>金融市場 ＝ お金や金融商品が売買される<strong>「場」</strong></li><li>買い手と売り手が価格を決定する仕組み（オークション方式）</li><li>実体経済の資金循環を担う<strong>インフラストラクチャー</strong></li><li>市場がなければ企業は資金調達ができず経済活動が停滞する</li><li>世界中の金融市場は相互に連動している</li></ul><div class='pbox'>POINT：金融市場は、資金を必要とする主体と資金を運用したい主体を結びつける場である。</div></div><div class='vis'><svg viewBox="0 0 500 350" width="100%" style="max-width:620px">
+<rect x="150" y="10" width="200" height="55" rx="10" fill="#0a2f5c"/><text x="250" y="45" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">金融市場</text>
+<line x1="175" y1="65" x2="100" y2="110" stroke="#d4a537" stroke-width="2"/><line x1="325" y1="65" x2="400" y2="110" stroke="#d4a537" stroke-width="2"/>
+<rect x="20" y="110" width="170" height="50" rx="8" fill="#27ae60"/><text x="105" y="142" text-anchor="middle" fill="#fff" font-size="16" font-weight="600">資金の出し手</text><text x="105" y="160" text-anchor="middle" fill="#d5f5e3" font-size="11">投資家・貯蓄者</text>
+<rect x="310" y="110" width="170" height="50" rx="8" fill="#2e86c1"/><text x="395" y="142" text-anchor="middle" fill="#fff" font-size="16" font-weight="600">資金の受け手</text><text x="395" y="160" text-anchor="middle" fill="#d6eaf8" font-size="11">企業・政府</text>
+<path d="M190,155 Q250,130 310,145" stroke="#d4a537" stroke-width="2.5" fill="none" marker-end="url(#ga)"/>
+<path d="M310,160 Q250,185 190,155" stroke="#888" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#gb)"/>
+<text x="250" y="128" text-anchor="middle" font-size="12" fill="#d4a537" font-weight="600">資金</text>
+<text x="250" y="192" text-anchor="middle" font-size="11" fill="#888">リターン</text>
+<rect x="30" y="210" width="100" height="40" rx="6" fill="#e8f0fe" stroke="#2e86c1" stroke-width="1"/><text x="80" y="235" text-anchor="middle" fill="#0a2f5c" font-size="12" font-weight="600">価格発見</text>
+<rect x="145" y="210" width="100" height="40" rx="6" fill="#e8f0fe" stroke="#2e86c1" stroke-width="1"/><text x="195" y="235" text-anchor="middle" fill="#0a2f5c" font-size="12" font-weight="600">流動性提供</text>
+<rect x="260" y="210" width="100" height="40" rx="6" fill="#e8f0fe" stroke="#2e86c1" stroke-width="1"/><text x="310" y="235" text-anchor="middle" fill="#0a2f5c" font-size="12" font-weight="600">リスク移転</text>
+<rect x="375" y="210" width="100" height="40" rx="6" fill="#e8f0fe" stroke="#2e86c1" stroke-width="1"/><text x="425" y="235" text-anchor="middle" fill="#0a2f5c" font-size="12" font-weight="600">資本配分</text>
+<text x="250" y="285" text-anchor="middle" font-size="14" fill="#555" font-weight="600">金融市場の4つの機能</text>
+<defs><marker id="ga" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#d4a537"/></marker>
+<marker id="gb" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#888"/></marker></defs>
+</svg></div></div>
+<div class="ftr">金融市場とは何か | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>金融市場の4つの機能</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>価格発見</strong>（Price Discovery）── 需要と供給から公正な価格を見つける</li><li><strong>流動性の提供</strong>（Liquidity）── いつでも売買できる環境を作る</li><li><strong>リスク移転</strong>（Risk Transfer）── ヘッジによりリスクを移す</li><li><strong>資本配分</strong>（Capital Allocation）── 有望な事業・国に資金が集まる</li></ul><div class='pbox'>POINT：これら4つの機能が正常に働いている市場ほど、効率的で健全な市場と言える。</div></div></div>
+<div class="ftr">金融市場とは何か | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="4"><div class="hdr"><h2>市場構造と規制</h2></div>
+<div class="body"><div class='txt'><ul><li><strong>一次市場</strong>（Primary）── 新規発行（IPO・新発債）の取引</li><li><strong>二次市場</strong>（Secondary）── 既発の金融商品の流通・売買</li><li>トレーダーが参加するのは主に二次市場</li><li><strong>日本：</strong>金融庁（FSA）、証券取引等監視委員会（SESC）</li><li><strong>米国：</strong>SEC（証券取引委員会）、CFTC（商品先物取引委員会）</li><li>ブローカー選びでは<strong>規制ライセンスの確認が必須</strong></li></ul><div class='pbox'>POINT：規制の目的は投資家保護、市場の透明性確保、不正防止。規制されていないブローカーは避ける。</div></div></div>
+<div class="ftr">金融市場とは何か | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="5"><div class="hdr"><h2>まとめ</h2></div>
+<div class="body col"><div class='srow'><div class='lbl'>定義</div><div class='val'>資金の出し手と受け手を結ぶ場</div></div><div class='srow'><div class='lbl'>4つの機能</div><div class='val'>価格発見・流動性・リスク移転・資本配分</div></div><div class='srow'><div class='lbl'>市場構造</div><div class='val'>一次市場（発行）と二次市場（流通）</div></div><div class='srow'><div class='lbl'>規制</div><div class='val'>各国の規制当局が市場の公正性を監督</div></div></div>
+<div class="ftr">金融市場とは何か | URIKAI Trading Academy</div></div>
+<div class="slide cls" data-s="6"><h2>End of Section</h2>
+<div class='nxt'>Next → 金融市場の種類</div>
+<div style="width:120px;height:3px;background:#d4a537;margin:2rem auto"></div>
+<div style="color:#8b949e;font-size:0.85rem">URIKAI Trading Academy</div></div>
+</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
 <script>
-let current = 1;
-const total = 7;
-function navigate(dir) {
-    current = Math.max(1, Math.min(total, current + dir));
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelector('[data-slide="'+current+'"]').classList.add('active');
-    document.getElementById('pageInfo').textContent = current + ' / ' + total;
-    document.getElementById('prevBtn').disabled = current === 1;
-    document.getElementById('nextBtn').disabled = current === total;
-}
-// Init
-document.querySelector('[data-slide="1"]').classList.add('active');
-document.getElementById('prevBtn').disabled = true;
-// Keyboard
-document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
-});
-// Block right-click
-document.addEventListener('contextmenu', e => e.preventDefault());
-// Auth check
-if (sessionStorage.getItem('urikai_auth') !== 'true') {
-    window.location.href = '../index.html';
-}
-</script>
-</body>
-</html>
+let c=1;const t=6;
+function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
+document.getElementById('prevBtn').disabled=true;
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+if(sessionStorage.getItem('urikai_auth')!=='true')window.location.href='../index.html';
+</script></body></html>
