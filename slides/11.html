@@ -308,7 +308,7 @@
 <div style="width:120px;height:3px;background:#d4a537;margin:1rem auto"></div>
 <div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
 
-</div><div class="hint">&larr; &rarr; Arrow keys / Space to navigate</div>
+</div><div class="hint">← → キーでページ移動</div>
 <script>
 let c=1;const t=9;
 function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
