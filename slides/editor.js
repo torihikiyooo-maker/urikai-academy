@@ -200,9 +200,16 @@
             origX = parseFloat(el.style.left) || 0;
             origY = parseFloat(el.style.top) || 0;
         } else if (type === 'image') {
-            const rect = el.getBoundingClientRect();
-            origX = rect.left;
-            origY = rect.top;
+            origX = parseInt(el.style.marginLeft) || 0;
+            origY = parseInt(el.style.marginTop) || 0;
+        } else if (type === 'text') {
+            // Store original transform for text elements
+            const cs = window.getComputedStyle(el);
+            origX = parseInt(el.style.marginLeft) || 0;
+            origY = parseInt(el.style.marginTop) || 0;
+            el.style.position = el.style.position || 'relative';
+            origX = parseInt(el.style.left) || 0;
+            origY = parseInt(el.style.top) || 0;
         }
 
         saveUndo(el, 'move');
@@ -274,9 +281,12 @@
             dragging.style.right = '';
             dragging.style.bottom = '';
         } else if (type === 'image') {
-            // Move image by adjusting margin
-            dragging.style.marginLeft = dx + 'px';
-            dragging.style.marginTop = dy + 'px';
+            dragging.style.marginLeft = (origX + dx) + 'px';
+            dragging.style.marginTop = (origY + dy) + 'px';
+        } else if (type === 'text') {
+            dragging.style.position = 'relative';
+            dragging.style.left = (origX + dx) + 'px';
+            dragging.style.top = (origY + dy) + 'px';
         }
     }
 
