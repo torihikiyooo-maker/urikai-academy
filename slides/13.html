@@ -4,7 +4,7 @@
 </head><body>
 <div class="toolbar"><a href="../index.html">&larr; Back</a><span class="title">Section 13 — マルチタイムフレーム分析</span>
 <div class="nav-controls"><button class="nav-btn" id="prevBtn" onclick="nav(-1)">&larr;</button>
-<span class="page-info" id="pi">1 / 6</span>
+<span class="page-info" id="pi">1 / 9</span>
 <button class="nav-btn" id="nextBtn" onclick="nav(1)">&rarr;</button></div></div>
 <div class="slide-area">
 <div class="slide cover active" data-s="1"><div class="sn">SECTION 13</div><h1>マルチタイムフレーム分析</h1>
@@ -59,10 +59,16 @@
 </svg></div></div>
 <div class="ftr">MTF分析 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="3"><div class="hdr"><h2>よくあるミス</h2></div>
 <div class="body"><div class='txt'><ul><li><strong>分析麻痺</strong>──時間軸を増やしすぎて判断不能→<strong>3つに絞る</strong></li><li><strong>下位の過信</strong>──5分足だけで日足S/Rを無視→上位優先</li><li><strong>矛盾時の強行</strong>──方向が違う場合に無理にエントリー→見送る</li><li><strong>エントリー後の軸変更</strong>──不安で時間軸を変える→事前に決めた軸で管理</li><li>「迷ったらトレードしない」が最善の判断</li></ul></div></div>
-<div class="ftr">MTF分析 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="4"><div class="hdr"><h2>まとめ</h2></div>
+<div class="ftr">MTF分析 | URIKAI Trading Academy</div></div><div class="slide cnt" data-s="4"><div class="hdr"><h2>トップダウン分析の手順</h2></div>
+<div class="body"><div class="txt"><ul><li><strong>Step 1</strong>：上位時間軸でトレンド方向とS/Rを確認</li><li><strong>Step 2</strong>：中位時間軸でセットアップ（パターン・フィボ・S/R反応）を探す</li><li><strong>Step 3</strong>：下位時間軸でエントリートリガーを待つ</li><li><strong>Step 4</strong>：SL/TPは中位〜上位時間軸のS/Rに基づいて設定</li><li>例：日足で上昇確認 → 4Hでフィボ61.8%押し → 15分でピンバー → 買い</li></ul></div></div>
+</div><div class="slide cnt" data-s="5"><div class="hdr"><h2>タイムフレームアラインメント</h2></div>
+<div class="body"><div class="txt"><ul><li>全時間軸のトレンドが一致 ＝ <strong>最高品質</strong>のトレードセットアップ</li><li>例：週足↑ 日足↑ 4H↑ ＝ <strong>強い上昇</strong>。買いのみを検討</li><li>上位と下位で方向が矛盾 ＝ 見送りまたは慎重に対応</li><li>アラインメントが取れている相場 ＝ トレンドフォローが最適</li><li>「迷ったらトレードしない」── アラインメントが明確な場面だけ参加</li></ul><div class="pbox">POINT：下位で良いセットアップに見えても、上位のS/Rに向かっている場合は見送る。</div></div></div>
+</div><div class="slide cnt" data-s="6"><div class="hdr"><h2>よくあるミスと対策</h2></div>
+<div class="body"><div class="txt"><ul><li><strong>分析麻痺</strong> ── 時間軸を増やしすぎて判断不能 → <strong>3つに絞る</strong></li><li><strong>下位の過信</strong> ── 5分足だけで日足のS/Rを無視 → 上位優先</li><li><strong>矛盾時の強行</strong> ── 方向が違う場合に無理にエントリー → 見送る</li><li><strong>エントリー後の軸変更</strong> ── 不安で時間軸を変える → 事前に決めた軸で管理</li><li>SLは中位以上の構造に基づいて設定する</li></ul></div></div>
+</div><div class="slide cnt" data-s="7"><div class="hdr"><h2>まとめ</h2></div>
 <div class="body col"><div class='srow'><div class='lbl'>概念</div><div class='val'>上位→中位→下位のトップダウンアプローチ</div></div><div class='srow'><div class='lbl'>3つの軸</div><div class='val'>方向（上位）、セットアップ（中位）、エントリー（下位）</div></div><div class='srow'><div class='lbl'>アラインメント</div><div class='val'>全TF方向一致＝最高品質</div></div><div class='srow'><div class='lbl'>原則</div><div class='val'>上位優先、矛盾時は見送り、3軸に絞る</div></div></div>
 <div class="ftr">MTF分析 | URIKAI Trading Academy</div></div>
-<div class="slide quiz" data-s="5"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
+<div class="slide quiz" data-s="8"><div class="hdr"><h2>確認テスト ── 3問正解で受講完了</h2></div>
 <div class="quiz-body"><div class="q-item" id="qi0"><div class="q-text">Q1. トップダウン分析の順序は？</div>
 <div class="q-opts"><button class="q-btn" onclick="pick(0,0)" id="qb0a">下位→上位時間軸</button>
 <button class="q-btn" onclick="pick(0,1)" id="qb0b">上位→下位時間軸</button></div></div><div class="q-item" id="qi1"><div class="q-text">Q2. 全時間軸のトレンドが一致することを何という？</div>
@@ -73,7 +79,7 @@
 <button class="quiz-submit" id="qSubmit" onclick="submitQuiz()" disabled>回答を確定する</button>
 <div class="quiz-result" id="qResult"></div></div>
 <div class="ftr">マルチタイムフレーム分析 | URIKAI Trading Academy</div></div>
-<div class="slide cls" data-s="6"><h2>Section 13 Complete</h2>
+<div class="slide cls" data-s="9"><h2>Section 13 Complete</h2>
 <div class="cls-buttons">
 <a class='cls-btn cls-btn-next' href='14.html'>Next → エリオット波動</a>
 <a class="cls-btn cls-btn-home" href="../index.html">Home</a>
@@ -82,7 +88,7 @@
 <div style="color:#8b949e;font-size:1rem">URIKAI Trading Academy</div></div>
 </div><div class="hint">← → キーでページ移動</div>
 <script>
-let c=1;const t=6;
+let c=1;const t=9;
 function nav(d){c=Math.max(1,Math.min(t,c+d));document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelector('[data-s="'+c+'"]').classList.add('active');document.getElementById('pi').textContent=c+' / '+t;document.getElementById('prevBtn').disabled=c===1;document.getElementById('nextBtn').disabled=c===t;}
 document.getElementById('prevBtn').disabled=true;
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')nav(1);if(e.key==='ArrowLeft')nav(-1);});
