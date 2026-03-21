@@ -1,291 +1,425 @@
 /**
- * SVG Element Drag Editor
- * Press Ctrl+E to toggle edit mode
- * In edit mode: drag any SVG text, rect, or circle element
- * Press Ctrl+C in edit mode to copy all changes as JSON
+ * URIKAI Slide Editor v2
+ * Ctrl+E: 編集モード ON/OFF
+ * 編集モード中:
+ *   - テキスト/画像/SVG要素をドラッグで移動
+ *   - テキストをダブルクリックで編集
+ *   - 画像の角をドラッグでリサイズ
+ *   - Delete/Backspaceで選択要素を削除
+ *   - Ctrl+S で保存（HTMLダウンロード）
+ *   - Ctrl+Z で直前の操作を元に戻す
  */
 (function() {
     let editMode = false;
+    let selected = null;
     let dragging = null;
-    let offsetX = 0, offsetY = 0;
-    let changes = {};
+    let resizing = null;
+    let startX, startY, origX, origY, origW, origH;
+    let undoStack = [];
     let indicator = null;
+    let toolbar = null;
 
-    function createIndicator() {
-        indicator = document.createElement('div');
-        indicator.style.cssText = 'position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:99999;padding:8px 20px;border-radius:8px;font-family:sans-serif;font-size:14px;font-weight:700;transition:opacity 0.3s;pointer-events:none;';
-        document.body.appendChild(indicator);
-    }
-
-    function showIndicator(text, color) {
-        if (!indicator) createIndicator();
+    // ===== Indicator =====
+    function showMsg(text, color, duration) {
+        if (!indicator) {
+            indicator = document.createElement('div');
+            indicator.style.cssText = 'position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:99999;padding:8px 24px;border-radius:8px;font-family:sans-serif;font-size:14px;font-weight:700;pointer-events:none;transition:opacity 0.3s;';
+            document.body.appendChild(indicator);
+        }
         indicator.textContent = text;
-        indicator.style.background = color;
+        indicator.style.background = color || '#0a2f5c';
         indicator.style.color = '#fff';
         indicator.style.opacity = '1';
         clearTimeout(indicator._t);
-        indicator._t = setTimeout(() => { indicator.style.opacity = '0'; }, 3000);
+        indicator._t = setTimeout(() => indicator.style.opacity = '0', duration || 3000);
     }
 
-    function getSVGPoint(svg, evt) {
-        const pt = svg.createSVGPoint();
-        pt.x = evt.clientX;
-        pt.y = evt.clientY;
-        return pt.matrixTransform(svg.getScreenCTM().inverse());
-    }
-
-    function makeEditable(el) {
-        el.style.cursor = 'move';
-        el.setAttribute('data-editable', 'true');
-        // Highlight on hover
-        el.addEventListener('mouseenter', () => {
-            if (!editMode) return;
-            el._origOpacity = el.getAttribute('opacity') || '1';
-            el.style.outline = '2px solid #d4a537';
-            el.style.outlineOffset = '2px';
-        });
-        el.addEventListener('mouseleave', () => {
-            if (!editMode) return;
-            el.style.outline = '';
-        });
-    }
-
-    function initEditMode() {
-        // SVG elements
-        document.querySelectorAll('svg').forEach(svg => {
-            svg.querySelectorAll('text, rect, circle, line, polyline, polygon, path').forEach(el => {
-                makeEditable(el);
+    // ===== Toolbar =====
+    function createToolbar() {
+        if (toolbar) return;
+        toolbar = document.createElement('div');
+        toolbar.id = 'editor-toolbar';
+        toolbar.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:99998;display:flex;gap:8px;padding:10px 16px;background:#1a1a2e;border:2px solid #d4a537;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.5);font-family:sans-serif;';
+        toolbar.innerHTML = `
+            <span style="color:#d4a537;font-size:13px;font-weight:700;margin-right:8px;line-height:32px;">編集モード</span>
+            <button data-action="save" style="padding:6px 16px;background:#27ae60;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;">💾 保存 (Ctrl+S)</button>
+            <button data-action="undo" style="padding:6px 16px;background:#2e86c1;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;">↩ 戻す (Ctrl+Z)</button>
+            <button data-action="delete" style="padding:6px 16px;background:#e74c3c;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;">🗑 削除 (Del)</button>
+            <button data-action="exit" style="padding:6px 16px;background:#556;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;">✕ 終了 (Ctrl+E)</button>
+        `;
+        document.body.appendChild(toolbar);
+        toolbar.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const action = btn.dataset.action;
+                if (action === 'save') saveHTML();
+                else if (action === 'undo') undo();
+                else if (action === 'delete') deleteSelected();
+                else if (action === 'exit') toggleEdit();
             });
         });
-        // HTML overlay labels (absolute positioned divs over images)
-        document.querySelectorAll('.vis div[style*="position:absolute"], .vis div[style*="position: absolute"]').forEach(el => {
-            el.style.cursor = 'move';
-            el.setAttribute('data-html-editable', 'true');
+    }
+
+    function removeToolbar() {
+        if (toolbar) { toolbar.remove(); toolbar = null; }
+    }
+
+    // ===== Edit Mode =====
+    function toggleEdit() {
+        editMode = !editMode;
+        if (editMode) {
+            createToolbar();
+            initEditable();
+            showMsg('編集モード ON ── ドラッグ移動 / ダブルクリック編集 / 画像角でリサイズ', '#d4a537', 4000);
+        } else {
+            removeToolbar();
+            clearSelection();
+            document.querySelectorAll('.editor-handle').forEach(h => h.remove());
+            document.querySelectorAll('[data-editable]').forEach(el => {
+                el.style.outline = '';
+                el.style.cursor = '';
+            });
+            showMsg('編集モード OFF', '#556', 2000);
+        }
+    }
+
+    function initEditable() {
+        // All elements inside slides that can be edited
+        document.querySelectorAll('.slide').forEach(slide => {
+            // Text elements
+            slide.querySelectorAll('li, .pbox, h2, .srow .lbl, .srow .val, p').forEach(el => {
+                el.setAttribute('data-editable', 'text');
+                el.style.cursor = 'move';
+            });
+            // Images
+            slide.querySelectorAll('img').forEach(el => {
+                el.setAttribute('data-editable', 'image');
+                el.style.cursor = 'move';
+                el.draggable = false;
+            });
+            // SVG elements
+            slide.querySelectorAll('svg text, svg rect, svg circle, svg line, svg polyline').forEach(el => {
+                el.setAttribute('data-editable', 'svg');
+                el.style.cursor = 'move';
+            });
+            // Absolute positioned divs (overlay labels)
+            slide.querySelectorAll('div[style*="position:absolute"], div[style*="position: absolute"]').forEach(el => {
+                el.setAttribute('data-editable', 'overlay');
+                el.style.cursor = 'move';
+            });
         });
     }
 
+    // ===== Selection =====
+    function selectElement(el) {
+        clearSelection();
+        selected = el;
+        const type = el.getAttribute('data-editable');
+        if (type === 'image') {
+            el.style.outline = '3px solid #d4a537';
+            addResizeHandles(el);
+        } else if (type === 'svg') {
+            el.style.outline = '2px solid #d4a537';
+        } else {
+            el.style.outline = '2px dashed #d4a537';
+            el.style.outlineOffset = '2px';
+        }
+    }
+
+    function clearSelection() {
+        if (selected) {
+            selected.style.outline = '';
+            selected.style.outlineOffset = '';
+        }
+        document.querySelectorAll('.editor-handle').forEach(h => h.remove());
+        selected = null;
+    }
+
+    // ===== Resize Handles for Images =====
+    function addResizeHandles(img) {
+        document.querySelectorAll('.editor-handle').forEach(h => h.remove());
+        const parent = img.offsetParent || img.parentElement;
+
+        ['nw','ne','sw','se'].forEach(pos => {
+            const handle = document.createElement('div');
+            handle.className = 'editor-handle';
+            handle.dataset.pos = pos;
+            handle.style.cssText = `position:absolute;width:14px;height:14px;background:#d4a537;border:2px solid #fff;border-radius:3px;cursor:${pos}-resize;z-index:99997;`;
+
+            const rect = img.getBoundingClientRect();
+            const pRect = parent.getBoundingClientRect();
+
+            if (pos.includes('n')) handle.style.top = (rect.top - pRect.top - 7) + 'px';
+            else handle.style.top = (rect.bottom - pRect.top - 7) + 'px';
+            if (pos.includes('w')) handle.style.left = (rect.left - pRect.left - 7) + 'px';
+            else handle.style.left = (rect.right - pRect.left - 7) + 'px';
+
+            parent.style.position = 'relative';
+            parent.appendChild(handle);
+
+            handle.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                resizing = { img, pos, startX: e.clientX, startY: e.clientY };
+                origW = img.offsetWidth;
+                origH = img.offsetHeight;
+                saveUndo(img, 'resize');
+            });
+        });
+    }
+
+    // ===== Drag =====
     function onMouseDown(e) {
         if (!editMode) return;
-        const el = e.target;
-        if (!el.closest('svg') || !el.getAttribute('data-editable')) return;
+
+        const el = e.target.closest('[data-editable]');
+        if (!el) { clearSelection(); return; }
 
         e.preventDefault();
+        selectElement(el);
         dragging = el;
-        const svg = el.closest('svg');
-        const pt = getSVGPoint(svg, e);
-        dragging._startPt = pt;
+        startX = e.clientX;
+        startY = e.clientY;
 
-        // Store original positions for all element types
-        const tag = el.tagName;
-        if (tag === 'line') {
-            dragging._origX1 = parseFloat(el.getAttribute('x1') || 0);
-            dragging._origY1 = parseFloat(el.getAttribute('y1') || 0);
-            dragging._origX2 = parseFloat(el.getAttribute('x2') || 0);
-            dragging._origY2 = parseFloat(el.getAttribute('y2') || 0);
-        } else if (tag === 'polyline' || tag === 'polygon') {
-            dragging._origPoints = el.getAttribute('points');
-        } else if (tag === 'path') {
-            dragging._origD = el.getAttribute('d');
-        } else {
-            const x = parseFloat(el.getAttribute('x') || el.getAttribute('cx') || 0);
-            const y = parseFloat(el.getAttribute('y') || el.getAttribute('cy') || 0);
-            offsetX = pt.x - x;
-            offsetY = pt.y - y;
+        const type = el.getAttribute('data-editable');
+        if (type === 'svg') {
+            const svg = el.closest('svg');
+            const pt = svg.createSVGPoint();
+            pt.x = e.clientX; pt.y = e.clientY;
+            const svgPt = pt.matrixTransform(svg.getScreenCTM().inverse());
+            origX = parseFloat(el.getAttribute('x') || el.getAttribute('cx') || el.getAttribute('x1') || 0);
+            origY = parseFloat(el.getAttribute('y') || el.getAttribute('cy') || el.getAttribute('y1') || 0);
+            dragging._svgStart = svgPt;
+            if (el.tagName === 'line') {
+                dragging._origX2 = parseFloat(el.getAttribute('x2'));
+                dragging._origY2 = parseFloat(el.getAttribute('y2'));
+            }
+            if (el.tagName === 'polyline') {
+                dragging._origPoints = el.getAttribute('points');
+            }
+        } else if (type === 'overlay') {
+            origX = parseFloat(el.style.left) || 0;
+            origY = parseFloat(el.style.top) || 0;
+        } else if (type === 'image') {
+            const rect = el.getBoundingClientRect();
+            origX = rect.left;
+            origY = rect.top;
         }
+
+        saveUndo(el, 'move');
     }
 
     function onMouseMove(e) {
+        // Handle resize
+        if (resizing) {
+            e.preventDefault();
+            const dx = e.clientX - resizing.startX;
+            const dy = e.clientY - resizing.startY;
+            let newW = origW;
+
+            if (resizing.pos.includes('e')) newW = origW + dx;
+            else if (resizing.pos.includes('w')) newW = origW - dx;
+
+            newW = Math.max(50, newW);
+            resizing.img.style.maxWidth = newW + 'px';
+            resizing.img.style.width = newW + 'px';
+            resizing.img.style.height = 'auto';
+
+            // Update handles
+            addResizeHandles(resizing.img);
+            showMsg(`画像サイズ: ${newW}px`, '#0a2f5c', 1000);
+            return;
+        }
+
         if (!dragging || !editMode) return;
         e.preventDefault();
 
-        const svg = dragging.closest('svg');
-        const pt = getSVGPoint(svg, e);
-        const dx = Math.round(pt.x - dragging._startPt.x);
-        const dy = Math.round(pt.y - dragging._startPt.y);
-        const tag = dragging.tagName;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        const type = dragging.getAttribute('data-editable');
 
-        if (tag === 'text' || tag === 'rect') {
-            const newX = Math.round(pt.x - offsetX);
-            const newY = Math.round(pt.y - offsetY);
-            dragging.setAttribute('x', newX);
-            dragging.setAttribute('y', newY);
-        } else if (tag === 'circle') {
-            const newX = Math.round(pt.x - offsetX);
-            const newY = Math.round(pt.y - offsetY);
-            dragging.setAttribute('cx', newX);
-            dragging.setAttribute('cy', newY);
-        } else if (tag === 'line') {
-            dragging.setAttribute('x1', Math.round(dragging._origX1 + dx));
-            dragging.setAttribute('y1', Math.round(dragging._origY1 + dy));
-            dragging.setAttribute('x2', Math.round(dragging._origX2 + dx));
-            dragging.setAttribute('y2', Math.round(dragging._origY2 + dy));
-        } else if (tag === 'polyline' || tag === 'polygon') {
-            const origPts = dragging._origPoints.trim().split(/[\s,]+/);
-            const newPts = [];
-            for (let i = 0; i < origPts.length; i += 2) {
-                newPts.push(Math.round(parseFloat(origPts[i]) + dx) + ',' + Math.round(parseFloat(origPts[i+1]) + dy));
+        if (type === 'svg') {
+            const svg = dragging.closest('svg');
+            const pt = svg.createSVGPoint();
+            pt.x = e.clientX; pt.y = e.clientY;
+            const svgPt = pt.matrixTransform(svg.getScreenCTM().inverse());
+            const sdx = svgPt.x - dragging._svgStart.x;
+            const sdy = svgPt.y - dragging._svgStart.y;
+
+            const tag = dragging.tagName;
+            if (tag === 'text' || tag === 'rect') {
+                dragging.setAttribute('x', Math.round(origX + sdx));
+                dragging.setAttribute('y', Math.round(origY + sdy));
+            } else if (tag === 'circle') {
+                dragging.setAttribute('cx', Math.round(origX + sdx));
+                dragging.setAttribute('cy', Math.round(origY + sdy));
+            } else if (tag === 'line') {
+                dragging.setAttribute('x1', Math.round(origX + sdx));
+                dragging.setAttribute('y1', Math.round(origY + sdy));
+                dragging.setAttribute('x2', Math.round(dragging._origX2 + sdx));
+                dragging.setAttribute('y2', Math.round(dragging._origY2 + sdy));
+            } else if (tag === 'polyline') {
+                const pts = dragging._origPoints.trim().split(/[\s,]+/);
+                const newPts = [];
+                for (let i = 0; i < pts.length; i += 2) {
+                    newPts.push(Math.round(parseFloat(pts[i]) + sdx) + ',' + Math.round(parseFloat(pts[i+1]) + sdy));
+                }
+                dragging.setAttribute('points', newPts.join(' '));
             }
-            dragging.setAttribute('points', newPts.join(' '));
-        } else if (tag === 'path') {
-            // Translate path by wrapping in transform
-            dragging.setAttribute('transform', `translate(${dx},${dy})`);
+        } else if (type === 'overlay') {
+            const parent = dragging.parentElement.getBoundingClientRect();
+            const newLeft = origX + (dx / parent.width) * 100;
+            const newTop = origY + (dy / parent.height) * 100;
+            dragging.style.left = newLeft.toFixed(1) + '%';
+            dragging.style.top = newTop.toFixed(1) + '%';
+            dragging.style.right = '';
+            dragging.style.bottom = '';
+        } else if (type === 'image') {
+            // Move image by adjusting margin
+            dragging.style.marginLeft = dx + 'px';
+            dragging.style.marginTop = dy + 'px';
         }
-
-        // Track the change
-        const slideEl = dragging.closest('[data-s]');
-        const slideNum = slideEl ? slideEl.getAttribute('data-s') : '?';
-        const text = dragging.textContent || tag;
-        const key = `slide${slideNum}_${tag}_${text.substring(0,15)}_${Math.random().toString(36).substr(2,4)}`;
-        changes[key] = { slide: slideNum, tag, text: text.substring(0,20), dx, dy };
-
-        showIndicator(`${tag} → dx:${dx} dy:${dy}`, '#0a2f5c');
     }
 
     function onMouseUp() {
         dragging = null;
+        resizing = null;
     }
 
-    function copyChanges() {
-        const json = JSON.stringify(changes, null, 2);
-        navigator.clipboard.writeText(json).then(() => {
-            showIndicator(`変更をコピーしました（${Object.keys(changes).length}件）`, '#27ae60');
-        }).catch(() => {
-            console.log('=== SVG CHANGES ===');
-            console.log(json);
-            showIndicator('コンソールに出力しました（Ctrl+Shift+J）', '#d4a537');
+    // ===== Double-click to Edit Text =====
+    function onDblClick(e) {
+        if (!editMode) return;
+        const el = e.target.closest('[data-editable="text"], [data-editable="overlay"]');
+        if (!el) return;
+
+        e.preventDefault();
+        saveUndo(el, 'edit');
+
+        el.contentEditable = true;
+        el.focus();
+        el.style.outline = '2px solid #27ae60';
+        el.style.background = 'rgba(39,174,96,0.1)';
+
+        const finish = () => {
+            el.contentEditable = false;
+            el.style.background = '';
+            selectElement(el);
+            el.removeEventListener('blur', finish);
+        };
+        el.addEventListener('blur', finish);
+
+        // Also handle Enter key to finish editing
+        el.addEventListener('keydown', (ev) => {
+            if (ev.key === 'Enter' && !ev.shiftKey) {
+                ev.preventDefault();
+                el.blur();
+            }
+        }, { once: true });
+
+        showMsg('テキスト編集中 ── Enterで確定', '#27ae60', 3000);
+    }
+
+    // Also support SVG text editing
+    function onSvgDblClick(e) {
+        if (!editMode) return;
+        const el = e.target;
+        if (el.tagName !== 'text' || !el.closest('svg')) return;
+
+        e.preventDefault();
+        saveUndo(el, 'edit');
+
+        const newText = prompt('テキストを編集:', el.textContent);
+        if (newText !== null) {
+            el.textContent = newText;
+        }
+    }
+
+    // ===== Delete =====
+    function deleteSelected() {
+        if (!selected) return;
+        saveUndo(selected, 'delete');
+        selected.style.display = 'none';
+        showMsg('要素を非表示にしました（Ctrl+Zで戻す）', '#e74c3c', 3000);
+        clearSelection();
+    }
+
+    // ===== Undo =====
+    function saveUndo(el, action) {
+        undoStack.push({
+            el,
+            action,
+            html: el.outerHTML,
+            display: el.style.display,
+            attrs: {
+                x: el.getAttribute && el.getAttribute('x'),
+                y: el.getAttribute && el.getAttribute('y'),
+                cx: el.getAttribute && el.getAttribute('cx'),
+                cy: el.getAttribute && el.getAttribute('cy'),
+                style: el.getAttribute && el.getAttribute('style'),
+                points: el.getAttribute && el.getAttribute('points'),
+            },
+            maxWidth: el.style.maxWidth,
+            width: el.style.width,
+            marginLeft: el.style.marginLeft,
+            marginTop: el.style.marginTop,
         });
+        if (undoStack.length > 50) undoStack.shift();
     }
 
-    function saveChanges() {
-        // Get the current slide HTML and save it directly
-        const slideArea = document.querySelector('.slide-area');
-        if (!slideArea) return;
+    function undo() {
+        if (undoStack.length === 0) { showMsg('元に戻せる操作がありません', '#556', 2000); return; }
+        const state = undoStack.pop();
+        const el = state.el;
 
-        // Get the full page HTML with current modifications
+        if (state.action === 'delete') {
+            el.style.display = state.display || '';
+        } else if (state.action === 'resize') {
+            el.style.maxWidth = state.maxWidth;
+            el.style.width = state.width;
+        } else if (state.action === 'move') {
+            if (state.attrs.x !== null && el.setAttribute) el.setAttribute('x', state.attrs.x);
+            if (state.attrs.y !== null && el.setAttribute) el.setAttribute('y', state.attrs.y);
+            if (state.attrs.cx !== null && el.setAttribute) el.setAttribute('cx', state.attrs.cx);
+            if (state.attrs.cy !== null && el.setAttribute) el.setAttribute('cy', state.attrs.cy);
+            if (state.attrs.points !== null && el.setAttribute) el.setAttribute('points', state.attrs.points);
+            if (state.attrs.style !== null && el.setAttribute) el.setAttribute('style', state.attrs.style);
+            el.style.marginLeft = state.marginLeft || '';
+            el.style.marginTop = state.marginTop || '';
+        } else if (state.action === 'edit') {
+            el.outerHTML = state.html;
+        }
+
+        showMsg('元に戻しました', '#2e86c1', 2000);
+    }
+
+    // ===== Save =====
+    function saveHTML() {
         const fullHTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-
-        // Remove editor.js script tag from saved version to keep it clean
-        // (it will be re-added on next load)
-
-        // Create download
         const blob = new Blob([fullHTML], { type: 'text/html' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        // Get filename from current URL
         const path = window.location.pathname;
-        const filename = path.substring(path.lastIndexOf('/') + 1);
-        a.download = filename;
+        a.download = path.substring(path.lastIndexOf('/') + 1);
         a.click();
         URL.revokeObjectURL(url);
-
-        showIndicator(`${filename} をダウンロードしました ── slidesフォルダに上書き保存してください`, '#27ae60');
+        showMsg('保存しました ── slidesフォルダに上書きしてください', '#27ae60', 4000);
     }
 
-    // Keyboard shortcuts
+    // ===== Keyboard =====
     document.addEventListener('keydown', (e) => {
-        if (e.ctrlKey && e.key === 'e') {
-            e.preventDefault();
-            editMode = !editMode;
-            if (editMode) {
-                initEditMode();
-                showIndicator('編集モード ON ── ドラッグで移動 / Ctrl+S で保存 / Ctrl+E で終了', '#d4a537');
-                document.body.style.cursor = 'crosshair';
-            } else {
-                showIndicator('編集モード OFF', '#556');
-                document.body.style.cursor = '';
-                // Remove outlines
-                document.querySelectorAll('[data-editable]').forEach(el => {
-                    el.style.outline = '';
-                    el.style.cursor = '';
-                });
-            }
-        }
-        if (e.ctrlKey && e.key === 'c' && editMode && Object.keys(changes).length > 0) {
-            e.preventDefault();
-            copyChanges();
-        }
-        if (e.ctrlKey && e.key === 's' && editMode) {
-            e.preventDefault();
-            saveChanges();
+        if (e.ctrlKey && e.key === 'e') { e.preventDefault(); toggleEdit(); }
+        if (e.ctrlKey && e.key === 's' && editMode) { e.preventDefault(); saveHTML(); }
+        if (e.ctrlKey && e.key === 'z' && editMode) { e.preventDefault(); undo(); }
+        if ((e.key === 'Delete' || e.key === 'Backspace') && editMode && selected && !selected.isContentEditable) {
+            e.preventDefault(); deleteSelected();
         }
     });
 
-    // HTML overlay drag support
-    let htmlDragging = null;
-    let htmlStartX = 0, htmlStartY = 0;
-    let htmlOrigLeft = 0, htmlOrigTop = 0;
-
-    function onHtmlMouseDown(e) {
-        if (!editMode) return;
-        const el = e.target.closest('[data-html-editable]');
-        if (!el) return;
-        e.preventDefault();
-        e.stopPropagation();
-        htmlDragging = el;
-        htmlStartX = e.clientX;
-        htmlStartY = e.clientY;
-
-        const style = el.style;
-        // Parse current position
-        if (style.left) htmlOrigLeft = parseFloat(style.left);
-        else if (style.right) htmlOrigLeft = -parseFloat(style.right);
-        if (style.top) htmlOrigTop = parseFloat(style.top);
-        else if (style.bottom) htmlOrigTop = -parseFloat(style.bottom);
-
-        // Store whether it uses left/right/top/bottom
-        htmlDragging._usesRight = !!style.right && !style.left;
-        htmlDragging._usesBottom = !!style.bottom && !style.top;
-    }
-
-    function onHtmlMouseMove(e) {
-        if (!htmlDragging || !editMode) return;
-        e.preventDefault();
-
-        const parent = htmlDragging.parentElement;
-        const parentRect = parent.getBoundingClientRect();
-        const dx = e.clientX - htmlStartX;
-        const dy = e.clientY - htmlStartY;
-
-        // Convert pixel delta to percentage of parent
-        const dxPct = (dx / parentRect.width) * 100;
-        const dyPct = (dy / parentRect.height) * 100;
-
-        const newLeft = htmlOrigLeft + dxPct;
-        const newTop = htmlOrigTop + dyPct;
-
-        if (htmlDragging._usesRight) {
-            htmlDragging.style.right = (-newLeft).toFixed(1) + '%';
-            htmlDragging.style.left = '';
-        } else {
-            htmlDragging.style.left = newLeft.toFixed(1) + '%';
-            htmlDragging.style.right = '';
-        }
-
-        if (htmlDragging._usesBottom) {
-            htmlDragging.style.bottom = (-newTop).toFixed(1) + '%';
-            htmlDragging.style.top = '';
-        } else {
-            htmlDragging.style.top = newTop.toFixed(1) + '%';
-            htmlDragging.style.bottom = '';
-        }
-
-        const text = htmlDragging.textContent.substring(0, 15);
-        showIndicator(`"${text}" → left:${newLeft.toFixed(1)}% top:${newTop.toFixed(1)}%`, '#0a2f5c');
-    }
-
-    function onHtmlMouseUp() {
-        htmlDragging = null;
-    }
-
-    // Mouse events - SVG
+    // ===== Mouse Events =====
     document.addEventListener('mousedown', onMouseDown);
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
-
-    // Mouse events - HTML overlays
-    document.addEventListener('mousedown', onHtmlMouseDown, true);
-    document.addEventListener('mousemove', onHtmlMouseMove);
-    document.addEventListener('mouseup', onHtmlMouseUp);
+    document.addEventListener('dblclick', onDblClick);
+    document.addEventListener('dblclick', onSvgDblClick);
 
 })();
